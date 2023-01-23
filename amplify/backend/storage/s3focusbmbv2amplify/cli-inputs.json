@@ -1,0 +1,10 @@
+{
+  "resourceName": "s3focusbmbv2amplify",
+  "bucketName": "focus-bmb-v2-amplify",
+  "policyUUID": "ff1ef076",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "READ"
+  ]
+}

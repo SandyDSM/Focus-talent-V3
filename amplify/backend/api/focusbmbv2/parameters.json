@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "focusbmbv2",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authfocusbmbv2",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

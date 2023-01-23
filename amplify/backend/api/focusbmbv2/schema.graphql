@@ -1,0 +1,29 @@
+type Users @model @auth(rules: [{ allow: private }])  {
+  GUID: String!
+  APELLIDOS: String
+  ENTIDAD_LEGAL: String
+  ENTIDAD_LEGAL_ID: String
+  ESTRUCTURA_ORGANIZACIONAL: String
+  ESTRUCTURA_ORGANIZACIONAL_ID: String
+  FECHA_MODIFICACION: String
+  GRUPO: String
+  GRUPO_ID: String
+  ID_COLABORADOR: String
+  ID_JEFE: String
+  IDIOMA: String
+  id: String 
+  NIVEL: String
+  NIVEL_ID: String
+  NOMBRE: String
+  ORGANIZACION: String
+  ORGANIZACION_ID: String
+  PUESTO: String
+  PUESTO_ID: String
+  UBICACION_GEOGRAFICA_ID: String
+  UBICACION_GEOGRAFICA: String
+  EMAIL: String
+  ACTIVA: String
+  ES_JEFE:String
+  ADMIN:String
+  EQUIPO:String
+  }

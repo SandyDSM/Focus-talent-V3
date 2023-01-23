@@ -1,0 +1,90 @@
+import { SelectField } from "@aws-amplify/ui-react";
+import Filter from "../components/Filter";
+import CardsUsers from "./CardsUsers";
+import { Loader } from "@aws-amplify/ui-react";
+import { useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import CollaboratorsContext from "../context/collaborators";
+import { HeadTeamFrom } from "../ui-components";
+import BreadCrums from "../components/BreadCrums";
+import Pagination from "../components/Pagination";
+
+function TeamSub(){
+  const { id } = useParams();
+  const { getCollaborators, 
+    collaborators, 
+    getCollDetail,
+    collDetail,
+    isLoading,
+    separados,
+    datosFiltrados,
+    obtenPuesto,
+    obtenOrganizacion,
+    defineMax,
+    paginateFront,
+    paginateBack,
+    setActual,
+    currentPage
+   } =
+    useContext(CollaboratorsContext);
+
+    const PUESTOS = obtenPuesto();
+    const ORGANIZACIONES = obtenOrganizacion();
+  
+  useEffect(() => {
+    getCollDetail(id).catch(null);
+    getCollaborators();
+  }, []);
+  
+  const sendOverridesTeamFrom ={
+    nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` }
+  }
+
+  if (isLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center ">
+        {" "}
+        <Loader size="large" />
+      </div>
+    );
+  }
+  return (
+    <>
+      <div className="mx-4">
+        <BreadCrums text="Equipo de" colaborator={collDetail.ID_COLABORADOR} />
+      </div>
+      <HeadTeamFrom width={"100%"} overrides={sendOverridesTeamFrom} />
+      <div className="grid grid-cols-1 md:grid-cols-3 l:grid-cols-4 gap-4 mdgrid-rows-3 m-5">
+        <div className="col-end-5">
+          <SelectField label="Order" labelHidden={true}>
+            <option value="asecendete">Ordenar por: Asecendete</option>
+            <option value="descendente">Ordenar por: Descendente</option>
+          </SelectField>
+        </div>
+        <div className="col-start-1 md:row-start-2  mt-4">
+        <Filter
+            ListaPuestos={PUESTOS}
+            ListaOrganizacion={ORGANIZACIONES}
+            cargaFiltrado={datosFiltrados}
+          />
+        </div>
+        <div className=" col-span-3">
+          <CardsUsers collaborators={collaborators} />
+        </div>
+        <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
+          <Pagination
+            MaxPpagina={defineMax}
+            BackPag={paginateBack}
+            NextPag={paginateFront}
+            PActual={currentPage}
+            MaxPaginas={separados.length}
+            SeteoActual={setActual}
+          />
+        </div>
+
+      </div>
+    </>
+  );
+};
+
+export default TeamSub;
