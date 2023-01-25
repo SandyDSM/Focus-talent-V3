@@ -6,12 +6,12 @@ import CardsUsers from "./CardsUsers";
 import { Loader } from "@aws-amplify/ui-react";
 
 import { useContext, useEffect } from "react";
-import  CollaboratorsContext from "../context/collaborators";
+import CollaboratorsContext from "../context/collaborators";
 import Pagination from "../components/Pagination";
 
-
 const MyTeam = () => {
-  const { getCollaborators, 
+  const {
+    getCollaborators,
     isLoading,
     separados,
     datosFiltrados,
@@ -23,24 +23,20 @@ const MyTeam = () => {
     setActual,
     currentPage,
     usuarioActualDatos,
-   } =
-    useContext(CollaboratorsContext);
-
+  } = useContext(CollaboratorsContext);
 
   useEffect(() => {
-    if(usuarioActualDatos.ID_COLABORADOR != undefined){
-      getCollaborators(usuarioActualDatos.ID_COLABORADOR)
+    if (usuarioActualDatos.ID_COLABORADOR != undefined) {
+      getCollaborators(usuarioActualDatos.ID_COLABORADOR, "SetColaborators");
     }
   }, [usuarioActualDatos.ID_COLABORADOR]);
 
   const PUESTOS = obtenPuesto();
   const ORGANIZACIONES = obtenOrganizacion();
 
- 
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        {" "}
         <Loader size="large" />
       </div>
     );
@@ -48,34 +44,42 @@ const MyTeam = () => {
   return (
     <>
       <HeadTeam />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 m-5">
-        <div className="col-end-2 md:col-end-5">
-          <SelectField label="Order" labelHidden={true}>
-            <option value="asecendete">Ordenar por: Ascendente</option>
-            <option value="descendente">Ordenar por: Descendente</option>
-          </SelectField>
+      {separados === 0 ? (
+        <div className="flex justify-center my-10 items-center">
+          <h3>Usted no cuenta con reportes directos</h3>{" "}
         </div>
-        <div className="col-start-1 row-start-2  mt-4">
-          <Filter
-            ListaPuestos={PUESTOS}
-            ListaOrganizacion={ORGANIZACIONES}
-            cargaFiltrado={datosFiltrados}
-          />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 m-5">
+          <div className="col-end-2 md:col-end-5">
+            <SelectField label="Order" labelHidden={true}>
+              <option value="asecendete">Ordenar por: Ascendente</option>
+              <option value="descendente">Ordenar por: Descendente</option>
+            </SelectField>
+          </div>
+          <div className="col-start-1 row-start-2  mt-4">
+            <Filter
+              ListaPuestos={PUESTOS}
+              ListaOrganizacion={ORGANIZACIONES}
+              cargaFiltrado={datosFiltrados}
+            />
+          </div>
+          <div className="col-span-1 row-start-3 sm:col-span-2 md:row-start-2 md:col-span-3 ">
+            <CardsUsers collaborators={separados[currentPage]} />
+          </div>
+          <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
+            {separados.length > 1 && (
+              <Pagination
+                MaxPpagina={defineMax}
+                BackPag={paginateBack}
+                NextPag={paginateFront}
+                PActual={currentPage}
+                MaxPaginas={separados.length}
+                SeteoActual={setActual}
+              />
+            )}
+          </div>
         </div>
-        <div className="col-span-1 row-start-3 sm:col-span-2 md:row-start-2 md:col-span-3 ">
-          <CardsUsers collaborators={separados[currentPage]}/>
-        </div>
-        <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
-          <Pagination
-            MaxPpagina={defineMax}
-            BackPag={paginateBack}
-            NextPag={paginateFront}
-            PActual={currentPage}
-            MaxPaginas={separados.length}
-            SeteoActual={setActual}
-          />
-        </div>
-      </div>
+      )}
     </>
   );
 };

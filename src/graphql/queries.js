@@ -31,6 +31,7 @@ export const getUsers = /* GraphQL */ `
       ES_JEFE
       ADMIN
       EQUIPO
+      PHOTO
       createdAt
       updatedAt
     }
@@ -71,6 +72,7 @@ export const listUsers = /* GraphQL */ `
         ES_JEFE
         ADMIN
         EQUIPO
+        PHOTO
         createdAt
         updatedAt
       }

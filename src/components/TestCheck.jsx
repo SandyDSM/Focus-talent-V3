@@ -7,8 +7,72 @@ import {
   Button,
 } from "@aws-amplify/ui-react";
 import React from "react";
+import { useState } from "react";
 
-function TestCheck() {
+function TestCheck({ElementosFiltro, defineAnios}) {
+////////////////////////////////////////////////////////////////////////////
+function obtenAnios(anio) {
+  let datos = anio;
+
+  let anios = [];
+  for (let i = 0; i < datos.length; i++) {
+    anios[i] = datos[i].ANO_EVAL;
+  }
+  let result = anios.filter((item, index) => {
+    return anios.indexOf(item) === index;
+  });
+  console.log(result);
+  return result;
+}
+let listaFiltros;
+
+
+const[activos, setActivos]=useState(false);
+
+function Arrfiltros()
+{
+  if(ElementosFiltro){
+    let filtros=obtenAnios(ElementosFiltro);
+    listaFiltros=filtros;
+    filtros.sort((a, b) => {
+      if (a < b) return 1
+      if (a > b) return -1
+      return 0
+    })
+    return(
+      filtros.map((anio)=>(<CheckboxField label={anio} name={anio} value={anio} defaultChecked={anio=="2022"? true: false} id={anio} /> ))
+    );
+     
+  }
+}
+
+function checar(){
+  let anios = [];
+  let j=0;
+
+
+
+for(let i=0; i<listaFiltros.length; i++){
+if(document.getElementById(listaFiltros[i]).checked){
+  //alert(document.getElementById(listaFiltros[i]).value)
+anios[j]=document.getElementById(listaFiltros[i]).value;
+j++;
+}
+}
+if(anios.length===0){
+  defineAnios(listaFiltros);
+}else{
+defineAnios(anios);
+}
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
   return (
     <div className="card m-auto">
@@ -17,14 +81,11 @@ function TestCheck() {
         <Button width={"100%"} variation="link" size="small" >Seleccionar todo</Button>
       </div>
       <div className="flex flex-col gap-2">
-        <CheckboxField label="Talento 1" name="Talento1" value="Talento1" />
-        <CheckboxField label="Talento 2" name="Talento2" value="Talento2" />
-        <CheckboxField label="Talento 3" name="Talento3" value="Talento3" />
-        <CheckboxField label="Talento 4" name="Talento4" value="Talento4" />
+      {Arrfiltros()}
       </div>
       <div className="flex gap-4 my-4">
           <Button width={"100%"} size="small">Limpiar</Button>
-          <Button width={"100%"} variation="primary" size="small" >Ver</Button>
+          <Button width={"100%"} variation="primary" size="small" onClick={()=>{checar()}}>Ver</Button>
         </div>
 
     </div>

@@ -3,23 +3,25 @@ import { API, graphqlOperation, Storage } from "aws-amplify";
 import { useState } from "react";
 import { Auth } from "aws-amplify";
 
-import { listUsers, getUsers } from "../../graphql/queries";
+//import { listUsers, getUsers } from "../../graphql/queries";
 
 export default function CollaboratorsProvider({ children }) {
   const [collaborators, setCollaborators] = useState([]);
-  const [collDetail, setCollDetail] = useState({});
+  const [subcollaborators, setSubcollaborators] = useState([]);
+  const [collDetail, setCollDetail] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [logueado, setLogueado] = useState({});
   const [usuarioActualDatos, setUsuarioActualDatos] = useState({});
   const [photo, setPhoto] = useState("");
   const [collaboratorsPhotos, setCollaboratorsPhotos] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const UserLog = async () => {
     try {
       const coguserdata = await Auth.currentUserInfo();
 
       setLogueado(coguserdata.attributes);
-      console.log(coguserdata.attributes.email);
+     // console.log(coguserdata.attributes.email);
       getAttribColaborators(coguserdata.attributes.email);
     } catch (error) {
       console.log("error:", error);
@@ -27,33 +29,33 @@ export default function CollaboratorsProvider({ children }) {
   };
 
   const getAttribColaborators = async (correo) => {
-    let filtro = { EMAIL: { eq: correo } };
     try {
-      const userData = await API.graphql(
-        graphqlOperation(listUsers, { filter: filtro, limit: 10000 })
-      );
-      let datosUsuario = userData.data.listUsers.items;
-      let token = userData.data.listUsers.nextToken;
-      while (token != null) {
-        let dataTemp = await API.graphql(
-          graphqlOperation(listUsers, {
-            filter: filtro,
-            limit: 10000,
-            nextToken: token,
-          })
-        );
-        datosUsuario = dataTemp.data.listUsers.items;
-        token = dataTemp.data.listUsers.nextToken;
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_UserInfo.php?EMAIL=${correo}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            token: "8da9aebd984ef3897b280ff7efabf83d931f591b",
+          },
+        }
+      ); //.then(respdesemp => {setTestPreguntas(respdesemp.json);})
+      const datos = await respdesemp.json();
+      //console.log("Resultado de consulta: ", datos);
+      setUsuarioActualDatos(datos[0]);
+      setPhoto(`data:image/jpg;base64,${datos[0].FOTO}`);
+      if (datos[0].ADMIN === "1") {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
       }
-      setUsuarioActualDatos(datosUsuario[0]);
-      PhotoBucket(datosUsuario[0].ID_COLABORADOR);
     } catch (error) {
-      console.log("error:", error);
-      //setCollaborators([]);
+      console.log("error aqui:", error);
+      Auth.signOut();
     }
   };
 
-  const getCollaborators = async (msg) => {
+  /*const getCollaborators = async (msg) => {
     let filtro = { ID_JEFE: { eq: msg } };
     try {
       setIsLoading(true);
@@ -94,18 +96,61 @@ export default function CollaboratorsProvider({ children }) {
     } finally {
       setIsLoading(false);
     }
-  };
-  const getCollDetail = async (id) => {
-    if (!id) Promise.reject("Id requerido");
+  };*/
+
+  const getCollaborators = async (idJefe, accion) => {
+    //console.log("El id de jefe es:", idJefe);
     try {
       setIsLoading(true);
-      const userData = await API.graphql(graphqlOperation(getUsers, { id }));
-      const collaborator = userData.data.getUsers;
-      setCollDetail(collaborator);
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_UserInfo.php?IdJefe=${idJefe}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            token: "8da9aebd984ef3897b280ff7efabf83d931f591b",
+          },
+        }
+      ); //.then(respdesemp => {setTestPreguntas(respdesemp.json);})
+      const datos = await respdesemp.json();
+      //console.log("Resultado de team: ", datos);
+      if(accion==="SetColaborators"){
+        setCollaborators(datos);
+        }else if(accion==="SetSubColaborators"){
+          setSubcollaborators(datos);
+        }
     } catch (error) {
-      console.log("error detail:", error);
-      setCollDetail([]);
+      if(accion==="SetColaborators"){
+        setCollaborators([]);
+        }else if(accion==="SetSubColaborators"){
+          setSubcollaborators([]);
+        }
     } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getCollDetail = async (id) => {
+    //console.log("El id de jefe es:", id);
+    try {
+      setIsLoading(true);
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_UserInfo.php?ID=${id}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            token: "8da9aebd984ef3897b280ff7efabf83d931f591b",
+          },
+        }
+      );
+      const datos = await respdesemp.json();
+      setCollDetail(datos[0]);
+      //console.log(datos[0])
+    } catch (error) {
+      console.log("error:", error);
+      setCollDetail([]);
+    }finally {
       setIsLoading(false);
     }
   };
@@ -128,20 +173,22 @@ export default function CollaboratorsProvider({ children }) {
     for (let i = 0; i < userList.length; i++) {
       const userPhotoPath = `${userList[i]}.png`;
       try {
-        const fileAccessURL = await Storage.get(userPhotoPath.ID_COLABORADOR, { level: 'public' ,expires: 60 });
-          const images = {
-            img: `${fileAccessURL}`
-          }
-          let NewCollaborators = {...userList[i], ...images}
-          setCollaboratorsPhotos(collaboratorsPhotos.push(NewCollaborators))
+        const fileAccessURL = await Storage.get(userPhotoPath.ID_COLABORADOR, {
+          level: "public",
+          expires: 60,
+        });
+        const images = {
+          img: `${fileAccessURL}`,
+        };
+        let NewCollaborators = { ...userList[i], ...images };
+        setCollaboratorsPhotos(collaboratorsPhotos.push(NewCollaborators));
       } catch (error) {
         console.log("error photo out: ", error);
       }
     }
-    console.log("photosCol",collaboratorsPhotos)
-    console.log(typeof(collaboratorsPhotos))
+    console.log("photosCol", collaboratorsPhotos);
+    console.log(typeof collaboratorsPhotos);
   };
-
 
   const [maxPorPagina, setmaxPorPagina] = useState(9);
   const [ObjTrabajo, setObjTrabajo] = useState(null);
@@ -183,7 +230,7 @@ export default function CollaboratorsProvider({ children }) {
 
       return firstpanels;
     } else {
-      return null;
+      return (datos = 0);
     }
   }
 
@@ -216,6 +263,7 @@ export default function CollaboratorsProvider({ children }) {
       value={{
         getCollaborators,
         collaborators,
+        subcollaborators,
         getCollDetail,
         collDetail,
         isLoading,
@@ -231,9 +279,8 @@ export default function CollaboratorsProvider({ children }) {
         setActual,
         usuarioActualDatos,
         currentPage,
-        PhotoBucket,
         photo,
-        PhotoUsers,
+        isAdmin,
       }}
     >
       {children}

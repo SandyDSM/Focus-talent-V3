@@ -29,6 +29,12 @@
       },
       "storage": {
         "s3focusbmbv2amplify": {}
+      },
+      "api": {
+        "focusbmbv2": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
       }
     }
   }

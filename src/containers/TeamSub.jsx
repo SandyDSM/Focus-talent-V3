@@ -9,10 +9,12 @@ import { HeadTeamFrom } from "../ui-components";
 import BreadCrums from "../components/BreadCrums";
 import Pagination from "../components/Pagination";
 
-function TeamSub(){
+function TeamSub() {
   const { id } = useParams();
-  const { getCollaborators, 
-    collaborators, 
+  const {
+    getCollaborators,
+    collaborators,
+    subcollaborators,
     getCollDetail,
     collDetail,
     isLoading,
@@ -24,21 +26,22 @@ function TeamSub(){
     paginateFront,
     paginateBack,
     setActual,
-    currentPage
-   } =
-    useContext(CollaboratorsContext);
+    currentPage,
+  } = useContext(CollaboratorsContext);
 
-    const PUESTOS = obtenPuesto();
-    const ORGANIZACIONES = obtenOrganizacion();
-  
+  const PUESTOS = obtenPuesto();
+  const ORGANIZACIONES = obtenOrganizacion();
+
   useEffect(() => {
     getCollDetail(id).catch(null);
-    getCollaborators();
+    if (collDetail.ID_COLABORADOR != undefined) {
+      getCollaborators(collDetail.ID_COLABORADOR, "SetSubColaborators");
+    }
   }, []);
-  
-  const sendOverridesTeamFrom ={
-    nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` }
-  }
+
+  const sendOverridesTeamFrom = {
+    nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
+  };
 
   if (isLoading) {
     return (
@@ -62,14 +65,14 @@ function TeamSub(){
           </SelectField>
         </div>
         <div className="col-start-1 md:row-start-2  mt-4">
-        <Filter
+          <Filter
             ListaPuestos={PUESTOS}
             ListaOrganizacion={ORGANIZACIONES}
             cargaFiltrado={datosFiltrados}
           />
         </div>
         <div className=" col-span-3">
-          <CardsUsers collaborators={collaborators} />
+          <CardsUsers collaborators={subcollaborators} />
         </div>
         <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
           <Pagination
@@ -81,10 +84,9 @@ function TeamSub(){
             SeteoActual={setActual}
           />
         </div>
-
       </div>
     </>
   );
-};
+}
 
 export default TeamSub;

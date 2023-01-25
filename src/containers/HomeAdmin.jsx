@@ -4,10 +4,17 @@ import CardBtn from "../ui-components/CardBtn";
 import CollaboratorsContext from "../context/collaborators";
 import { useContext, useEffect } from "react";
 import { Loader } from "@aws-amplify/ui-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function HomeAdmin() {
-  const { usuarioActualDatos, photo  } = useContext(CollaboratorsContext);
+  const { usuarioActualDatos, photo, isAdmin  } = useContext(CollaboratorsContext);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(!isAdmin){
+      navigate("/myteam")
+    }
+  },[isAdmin])
 
   const sendOverridesAdmin = {
     ImgCol: { src: photo },
@@ -26,6 +33,7 @@ function HomeAdmin() {
   const sendOverridesCard3 = {
     Title: { children: "Mi equipo" },
   };
+
 
   if (usuarioActualDatos.NOMBRE == undefined) {
     return (

@@ -5,10 +5,10 @@ const CardsUsers = ({ collaborators }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {collaborators?.map((colaborator) => (
-        <div key={colaborator.id}>
+        <div key={colaborator.INTERNAL_ID}>
           {colaborator.EQUIPO == "1" ? (
             <CardColaborador
-             idCol={colaborator.id}
+             idCol={colaborator.INTERNAL_ID}
               type="More"
               width={"100%"}
               height={"100%"}
@@ -20,16 +20,16 @@ const CardsUsers = ({ collaborators }) => {
                 Job: { children: colaborator.PUESTO },
                 Organitation: { children: colaborator.ORGANIZACION },
                 profile: {
-                  src: colaborator?.img ?? "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
+                  src: `${colaborator.FOTO}` != "" ? `data:image/jpg;base64,${colaborator?.FOTO}` : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png" 
                 },
-                FramePhoto: {
+                FramePhoto : {
                   style: { cursor: "pointer" },
                 },
               }}
             />
           ) : (
             <CardColaborador
-            idCol={colaborator.id}
+            idCol={colaborator.INTERNAL_ID}
               width={"100%"}
               height={"100%"}
               overrides={{
@@ -40,7 +40,7 @@ const CardsUsers = ({ collaborators }) => {
                 Job: { children: colaborator.PUESTO },
                 Organitation: { children: colaborator.ORGANIZACION },
                 profile: {
-                  src: colaborator?.img ?? "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
+                  src: `${colaborator.FOTO}` != "" ? `data:image/jpg;base64,${colaborator?.FOTO}` : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png"
                 },
                 FramePhoto: {
                   style: { cursor: "pointer" },

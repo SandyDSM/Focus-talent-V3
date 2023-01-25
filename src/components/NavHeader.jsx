@@ -10,7 +10,7 @@ import BannerUser from "./BannerUser";
 
 function NavHeader() {
   const [open, setOpen] = useState(false);
-  const {UserLog, usuarioActualDatos, photo} = useContext(CollaboratorsContext)
+  const {UserLog, usuarioActualDatos, photo, isAdmin} = useContext(CollaboratorsContext)
 
   useEffect(() => {
     UserLog();
@@ -65,7 +65,7 @@ function NavHeader() {
 
   return (
     <>
-      <Header width={"100vw"} type={"menu"} overrides={sendOverridesHeader} />
+      <Header width={"100vw"} type={`${isAdmin ? "menu" : "noMenu"}`} overrides={sendOverridesHeader} />
       <div className="my-3">
           <BannerUser/>
       </div>
