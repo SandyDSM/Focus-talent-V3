@@ -27,4 +27,5 @@ type Users @model @auth(rules: [{ allow: private }])  {
   ADMIN:String
   EQUIPO:String
   PHOTO:String
+  DOCUMENTO:String
 }

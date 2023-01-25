@@ -13,7 +13,6 @@ function TeamSub() {
   const { id } = useParams();
   const {
     getCollaborators,
-    collaborators,
     subcollaborators,
     getCollDetail,
     collDetail,
@@ -35,7 +34,7 @@ function TeamSub() {
   useEffect(() => {
     getCollDetail(id).catch(null);
     if (collDetail.ID_COLABORADOR != undefined) {
-      getCollaborators(collDetail.ID_COLABORADOR, "SetSubColaborators");
+      getCollaborators(collDetail.ID_COLABORADOR, );
     }
   }, []);
 
@@ -72,7 +71,7 @@ function TeamSub() {
           />
         </div>
         <div className=" col-span-3">
-          <CardsUsers collaborators={subcollaborators} />
+          <CardsUsers collaborators={subcollaborators} sub={true} />
         </div>
         <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
           <Pagination

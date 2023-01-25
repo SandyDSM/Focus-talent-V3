@@ -1,13 +1,8 @@
 import {
   CheckboxField,
-  Expander,
-  ExpanderItem,
-  ThemeProvider,
-  Theme,
   Button,
 } from "@aws-amplify/ui-react";
 import React from "react";
-import { useState } from "react";
 
 function TestCheck({ElementosFiltro, defineAnios}) {
 ////////////////////////////////////////////////////////////////////////////
@@ -26,8 +21,6 @@ function obtenAnios(anio) {
 }
 let listaFiltros;
 
-
-const[activos, setActivos]=useState(false);
 
 function Arrfiltros()
 {

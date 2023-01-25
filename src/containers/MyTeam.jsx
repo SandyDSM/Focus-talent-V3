@@ -64,7 +64,7 @@ const MyTeam = () => {
             />
           </div>
           <div className="col-span-1 row-start-3 sm:col-span-2 md:row-start-2 md:col-span-3 ">
-            <CardsUsers collaborators={separados[currentPage]} />
+            <CardsUsers collaborators={separados[currentPage]} sub={false} />
           </div>
           <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
             {separados.length > 1 && (

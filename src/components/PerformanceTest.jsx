@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {PDFDownloadLink} from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import PDFdesempeno from "../PDFDesenpeno.js";
 import {
@@ -26,17 +26,21 @@ import {
 import IconProfile from "../ui-components/IconProfile";
 //////////////////////////////////////////////////////////////////////////////
 
-
-
 //////////////////////////////////////////////////////////////////////////////
 import preguntas from "./bodypreguntas";
 
 export default function PerformanceTest(props) {
-  const {datosUsuario, arrayPreguntas, anios, overrides: overridesProp, ...restProp } = props;
+  const {
+    datosUsuario,
+    arrayPreguntas,
+    anios,
+    overrides: overridesProp,
+    ...restProp
+  } = props;
 
-  const testPreguntas=arrayPreguntas;
+  const testPreguntas = arrayPreguntas;
 
-  console.log("El año es:"+anios);
+  console.log("El año es:" + anios);
 
   const variants = [
     {
@@ -58,9 +62,9 @@ export default function PerformanceTest(props) {
         "Frame 467": {},
         "Frame 458": {},
         Divider: {},
-        
+
         PREGUNTAS: {},
-        
+
         questionOne38284684: {},
         answerQone38284685: {},
         qOne: {},
@@ -148,10 +152,7 @@ export default function PerformanceTest(props) {
     overridesProp || {}
   );
   return (
-
-   
-  
-    <Flex    
+    <Flex
       gap="16px"
       direction="column"
       width="896px"
@@ -167,7 +168,6 @@ export default function PerformanceTest(props) {
       {...getOverrideProps(overrides, "PerformanceTest")}
       {...rest}
     >
-      
       <Flex
         gap="12px"
         direction="row"
@@ -225,12 +225,11 @@ export default function PerformanceTest(props) {
           display="flex"
           {...getOverrideProps(overrides, "Frame 467")}
         >
-        
           <Heading
             shrink="0"
             alignSelf="stretch"
             level="4"
-            children= {`Evaluación de desempeño ${anios}`}
+            children={`Evaluación de desempeño ${anios}`}
             {...getOverrideProps(overrides, "Heading")}
           ></Heading>
           <Text
@@ -432,78 +431,81 @@ export default function PerformanceTest(props) {
         orientation="horizontal"
         {...getOverrideProps(overrides, "Divider")}
       ></Divider>
-      
-      
 
-      {testPreguntas?.filter(c => (c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios)).map((pre) => (
-      
-      <Flex
-        gap="12px"
-        direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "qOne")}
+      {testPreguntas
+        ?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios)
+        .map((pre) => (
+          <Flex
+            gap="12px"
+            direction="column"
+            width="unset"
+            height="unset"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            display="flex"
+            {...getOverrideProps(overrides, "qOne")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="500"
+              color="rgba(0,0,0,0.8)"
+              lineHeight="20px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={`${pre.TITULO}`}
+              {...getOverrideProps(overrides, "questionOne38284684")}
+            ></Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="14px"
+              fontWeight="400"
+              color="rgba(0,0,0,0.8)"
+              lineHeight="17.5px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={`${pre.VALORES}`}
+              {...getOverrideProps(overrides, "answerQone38284685")}
+            ></Text>
+          </Flex>
+        ))}
+
+      <PDFDownloadLink
+        document={
+          <PDFdesempeno
+            DATOS={testPreguntas}
+            anios={anios}
+            datosUsuario={datosUsuario}
+          />
+        }
+        fileName={`Evaluación_de_desempeño_${anios}.pdf`}
       >
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="500"
-          color="rgba(0,0,0,0.8)"
-          lineHeight="20px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          width="unset"
-          height="unset"
-          gap="unset"
-          alignItems="unset"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children= {`${pre.TITULO}`}
-          {...getOverrideProps(overrides, "questionOne38284684")}
-        ></Text>
-        <Text
-          fontFamily="Inter"
-          fontSize="14px"
-          fontWeight="400"
-          color="rgba(0,0,0,0.8)"
-          lineHeight="17.5px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          width="unset"
-          height="unset"
-          gap="unset"
-          alignItems="unset"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children={`${pre.VALORES}`}
-          {...getOverrideProps(overrides, "answerQone38284685")}
-        ></Text>
-      </Flex>
-
-))
-}
-
-
-
-
-<PDFDownloadLink document={<PDFdesempeno DATOS={testPreguntas} anios={anios} datosUsuario={datosUsuario}/> } fileName={`Evaluación_de_desempeño_${anios}.pdf`}>
         <Button
           shrink="0"
           size="small"
@@ -512,8 +514,9 @@ export default function PerformanceTest(props) {
           children="Descargar  PDF"
           {...getOverrideProps(overrides, "ButtonPDF")}
         ></Button>
-        </PDFDownloadLink>
-      </Flex>
-    
+      </PDFDownloadLink>
+
+      
+    </Flex>
   );
 }

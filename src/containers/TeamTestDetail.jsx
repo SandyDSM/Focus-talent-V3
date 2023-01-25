@@ -112,13 +112,6 @@ function TeamTestDetail() {
           />
         </div>
       </div>
-
-      <PDFDownloadLink
-        document={<PDFPotencial DATOS="xxxx" />}
-        fileName="EvalPotencial.pdf"
-      >
-        <button>Descargar Potencial</button>
-      </PDFDownloadLink>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-4 m-5">
         <div className="mt-4 w-full">
           <TestCheck

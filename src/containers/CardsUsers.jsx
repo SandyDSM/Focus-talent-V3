@@ -1,12 +1,12 @@
 import CardColaborador from "../components/CardColaborador";
 
-const CardsUsers = ({ collaborators }) => {
+const CardsUsers = ({ collaborators, sub }) => {
   
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {collaborators?.map((colaborator) => (
         <div key={colaborator.INTERNAL_ID}>
-          {colaborator.EQUIPO == "1" ? (
+          {colaborator.EQUIPO == "1" & sub === false ? (
             <CardColaborador
              idCol={colaborator.INTERNAL_ID}
               type="More"
