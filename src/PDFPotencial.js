@@ -1,7 +1,20 @@
 import React from "react";
 import { Document, Page, Text, View, Image } from "@react-pdf/renderer";
-import { StyleSheet } from "@react-pdf/renderer";
+import { StyleSheet, Font } from "@react-pdf/renderer";
 //import ReactPdfTable from
+
+Font.register({
+  family: "Open Sans",
+  fonts: [
+    {
+      src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-regular.ttf",
+    },
+    {
+      src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-600.ttf",
+      fontWeight: 600,
+    },
+  ],
+});
 
 const styles = StyleSheet.create({
   txtInfo: {
@@ -9,16 +22,18 @@ const styles = StyleSheet.create({
     marginRight: "10",
   },
   txtTitle: {
-    fontFamily: "Helvetica",
+    fontFamily: "Open Sans",
     fontSize: "12px",
-    fontWeight: "semibold",
+    fontWeight: '600',
     marginRight: "5",
     marginTop: "5px"
   },
   txtBody: {
+    fontFamily: "Open Sans",
     fontSize: "11px",
     marginRight: "10",
-    marginTop: "5px"
+    marginTop: "5px",
+    color: '#5e615c'
   },
   colums: {
     display: "flex",

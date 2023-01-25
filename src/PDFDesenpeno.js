@@ -1,23 +1,37 @@
 import React from "react";
 import { Document, Page, Text, View, Image } from "@react-pdf/renderer";
-import { StyleSheet } from "@react-pdf/renderer";
+import { StyleSheet, Font } from "@react-pdf/renderer";
 import { colors } from "debug/src/browser";
 //import ReactPdfTable from
+Font.register({
+  family: "Open Sans",
+  fonts: [
+    {
+      src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-regular.ttf",
+    },
+    {
+      src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-600.ttf",
+      fontWeight: 600,
+    },
+  ],
+});
 
 const styles = StyleSheet.create({
   txtInfo: {
+    family: "Open Sans",
     fontSize: "6px",
     marginRight: "10",
-    
   },
   txtTitle: {
-    fontSize: "14px",
-    marginBottom:"5",
-    
+    fontFamily: "Open Sans",
+    fontSize: "13px",
+    marginBottom: "5",
+    fontWeight: "600",
   },
   txtBody: {
     fontSize: "12px",
-   
+    family: "Open Sans",
+    color: "#5e615c",
   },
   colums: {
     display: "flex",
@@ -33,18 +47,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     position: "relative",
-    marginBottom: "5"
+    marginBottom: "5",
   },
 });
 
 const PDFdesempeno = ({ DATOS, anios, datosUsuario }) => {
-  
-  
-  
   return (
     <Document>
-
-
       <Page size="A4">
         <View
           style={{
@@ -78,7 +87,7 @@ const PDFdesempeno = ({ DATOS, anios, datosUsuario }) => {
               <Text
                 style={{
                   fontSize: "18px",
-                  marginBottom: "5"
+                  marginBottom: "5",
                 }}
               >
                 Evaluación de desempeño {anios}
@@ -86,10 +95,10 @@ const PDFdesempeno = ({ DATOS, anios, datosUsuario }) => {
               <Text
                 style={{
                   fontSize: "12px",
-                  marginBottom: "5"
+                  marginBottom: "5",
                 }}
               >
-               {datosUsuario.nombre}
+                {datosUsuario.nombre}
               </Text>
               <View style={styles.rows}>
                 <Text style={styles.txtInfo}>{datosUsuario.Id}</Text>
@@ -98,28 +107,24 @@ const PDFdesempeno = ({ DATOS, anios, datosUsuario }) => {
               </View>
             </View>
           </View>
-          <View style={{
+          <View
+            style={{
               display: "flex",
               flexBasis: "auto",
-              borderBottom:"1px",
-              borderBottomColor:"grey",
-              marginVertical: "5"
-                }}></View>
-          
-          
-          
-          {DATOS?.filter(c => (c.CATEGORIA === "Desempeño" && c.ANO_EVAL === "2020")).map((pre) => (
-          
-          <View style={styles.colums}>
-            <Text style={styles.txtTitle}>
-             {pre.TITULO}
-            </Text>
-            <Text style={styles.txtBody}>
-            {pre.VALORES}
-            </Text>
-          </View>
-))
-}
+              borderBottom: "1px",
+              borderBottomColor: "grey",
+              marginVertical: "5",
+            }}
+          ></View>
+
+          {DATOS?.filter(
+            (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === "2020"
+          ).map((pre) => (
+            <View style={styles.colums}>
+              <Text style={styles.txtTitle}>{pre.TITULO}</Text>
+              <Text style={styles.txtBody}>{pre.VALORES}</Text>
+            </View>
+          ))}
         </View>
       </Page>
     </Document>

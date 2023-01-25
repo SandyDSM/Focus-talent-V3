@@ -1,6 +1,6 @@
 import React from "react";
 import { Document, Page, Text, View, Image } from "@react-pdf/renderer";
-import { StyleSheet } from "@react-pdf/renderer";
+import { StyleSheet, Font } from "@react-pdf/renderer";
 //import ReactPdfTable from
 
 const styles = StyleSheet.create({
@@ -11,14 +11,15 @@ const styles = StyleSheet.create({
   txtTitle: {
     fontFamily: "Helvetica",
     fontSize: "11px",
-    fontWeight: "semibold",
+    fontWeight: "bold",
     marginRight: "5",
     marginTop: "5px"
   },
   txtBody: {
     fontSize: "11px",
     marginRight: "10",
-    marginTop: "5px"
+    marginTop: "5px",
+    color: "#5e615c"
   },
   colums: {
     display: "flex",
