@@ -5,7 +5,7 @@ import { Auth } from "aws-amplify";
 
 //import { listUsers, getUsers } from "../../graphql/queries";
 
-export default function CollaboratorsProvider({ children }) {
+export default function CollaboratorsProvider({ children,setLoggedIn }) {
   const [collaborators, setCollaborators] = useState([]);
   const [subcollaborators, setSubcollaborators] = useState([]);
   const [collDetail, setCollDetail] = useState([]);
@@ -26,6 +26,14 @@ export default function CollaboratorsProvider({ children }) {
       getAttribColaborators(coguserdata.attributes.email);
     } catch (error) {
       console.log("error:", error);
+    }
+  };
+  const signOut = async () => {
+    try {
+      await Auth.signOut();
+      setLoggedIn(false)
+    } catch (error) {
+      console.log("error signing out: ", error);
     }
   };
 
@@ -54,7 +62,7 @@ export default function CollaboratorsProvider({ children }) {
 
     } catch (error) {
       console.log("error aqui:", error);
-      Auth.signOut();
+      signOut();
     }
   };
 
