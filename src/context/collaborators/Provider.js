@@ -15,6 +15,7 @@ export default function CollaboratorsProvider({ children }) {
   const [photo, setPhoto] = useState("");
   const [collaboratorsPhotos, setCollaboratorsPhotos] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [collaboratorsSearch, setCollaboratorsSearch] = useState([]);
 
   const UserLog = async () => {
     try {
@@ -56,6 +57,16 @@ export default function CollaboratorsProvider({ children }) {
       Auth.signOut();
     }
   };
+
+  const actualizaBusqueda=function(users){
+    setCollaboratorsSearch(collaborators);
+    setCollaborators(users);
+    separados=separa(collaborators);
+  }
+
+  const restauraUsuarios=function(){
+    setCollaborators(collaboratorsSearch);
+  }
 
   /*const getCollaborators = async (msg) => {
     let filtro = { ID_JEFE: { eq: msg } };

@@ -52,7 +52,7 @@ const MyTeam = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 m-5">
           <div className="col-end-2 md:col-end-5">
             <SelectField label="Order" labelHidden={true}>
-              <option value="asecendete">Ordenar por: Ascendente</option>
+              <option value="Ascendente">Ordenar por: Ascendente</option>
               <option value="descendente">Ordenar por: Descendente</option>
             </SelectField>
           </div>

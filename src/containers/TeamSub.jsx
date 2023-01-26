@@ -61,7 +61,7 @@ function TeamSub() {
       <div className="grid grid-cols-1 md:grid-cols-3 l:grid-cols-4 gap-4 mdgrid-rows-3 m-5">
         <div className="col-end-5">
           <SelectField label="Order" labelHidden={true}>
-            <option value="asecendete">Ordenar por: Asecendete</option>
+            <option value="Ascendente">Ordenar por: Ascendente</option>
             <option value="descendente">Ordenar por: Descendente</option>
           </SelectField>
         </div>
