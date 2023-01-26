@@ -40,23 +40,28 @@ function NavHeader() {
     FraHome: {
       className:"hover:bg-sky-100",
       style: { cursor: "pointer" },
+      onClick: () => setOpen(false),
     },
     FraTest: {
       className:"hover:bg-sky-100",
       style: { cursor: "pointer" },
+      onClick: () => setOpen(false),
     },
     FraTags: {
       className:"hover:bg-sky-100",
       style: { cursor: "pointer" },
+      onClick: () => setOpen(false),
     },
     FraNotif: {
       className:"hover:bg-sky-100",
       style: { cursor: "pointer" },
+      onClick: () => setOpen(false),
     },
+
     FraTeam: {
-      className:"hover:bg-sky-100",
-      style: { cursor: "pointer" },
+      onClick: () => setOpen(false),
     },
+
     "Frame 451": {
       className:"hover:bg-sky-100",
       style: { cursor: "pointer" },
