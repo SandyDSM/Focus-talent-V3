@@ -10,8 +10,15 @@ import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 import MyIcon from "../ui-components/MyIcon";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CollaboratorsContext from "../context/collaborators";
+
+
 export default function Menu(props) {
   const { overrides, ...rest } = props;
+  const { collaborators } = useContext(CollaboratorsContext);
+
+  const colaboradores = collaborators.length;
   return (
     <Flex
       gap="0"
@@ -210,31 +217,32 @@ export default function Menu(props) {
             padding="0px 0px 0px 0px"
             {...getOverrideProps(overrides, "FraHome")}
           >
-            <Link to= "/">
-            <Text
-              fontFamily="Inter"
-              fontSize="16px"
-              fontWeight="700"
-              color="rgba(13,26,38,1)"
-              lineHeight="24px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              letterSpacing="0.01px"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              grow="1"
-              shrink="1"
-              basis="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children="Inicio"
-              {...getOverrideProps(overrides, "Home")}
-            ></Text></Link>
+            <Link to="/">
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="700"
+                color="rgba(13,26,38,1)"
+                lineHeight="24px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                letterSpacing="0.01px"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children="Inicio"
+                {...getOverrideProps(overrides, "Home")}
+              ></Text>
+            </Link>
           </Flex>
           <Flex
             gap="16px"
@@ -262,31 +270,32 @@ export default function Menu(props) {
               padding="0px 0px 0px 0px"
               {...getOverrideProps(overrides, "FraTest")}
             >
-              <Link to= "/test">
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="400"
-                color="rgba(13,26,38,1)"
-                lineHeight="24px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                letterSpacing="0.01px"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                grow="1"
-                shrink="1"
-                basis="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children="Evaluaciones"
-                {...getOverrideProps(overrides, "Test")}
-              ></Text></Link>
+              <Link to="/test">
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="400"
+                  color="rgba(13,26,38,1)"
+                  lineHeight="24px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  letterSpacing="0.01px"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  grow="1"
+                  shrink="1"
+                  basis="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children="Evaluaciones"
+                  {...getOverrideProps(overrides, "Test")}
+                ></Text>
+              </Link>
             </Flex>
             <Flex
               gap="16px"
@@ -301,31 +310,32 @@ export default function Menu(props) {
               padding="0px 0px 0px 0px"
               {...getOverrideProps(overrides, "FraTags")}
             >
-              <Link to= "/tags">
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="400"
-                color="rgba(13,26,38,1)"
-                lineHeight="24px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                letterSpacing="0.01px"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                grow="1"
-                shrink="1"
-                basis="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children="Etiquetas"
-                {...getOverrideProps(overrides, "Tags")}
-              ></Text></Link>
+              <Link to="/tags">
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="400"
+                  color="rgba(13,26,38,1)"
+                  lineHeight="24px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  letterSpacing="0.01px"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  grow="1"
+                  shrink="1"
+                  basis="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children="Etiquetas"
+                  {...getOverrideProps(overrides, "Tags")}
+                ></Text>
+              </Link>
             </Flex>
             <Flex
               gap="16px"
@@ -340,11 +350,56 @@ export default function Menu(props) {
               padding="0px 0px 0px 0px"
               {...getOverrideProps(overrides, "FraNotif")}
             >
-              <Link to= "/notif">
+              <Link to="/notif">
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="400"
+                  color="rgba(13,26,38,1)"
+                  lineHeight="24px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  letterSpacing="0.01px"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  grow="1"
+                  shrink="1"
+                  basis="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children="Notificaciones"
+                  {...getOverrideProps(overrides, "Notif")}
+                ></Text>
+              </Link>
+            </Flex>
+          </Flex>
+        
+          <Flex
+            gap="16px"
+            direction="row"
+            width="unset"
+            height="unset"
+            justifyContent="flex-start"
+            alignItems="center"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "FraTeam")}
+          >
+              {
+            colaboradores > 0 ?
+
+            (<Link to="/myteam">
               <Text
                 fontFamily="Inter"
                 fontSize="16px"
-                fontWeight="400"
+                fontWeight="700"
                 color="rgba(13,26,38,1)"
                 lineHeight="24px"
                 textAlign="left"
@@ -362,50 +417,37 @@ export default function Menu(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children="Notificaciones"
-                {...getOverrideProps(overrides, "Notif")}
-              ></Text></Link>
+                children="Mi equipo"
+                {...getOverrideProps(overrides, "Team")}
+              ></Text>
+            </Link>) :
+            (
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="700"
+                color="D9D9D9"
+                lineHeight="24px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                letterSpacing="0.01px"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children="Mi equipo"
+                {...getOverrideProps(overrides, "Team")}
+              ></Text>)
+            }
             </Flex>
-          </Flex>
-          <Flex
-            gap="16px"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="center"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "FraTeam")}
-          >
-            <Link to= "/myteam">
-            <Text
-              fontFamily="Inter"
-              fontSize="16px"
-              fontWeight="700"
-              color="rgba(13,26,38,1)"
-              lineHeight="24px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              letterSpacing="0.01px"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              grow="1"
-              shrink="1"
-              basis="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children="Mi equipo"
-              {...getOverrideProps(overrides, "Team")}
-            ></Text></Link>
-          </Flex>
         </Flex>
         <Flex
           gap="10px"

@@ -431,7 +431,7 @@ export default function PerformanceTest(props) {
         orientation="horizontal"
         {...getOverrideProps(overrides, "Divider")}
       ></Divider>
-
+      {console.log("Preguntas",testPreguntas)}
       {testPreguntas
         ?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios)
         .map((pre) => (

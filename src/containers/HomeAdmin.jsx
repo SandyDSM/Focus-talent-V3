@@ -7,14 +7,19 @@ import { Loader } from "@aws-amplify/ui-react";
 import { Link, useNavigate } from "react-router-dom";
 
 function HomeAdmin() {
-  const { usuarioActualDatos, photo, isAdmin  } = useContext(CollaboratorsContext);
+  const { usuarioActualDatos, photo, isAdmin, collaborators } = useContext(CollaboratorsContext);
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(!isAdmin){
-      navigate("/myteam")
+  //console.log("cols", collaborators.length)
+  
+  const colaboradores = collaborators.length;
+  useEffect(() => {
+    if (usuarioActualDatos.NOMBRE != undefined) {
+      if (!isAdmin) {
+        navigate("/myteam");
+      }
     }
-  },[isAdmin])
+  }, [usuarioActualDatos, isAdmin]);
 
   const sendOverridesAdmin = {
     ImgCol: { src: photo },
@@ -34,11 +39,16 @@ function HomeAdmin() {
     Title: { children: "Mi equipo" },
   };
 
+  const sendOverridesCard4 = {
+    Title: { children: "Mi equipo" },
+    CardBtn: {
+      backgroundColor: "#D9D9D9",
+    }
+  };
 
   if (usuarioActualDatos.NOMBRE == undefined) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        {" "}
         <Loader size="large" />
       </div>
     );
@@ -63,7 +73,7 @@ function HomeAdmin() {
             />
           </Link>
         </div>
-        <div className="col-start-1 lg:col-start-2 col-span-2 cursor-pointer">
+        <div className="col-start-1 lg:col-start-2 col-span-2 ">
           <Link to="/tags">
             <CardBtn
               width={"100%"}
@@ -72,14 +82,11 @@ function HomeAdmin() {
             />
           </Link>
         </div>
-        <div className="col-start-1 md:col-start-3 lg:col-start-4 col-span-2 cursor-pointer">
-          <Link to="/myteam">
-            <CardBtn
-              width={"100%"}
-              type={"Equipo"}
-              overrides={sendOverridesCard3}
-            />
-          </Link>
+        <div className="col-start-1 md:col-start-3 lg:col-start-4 col-span-2">
+          {
+            colaboradores == 0 ? <CardBtn width={"100%"} type={"Equipo"} overrides={sendOverridesCard4}/> :
+            <Link to="/myteam"><CardBtn width={"100%"} type={"Equipo"} overrides={sendOverridesCard3}/></Link>
+          }
         </div>
       </div>
     </div>

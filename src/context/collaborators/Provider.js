@@ -41,14 +41,16 @@ export default function CollaboratorsProvider({ children }) {
         }
       ); //.then(respdesemp => {setTestPreguntas(respdesemp.json);})
       const datos = await respdesemp.json();
-      //console.log("Resultado de consulta: ", datos);
+      //console.log("Usuario logueado: ", datos[0]);
       setUsuarioActualDatos(datos[0]);
-      setPhoto(`data:image/jpg;base64,${datos[0].FOTO}`);
-      if (datos[0].ADMIN === "1") {
+      const esAdmin = datos[0].ADMIN;
+      if(esAdmin === "1") {
         setIsAdmin(true);
-      } else {
+      }else {
         setIsAdmin(false);
       }
+      setPhoto(`data:image/jpg;base64,${datos[0].FOTO}`);
+
     } catch (error) {
       console.log("error aqui:", error);
       Auth.signOut();
