@@ -31,10 +31,12 @@ function TeamSub() {
   const PUESTOS = obtenPuesto();
   const ORGANIZACIONES = obtenOrganizacion();
 
+  console.log(subcollaborators)
+
   useEffect(() => {
     getCollDetail(id).catch(null);
     if (collDetail.ID_COLABORADOR != undefined) {
-      getCollaborators(collDetail.ID_COLABORADOR, );
+      getCollaborators(collDetail.ID_COLABORADOR, "SetSubColaborators");
     }
   }, []);
 
