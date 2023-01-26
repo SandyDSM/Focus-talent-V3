@@ -5,7 +5,7 @@ import { Auth } from "aws-amplify";
 
 //import { listUsers, getUsers } from "../../graphql/queries";
 
-export default function CollaboratorsProvider({ children,setLoggedIn }) {
+export default function CollaboratorsProvider({ children, signOut }) {
   const [collaborators, setCollaborators] = useState([]);
   const [subcollaborators, setSubcollaborators] = useState([]);
   const [collDetail, setCollDetail] = useState([]);
@@ -19,26 +19,22 @@ export default function CollaboratorsProvider({ children,setLoggedIn }) {
 
   const UserLog = async () => {
     try {
+      setIsLoading(true);
       const coguserdata = await Auth.currentUserInfo();
-
       setLogueado(coguserdata.attributes);
      // console.log(coguserdata.attributes.email);
       getAttribColaborators(coguserdata.attributes.email);
     } catch (error) {
       console.log("error:", error);
+    }finally {
+      setIsLoading(false);
     }
   };
-  const signOut = async () => {
-    try {
-      await Auth.signOut();
-      setLoggedIn(false)
-    } catch (error) {
-      console.log("error signing out: ", error);
-    }
-  };
+ 
 
   const getAttribColaborators = async (correo) => {
     try {
+      setIsLoading(true);
       const respdesemp = await fetch(
         `https://talento-itzahuia.com/SAC/gb_UserInfo.php?EMAIL=${correo}`,
         {
@@ -63,6 +59,8 @@ export default function CollaboratorsProvider({ children,setLoggedIn }) {
     } catch (error) {
       console.log("error aqui:", error);
       signOut();
+    }finally {
+      setIsLoading(false);
     }
   };
 
@@ -76,48 +74,6 @@ export default function CollaboratorsProvider({ children,setLoggedIn }) {
     setCollaborators(collaboratorsSearch);
   }
 
-  /*const getCollaborators = async (msg) => {
-    let filtro = { ID_JEFE: { eq: msg } };
-    try {
-      setIsLoading(true);
-      const userData = await API.graphql(
-        graphqlOperation(listUsers, { filter: filtro, limit: 10000 })
-      );
-      let token = userData.data.listUsers.nextToken;
-      let resArreglo = [];
-      let i = 1;
-      resArreglo[0] = userData.data.listUsers.items;
-
-      while (token != null) {
-        let dataTemp = await API.graphql(
-          graphqlOperation(listUsers, {
-            filter: filtro,
-            limit: 10000,
-            nextToken: token,
-          })
-        );
-        resArreglo[i] = dataTemp.data.listUsers.items;
-        i++;
-        token = dataTemp.data.listUsers.nextToken;
-      }
-
-      let temp = resArreglo[0];
-      let temp1 = "";
-      for (i = 1; i < resArreglo.length; i++) {
-        temp1 = temp.concat(resArreglo[i]);
-        temp = temp1;
-      }
-
-      const userList = temp;
-      setCollaborators(userList);
-      //PhotoUsers(userList);
-    } catch (error) {
-      console.log("error:", error);
-      setCollaborators([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };*/
 
   const getCollaborators = async (idJefe, accion) => {
     //console.log("El id de jefe es:", idJefe);
@@ -302,6 +258,8 @@ export default function CollaboratorsProvider({ children,setLoggedIn }) {
         currentPage,
         photo,
         isAdmin,
+        actualizaBusqueda,
+        restauraUsuarios
       }}
     >
       {children}

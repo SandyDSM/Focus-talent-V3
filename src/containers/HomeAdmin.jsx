@@ -7,7 +7,7 @@ import { Loader } from "@aws-amplify/ui-react";
 import { Link, useNavigate } from "react-router-dom";
 
 function HomeAdmin() {
-  const { usuarioActualDatos, photo, isAdmin, collaborators } = useContext(CollaboratorsContext);
+  const { usuarioActualDatos, photo, isAdmin, collaborators, isLoading } = useContext(CollaboratorsContext);
   const navigate = useNavigate();
 
   //console.log("cols", collaborators.length)
@@ -45,6 +45,13 @@ function HomeAdmin() {
       backgroundColor: "#D9D9D9",
     }
   };
+  if (isLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center ">
+        <Loader size="large" />
+      </div>
+    );
+  }
 
   if (usuarioActualDatos.NOMBRE == undefined) {
     return (

@@ -59,7 +59,7 @@ function App() {
       
         <BrowserRouter>
           <ScrollToTop />
-          <CollaboratorsProvider setLoggedIn={setLoggedIn} >
+          <CollaboratorsProvider signOut={signOut} >
           <div>{loggedIn && <NavHeader/>}</div>
             <Routes>
             <Route exact path="/" element={

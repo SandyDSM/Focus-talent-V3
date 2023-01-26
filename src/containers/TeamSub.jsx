@@ -31,7 +31,7 @@ function TeamSub() {
   const PUESTOS = obtenPuesto();
   const ORGANIZACIONES = obtenOrganizacion();
 
-  console.log(subcollaborators)
+  console.log("subs",subcollaborators)
 
   useEffect(() => {
     getCollDetail(id).catch(null);
