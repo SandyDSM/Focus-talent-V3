@@ -8,7 +8,7 @@ function HeadTeam() {
     }
   return (
     <div className='mt-2 flex flex-col gap-2'>
-        <BannerSearch width={"100%"} overrides={sendOverridesBanner}/>
+        <BannerSearch width={"100%"} hasSearchButton={false} overrides={sendOverridesBanner}/>
     </div>
   )
 }

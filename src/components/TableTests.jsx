@@ -1,18 +1,19 @@
 import React from 'react'
 import { Tablerows,TableHeadTest } from '../ui-components'
+import TableRowTests from './TableRowTests'
+import HeadTable from './HeadTable'
 
 function TableTests() {
-    const overridesTable = {
-        SwitchField: {
-            label:""
-    }}
+  const [value, setValue] = React.useState('');
+
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
   return (
     <div className='card'>
         <div className='w-full'>
-            <TableHeadTest width={"100%"} />
-            <Tablerows width={"100%"} state={"active"} overrides={overridesTable}/>
-            <Tablerows width={"100%"} overrides={overridesTable}/>
-            <Tablerows width={"100%"} overrides={overridesTable}/>
+            <HeadTable/>
+            <TableRowTests/>
         </div>
     </div>
   )

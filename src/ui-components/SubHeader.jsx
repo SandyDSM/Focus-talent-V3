@@ -26,7 +26,9 @@ export default function SubHeader(props) {
       {...rest}
     >
       <Heading
-        shrink="0"
+        grow="1"
+        shrink="1"
+        basis="0"
         level="3"
         children="Administrar notificaciones"
         {...getOverrideProps(overrides, "Heading")}

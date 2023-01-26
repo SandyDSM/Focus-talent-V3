@@ -1,21 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import TestCheck from "../components/TestCheck";
-import {
-  //HeadCollaborator,
-  PerformanceTest,
-  SuccesionTest,
-} from "../ui-components";
 import HeadCollaborator from "../components/HeadCollaborator";
 import { useEffect, useContext, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import BreadCrums from "../components/BreadCrums";
 import { Loader } from "@aws-amplify/ui-react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
-
-//import PDFDesenpeno from "../components/PDFDesenpeno";
-import PDFPotencial from "../components/PDFPotencial";
 
 function TeamTestDetail() {
   const { id } = useParams();
