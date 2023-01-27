@@ -11,7 +11,7 @@ function PerformaceAndSucesion({
     <div>
       {aniosFill.map((anio) => (
         <>
-        <div className="my-4">
+        <div className="mb-9 mt-4 shadow">
           <PerformanceTest
             width={"100%"}
             overrides={sendOverridesPerformanceTest}
@@ -20,7 +20,7 @@ function PerformaceAndSucesion({
             datosUsuario={datosUsuario}
           />
           </div>
-          <div className="my-4">
+          <div className="my-9 shadow">
           <SuccesionTest
             width={"100%"}
             overrides={sendOverridesSuccesionTest}
