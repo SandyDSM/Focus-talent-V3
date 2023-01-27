@@ -544,85 +544,6 @@ export default function SuccesionTest(props) {
         {...getOverrideProps(overrides, "Divider38284719")}
       ></Divider>
       <Flex
-        gap="12px"
-        direction="row"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="center"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Frame 459")}
-      >
-        {testPreguntas
-          ?.filter(
-            (c) =>
-              c.CATEGORIA === "Potencial" &&
-              c.ANO_EVAL === anios &&
-              c.AGRUPACION === "Calibración"
-          )
-          .map((pre) => (
-            <>
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="500"
-                color="rgba(0,0,0,0.8)"
-                lineHeight="20px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={pre.TITULO}
-                {...getOverrideProps(overrides, "PerformanceCalibration")}
-              ></Text>
-
-              <Text
-                fontFamily="Inter"
-                fontSize="14px"
-                fontWeight="400"
-                color="rgba(0,0,0,0.8)"
-                lineHeight="17.5px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                grow="1"
-                shrink="1"
-                basis="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={pre.VALORES}
-                {...getOverrideProps(overrides, "total")}
-              ></Text>
-            </>
-          ))}
-      </Flex>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-        {...getOverrideProps(overrides, "Divider38284723")}
-      ></Divider>
-      <Flex
         gap="16px"
         direction="column"
         width="unset"
@@ -679,14 +600,7 @@ export default function SuccesionTest(props) {
               display="flex"
               {...getOverrideProps(overrides, "Frame 460")}
             >
-              {testPreguntas
-                ?.filter(
-                  (c) =>
-                    c.CATEGORIA === "Potencial" &&
-                    c.ANO_EVAL === anios &&
-                    c.AGRUPACION === "Agilidad mental"
-                )
-                .map((pre) => (
+              {testPreguntas?.filter((c) =>c.CATEGORIA === "Potencial" && c.ANO_EVAL === anios && c.AGRUPACION === "Agilidad mental").map((pre) => (
                   <>
                     <Text
                       fontFamily="Inter"
@@ -734,7 +648,7 @@ export default function SuccesionTest(props) {
                       {...getOverrideProps(overrides, "answerMental")}
                     ></Text>
                   </>
-                ))}
+                )) ?? <p>No hay datos</p>}
             </Flex>
             <Flex
               gap="12px"
@@ -805,7 +719,7 @@ export default function SuccesionTest(props) {
                       {...getOverrideProps(overrides, "answerPeople")}
                     ></Text>
                   </>
-                ))}
+                ))?? <p>No hay datos</p>}
             </Flex>
             <Flex
               gap="12px"
