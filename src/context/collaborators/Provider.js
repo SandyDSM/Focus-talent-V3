@@ -27,11 +27,11 @@ export default function CollaboratorsProvider({ children, signOut }) {
     } catch (error) {
       console.log("error:", error);
     }finally {
-      setIsLoading(false);
+      
     }
   };
- 
 
+ 
   const getAttribColaborators = async (correo) => {
     try {
       setIsLoading(true);
@@ -63,6 +63,8 @@ export default function CollaboratorsProvider({ children, signOut }) {
       setIsLoading(false);
     }
   };
+
+  //const UserPromise = UserLog().then(getAttribColaborators(logueado.email)) 
 
   const actualizaBusqueda=function(users){
     setCollaboratorsSearch(collaborators);
@@ -239,12 +241,14 @@ export default function CollaboratorsProvider({ children, signOut }) {
     <CollaboratorsContext.Provider
       value={{
         getCollaborators,
+        getAttribColaborators,
         collaborators,
         subcollaborators,
         getCollDetail,
         collDetail,
         isLoading,
         UserLog,
+       // UserPromise,
         logueado,
         separados,
         datosFiltrados,

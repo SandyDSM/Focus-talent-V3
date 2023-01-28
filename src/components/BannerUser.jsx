@@ -3,11 +3,7 @@ import { Person } from '../ui-components'
 import CollaboratorsContext from "../context/collaborators";
 
 function BannerUser() {
-    const {UserLog, usuarioActualDatos, photo} = useContext(CollaboratorsContext)
-
-    useEffect(() => {
-        UserLog();
-      }, []);
+    const {usuarioActualDatos, photo} = useContext(CollaboratorsContext)
 
     const sendOverridesPerson = {
         "image 3": { src: photo },
