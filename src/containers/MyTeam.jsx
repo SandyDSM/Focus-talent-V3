@@ -23,6 +23,7 @@ const MyTeam = () => {
     setActual,
     currentPage,
     usuarioActualDatos,
+    prueba
   } = useContext(CollaboratorsContext);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const MyTeam = () => {
 
   const PUESTOS = obtenPuesto();
   const ORGANIZACIONES = obtenOrganizacion();
+  
 
   if (isLoading) {
     return (

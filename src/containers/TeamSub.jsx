@@ -43,14 +43,17 @@ function TeamSub() {
     nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
   };
 
+  const Loader = (()=>{
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        {" "}
         <Loader size="large" />
       </div>
     );
   }
+})
+
+Loader();
   return (
     <>
       <div className="mx-4">

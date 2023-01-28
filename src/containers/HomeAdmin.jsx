@@ -7,11 +7,11 @@ import { Loader } from "@aws-amplify/ui-react";
 import { Link, useNavigate } from "react-router-dom";
 
 function HomeAdmin() {
-  const { usuarioActualDatos, photo, isAdmin, collaborators, isLoading } = useContext(CollaboratorsContext);
+  const { usuarioActualDatos, photo, isAdmin, isLoading } = useContext(CollaboratorsContext);
   const navigate = useNavigate();
 
   //console.log("cols", collaborators.length)
-  
+ 
   const colaboradores = usuarioActualDatos.EQUIPO;
   useEffect(() => {
     if (usuarioActualDatos.NOMBRE != undefined) {

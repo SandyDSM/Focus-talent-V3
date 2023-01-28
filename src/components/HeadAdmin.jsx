@@ -1,9 +1,9 @@
 import React from 'react'
 import { SubHeader } from '../ui-components'
 
-function HeadAdmin(props) {
+function HeadAdmin({title}) {
     const sendOverridesSubHeader = {
-        "Heading": { children: props.title },
+        "Heading": { children: title },
     }
   return (
     <div className='mt-2 flex flex-col gap-2'>

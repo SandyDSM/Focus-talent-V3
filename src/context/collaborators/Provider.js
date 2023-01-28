@@ -26,8 +26,6 @@ export default function CollaboratorsProvider({ children, signOut }) {
       getAttribColaborators(coguserdata.attributes.email);
     } catch (error) {
       console.log("error:", error);
-    }finally {
-      
     }
   };
 
@@ -264,7 +262,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
         photo,
         isAdmin,
         actualizaBusqueda,
-        restauraUsuarios
+        restauraUsuarios, 
       }}
     >
       {children}
