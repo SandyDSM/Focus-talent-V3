@@ -15,9 +15,9 @@ import CollaboratorsContext from "../context/collaborators";
 
 export default function Menu(props) {
   const { overrides, ...rest } = props;
-  const { collaborators } = useContext(CollaboratorsContext);
+  const { usuarioActualDatos } = useContext(CollaboratorsContext);
 
-  const colaboradores = collaborators.length;
+  const colaboradores = usuarioActualDatos.EQUIPO;
   return (
     <Flex
       gap="0"

@@ -12,7 +12,7 @@ function HomeAdmin() {
 
   //console.log("cols", collaborators.length)
   
-  const colaboradores = collaborators.length;
+  const colaboradores = usuarioActualDatos.EQUIPO;
   useEffect(() => {
     if (usuarioActualDatos.NOMBRE != undefined) {
       if (!isAdmin) {
