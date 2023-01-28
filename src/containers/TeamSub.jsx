@@ -17,7 +17,7 @@ function TeamSub() {
     getCollDetail,
     collDetail,
     isLoading,
-    separados,
+    separadosSub,
     datosFiltrados,
     obtenPuesto,
     obtenOrganizacion,
@@ -34,11 +34,10 @@ function TeamSub() {
   console.log("subs",subcollaborators)
 
   useEffect(() => {
-    getCollDetail(id).catch(null);
-    if (collDetail.ID_COLABORADOR != undefined) {
-      getCollaborators(collDetail.ID_COLABORADOR, "SetSubColaborators");
-    }
-  }, []);
+    getCollDetail(id)
+    .then(getCollaborators(collDetail.ID_COLABORADOR, "SetSubColaborators"))
+    .catch(null);
+  }, [collDetail.ID_COLABORADOR]);
 
   const sendOverridesTeamFrom = {
     nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
@@ -76,14 +75,15 @@ function TeamSub() {
           <CardsUsers collaborators={subcollaborators} sub={true} />
         </div>
         <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
+        {(separadosSub.length > 1 || defineMax != "nueve" ) && (
           <Pagination
             MaxPpagina={defineMax}
             BackPag={paginateBack}
             NextPag={paginateFront}
             PActual={currentPage}
-            MaxPaginas={separados.length}
+            MaxPaginas={separadosSub.length}
             SeteoActual={setActual}
-          />
+          />)}
         </div>
       </div>
     </>

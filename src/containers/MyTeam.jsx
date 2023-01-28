@@ -13,7 +13,7 @@ const MyTeam = () => {
   const {
     getCollaborators,
     isLoading,
-    separados,
+    separadosCol,
     datosFiltrados,
     obtenPuesto,
     obtenOrganizacion,
@@ -44,7 +44,7 @@ const MyTeam = () => {
   return (
     <>
       <HeadTeam />
-      {separados === 0 ? (
+      {separadosCol === 0 ? (
         <div className="flex justify-center my-10 items-center">
           <h3>Usted no cuenta con reportes directos</h3>{" "}
         </div>
@@ -64,16 +64,16 @@ const MyTeam = () => {
             />
           </div>
           <div className="col-span-1 row-start-3 sm:col-span-2 md:row-start-2 md:col-span-3 ">
-            <CardsUsers collaborators={separados[currentPage]} sub={false} />
+            <CardsUsers collaborators={separadosCol[currentPage]} sub={false} />
           </div>
           <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
-            {separados.length > 1 && (
+            {(separadosCol.length > 1 || defineMax != "nueve") && (
               <Pagination
                 MaxPpagina={defineMax}
                 BackPag={paginateBack}
                 NextPag={paginateFront}
                 PActual={currentPage}
-                MaxPaginas={separados.length}
+                MaxPaginas={separadosCol.length}
                 SeteoActual={setActual}
               />
             )}

@@ -69,7 +69,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const actualizaBusqueda=function(users){
     setCollaboratorsSearch(collaborators);
     setCollaborators(users);
-    separados=separa(collaborators);
+    separadosCol=separa(collaborators);
   }
 
   const restauraUsuarios=function(){
@@ -171,11 +171,12 @@ export default function CollaboratorsProvider({ children, signOut }) {
 
   const [maxPorPagina, setmaxPorPagina] = useState(9);
   const [ObjTrabajo, setObjTrabajo] = useState(null);
-  let separados = separa(collaborators);
+  let separadosCol = separa(collaborators);
+  let separadosSub = separa(subcollaborators);
 
   const datosFiltrados = (val) => {
     setObjTrabajo(ObjTrabajo.concat(val));
-    separados = separa(ObjTrabajo);
+    separadosCol = separa(ObjTrabajo);
   };
 
   const defineMax = (valor) => {
@@ -248,9 +249,9 @@ export default function CollaboratorsProvider({ children, signOut }) {
         collDetail,
         isLoading,
         UserLog,
-       // UserPromise,
         logueado,
-        separados,
+        separadosCol,
+        separadosSub,
         datosFiltrados,
         obtenPuesto,
         obtenOrganizacion,
