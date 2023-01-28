@@ -8,7 +8,7 @@ const CardsUsers = ({ collaborators, sub }) => {
         <div key={colaborator.INTERNAL_ID}>
           {colaborator.EQUIPO == "1" & sub === false ? (
             <CardColaborador
-             idCol={colaborator.INTERNAL_ID}
+             idcol={colaborator.INTERNAL_ID}
               type="More"
               width={"100%"}
               height={"100%"}
@@ -29,7 +29,7 @@ const CardsUsers = ({ collaborators, sub }) => {
             />
           ) : (
             <CardColaborador
-            idCol={colaborator.INTERNAL_ID}
+            idcol={colaborator.INTERNAL_ID}
               width={"100%"}
               height={"100%"}
               overrides={{

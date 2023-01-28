@@ -87,7 +87,7 @@ export default function CardColaborador(props) {
       {...getOverrideProps(overrides, "CardColaborador")}
       {...rest}
     >
-      <Link to={`/test/${props.idCol}`} >
+      <Link to={`/test/${props.idcol}`} >
       <Flex
         gap="10px"
         direction="row"
@@ -357,7 +357,7 @@ export default function CardColaborador(props) {
             ></Text>
           </Flex>
         </Flex>
-        <Link to={`/myteam/${props.idCol}`} >
+        <Link to={`/myteam/${props.idcol}`} >
         <Iconteam
           width="20px"
           height="20px"
