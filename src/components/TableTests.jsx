@@ -3,7 +3,8 @@ import { Tablerows,TableHeadTest } from '../ui-components'
 import TableRowTests from './TableRowTests'
 import HeadTable from './HeadTable'
 
-function TableTests() {
+function TableTests({aniosx}) {
+  console.log("llego a tt:", aniosx);
   const [value, setValue] = React.useState('');
 
   const onChange = (event) => {
@@ -13,8 +14,10 @@ function TableTests() {
     <div className='card'>
         <div className='w-full'>
             <HeadTable/>
-            <TableRowTests/>
-        </div>
+            {aniosx.map((anio, index)=>(
+            <TableRowTests key={index} anio={anio}/>
+            ))}
+            </div>
     </div>
   )
 }
