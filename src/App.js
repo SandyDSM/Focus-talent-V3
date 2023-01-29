@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
-import { Button } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 import awsExports from "./aws-exports";
@@ -22,6 +21,7 @@ import TeamTestDetail from "./containers/TeamTestDetail";
 import TeamSub from "./containers/TeamSub";
 
 import ScrollToTop from "./components/ScrollToTop";
+import Validations from "./components/Validations";
 Amplify.configure(awsExports);
 
 function App() {
@@ -56,21 +56,13 @@ function App() {
 
   return (
     <>
-      
         <BrowserRouter>
           <ScrollToTop />
           <CollaboratorsProvider signOut={signOut} >
           <div>{loggedIn && <NavHeader/>}</div>
             <Routes>
-            <Route exact path="/" element={
-              loggedIn ? (
-                <>
-                  <HomeAdmin />
-                  <Button onClick={signOut} color="primary">Log Out</Button>
-                </>
-              ) : <SignIn onSignIn={assessLoggedInState} />
-            }
-          />
+              <Route exact path="/" element={ loggedIn ? <Validations/> : <SignIn onSignIn={assessLoggedInState} />}/>
+              <Route exact path="/home" element={loggedIn ? <HomeAdmin signOut={signOut}/> : <SignIn onSignIn={assessLoggedInState} /> } />
               <Route exact path="/test" element={loggedIn ? <Test /> : <SignIn onSignIn={assessLoggedInState} /> } />
               <Route exact path="/tags" element={loggedIn ? <Tags /> : <SignIn onSignIn={assessLoggedInState} />} />
               <Route exact path="/notif" element={loggedIn ? <Notif /> : <SignIn onSignIn={assessLoggedInState} />} />
@@ -80,7 +72,6 @@ function App() {
             </Routes>
           </CollaboratorsProvider>
         </BrowserRouter>
-     
     </>
   );
 }

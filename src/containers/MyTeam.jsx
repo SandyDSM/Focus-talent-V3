@@ -22,15 +22,8 @@ const MyTeam = () => {
     paginateBack,
     setActual,
     currentPage,
-    usuarioActualDatos,
-    prueba
   } = useContext(CollaboratorsContext);
 
-  useEffect(() => {
-    if (usuarioActualDatos.ID_COLABORADOR != undefined) {
-      getCollaborators(usuarioActualDatos.ID_COLABORADOR, "SetColaborators");
-    }
-  }, [usuarioActualDatos.ID_COLABORADOR]);
 
   const PUESTOS = obtenPuesto();
   const ORGANIZACIONES = obtenOrganizacion();

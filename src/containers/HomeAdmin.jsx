@@ -3,23 +3,17 @@ import HeadAdminHome from "../ui-components/HeadAdminiHome";
 import CardBtn from "../ui-components/CardBtn";
 import CollaboratorsContext from "../context/collaborators";
 import { useContext, useEffect } from "react";
-import { Loader } from "@aws-amplify/ui-react";
+import { Loader, Button } from "@aws-amplify/ui-react";
 import { Link, useNavigate } from "react-router-dom";
 
-function HomeAdmin() {
+
+function HomeAdmin({signOut}) {
   const { usuarioActualDatos, photo, isAdmin, isLoading } = useContext(CollaboratorsContext);
   const navigate = useNavigate();
 
   //console.log("cols", collaborators.length)
  
   const colaboradores = usuarioActualDatos.EQUIPO;
-  useEffect(() => {
-    if (usuarioActualDatos.NOMBRE != undefined) {
-      if (!isAdmin) {
-        navigate("/myteam");
-      }
-    }
-  }, [usuarioActualDatos, isAdmin]);
 
   const sendOverridesAdmin = {
     ImgCol: { src: photo },
@@ -96,6 +90,7 @@ function HomeAdmin() {
           }
         </div>
       </div>
+      <Button onClick={signOut} color="primary">Log Out</Button>
     </div>
   );
 }
