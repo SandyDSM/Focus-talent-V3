@@ -5,20 +5,20 @@ import { IconActions, IconAddsec } from "../ui-components";
 function TableRowOrganization() {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row self-stretch py-2 px-9 items-center relative gap-8">
-        <div className="w-7 h-7 cursor-pointer">
+      <div className="flex flex-row self-stretch py-1 px-9 items-center relative gap-6">
+        <div className="w-7 h-6 cursor-pointer">
           <IconActions
             width="24px"
             height="24px"
           />
         </div>
-        <div className="flex flex-row gap-1 grow shrink relative whitespace-pre-wrap">
+        <div className="flex flex-row gap-1 grow shrink relative whitespace-pre-wrap items-center ">
           <div className="cursor-pointer"><IconAddsec/></div>
-          <p className="text-sm">
+          <p className="text-xs">
           BIM CEDIS METROPOLITANO
           </p>
         </div>
-        <p className="text-sm">LAS</p>
+        <p className="text-xs">LAS</p>
       </div>
 
       <Divider

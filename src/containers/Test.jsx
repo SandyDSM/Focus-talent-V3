@@ -2,13 +2,17 @@ import React from 'react'
 
 import { useState, useEffect } from 'react';
 import HeadAdmin from '../components/HeadAdmin'
-import TableOrganizations from '../components/TableOrganizations';
+import Modal from '../components/Modal';
 import TableTests from '../components/TableTests'
 
 
 function Test() {
   const[anios, setAnios]=useState([]);
+  const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    getAnios();
+ },[]);
 
   const getAnios= async () => {
     try {
@@ -28,21 +32,20 @@ function Test() {
       // alert(datos);
     } catch (error) {
       setAnios([]);
-      
     } 
   };
+  function openModal(){
+    setOpen(true)
+    console.log("abrir")
+  }
   
-  
-  useEffect(() => {
-      getAnios();
-   },[]);
-
   return (
     <div className='flex flex-col gap-4'>
+      <Modal open={open} setOpen={setOpen}/>
       <HeadAdmin title={"Evaluaciones de desempeño y potencial"} />
       <main>
-        <TableTests aniosx={anios}/>
-        {/*<TableOrganizations/>*/}
+        <TableTests aniosx={anios} handleOpen={openModal}/>
+      {console.log("años",anios)}
       </main>
     </div>
   )
