@@ -13,7 +13,7 @@ function TableTests({aniosx}) {
   return (
     <div className='card'>
         <div className='w-full'>
-            <HeadTable/>
+            <HeadTable  col1={"Notificar" }col2={"Estatus"} col3={"Nombre"} col4={"Año"}/>
             {aniosx.map((anio, index)=>(
             <TableRowTests key={index} anio={anio}/>
             ))}

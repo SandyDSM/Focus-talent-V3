@@ -5,14 +5,11 @@ import { Loader } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 
 function Validations() {
-  const { usuarioActualDatos, isAdmin, getCollaborators } = useContext(CollaboratorsContext);
+  const { usuarioActualDatos, isAdmin } = useContext(CollaboratorsContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (usuarioActualDatos.ID_COLABORADOR != undefined) {
-      getCollaborators(usuarioActualDatos.ID_COLABORADOR, "SetColaborators")
-      .then(isAdminister())
-    }
+    isAdminister();
   }, [usuarioActualDatos.ID_COLABORADOR]);
 
   function isAdminister() {

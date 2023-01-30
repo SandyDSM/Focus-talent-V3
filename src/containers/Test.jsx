@@ -2,6 +2,7 @@ import React from 'react'
 
 import { useState, useEffect } from 'react';
 import HeadAdmin from '../components/HeadAdmin'
+import TableOrganizations from '../components/TableOrganizations';
 import TableTests from '../components/TableTests'
 
 
@@ -34,20 +35,14 @@ function Test() {
   
   useEffect(() => {
       getAnios();
-    //console.log(anios);
-   },
-     []);
-  
-    // console.log(anios);
-
-
+   },[]);
 
   return (
     <div className='flex flex-col gap-4'>
       <HeadAdmin title={"Evaluaciones de desempeño y potencial"} />
       <main>
         <TableTests aniosx={anios}/>
-      {console.log("el valor de anios:", anios)}
+        {/*<TableOrganizations/>*/}
       </main>
     </div>
   )
