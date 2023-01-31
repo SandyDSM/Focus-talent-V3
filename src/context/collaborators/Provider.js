@@ -16,6 +16,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [collaboratorsPhotos, setCollaboratorsPhotos] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [collaboratorsSearch, setCollaboratorsSearch] = useState([]);
+  const [showPerson, setShowPerson] = useState(true)
 
   const UserLog = async () => {
     try {
@@ -263,6 +264,8 @@ export default function CollaboratorsProvider({ children, signOut }) {
         isAdmin,
         actualizaBusqueda,
         restauraUsuarios, 
+        showPerson,
+        setShowPerson
       }}
     >
       {children}

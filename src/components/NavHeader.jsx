@@ -10,7 +10,7 @@ import BannerUser from "./BannerUser";
 
 function NavHeader() {
   const [open, setOpen] = useState(false);
-  const {UserLog, usuarioActualDatos, photo, isAdmin} = useContext(CollaboratorsContext)
+  const {UserLog, usuarioActualDatos, photo, isAdmin, showPerson} = useContext(CollaboratorsContext)
 
   useEffect(() => {
     UserLog();
@@ -71,9 +71,11 @@ function NavHeader() {
   return (
     <>
       <Header width={"100vw"} type={`${isAdmin ? "menu" : "noMenu"}`} overrides={sendOverridesHeader} />
+      {showPerson && 
       <div className="my-3">
           <BannerUser/>
       </div>
+      }
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child

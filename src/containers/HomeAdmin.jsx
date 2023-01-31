@@ -8,9 +8,21 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 function HomeAdmin({signOut}) {
-  const { usuarioActualDatos, photo, isAdmin, isLoading } = useContext(CollaboratorsContext);
+  const { usuarioActualDatos, photo, isAdmin, isLoading, setShowPerson, showPerson } = useContext(CollaboratorsContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    desmontar();
+    return ()=> montar();
+  }, []);
+
+
+  function desmontar(){
+    setShowPerson(false)
+  }
+  function montar(){
+    setShowPerson(true)
+  }
   //console.log("cols", collaborators.length)
  
   const colaboradores = usuarioActualDatos.EQUIPO;
