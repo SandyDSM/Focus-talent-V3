@@ -537,7 +537,7 @@ export default function SuccesionTest(props) {
         </Flex>
       </Flex>
       <Divider
-        width="848px"
+        width="100%"
         shrink="0"
         size="small"
         orientation="horizontal"
@@ -557,35 +557,14 @@ export default function SuccesionTest(props) {
         display="flex"
         {...getOverrideProps(overrides, "Frame 13971")}
       >
-        <Flex
-          gap="16px"
-          direction="row"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 13964")}
-        >
-          <Flex
-            gap="16px"
-            direction="column"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            grow="1"
-            shrink="1"
-            basis="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            display="flex"
-            {...getOverrideProps(overrides, "Frame 13965")}
-          >
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION === "Agilidad mental"
+          )
+          .map((pre) => (
             <Flex
               gap="12px"
               direction="row"
@@ -600,56 +579,61 @@ export default function SuccesionTest(props) {
               display="flex"
               {...getOverrideProps(overrides, "Frame 460")}
             >
-              {testPreguntas?.filter((c) =>c.CATEGORIA === "Potencial" && c.ANO_EVAL === anios && c.AGRUPACION === "Agilidad mental").map((pre) => (
-                  <>
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="16px"
-                      fontWeight="500"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="20px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      shrink="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.TITULO}
-                      {...getOverrideProps(overrides, "Mental agility")}
-                    ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(overrides, "Mental agility")}
+              ></Text>
 
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="14px"
-                      fontWeight="400"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="17.5px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      grow="1"
-                      shrink="1"
-                      basis="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.VALORES}
-                      {...getOverrideProps(overrides, "answerMental")}
-                    ></Text>
-                  </>
-                )) ?? <p>No hay datos</p>}
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "answerMental")}
+              ></Text>
             </Flex>
+          ))}
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION === "Agilidad de personas"
+          )
+          .map((pre) => (
             <Flex
               gap="12px"
               direction="row"
@@ -664,63 +648,61 @@ export default function SuccesionTest(props) {
               display="flex"
               {...getOverrideProps(overrides, "Frame 461")}
             >
-              {testPreguntas
-                ?.filter(
-                  (c) =>
-                    c.CATEGORIA === "Potencial" &&
-                    c.ANO_EVAL === anios &&
-                    c.AGRUPACION === "Agilidad de personas"
-                )
-                .map((pre) => (
-                  <>
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="16px"
-                      fontWeight="500"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="20px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      shrink="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.TITULO}
-                      {...getOverrideProps(overrides, "People agility")}
-                    ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(overrides, "People agility")}
+              ></Text>
 
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="14px"
-                      fontWeight="400"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="17.5px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      grow="1"
-                      shrink="1"
-                      basis="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.VALORES}
-                      {...getOverrideProps(overrides, "answerPeople")}
-                    ></Text>
-                  </>
-                ))?? <p>No hay datos</p>}
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "answerPeople")}
+              ></Text>
             </Flex>
+          ))}
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION === "Consciencia de sí mismo"
+          )
+          .map((pre) => (
             <Flex
               gap="12px"
               direction="row"
@@ -735,232 +717,208 @@ export default function SuccesionTest(props) {
               display="flex"
               {...getOverrideProps(overrides, "Frame 464")}
             >
-              {testPreguntas
-                ?.filter(
-                  (c) =>
-                    c.CATEGORIA === "Potencial" &&
-                    c.ANO_EVAL === anios &&
-                    c.AGRUPACION === "Consciencia de sí mismo"
-                )
-                .map((pre) => (
-                  <>
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="16px"
-                      fontWeight="500"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="20px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      shrink="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.TITULO}
-                      {...getOverrideProps(overrides, "Self-awareness")}
-                    ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(overrides, "Self-awareness")}
+              ></Text>
 
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="14px"
-                      fontWeight="400"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="17.5px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      grow="1"
-                      shrink="1"
-                      basis="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.VALORES}
-                      {...getOverrideProps(overrides, "answerSelf")}
-                    ></Text>
-                  </>
-                ))}
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "answerSelf")}
+              ></Text>
             </Flex>
-          </Flex>
-          <Flex
-            gap="16px"
-            direction="column"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            grow="1"
-            shrink="1"
-            basis="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            display="flex"
-            {...getOverrideProps(overrides, "Frame 13966")}
-          >
-            <Flex
-              gap="12px"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="center"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              display="flex"
-              {...getOverrideProps(overrides, "Frame 462")}
-            >
-              {testPreguntas
-                ?.filter(
-                  (c) =>
-                    c.CATEGORIA === "Potencial" &&
-                    c.ANO_EVAL === anios &&
-                    c.AGRUPACION === "Agilidad de cambio"
-                )
-                .map((pre) => (
-                  <>
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="16px"
-                      fontWeight="500"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="20px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      shrink="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.TITULO}
-                      {...getOverrideProps(overrides, "Change agility")}
-                    ></Text>
+          ))}
+        <Flex
+          gap="16px"
+          direction="column"
+          width="unset"
+          height="unset"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          grow="1"
+          shrink="1"
+          basis="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          display="flex"
+          {...getOverrideProps(overrides, "Frame 13966")}
+        >
+          {testPreguntas
+            ?.filter(
+              (c) =>
+                c.CATEGORIA === "Potencial" &&
+                c.ANO_EVAL === anios &&
+                c.AGRUPACION === "Agilidad de cambio"
+            )
+            .map((pre) => (
+              <Flex
+                gap="12px"
+                direction="row"
+                width="unset"
+                height="unset"
+                justifyContent="flex-start"
+                alignItems="center"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                display="flex"
+                {...getOverrideProps(overrides, "Frame 462")}
+              >
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="500"
+                  color="rgba(0,0,0,0.8)"
+                  lineHeight="20px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  shrink="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={pre.TITULO}
+                  {...getOverrideProps(overrides, "Change agility")}
+                ></Text>
 
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="14px"
-                      fontWeight="400"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="17.5px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      grow="1"
-                      shrink="1"
-                      basis="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.VALORES}
-                      {...getOverrideProps(overrides, "answerChange")}
-                    ></Text>
-                  </>
-                ))}
-            </Flex>
-            <Flex
-              gap="12px"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="center"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              display="flex"
-              {...getOverrideProps(overrides, "Frame 463")}
-            >
-              {testPreguntas
-                ?.filter(
-                  (c) =>
-                    c.CATEGORIA === "Potencial" &&
-                    c.ANO_EVAL === anios &&
-                    c.AGRUPACION === "Agilidad de resultados"
-                )
-                .map((pre) => (
-                  <>
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="16px"
-                      fontWeight="500"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="20px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      shrink="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.TITULO}
-                      {...getOverrideProps(overrides, "Results agility")}
-                    ></Text>
+                <Text
+                  fontFamily="Inter"
+                  fontSize="14px"
+                  fontWeight="400"
+                  color="rgba(0,0,0,0.8)"
+                  lineHeight="17.5px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  grow="1"
+                  shrink="1"
+                  basis="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={pre.VALORES}
+                  {...getOverrideProps(overrides, "answerChange")}
+                ></Text>
+              </Flex>
+            ))}
+          {testPreguntas
+            ?.filter(
+              (c) =>
+                c.CATEGORIA === "Potencial" &&
+                c.ANO_EVAL === anios &&
+                c.AGRUPACION === "Agilidad de resultados"
+            )
+            .map((pre) => (
+              <Flex
+                gap="12px"
+                direction="row"
+                width="unset"
+                height="unset"
+                justifyContent="flex-start"
+                alignItems="center"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                display="flex"
+                {...getOverrideProps(overrides, "Frame 463")}
+              >
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="500"
+                  color="rgba(0,0,0,0.8)"
+                  lineHeight="20px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  shrink="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={pre.TITULO}
+                  {...getOverrideProps(overrides, "Results agility")}
+                ></Text>
 
-                    <Text
-                      fontFamily="Inter"
-                      fontSize="14px"
-                      fontWeight="400"
-                      color="rgba(0,0,0,0.8)"
-                      lineHeight="17.5px"
-                      textAlign="left"
-                      display="block"
-                      direction="column"
-                      justifyContent="unset"
-                      width="unset"
-                      height="unset"
-                      gap="unset"
-                      alignItems="unset"
-                      grow="1"
-                      shrink="1"
-                      basis="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      whiteSpace="pre-wrap"
-                      children={pre.VALORES}
-                      {...getOverrideProps(overrides, "answerAgility")}
-                    ></Text>
-                  </>
-                ))}
-            </Flex>
-          </Flex>
+                <Text
+                  fontFamily="Inter"
+                  fontSize="14px"
+                  fontWeight="400"
+                  color="rgba(0,0,0,0.8)"
+                  lineHeight="17.5px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  grow="1"
+                  shrink="1"
+                  basis="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={pre.VALORES}
+                  {...getOverrideProps(overrides, "answerAgility")}
+                ></Text>
+              </Flex>
+            ))}
         </Flex>
       </Flex>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-        {...getOverrideProps(overrides, "Divider38284743")}
-      ></Divider>
       <Flex
         gap="16px"
         direction="column"
@@ -1121,89 +1079,79 @@ export default function SuccesionTest(props) {
               </>
             ))}
         </Flex>
-        <Flex
-          gap="12px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 467")}
-        >
-          {testPreguntas
-            ?.filter(
-              (c) =>
-                c.CATEGORIA === "Potencial" &&
-                c.ANO_EVAL === anios &&
-                c.AGRUPACION ===
-                  "PREDICTOR DE LIDERAZGO: Se enfoca en hacer crecer el negocio a través de otros"
-            )
-            .map((pre) => (
-              <>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="20px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.TITULO}
-                  {...getOverrideProps(
-                    overrides,
-                    "LEADERSHIP PREDICTOR: Focuses on growing the business through others"
-                  )}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.VALORES}
-                  {...getOverrideProps(overrides, "answerFocuses")}
-                ></Text>
-              </>
-            ))}
-        </Flex>
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION ===
+                "PREDICTOR DE LIDERAZGO: Se enfoca en hacer crecer el negocio a través de otros"
+          )
+          .map((pre) => (
+            <Flex
+              gap="12px"
+              direction="column"
+              width="unset"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              display="flex"
+              {...getOverrideProps(overrides, "Frame 467")}
+            >
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(
+                  overrides,
+                  "LEADERSHIP PREDICTOR: Focuses on growing the business through others"
+                )}
+              ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "answerFocuses")}
+              ></Text>
+            </Flex>
+          ))}
       </Flex>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-        {...getOverrideProps(overrides, "Divider38284754")}
-      ></Divider>
       <Flex
         gap="20px"
         direction="row"
@@ -1416,14 +1364,6 @@ export default function SuccesionTest(props) {
             </Flex>
           ))}
       </Flex>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-        {...getOverrideProps(overrides, "Divider38284765")}
-      ></Divider>
       <Flex
         gap="16px"
         direction="column"
@@ -1438,225 +1378,211 @@ export default function SuccesionTest(props) {
         display="flex"
         {...getOverrideProps(overrides, "Frame 13972")}
       >
-        <Flex
-          gap="12px"
-          direction="row"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 471")}
-        >
-          {testPreguntas
-            ?.filter(
-              (c) =>
-                c.CATEGORIA === "Potencial" &&
-                c.ANO_EVAL === anios &&
-                c.AGRUPACION === "Promovible"
-            )
-            .map((pre) => (
-              <>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="20px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.TITULO}
-                  {...getOverrideProps(overrides, "Readiness")}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  grow="1"
-                  shrink="1"
-                  basis="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.VALORES}
-                  {...getOverrideProps(overrides, "Mid-term (1-3 years)")}
-                ></Text>
-              </>
-            ))}
-        </Flex>
-        <Flex
-          gap="12px"
-          direction="row"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 472")}
-        >
-          {testPreguntas
-            ?.filter(
-              (c) =>
-                c.CATEGORIA === "Potencial" &&
-                c.ANO_EVAL === anios &&
-                c.AGRUPACION === "Escenario Futuro"
-            )
-            .map((pre) => (
-              <>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="20px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.TITULO}
-                  {...getOverrideProps(overrides, "Future scenario")}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  grow="1"
-                  shrink="1"
-                  basis="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.VALORES}
-                  {...getOverrideProps(overrides, "answerScnario")}
-                ></Text>
-              </>
-            ))}
-        </Flex>
-        <Flex
-          gap="12px"
-          direction="row"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 473")}
-        >
-          {testPreguntas
-            ?.filter(
-              (c) =>
-                c.CATEGORIA === "Potencial" &&
-                c.ANO_EVAL === anios &&
-                c.AGRUPACION === "Riesgo de pérdida"
-            )
-            .map((pre) => (
-              <>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="20px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.TITULO}
-                  {...getOverrideProps(overrides, "Flight risk")}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  grow="1"
-                  shrink="1"
-                  basis="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.VALORES}
-                  {...getOverrideProps(overrides, "Medium")}
-                ></Text>
-              </>
-            ))}
-        </Flex>
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION === "Promovible"
+          )
+          .map((pre) => (
+            <Flex
+              gap="12px"
+              direction="row"
+              width="unset"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              display="flex"
+              {...getOverrideProps(overrides, "Frame 471")}
+            >
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(overrides, "Readiness")}
+              ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "Mid-term (1-3 years)")}
+              ></Text>
+            </Flex>
+          ))}
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION === "Escenario Futuro"
+          )
+          .map((pre) => (
+            <Flex
+              gap="12px"
+              direction="row"
+              width="unset"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              display="flex"
+              {...getOverrideProps(overrides, "Frame 472")}
+            >
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(overrides, "Future scenario")}
+              ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "answerScnario")}
+              ></Text>
+            </Flex>
+          ))}
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION === "Riesgo de pérdida"
+          )
+          .map((pre) => (
+            <Flex
+              gap="12px"
+              direction="row"
+              width="unset"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              display="flex"
+              {...getOverrideProps(overrides, "Frame 473")}
+            >
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(overrides, "Flight risk")}
+              ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "Medium")}
+              ></Text>
+            </Flex>
+          ))}
       </Flex>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-        {...getOverrideProps(overrides, "Divider38284776")}
-      ></Divider>
       <Flex
         gap="16px"
         direction="column"
@@ -1671,253 +1597,95 @@ export default function SuccesionTest(props) {
         display="flex"
         {...getOverrideProps(overrides, "Frame 13969")}
       >
-        <Flex
-          gap="12px"
-          direction="row"
-          width="848px"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="center"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 474")}
-        >
-          {testPreguntas
-            ?.filter(
-              (c) =>
-                c.CATEGORIA === "Potencial" &&
-                c.ANO_EVAL === anios &&
-                c.AGRUPACION === "Mapa de potencial"
-            )
-            .map((pre) => (
-              <>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="20px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.TITULO}
-                  {...getOverrideProps(overrides, "Potential Map")}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  grow="1"
-                  shrink="1"
-                  basis="0"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.VALORES}
-                  {...getOverrideProps(overrides, "answerMap")}
-                ></Text>
-              </>
-            ))}
-        </Flex>
-        <Flex
-          gap="12px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 475")}
-        >
-          {testPreguntas
-            ?.filter(
-              (c) =>
-                c.CATEGORIA === "Potencial" &&
-                c.ANO_EVAL === anios &&
-                c.AGRUPACION === "Fortalezas"
-            )
-            .map((pre) => (
-              <>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="20px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.TITULO}
-                  {...getOverrideProps(
-                    overrides,
-                    "Potential leadership strengths"
-                  )}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.VALORES}
-                  {...getOverrideProps(overrides, "answerPotencial")}
-                ></Text>
-              </>
-            ))}
-        </Flex>
-        <Flex
-          gap="12px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 476")}
-        >
-          {testPreguntas
-            ?.filter(
-              (c) =>
-                c.CATEGORIA === "Potencial" &&
-                c.ANO_EVAL === anios &&
-                c.AGRUPACION === "Áreas de oportunidad"
-            )
-            .map((pre) => (
-              <>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="20px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.TITULO}
-                  {...getOverrideProps(
-                    overrides,
-                    "Potential leadership opportunity areas"
-                  )}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={pre.VALORES}
-                  {...getOverrideProps(overrides, "answerPotencialAreas")}
-                ></Text>
-              </>
-            ))}
-        </Flex>
-      </Flex>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-        {...getOverrideProps(overrides, "Divider38284787")}
-      ></Divider>
-      <Flex
-        gap="12px"
-        direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Frame 477")}
-      >
         {testPreguntas
           ?.filter(
             (c) =>
               c.CATEGORIA === "Potencial" &&
               c.ANO_EVAL === anios &&
-              c.AGRUPACION === "Acciones de desarrollo"
+              c.AGRUPACION === "Mapa de potencial"
           )
           .map((pre) => (
-            <>
+            <Flex
+              gap="12px"
+              direction="row"
+              width="848px"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="center"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              display="flex"
+              {...getOverrideProps(overrides, "Frame 474")}
+            >
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(overrides, "Potential Map")}
+              ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                grow="1"
+                shrink="1"
+                basis="0"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "answerMap")}
+              ></Text>
+            </Flex>
+          ))}
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION === "Fortalezas"
+          )
+          .map((pre) => (
+            <Flex
+              gap="12px"
+              direction="column"
+              width="unset"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              display="flex"
+              {...getOverrideProps(overrides, "Frame 475")}
+            >
               <Text
                 fontFamily="Inter"
                 fontSize="16px"
@@ -1940,7 +1708,7 @@ export default function SuccesionTest(props) {
                 children={pre.TITULO}
                 {...getOverrideProps(
                   overrides,
-                  "Development actions (70-20-10)"
+                  "Potential leadership strengths"
                 )}
               ></Text>
               <Text
@@ -1963,11 +1731,150 @@ export default function SuccesionTest(props) {
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
                 children={pre.VALORES}
-                {...getOverrideProps(overrides, "answerDevelop")}
+                {...getOverrideProps(overrides, "answerPotencial")}
               ></Text>
-            </>
+            </Flex>
+          ))}
+        {testPreguntas
+          ?.filter(
+            (c) =>
+              c.CATEGORIA === "Potencial" &&
+              c.ANO_EVAL === anios &&
+              c.AGRUPACION === "Áreas de oportunidad"
+          )
+          .map((pre) => (
+            <Flex
+              gap="12px"
+              direction="column"
+              width="unset"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              display="flex"
+              {...getOverrideProps(overrides, "Frame 476")}
+            >
+              <Text
+                fontFamily="Inter"
+                fontSize="16px"
+                fontWeight="500"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="20px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.TITULO}
+                {...getOverrideProps(
+                  overrides,
+                  "Potential leadership opportunity areas"
+                )}
+              ></Text>
+              <Text
+                fontFamily="Inter"
+                fontSize="14px"
+                fontWeight="400"
+                color="rgba(0,0,0,0.8)"
+                lineHeight="17.5px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children={pre.VALORES}
+                {...getOverrideProps(overrides, "answerPotencialAreas")}
+              ></Text>
+            </Flex>
           ))}
       </Flex>
+      {testPreguntas
+        ?.filter(
+          (c) =>
+            c.CATEGORIA === "Potencial" &&
+            c.ANO_EVAL === anios &&
+            c.AGRUPACION === "Acciones de desarrollo"
+        )
+        .map((pre) => (
+          <Flex
+            gap="12px"
+            direction="column"
+            width="unset"
+            height="unset"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            display="flex"
+            {...getOverrideProps(overrides, "Frame 477")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="500"
+              color="rgba(0,0,0,0.8)"
+              lineHeight="20px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={pre.TITULO}
+              {...getOverrideProps(overrides, "Development actions (70-20-10)")}
+            ></Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="14px"
+              fontWeight="400"
+              color="rgba(0,0,0,0.8)"
+              lineHeight="17.5px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={pre.VALORES}
+              {...getOverrideProps(overrides, "answerDevelop")}
+            ></Text>
+          </Flex>
+        ))}
       <Flex
         gap="10px"
         direction="column"
