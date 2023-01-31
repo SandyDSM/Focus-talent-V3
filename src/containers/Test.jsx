@@ -52,9 +52,8 @@ function Test() {
       }
       />
       <HeadAdmin title={"Evaluaciones de desempeño y potencial"} />
-      <main>
+      <main className='px-11'>
         <TableTests aniosx={anios} handleOpen={openModal}/>
-      {console.log("años",anios)}
       </main>
     </div>
   )
