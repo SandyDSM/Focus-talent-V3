@@ -5,8 +5,8 @@ import HeadCreateTable from "./HeadCreateTags";
 function CreateTags() {
 
   return (
-    <div className="card flex flex-col gap-6 p-4 w-full">
-      <div className="flex flex-col gap-1">
+    <div className="card flex flex-col gap-6 w-full">
+      <div className="flex flex-col gap-1 my-2">
         <Heading level={6}> Crear Etiquetas</Heading>
         <Divider />
       </div>
