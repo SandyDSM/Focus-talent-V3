@@ -3,6 +3,33 @@ import React, { useState, useEffect } from "react";
 import { IconNotification } from "../ui-components";
 
 function TableRowTests({ anio, handleOpen }) {
+  
+  const updateAnios= async (id, valor) => {
+    try {
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_anios_eval.php`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            "ANIO": id,
+            "VALUE": valor,
+            "TOKEN": "a27aba5cd302dc049acf86aaef16be746242cda0"
+          })
+        }
+      ); 
+      const datos = await respdesemp.json();
+     console.log("el log es: ",datos);
+      // alert(datos);
+    } catch (error) {
+     
+     console.log("Si hay error", error);
+      // alert("No se pudo actualizar el estado de la evaluación, por favor contacte con el proveedor");
+    } 
+  };
+  
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
@@ -26,8 +53,12 @@ function TableRowTests({ anio, handleOpen }) {
           <SwitchField
             shrink="0"
             size="default"
-            defaultChecked={anio.ACTIVO === "1" && "Checked"}
+            defaultChecked={anio.ACTIVO==="1" && "Checked"}
+            id={anio.ANIO}
+            name={anio.ANIO}
+            value={anio.ANIO}
             onChange={(e) => {
+              updateAnios(e.target.id, e.target.checked);
               setIsChecked(e.target.checked);
             }}
           />

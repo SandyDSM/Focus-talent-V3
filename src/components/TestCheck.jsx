@@ -27,12 +27,13 @@ function TestCheck({ ElementosFiltro, defineAnios }) {
         if (a > b) return -1;
         return 0;
       });
+      const y=filtros[0];
       return filtros.map((anio) => (
         <CheckboxField
           label={anio}
           name={anio}
           value={anio}
-          defaultChecked={anio == "2022" ? true : false}
+          defaultChecked={anio === y ? true : false}
           id={anio}
         />
       ));

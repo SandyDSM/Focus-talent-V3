@@ -14,7 +14,7 @@ function TeamTestDetail() {
     useContext(CollaboratorsContext);
 
   const [testPreguntas, setTestPreguntas] = useState();
-  const [aniosFill, setAniosFill] = useState(["2022"]);
+  const [aniosFill, setAniosFill] = useState([]);
 
   const fetchDesemp = async () => {
     const respdesemp = await fetch(
@@ -25,9 +25,23 @@ function TeamTestDetail() {
       }
     ); //.then(respdesemp => {setTestPreguntas(respdesemp.json);})
     const datos = await respdesemp.json();
-    //console.log("Resultado: ",datos);
+    obtenMaxAnio(datos);
     setTestPreguntas(datos);
   };
+
+  const obtenMaxAnio=(datos)=>
+  {
+    let filtros = datos;
+    if(datos!==undefined){    
+    filtros.sort((a, b) => {
+          if (a.ANO_EVAL < b.ANO_EVAL) return 1;
+          if (a.ANO_EVAL > b.ANO_EVAL) return -1;
+          return 0;
+        });
+      }
+        setAniosFill([filtros[0].ANO_EVAL]);
+  }
+
 
   useEffect(() => {
     getCollDetail(id).catch(null);
