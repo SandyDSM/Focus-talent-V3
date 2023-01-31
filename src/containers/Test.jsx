@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import HeadAdmin from '../components/HeadAdmin'
 import Modal from '../components/Modal';
 import TableTests from '../components/TableTests'
+import TableOrganizations from '../components/TableOrganizations'
 
 
 function Test() {
@@ -13,6 +14,10 @@ function Test() {
   useEffect(() => {
     getAnios();
  },[]);
+
+ function close(){
+  setOpen(false)
+}
 
   const getAnios= async () => {
     try {
@@ -41,7 +46,11 @@ function Test() {
   
   return (
     <div className='flex flex-col gap-4'>
-      <Modal open={open} setOpen={setOpen}/>
+      <Modal open={open} setOpen={setOpen}
+      elementBody={
+        <TableOrganizations close={close}/>
+      }
+      />
       <HeadAdmin title={"Evaluaciones de desempeño y potencial"} />
       <main>
         <TableTests aniosx={anios} handleOpen={openModal}/>

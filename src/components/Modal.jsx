@@ -1,15 +1,10 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import TableOrganizations from './TableOrganizations'
 
-export default function Modal({open, setOpen}) {
+export default function Modal({open, setOpen, elementBody=""}) {
   
 
   const cancelButtonRef = useRef(null)
-
-  function close(){
-    setOpen(false)
-  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -39,7 +34,7 @@ export default function Modal({open, setOpen}) {
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg lg:max-w-4xl">
               <div className='flex flex-col justify-center items-center '>
-                <TableOrganizations close={close}/>
+                {elementBody}
               </div>
               </Dialog.Panel>
             </Transition.Child>
