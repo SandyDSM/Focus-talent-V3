@@ -11,6 +11,7 @@ import Pagination from "../components/Pagination";
 
 const MyTeam = () => {
   const {
+    collaborators,
     getCollaborators,
     isLoading,
     separadosCol,
@@ -22,7 +23,9 @@ const MyTeam = () => {
     paginateBack,
     setActual,
     currentPage,
-    usuarioActualDatos
+    usuarioActualDatos, 
+    ordena,
+    actualizaBusqueda
   } = useContext(CollaboratorsContext);
 
   useEffect(() => {
@@ -34,6 +37,25 @@ const MyTeam = () => {
   const PUESTOS = obtenPuesto();
   const ORGANIZACIONES = obtenOrganizacion();
   
+  useEffect(() => { 
+    actualizaBusqueda(collaborators);
+  }, [collaborators]);
+
+
+function cambia(evento){
+  ordena(evento);
+  console.log(collaborators);//x
+}
+
+
+
+
+
+
+
+
+
+
 
   if (isLoading) {
     return (
@@ -52,7 +74,7 @@ const MyTeam = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 m-5">
           <div className="col-end-2 md:col-end-5">
-            <SelectField label="Order" labelHidden={true}>
+            <SelectField label="Order" labelHidden={true} onChange={(e)=>ordena(e.target.value)}>
               <option value="Ascendente">Ordenar por: Ascendente</option>
               <option value="descendente">Ordenar por: Descendente</option>
             </SelectField>
@@ -62,6 +84,7 @@ const MyTeam = () => {
               ListaPuestos={PUESTOS}
               ListaOrganizacion={ORGANIZACIONES}
               cargaFiltrado={datosFiltrados}
+              DATOS={collaborators}
             />
           </div>
           <div className="col-span-1 row-start-3 sm:col-span-2 md:row-start-2 md:col-span-3 ">

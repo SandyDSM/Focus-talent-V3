@@ -28,7 +28,36 @@ function Filter(
 
 ) {
 
+  function filtaPuesto(dtos){
+    let dfilter=[];
+    let j=0;
+    let dfil;
+    if(ListaPuestos.length>0){
+     for(let i=0; i<ListaPuestos.length; i++){
+     if(document.getElementsByName(ListaPuestos[i])[0].checked){
+       alert(document.getElementsByName(ListaPuestos[i])[0].value)
+       
+       dfilter[j]=dtos?.filter(c => (c.PUESTO === document.getElementsByName(ListaPuestos[i])[0].value));
+       j++;
+      }
+    }
+     dfil=dfilter[0];
+  for(j=1; j<dfilter.length;j++){
+    dfil=dfil.concat(dfilter[j]);
+    
+  }
+   //cargaFiltrado(dfil)
+   console.log("dfil=",dfil);
+ return dfil;
+ }else{
+ return dtos;
+   //cargaFiltrado(dtos);
+ }
+ }
   
+
+
+
   function pruebaPush(datos, fil){
          var xyzz=datos.filter(c=>c.PUESTO==fil)
    return xyzz;
@@ -61,7 +90,7 @@ function Filter(
         </Expander>
         <div className="flex gap-4 my-4">
           <Button width={"100%"} size="small">Limpiar</Button>
-          <Button width={"100%"} variation="primary" size="small" backgroundColor="#004B85">Aplicar</Button>
+          <Button width={"100%"} variation="primary" size="small" backgroundColor="#004B85" onClick={()=>{filtaPuesto(DATOS)}}>Aplicar</Button>
         </div>
       </ThemeProvider>
     </div>

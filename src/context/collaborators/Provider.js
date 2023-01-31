@@ -63,15 +63,43 @@ export default function CollaboratorsProvider({ children, signOut }) {
     }
   };
 
+
+  const ordena=function(orden){
+    const collatemp=collaborators;
+    if(orden==="descendente"){
+       const tempdescendente=collatemp.sort((a, b) => {
+       if (a.APELLIDOS.toUpperCase() < b.APELLIDOS.toUpperCase()) return 1
+       if (a.APELLIDOS.toUpperCase() > b.APELLIDOS.toUpperCase()) return -1
+       return 0
+     });
+     
+     actualizaBusqueda([...tempdescendente]); //a 
+     
+    }else{
+    const temascendente= collatemp.sort((a, b) => {
+       if (a.APELLIDOS.toUpperCase() > b.APELLIDOS.toUpperCase()) return 1
+       if (a.APELLIDOS.toUpperCase() < b.APELLIDOS.toUpperCase()) return -1
+       return 0
+     });
+     actualizaBusqueda([...temascendente]);  
+          
+    }
+     
+   };
+   
+
+
   //const UserPromise = UserLog().then(getAttribColaborators(logueado.email)) 
 
   const actualizaBusqueda=function(users){
-      setCollaborators(users);
-    separadosCol=separa(collaborators);
+      setCollaborators(users);//
+      console.log("Datos ordenados",collaborators);
+      separadosCol=separa(users);
   }
 
   const restauraUsuarios=function(){
     setCollaborators(collaboratorsResp);
+
     separadosCol=separa(collaborators);
     console.log("log de colabora: ", collaborators)
   }
@@ -202,6 +230,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
 
   function separa(datos) {
     if (datos) {
+      
       let firstpanels = [];
       firstpanels[0] = [...datos].splice(0, maxPorPagina);
       //alert("tamaño de datos="+ datos.length+"hojas="+datos.length/maxPorPagina+ "registros="+maxPorPagina);
@@ -216,7 +245,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   }
 
   function obtenPuesto() {
-    let datos = collaborators;
+    let datos = collaboratorsResp;
     let puestos = [];
     for (let i = 0; i < datos.length; i++) {
       puestos[i] = datos[i].PUESTO;
@@ -228,7 +257,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   }
 
   function obtenOrganizacion() {
-    let datos = collaborators;
+    let datos = collaboratorsResp;
     let organizaciones = [];
     for (let i = 0; i < datos.length; i++) {
       organizaciones[i] = datos[i].ORGANIZACION;
@@ -268,7 +297,8 @@ export default function CollaboratorsProvider({ children, signOut }) {
         actualizaBusqueda,
         restauraUsuarios, 
         showPerson,
-        setShowPerson
+        setShowPerson,
+        ordena
       }}
     >
       {children}
