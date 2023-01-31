@@ -1,4 +1,4 @@
-import { Divider, SwitchField } from "@aws-amplify/ui-react";
+import { Button, Divider, SwitchField } from "@aws-amplify/ui-react";
 import React, { useState, useEffect } from "react";
 import { IconNotification } from "../ui-components";
 
@@ -16,14 +16,12 @@ function TableRowTests({ anio, handleOpen }) {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row self-stretch py-2 px-9 items-center relative gap-1">
-        <div className="w-7 h-7 cursor-pointer">
-          <IconNotification
+          <Button variation="link" isDisabled={isChecked ? false : true  } onClick={()=>handleOpen()}>
+            <IconNotification
             width="24px"
             height="24px"
-            disabled={`${isChecked ? "False" : "True"}`}
-            onClick = {()=>handleOpen()}
-          />
-        </div>
+            disabled={`${isChecked ? "False": "True"}`} 
+          /></Button>
         <div className="flex flex-col gap-2.5 justify-center items-center py-2 px-9 relative">
           <SwitchField
             shrink="0"
