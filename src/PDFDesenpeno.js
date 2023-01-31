@@ -118,7 +118,7 @@ const PDFdesempeno = ({ DATOS, anios, datosUsuario }) => {
           ></View>
 
           {DATOS?.filter(
-            (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === "2020"
+            (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios
           ).map((pre) => (
             <View style={styles.colums}>
               <Text style={styles.txtTitle}>{pre.TITULO}</Text>

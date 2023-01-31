@@ -59,6 +59,7 @@ const PDFConjunto = ({ DATOS, anios, datosUsuario }) => {
     <Document>
       {anios.map((anio) => (
         <>
+        {anio != "2022" &&
           <Page size="A4">
             <View
               style={{
@@ -125,7 +126,7 @@ const PDFConjunto = ({ DATOS, anios, datosUsuario }) => {
               ></View>
 
               {DATOS?.filter(
-                (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === "2020"
+                (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anio
               ).map((pre) => (
                 <View style={styles.colums}>
                   <Text style={styles.txtTitle}>{pre.TITULO}</Text>
@@ -134,7 +135,7 @@ const PDFConjunto = ({ DATOS, anios, datosUsuario }) => {
               ))}
             </View>
           </Page>
-
+          }
           <Page size="A4">
             <View
               style={{
