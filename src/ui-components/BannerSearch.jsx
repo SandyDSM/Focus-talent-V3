@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { useContext } from "react";
 import {
   getOverrideProps,
   getOverridesFromVariants,
@@ -17,6 +18,8 @@ import {
   SearchField,
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
+import CollaboratorsContext from "../context/collaborators";
+import { useState } from "react";
 export default function BannerSearch(props) {
   const { overrides: overridesProp, ...restProp } = props;
   const variants = [
@@ -58,6 +61,39 @@ export default function BannerSearch(props) {
     }),
     overridesProp || {}
   );
+
+  const {  
+  
+    collaborators,
+    collaboratorsResp,
+    actualizaBusqueda,
+    restauraUsuarios
+
+   } =
+    useContext(CollaboratorsContext);
+
+
+
+    const onChange = (evento) => {
+   
+  console.log(evento.length); 
+  restauraUsuarios();
+   if(collaborators==collaboratorsResp){
+    const filBusqueda=collaborators.filter(f=>f.NOMBRE.toUpperCase().includes(evento.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(evento.toUpperCase()))
+    actualizaBusqueda(filBusqueda);
+   }else{
+    const filBusqueda=collaboratorsResp.filter(f=>f.NOMBRE.toUpperCase().includes(evento.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(evento.toUpperCase()))
+    actualizaBusqueda(filBusqueda);
+   }
+
+    };
+   
+     const onClear=()=>{
+       restauraUsuarios();
+     };
+
+
+
   return (
     <Flex
       gap="12px"
@@ -116,9 +152,12 @@ export default function BannerSearch(props) {
           width="unset"
           shrink="0"
           size="default"
+          id="busqueda"
           isDisabled={false}
           labelHidden={true}
           variation="default"
+          onChange={(e)=>onChange(e.target.value)}
+          onClear={()=>onClear()}
           {...getOverrideProps(overrides, "SearchField")}
         ></SearchField>
       </Flex>

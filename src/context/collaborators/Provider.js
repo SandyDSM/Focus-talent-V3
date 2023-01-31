@@ -15,7 +15,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [photo, setPhoto] = useState("");
   const [collaboratorsPhotos, setCollaboratorsPhotos] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [collaboratorsSearch, setCollaboratorsSearch] = useState([]);
+  const [collaboratorsResp, setCollaboratorsResp] = useState([]);
   const [showPerson, setShowPerson] = useState(true)
 
   const UserLog = async () => {
@@ -66,13 +66,14 @@ export default function CollaboratorsProvider({ children, signOut }) {
   //const UserPromise = UserLog().then(getAttribColaborators(logueado.email)) 
 
   const actualizaBusqueda=function(users){
-    setCollaboratorsSearch(collaborators);
-    setCollaborators(users);
+      setCollaborators(users);
     separadosCol=separa(collaborators);
   }
 
   const restauraUsuarios=function(){
-    setCollaborators(collaboratorsSearch);
+    setCollaborators(collaboratorsResp);
+    separadosCol=separa(collaborators);
+    console.log("log de colabora: ", collaborators)
   }
 
 
@@ -94,6 +95,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
       //console.log("Resultado de team: ", datos);
       if(accion==="SetColaborators"){
         setCollaborators(datos);
+        setCollaboratorsResp(datos);
         }else if(accion==="SetSubColaborators"){
           setSubcollaborators(datos);
         }
@@ -243,6 +245,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
         getCollaborators,
         getAttribColaborators,
         collaborators,
+        collaboratorsResp,
         subcollaborators,
         getCollDetail,
         collDetail,
