@@ -2,7 +2,7 @@ import { Divider } from "@aws-amplify/ui-react";
 import React from "react";
 import { IconActions, IconAddsec } from "../ui-components";
 
-function TableRowOrganization() {
+function TableRowOrganization({organization}) {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row self-stretch py-1 px-9 items-center relative gap-6">
@@ -15,10 +15,10 @@ function TableRowOrganization() {
         <div className="flex flex-row gap-1 grow shrink relative whitespace-pre-wrap items-center ">
           <div className="cursor-pointer"><IconAddsec/></div>
           <p className="text-xs">
-          BIM CEDIS METROPOLITANO
+          {organization.NOMBRE}
           </p>
         </div>
-        <p className="text-xs">LAS</p>
+        <p className="text-xs">{organization.ID}</p>
       </div>
 
       <Divider

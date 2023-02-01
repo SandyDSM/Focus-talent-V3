@@ -21,10 +21,7 @@ function TableRowTests({ anio, handleOpen }) {
         }
       ); 
       const datos = await respdesemp.json();
-     console.log("el log es: ",datos);
     } catch (error) {
-     
-     console.log("Si hay error", error);
     } 
   };
   

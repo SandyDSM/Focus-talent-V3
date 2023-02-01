@@ -4,7 +4,6 @@ import TableRowTests from './TableRowTests'
 import HeadTable from './HeadTable'
 
 function TableTests({aniosx, handleOpen}) {
-  console.log("llego a tt:", aniosx);
   const [value, setValue] = React.useState('');
 
   const onChange = (event) => {

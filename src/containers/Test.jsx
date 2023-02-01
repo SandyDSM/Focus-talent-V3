@@ -33,9 +33,7 @@ function Test() {
       ); 
       const datos = await respdesemp.json();
       setAnios(datos);
-     console.log("datos",datos);
-      // alert(datos);
-    } catch (error) {
+        } catch (error) {
       setAnios([]);
     } 
   };
