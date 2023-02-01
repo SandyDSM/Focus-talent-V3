@@ -298,7 +298,8 @@ export default function CollaboratorsProvider({ children, signOut }) {
         restauraUsuarios, 
         showPerson,
         setShowPerson,
-        ordena
+        ordena,
+        setIsLoading
       }}
     >
       {children}
