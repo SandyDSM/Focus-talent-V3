@@ -1,13 +1,16 @@
 import React from "react";
 import { Heading, Divider, TextField, Button } from "@aws-amplify/ui-react";
 import HeadCreateTable from "./HeadCreateTags";
+import { useState } from "react";
 
 function CreateTags({etiquetasamod, botonhabilitado}) {
 
+  const [isLoad, setIsLoad ] = useState(false)
 ///////////////////////////////////////////////////////////////// 
 const updateTags= async (etiquetasx, espaniol, ingles, frances, portugues, chino) => {
   try {
-    alert("si intenta actualizar");
+    //alert("si intenta actualizar");
+    setIsLoad(true)
     const respdesemp = await fetch(
       `https://talento-itzahuia.com/SAC/etiquetas.php`,
       {
@@ -32,7 +35,9 @@ const updateTags= async (etiquetasx, espaniol, ingles, frances, portugues, chino
   } catch (error) {
    
    console.log("Si hay error", error);
-  } 
+  }  finally{
+    setIsLoad(false)
+  }
 };
 
 //////////////////////////////////////////////////////////////////
@@ -66,8 +71,9 @@ function actualiza()
         <TextField placeholder="Chino" id={"zh_CN"} defaultValue={etiquetasamod[5]}/>
       </div>
       </div>
-      <div className="flex justify-end px-5">
-        <Button variation="primary" isDisabled={botonhabilitado} onClick={()=>actualiza()}>Guardar</Button>
+      <div className="flex flex-row gap-6 justify-end px-5">
+        <Button isDisabled={botonhabilitado}>Cancelar</Button>
+        <Button variation="primary" isDisabled={botonhabilitado} isLoading={isLoad} loadingText="Guardando" onClick={()=>actualiza()}>Guardar</Button>
       </div>
     </div>
   );

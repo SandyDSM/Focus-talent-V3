@@ -26,9 +26,8 @@ etiquetasamod(etiqtemp);
         <div className="w-full"><p className="text-sm" id={`${etiqueta}-fra`}>{fravalue}</p></div>
         <div className="w-full"><p className="text-sm" id={`${etiqueta}-por`}>{porvalue}</p></div>
         <div className="w-full"><p className="text-sm" id={`${etiqueta}-zhn`}>{zhovalue}</p></div>
-        <div className="w-full flex flex-row gap-8">
-            <div className="w-6/12 flex justify-center cursor-pointer" onClick={()=>enviaEtiquetas()}><IconActions name="edit"/></div>
-            <div className="w-6/12 flex justify-center cursor-pointer"></div>
+        <div className="flex flex-row px-5">
+            <div className="flex justify-center cursor-pointer" onClick={()=>enviaEtiquetas()}><IconActions name="edit"/></div>
         </div>
       </div>
       <Divider
