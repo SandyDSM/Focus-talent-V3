@@ -15,6 +15,7 @@ const MyTeam = () => {
     getCollaborators,
     isLoading,
     separadosCol,
+    collaboratorsResp,
     datosFiltrados,
     obtenPuesto,
     obtenOrganizacion,
@@ -25,7 +26,7 @@ const MyTeam = () => {
     currentPage,
     usuarioActualDatos, 
     ordena,
-    actualizaBusqueda
+    actualizaBusqueda,
   } = useContext(CollaboratorsContext);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const MyTeam = () => {
   const ORGANIZACIONES = obtenOrganizacion();
   
   useEffect(() => { 
-    actualizaBusqueda(collaborators);
+    //actualizaBusqueda(collaborators);
   }, [collaborators]);
 
 
@@ -83,8 +84,9 @@ function cambia(evento){
             <Filter
               ListaPuestos={PUESTOS}
               ListaOrganizacion={ORGANIZACIONES}
-              cargaFiltrado={datosFiltrados}
-              DATOS={collaborators}
+              cargaFiltrado={actualizaBusqueda}
+              
+              DATOS={collaboratorsResp}
             />
           </div>
           <div className="col-span-1 row-start-3 sm:col-span-2 md:row-start-2 md:col-span-3 ">

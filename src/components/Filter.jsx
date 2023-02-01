@@ -28,6 +28,9 @@ function Filter(
 
 ) {
 
+
+
+
   function filtaPuesto(dtos){
     let dfilter=[];
     let j=0;
@@ -35,34 +38,64 @@ function Filter(
     if(ListaPuestos.length>0){
      for(let i=0; i<ListaPuestos.length; i++){
      if(document.getElementsByName(ListaPuestos[i])[0].checked){
-       alert(document.getElementsByName(ListaPuestos[i])[0].value)
-       
-       dfilter[j]=dtos?.filter(c => (c.PUESTO === document.getElementsByName(ListaPuestos[i])[0].value));
+     dfilter[j]=dtos?.filter(c => (c.PUESTO === document.getElementsByName(ListaPuestos[i])[0].value));
        j++;
       }
     }
      dfil=dfilter[0];
-  for(j=1; j<dfilter.length;j++){
-    dfil=dfil.concat(dfilter[j]);
-    
+  for(let k=1; k<dfilter.length; k++){
+    dfil=dfil.concat(dfilter[k]);
   }
-   //cargaFiltrado(dfil)
-   console.log("dfil=",dfil);
- return dfil;
+  if(j>0){
+    return dfil;
+    }
+    else
+    {
+      return dtos;
+    }
  }else{
  return dtos;
-   //cargaFiltrado(dtos);
  }
  }
   
 
-
-
-  function pruebaPush(datos, fil){
-         var xyzz=datos.filter(c=>c.PUESTO==fil)
-   return xyzz;
-  
+ function filtraOrg()
+ {
+  let dfilter=[];
+  let j=0;
+  let dfil;
+  let datFilPuesto=filtaPuesto(DATOS);
+  console.log("filtro de puestos: ",datFilPuesto);
+  if(ListaOrganizacion.length>0){
+    for(let i=0; i<ListaOrganizacion.length; i++){
+      if(document.getElementsByName(ListaOrganizacion[i])[0]!==undefined){
+      if(document.getElementsByName(ListaOrganizacion[i])[0].checked){
+        dfilter[j]=datFilPuesto?.filter(c => (c.ORGANIZACION === document.getElementsByName(ListaOrganizacion[i])[0].value));
+      j++;
+      }
+    }
+    }
+    dfil=dfilter[0];
+    for(let k=1; k<dfilter.length;k++){
+      dfil=dfil.concat(dfilter[k]);
+    }
+    if(j>0){
+    cargaFiltrado(dfil);
+    console.log("dfil trae: ",dfil);
+    }
+    else
+    {
+      cargaFiltrado(datFilPuesto);
+    }
+  }else{
+    cargaFiltrado(datFilPuesto);
   }
+ }
+ 
+
+
+ 
+
 
   return (
     <div className="card">
@@ -90,7 +123,7 @@ function Filter(
         </Expander>
         <div className="flex gap-4 my-4">
           <Button width={"100%"} size="small">Limpiar</Button>
-          <Button width={"100%"} variation="primary" size="small" backgroundColor="#004B85" onClick={()=>{filtaPuesto(DATOS)}}>Aplicar</Button>
+          <Button width={"100%"} variation="primary" size="small" backgroundColor="#004B85" onClick={()=>{filtraOrg()}}>Aplicar</Button>
         </div>
       </ThemeProvider>
     </div>
