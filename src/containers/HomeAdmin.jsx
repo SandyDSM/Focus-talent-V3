@@ -35,11 +35,14 @@ function HomeAdmin({signOut}) {
     Job: { children: usuarioActualDatos.PUESTO },
   };
 
+  const sendOverridesCardTest = {
+    Title: { children: "Evaluaciones de desempeño y potencial" },
+  };
   const sendOverridesCard = {
     Title: { children: "Administración de notificaciones" },
   };
   const sendOverridesCard2 = {
-    Title: { children: "Administración de Etiquetas" },
+    Title: { children: "Administración de etiquetas" },
   };
   const sendOverridesCard3 = {
     Title: { children: "Mi equipo" },
@@ -74,7 +77,7 @@ function HomeAdmin({signOut}) {
       <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-5 px-9">
         <div className="col-start-1 lg:col-start-2 col-span-2 cursor-pointer">
           <Link to="/test">
-            <CardBtn width={"100%"} />
+            <CardBtn width={"100%"} overrides={sendOverridesCardTest} />
           </Link>
         </div>
         <div className="col-start-1 md:col-start-3 lg:col-start-4 col-span-2 cursor-pointer">

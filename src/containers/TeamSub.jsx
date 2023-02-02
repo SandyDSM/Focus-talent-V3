@@ -57,7 +57,7 @@ Loader();
   return (
     <>
       <div className="mx-4">
-        <BreadCrums text="Equipo de" colaborator={collDetail.ID_COLABORADOR} />
+        <BreadCrums text="Equipo de" colaborator={collDetail.NOMBRE} />
       </div>
       <HeadTeamFrom width={"100%"} overrides={sendOverridesTeamFrom} />
       <div className="grid grid-cols-1 md:grid-cols-3 l:grid-cols-4 gap-4 mdgrid-rows-3 m-5">

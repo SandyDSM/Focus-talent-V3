@@ -104,7 +104,7 @@ function TeamTestDetail() {
         <div className="mx-4">
           <BreadCrums
             text="Evaluación de"
-            colaborator={collDetail.ID_COLABORADOR}
+            colaborator={collDetail.NOMBRE}
           />
         </div>
         <div>
