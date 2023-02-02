@@ -41,6 +41,7 @@ function TeamSub() {
 
   const sendOverridesTeamFrom = {
     nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
+    SearchField: {display: 'none'}
   };
 
   const Loader = (()=>{
