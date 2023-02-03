@@ -9,6 +9,25 @@ import { useEffect } from "react";
 
 function TableOrganizations({close}) {
   const [organizations, setOrganizations]=useState([]);
+  const [organizationSelect, setOrganizationsSelect]=useState([]);
+
+
+
+const pushOrg=(obj)=>{
+  
+let orgtemp=organizationSelect;
+let orgval=[];
+orgval=orgtemp.filter(element=>element.ID===obj.ID);
+if(orgval.length===0){
+  orgtemp.push(obj);
+}
+setOrganizationsSelect([...orgtemp]);
+console.log(organizationSelect);
+}
+
+useEffect(()=>{
+
+ },[organizationSelect]);
 
   //////////////////////////////////////////////////////////////
 
@@ -18,6 +37,29 @@ function TableOrganizations({close}) {
         //  //    //   //  //
  ////////  ////////   //   //
 
+ const getOusbyParent= async (ID) => {
+  try {
+    
+      const respdesemp = await fetch(
+      `https://talento-itzahuia.com/SAC/gb_orgest.php?parentID='${ID}'`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          "token": "8da9aebd984ef3897b280ff7efabf83d931f99lb"
+        },
+      }
+    ); 
+    const datos = await respdesemp.json();
+    setOrganizations(datos);
+     alert(ID);
+  } catch (error) {
+    setOrganizations([]);
+  } 
+};
+
+
+//////////////////////////////////////////////////////////////////
  useEffect(()=>{
   getOus();
  },[]);
@@ -76,7 +118,9 @@ function TableOrganizations({close}) {
         <Divider />
       </div>
       <div className="flex flex-col gap-0">
-        <TableRowOrganizationSelect />
+      {organizationSelect?.map((org, index)=>(
+        <TableRowOrganizationSelect organization={org} key={index}/>
+        ))}
       </div>
       <div className="flex flex-col gap-1">
         <Heading level={6}> Estructuras</Heading>
@@ -89,8 +133,8 @@ function TableOrganizations({close}) {
           col3={"Título"}
           col4={"ID"}
         />
-{organizations?.map((org)=>(
-        <TableRowOrganization organization={org}/>
+{organizations?.map((org, index)=>(
+        <TableRowOrganization key={index} organization={org} setchild={getOusbyParent} selectorg={pushOrg}/>
         ))}
       </div>
         <PaginationEstructuras />

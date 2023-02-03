@@ -2,7 +2,7 @@ import { Divider, CheckboxField } from "@aws-amplify/ui-react";
 import React from "react";
 import { IconActions } from "../ui-components";
 
-function TableRowOrganizationSelect() {
+function TableRowOrganizationSelect({organization}) {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-row items-center pr-9 relative justify-between">
@@ -11,9 +11,9 @@ function TableRowOrganizationSelect() {
             <IconActions width="20px" height="20px" name="delete" />
           </div>
           <div className="flex flex-row gap-1 grow shrink relative whitespace-pre-wrap">
-            <p className="text-xs">BIM CEDIS METROPOLITANO </p>
+            <p className="text-xs">{organization.NOMBRE}</p>
           </div>
-          <div className="flex justify-end whitespace-pre-wrap "><p className="text-xs">LAS</p></div>
+          <div className="flex justify-end whitespace-pre-wrap "><p className="text-xs">organization.ID</p></div>
         </div>
         <CheckboxField
           label="Incluir subordinados"
