@@ -11,7 +11,11 @@ function TableOrganizations({close}) {
   const [organizations, setOrganizations]=useState([]);
   const [organizationSelect, setOrganizationsSelect]=useState([]);
 
-
+const pullOrg=(indice)=>{
+  let orgtemp=organizationSelect;
+  orgtemp.splice(indice,1);
+  setOrganizationsSelect([...orgtemp]);
+}
 
 const pushOrg=(obj)=>{
   
@@ -36,7 +40,27 @@ useEffect(()=>{
    ////////  ///////    //////
         //  //    //   //  //
  ////////  ////////   //   //
+const searchbyName=async(name)=>{
+  try{
+    const respdesemp = await fetch(
+      `https://talento-itzahuia.com/SAC/gb_orgest.php?ID='${name}'`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          "token": "8da9aebd984ef3897b280ff7efabf83d931f99lb"
+        },
+      }
+    ); 
+    const datos = await respdesemp.json();
+    setOrganizations(datos);
+  } catch (error) {
+    setOrganizations([]);
 
+  }
+}
+
+ ///////////////////////////////////////////////////////////////////
  const getOusbyParent= async (ID) => {
   try {
     
@@ -52,7 +76,6 @@ useEffect(()=>{
     ); 
     const datos = await respdesemp.json();
     setOrganizations(datos);
-     alert(ID);
   } catch (error) {
     setOrganizations([]);
   } 
@@ -100,15 +123,22 @@ useEffect(()=>{
       <div className="flex flex-row gap-4 items-end	">
         <TextField
           label={"Nombre"}
+          id={"nombre"}
           placeholder={"Buscar por nombre"}
           size="small"
         />
-        <TextField label={"ID"} placeholder={"Buscar por ID"} size="small" />
+        <TextField id={"ID"} label={"ID"} placeholder={"Buscar por ID"} size="small" />
         <Button
           variation="primary"
           loadingText="Buscando"
           size="small"
-          onClick={() => alert("hello")}
+          onClick={() => {
+            if(document.getElementById("nombre").value!==null){
+            searchbyName(document.getElementById("nombre").value);
+            }else if(document.getElementById("ID").value!==null){
+              searchbyName(document.getElementById("ID").value);
+            }
+          }}
         >
           Buscar
         </Button>
@@ -119,7 +149,7 @@ useEffect(()=>{
       </div>
       <div className="flex flex-col gap-0">
       {organizationSelect?.map((org, index)=>(
-        <TableRowOrganizationSelect organization={org} key={index}/>
+        <TableRowOrganizationSelect organization={org} key={index} indice={index} pullorg={pullOrg}/>
         ))}
       </div>
       <div className="flex flex-col gap-1">

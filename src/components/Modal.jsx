@@ -8,7 +8,9 @@ export default function Modal({open, setOpen, elementBody=""}) {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+      
+      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen} backdrop={"static"}>
+        
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -40,6 +42,7 @@ export default function Modal({open, setOpen, elementBody=""}) {
             </Transition.Child>
           </div>
         </div>
+        
       </Dialog>
     </Transition.Root>
   )
