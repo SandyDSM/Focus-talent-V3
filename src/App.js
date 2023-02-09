@@ -19,6 +19,7 @@ import MyTeam from "./containers/MyTeam";
 import NavHeader from "./components/NavHeader";
 import TeamTestDetail from "./containers/TeamTestDetail";
 import TeamSub from "./containers/TeamSub";
+import ForgotPss from "./containers/ForgotPss"
 
 import ScrollToTop from "./components/ScrollToTop";
 import Validations from "./components/Validations";
@@ -69,6 +70,7 @@ function App() {
               <Route exact path="/myteam" element={loggedIn ? <MyTeam /> : <SignIn onSignIn={assessLoggedInState} />} />
               <Route exact path="/myteam/:id" element={loggedIn ? <TeamSub /> : <SignIn onSignIn={assessLoggedInState} />} />
               <Route exact path="/test/:id" element={loggedIn ? <TeamTestDetail /> : <SignIn onSignIn={assessLoggedInState} />} />
+              <Route exact path="/forgotpassword" element={ loggedIn ? <Validations/> : <ForgotPss/>}/>
             </Routes>
           </CollaboratorsProvider>
         </BrowserRouter>

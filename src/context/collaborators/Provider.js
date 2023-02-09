@@ -17,6 +17,8 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [collaboratorsResp, setCollaboratorsResp] = useState([]);
   const [showPerson, setShowPerson] = useState(true)
+  const [sendCode, setSendCode] = useState(false);
+
 
   const UserLog = async () => {
     try {
@@ -299,7 +301,8 @@ export default function CollaboratorsProvider({ children, signOut }) {
         showPerson,
         setShowPerson,
         ordena,
-        setIsLoading
+        setIsLoading,
+        sendCode, setSendCode,
       }}
     >
       {children}
