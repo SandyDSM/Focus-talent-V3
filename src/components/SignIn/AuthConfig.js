@@ -6,12 +6,13 @@ const awsConfig = {
     userPoolWebClientId: '3hag9dakqsp428ark6lilvedtm',
   },
   oauth: {
-    domain: 'focustalent1.auth.us-east-1.amazoncognito.com',
-    scope: ['email', 'openid'],
-    redirectSignIn: 'http://localhost:3000/',
-    redirectSignOut: 'http://localhost:3000/',
-    responseType: 'token',
+    //domain: 'focustalent1.auth.us-east-1.amazoncognito.com',
+    //scope: ['email', 'openid'],
+    //redirectSignIn: 'http://localhost:3000/',
+    //redirectSignOut: 'http://localhost:3000/',
+    responseType: 'code',
   },
+  "federationTarget": "COGNITO_USER_POOLS",
 };
 
 export default awsConfig;

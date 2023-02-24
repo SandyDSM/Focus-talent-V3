@@ -14,7 +14,7 @@ const SignIn = ({ onSignIn }) => {
   const federatedSignInUpdateUser = async () => {
     try {
       const newUser = await Auth.federatedSignIn({
-        customProvider: "AzureSAML",
+        customProvider: "focusprod",
       });
       await updateCurrentUser(newUser);
     } catch (error) {
