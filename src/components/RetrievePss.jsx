@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 
 function RetrievePss({handleCancel}) {
-  const [username, setUsername] = useState("");
+  const [mail, setMail] = useState("");
 
   return (
     <div className="card w-full">
@@ -14,8 +14,8 @@ function RetrievePss({handleCancel}) {
           label="Introduce tu electrónico"
           placeholder="Ingresa aquí tu correo electrónico"
           errorMessage="Este campo es obligatorio"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={mail}
+          onChange={(e) => setMail(e.target.value)}
           isRequired={true}
           onKeyPress={(e) => {
             if (e.key === "Enter") {

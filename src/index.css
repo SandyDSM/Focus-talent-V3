@@ -27,3 +27,20 @@ code {
 .hidden{
   display: none;
 }
+
+.tab{
+  @apply overflow-hidden border border-solid border-bmb-blue p-2 text-center text-bmb-blue shadow cursor-pointer
+}
+
+.tab:hover{
+  @apply bg-bmb-blue-20
+}
+
+.tabActive{
+  @apply overflow-hidden border border-solid border-bmb-blue p-2 text-center text-white bg-bmb-blue shadow drop-shadow-lg 
+}
+
+.cardTitle{
+  @apply overflow-hidden bg-bmb-secundary shadow rounded-md p-4 text-2xl text-white
+
+}
