@@ -1,13 +1,11 @@
 import { SelectField } from "@aws-amplify/ui-react";
-import Filter from "../components/Filter";
-import CardsUsers from "./CardsUsers";
 import { Loader } from "@aws-amplify/ui-react";
 import { useParams } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import { HeadTeamFrom } from "../ui-components";
 import BreadCrums from "../components/BreadCrums";
-import Pagination from "../components/Pagination";
+import Tabs from "../components/Tabs";
 
 function TeamSub() {
   const { id } = useParams();
@@ -17,19 +15,14 @@ function TeamSub() {
     getCollDetail,
     collDetail,
     isLoading,
-    separadosSub,
-    datosFiltrados,
-    obtenPuesto,
-    obtenOrganizacion,
-    defineMax,
-    paginateFront,
-    paginateBack,
-    setActual,
-    currentPage,
   } = useContext(CollaboratorsContext);
 
-  const PUESTOS = obtenPuesto();
-  const ORGANIZACIONES = obtenOrganizacion();
+  const [option, setOption] = useState(1);
+
+  const toggleTab = (index) => {
+    setOption(index);
+  };
+
 
   console.log("subs",subcollaborators)
 
@@ -61,35 +54,23 @@ Loader();
         <BreadCrums text="Equipo de" colaborator={collDetail.NOMBRE} />
       </div>
       <HeadTeamFrom width={"100%"} overrides={sendOverridesTeamFrom} />
-      <div className="grid grid-cols-1 md:grid-cols-3 l:grid-cols-4 gap-4 mdgrid-rows-3 m-5">
-        <div className="col-end-5">
-          <SelectField label="Order" labelHidden={true}>
-            <option value="Ascendente">Ordenar por: Ascendente</option>
-            <option value="descendente">Ordenar por: Descendente</option>
-          </SelectField>
+      <>
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 m-5 px-4">
+          <div className={`md:rounded-l-lg ${option === 1 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(1)}>Futuro Lider</div>
+          <div className={option === 2 ? "tabActive" : "tab"} onClick={()=>toggleTab(2)}>Pilar de negocio</div>
+          <div className={option === 3 ? "tabActive" : "tab"} onClick={()=>toggleTab(3)}>Cimiento de negocio</div>
+          <div className={option === 4 ? "tabActive" : "tab"} onClick={()=>toggleTab(4)}>No evaluados en potencial</div>
+          <div className={`md:rounded-r-lg ${option === 5 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(5)}>No aplica</div>
         </div>
-        <div className="col-start-1 md:row-start-2  mt-4">
-          <Filter
-            ListaPuestos={PUESTOS}
-            ListaOrganizacion={ORGANIZACIONES}
-            cargaFiltrado={datosFiltrados}
-          />
+        <div>
+          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={subcollaborators}/>}
+          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={subcollaborators}/>}
+          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={subcollaborators}/>}
+          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={subcollaborators}/>}
+          {option === 5 && <Tabs title={"No aplica"} collaborators={subcollaborators}/>}
         </div>
-        <div className=" col-span-3">
-          <CardsUsers collaborators={subcollaborators} sub={true} />
-        </div>
-        <div className="col-end-2 col-span-1 md:col-end-5 md:col-span-2 justify-end">
-        {(separadosSub.length > 1 || defineMax != "nueve" ) && (
-          <Pagination
-            MaxPpagina={defineMax}
-            BackPag={paginateBack}
-            NextPag={paginateFront}
-            PActual={currentPage}
-            MaxPaginas={separadosSub.length}
-            SeteoActual={setActual}
-          />)}
-        </div>
-      </div>
+        </>
+
     </>
   );
 }

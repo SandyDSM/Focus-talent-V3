@@ -12,10 +12,10 @@ function CardDos({colaborator}) {
             <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>
         </div>
         <div>
-            <p>Calibración 2022: 4</p>
+            <p>Calibración: 4</p>
             <p>Calibración desempeño 2021: 4</p>
             <p>Comportamientos 2022: 4</p>
-            <p>Colaboradores que evaluarion: 8/10</p>
+            <p>Colaboradores que evaluaron: 8/10</p>
         </div>
         <div className="flex items-center p-4 bg-bmb-grey-10 justify-between">
           {colaborator.EQUIPO == "1" ? (
