@@ -5,11 +5,18 @@ import HeadAdmin from '../components/HeadAdmin'
 import Modal from '../components/Modal';
 import TableTests from '../components/TableTests'
 import TableOrganizations from '../components/TableOrganizations'
+import TalentElements from '../components/TalentElements';
 
 
 function Test() {
   const[anios, setAnios]=useState([]);
   const [open, setOpen] = useState(false)
+  const [option, setOption] = useState(1);
+
+  const toggleTab = (index) => {
+    setOption(index);
+  };
+
 
   useEffect(() => {
     getAnios();
@@ -50,8 +57,14 @@ function Test() {
       }
       />
       <HeadAdmin title={"Evaluaciones de desempeño y potencial"} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 px-12">
+          <div className={`md:rounded-l-lg ${option === 1 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(1)}>Liberar y notificar</div>
+          <div className={`md:rounded-r-lg ${option === 2 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(2)}>Elementos de talento</div>
+        </div>
+
       <main className='px-11'>
-        <TableTests aniosx={anios} handleOpen={openModal}/>
+        {option===1 && <TableTests aniosx={anios} handleOpen={openModal}/>}
+        {option===2 && <TalentElements/>}
       </main>
     </div>
   )

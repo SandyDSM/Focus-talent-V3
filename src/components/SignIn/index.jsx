@@ -47,8 +47,19 @@ const SignIn = ({ onSignIn }) => {
     FrameImage: { height: "150px" },
   };
 
-  function LoginComplete() {
-    return (
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white">
+      <div
+        className="bg-scroll hidden md:block col-span-1 lg:col-span-2 bg-right"
+        style={{
+          backgroundImage:
+            "url(https://pruebabucketsawspruebas.s3.amazonaws.com/FondoG.jpg)",
+          height: "100vh",
+          width: "100%",
+          backgroundRepeat: "no-repeat",
+        }}
+      ></div>
+      <div className="flex items-center justify-center m-auto">
       <Login
         justifyContent="center"
         overrides={sendOverridesLogin}
@@ -90,22 +101,6 @@ const SignIn = ({ onSignIn }) => {
           </div>
         }
       />
-    );
-  }
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white">
-      <div
-        className="bg-scroll hidden md:block col-span-1 lg:col-span-2 bg-right"
-        style={{
-          backgroundImage:
-            "url(https://pruebabucketsawspruebas.s3.amazonaws.com/FondoG.jpg)",
-          height: "100vh",
-          width: "100%",
-          backgroundRepeat: "no-repeat",
-        }}
-      ></div>
-      <div className="flex items-center justify-center m-auto">
-      <LoginComplete/>
       </div>
     </div>
   );

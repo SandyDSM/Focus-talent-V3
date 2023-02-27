@@ -5,7 +5,6 @@ import { Loader } from "@aws-amplify/ui-react";
 
 import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
-import Pagination from "../components/Pagination";
 import Tabs from "../components/Tabs";
 
 const MyTeam = () => {
@@ -53,7 +52,7 @@ function cambia(evento){
       <HeadTeam title={"Potencial 2022"} />
       {separadosCol?.length === 0  ? (
         <div className="flex justify-center my-10 items-center">
-          <h3>Usted no cuenta con reportes directos</h3>{" "}
+          <h3>Usted no cuenta con reportes directos</h3>
         </div>
       ) : (
         <>
@@ -65,11 +64,11 @@ function cambia(evento){
           <div className={`md:rounded-r-lg ${option === 5 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(5)}>No aplica</div>
         </div>
         <div>
-          {option === 1 && <Tabs title={"Futuro Líder"}/>}
-          {option === 2 && <Tabs title={"Pilar de negocio"}/>}
-          {option === 3 && <Tabs title={"Cimiento de negocio"}/>}
-          {option === 4 && <Tabs title={"No evaluados en potencial"}/>}
-          {option === 5 && <Tabs title={"No aplica"}/>}
+          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={collaborators}/>}
+          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={collaborators}/>}
+          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={collaborators}/>}
+          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={collaborators}/>}
+          {option === 5 && <Tabs title={"No aplica"} collaborators={collaborators}/>}
         </div>
         </>
       )}
