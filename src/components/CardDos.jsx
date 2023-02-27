@@ -13,8 +13,8 @@ function CardDos({colaborator}) {
         </div>
         <div>
             <p>Calibración: 4</p>
-            <p>Calibración desempeño 2021: 4</p>
-            <p>Comportamientos 2022: 4</p>
+            <p>Calibración desempeño: 4</p>
+            <p>Comportamientos: 4</p>
             <p>Colaboradores que evaluaron: 8/10</p>
         </div>
         <div className="flex items-center p-4 bg-bmb-grey-10 justify-between">
