@@ -24,12 +24,13 @@ import {
 } from "@aws-amplify/ui-react";
 import IconProfile from "../ui-components/IconProfile";
 import RatingStars from "../ui-components/RatingStars";
-import PDFComportamientos from "./PDFComportamientos";
+import PDFComportamientos from "../PDFComportamientos";
 export default function BehaviorTest(props) {
   const {
     overrides: overridesProp,
     datosUsuario,
     arrayPreguntas,
+    testPreguntas,
     anios,
     ...restProp
   } = props;
@@ -1256,9 +1257,9 @@ export default function BehaviorTest(props) {
         <PDFDownloadLink
           document={
             <PDFComportamientos
-              anios={anios}
-              datosUsuario={datosUsuario}
-            />
+            DATOS={testPreguntas}
+            anios={anios}
+            datosUsuario={datosUsuario}/>
           }
           fileName={`Comportamientos_${anios}.pdf`}
         >
@@ -1267,7 +1268,7 @@ export default function BehaviorTest(props) {
             size="small"
             isDisabled={false}
             variation="primary"
-            children="Descargar PDF"
+            children="Descargar  PDF"
             {...getOverrideProps(overrides, "Button")}
           ></Button>
         </PDFDownloadLink>

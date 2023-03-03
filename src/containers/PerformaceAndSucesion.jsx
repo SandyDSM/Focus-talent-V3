@@ -19,6 +19,7 @@ function PerformaceAndSucesion({
           <BehaviorTest
           width={"100%"}
           overrides={sendOverridesBehavior}
+          arrayPreguntas={testPreguntas}
           anios={anio}
           datosUsuario={datosUsuario}
 
