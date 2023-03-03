@@ -35,6 +35,12 @@ const MyTeam = () => {
   }, [collaborators]);
 
 
+const futleader=collaborators?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *"));
+const pillbusiness=collaborators?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *"));
+const basebusiness=collaborators?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *"));
+const noteval=collaborators?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null));
+
+
 function cambia(evento){
   ordena(evento);
   console.log(collaborators);//x
@@ -64,11 +70,11 @@ function cambia(evento){
           <div className={`md:rounded-r-lg ${option === 5 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(5)}>No aplica</div>
         </div>
         <div>
-          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={collaborators}/>}
-          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={collaborators}/>}
-          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={collaborators}/>}
-          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={collaborators}/>}
-          {option === 5 && <Tabs title={"No aplica"} collaborators={collaborators}/>}
+          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={futleader}/>}
+          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={pillbusiness}/>}
+          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={basebusiness}/>}
+          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={noteval}/>}
+          {option === 5 && <Tabs title={"No aplica"} collaborators={noteval}/>}
         </div>
         </>
       )}
