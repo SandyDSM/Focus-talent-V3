@@ -52,7 +52,7 @@ export { default as CardBtn } from "./CardBtn";
 export { default as MenuTextEditor } from "./MenuTextEditor";
 export { default as Ilustration } from "./Ilustration";
 export { default as Iconidiom } from "./Iconidiom";
-export { default as BehaviorTest } from "../components/BehaviorTest";
+export { default as BehaviorTest } from "./BehaviorTest";
 export { default as PageArrow } from "./PageArrow";
 export { default as Tablerows } from "./Tablerows";
 export { default as SubHeader } from "./SubHeader";

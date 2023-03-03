@@ -7,8 +7,8 @@
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ButtonProps, DividerProps, FlexProps, HeadingProps, ImageProps, TextProps } from "@aws-amplify/ui-react";
-import { IconProfileProps } from "../ui-components/IconProfile";
-import { RatingStarsProps } from "../ui-components/RatingStars";
+import { IconProfileProps } from "./IconProfile";
+import { RatingStarsProps } from "./RatingStars";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type BehaviorTestOverridesProps = {
     BehaviorTest?: PrimitiveOverrideProps<FlexProps>;
