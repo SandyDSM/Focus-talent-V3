@@ -137,6 +137,7 @@ export default function RowsNotif(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"

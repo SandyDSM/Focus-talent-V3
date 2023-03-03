@@ -129,6 +129,8 @@ export default function RowsRemove(props) {
           ></Text>
         </Flex>
         <CheckboxField
+          width="unset"
+          height="unset"
           label="Incluir subordinados"
           justifyContent="flex-end"
           grow="1"
@@ -143,6 +145,7 @@ export default function RowsRemove(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"

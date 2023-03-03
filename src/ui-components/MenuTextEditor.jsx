@@ -55,8 +55,9 @@ export default function MenuTextEditor(props) {
         {...getOverrideProps(overrides, "Icons-TextEditor35123556")}
       ></IconsTextEditor>
       <SelectField
-        placeholder="Fuente"
         width="unset"
+        height="unset"
+        placeholder="Fuente"
         grow="1"
         shrink="1"
         basis="0"
@@ -67,8 +68,9 @@ export default function MenuTextEditor(props) {
         {...getOverrideProps(overrides, "SelectField35123558")}
       ></SelectField>
       <SelectField
-        placeholder="8"
         width="unset"
+        height="unset"
+        placeholder="8"
         shrink="0"
         size="small"
         isDisabled={false}
@@ -245,8 +247,9 @@ export default function MenuTextEditor(props) {
         {...getOverrideProps(overrides, "Icons-TextEditor35123597")}
       ></IconsTextEditor>
       <SelectField
-        placeholder="<Tag>"
         width="unset"
+        height="unset"
+        placeholder="<Tag>"
         grow="1"
         shrink="1"
         basis="0"

@@ -171,6 +171,7 @@ export default function TableSelect(props) {
         </Flex>
         <Divider
           width="unset"
+          height="1px"
           shrink="0"
           alignSelf="stretch"
           size="small"

@@ -41,6 +41,7 @@ export default function CardListEtiquetas(props) {
       >
         <Heading
           width="844px"
+          height="unset"
           shrink="0"
           level="6"
           children="Etiquetas"
@@ -48,6 +49,7 @@ export default function CardListEtiquetas(props) {
         ></Heading>
         <Divider
           width="unset"
+          height="1px"
           shrink="0"
           alignSelf="stretch"
           size="small"

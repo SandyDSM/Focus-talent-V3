@@ -26,6 +26,8 @@ export default function SubHeader(props) {
       {...rest}
     >
       <Heading
+        width="unset"
+        height="unset"
         grow="1"
         shrink="1"
         basis="0"

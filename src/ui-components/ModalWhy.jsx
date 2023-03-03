@@ -58,6 +58,7 @@ export default function ModalWhy(props) {
         >
           <Heading
             width="844px"
+            height="unset"
             shrink="0"
             level="6"
             children="Deshabilitar evaluación"
@@ -65,6 +66,7 @@ export default function ModalWhy(props) {
           ></Heading>
           <Divider
             width="844px"
+            height="1px"
             shrink="0"
             size="small"
             orientation="horizontal"
@@ -72,9 +74,10 @@ export default function ModalWhy(props) {
           ></Divider>
         </Flex>
         <TextAreaField
+          width="unset"
+          height="unset"
           label="Escribe el motivo por el cuál deseas deshabilitar esta evaluación"
           placeholder="Escribe el motivo aquí."
-          width="unset"
           shrink="0"
           alignSelf="stretch"
           size="default"
@@ -99,6 +102,7 @@ export default function ModalWhy(props) {
       >
         <Button
           width="148px"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}
@@ -108,6 +112,7 @@ export default function ModalWhy(props) {
         ></Button>
         <Button
           width="159px"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}

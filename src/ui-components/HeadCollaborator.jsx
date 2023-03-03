@@ -337,6 +337,8 @@ export default function HeadCollaborator(props) {
         </Flex>
       </Flex>
       <Button
+        width="unset"
+        height="unset"
         shrink="0"
         size="default"
         isDisabled={false}

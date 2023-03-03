@@ -107,6 +107,8 @@ export default function Person(props) {
           {...getOverrideProps(overrides, "image 3")}
         ></Image>
         <Heading
+          width="unset"
+          height="unset"
           shrink="0"
           level="6"
           children="CARLOS TORRES FLORES"

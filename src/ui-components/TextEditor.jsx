@@ -48,6 +48,7 @@ export default function TextEditor(props) {
       >
         <Heading
           width="844px"
+          height="unset"
           shrink="0"
           level="6"
           children="Crear notificación "
@@ -55,6 +56,7 @@ export default function TextEditor(props) {
         ></Heading>
         <Divider
           width="unset"
+          height="1px"
           shrink="0"
           alignSelf="stretch"
           size="small"
@@ -76,9 +78,10 @@ export default function TextEditor(props) {
         {...getOverrideProps(overrides, "Frame 471")}
       >
         <PasswordField
+          width="unset"
+          height="unset"
           label="Título de la notificación"
           placeholder="Título"
-          width="unset"
           grow="1"
           shrink="1"
           basis="0"
@@ -90,9 +93,10 @@ export default function TextEditor(props) {
           {...getOverrideProps(overrides, "PasswordField")}
         ></PasswordField>
         <SelectField
+          width="unset"
+          height="unset"
           label="Idioma"
           placeholder="Selecciona el idioma"
-          width="unset"
           shrink="0"
           size="small"
           isDisabled={false}
@@ -145,6 +149,7 @@ export default function TextEditor(props) {
       >
         <Button
           width="148px"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}
@@ -154,6 +159,7 @@ export default function TextEditor(props) {
         ></Button>
         <Button
           width="159px"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}

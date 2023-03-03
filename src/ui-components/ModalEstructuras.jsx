@@ -38,6 +38,8 @@ export default function ModalEstructuras(props) {
       {...rest}
     >
       <Heading
+        width="unset"
+        height="unset"
         shrink="0"
         alignSelf="stretch"
         level="5"
@@ -71,6 +73,8 @@ export default function ModalEstructuras(props) {
           {...getOverrideProps(overrides, "Frame 456")}
         >
           <Heading
+            width="unset"
+            height="unset"
             shrink="0"
             alignSelf="stretch"
             level="6"
@@ -79,6 +83,7 @@ export default function ModalEstructuras(props) {
           ></Heading>
           <Divider
             width="unset"
+            height="1px"
             shrink="0"
             alignSelf="stretch"
             size="small"
@@ -100,9 +105,10 @@ export default function ModalEstructuras(props) {
           {...getOverrideProps(overrides, "Frame 455")}
         >
           <PasswordField
+            width="unset"
+            height="unset"
             label="Nombre"
             placeholder="Nombre"
-            width="unset"
             shrink="0"
             size="small"
             isDisabled={false}
@@ -112,9 +118,10 @@ export default function ModalEstructuras(props) {
             {...getOverrideProps(overrides, "PasswordField35593987")}
           ></PasswordField>
           <PasswordField
+            width="unset"
+            height="unset"
             label="ID"
             placeholder="ID"
-            width="unset"
             shrink="0"
             size="small"
             isDisabled={false}
@@ -124,6 +131,8 @@ export default function ModalEstructuras(props) {
             {...getOverrideProps(overrides, "PasswordField35593988")}
           ></PasswordField>
           <Button
+            width="unset"
+            height="unset"
             shrink="0"
             size="default"
             isDisabled={false}
@@ -171,6 +180,8 @@ export default function ModalEstructuras(props) {
             {...getOverrideProps(overrides, "Frame 45735593992")}
           >
             <Heading
+              width="unset"
+              height="unset"
               shrink="0"
               alignSelf="stretch"
               level="6"
@@ -179,6 +190,7 @@ export default function ModalEstructuras(props) {
             ></Heading>
             <Divider
               width="unset"
+              height="1px"
               shrink="0"
               alignSelf="stretch"
               size="small"
@@ -338,6 +350,8 @@ export default function ModalEstructuras(props) {
             {...getOverrideProps(overrides, "Frame 45735594005")}
           >
             <Heading
+              width="unset"
+              height="unset"
               shrink="0"
               alignSelf="stretch"
               level="6"
@@ -346,6 +360,7 @@ export default function ModalEstructuras(props) {
             ></Heading>
             <Divider
               width="unset"
+              height="1px"
               shrink="0"
               alignSelf="stretch"
               size="small"
@@ -634,6 +649,7 @@ export default function ModalEstructuras(props) {
       >
         <Button
           width="148px"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}
@@ -643,6 +659,7 @@ export default function ModalEstructuras(props) {
         ></Button>
         <Button
           width="159px"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}

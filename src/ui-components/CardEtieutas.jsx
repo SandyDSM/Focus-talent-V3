@@ -41,6 +41,7 @@ export default function CardEtieutas(props) {
       >
         <Heading
           width="844px"
+          height="unset"
           shrink="0"
           level="6"
           children="Crear etiquetas"
@@ -48,6 +49,7 @@ export default function CardEtieutas(props) {
         ></Heading>
         <Divider
           width="unset"
+          height="1px"
           shrink="0"
           alignSelf="stretch"
           size="small"
@@ -70,6 +72,8 @@ export default function CardEtieutas(props) {
         {...getOverrideProps(overrides, "TableEtiqueta")}
       ></TableEtiqueta>
       <Button
+        width="unset"
+        height="unset"
         shrink="0"
         size="default"
         isDisabled={true}

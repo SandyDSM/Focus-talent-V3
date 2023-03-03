@@ -43,6 +43,8 @@ export default function ModlConfirmEstructura(props) {
         {...getOverrideProps(overrides, "Frame 457")}
       >
         <Heading
+          width="unset"
+          height="unset"
           shrink="0"
           alignSelf="stretch"
           level="6"
@@ -51,6 +53,7 @@ export default function ModlConfirmEstructura(props) {
         ></Heading>
         <Divider
           width="unset"
+          height="1px"
           shrink="0"
           alignSelf="stretch"
           size="small"
@@ -224,6 +227,7 @@ export default function ModlConfirmEstructura(props) {
       >
         <Button
           width="148px"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}
@@ -233,6 +237,7 @@ export default function ModlConfirmEstructura(props) {
         ></Button>
         <Button
           width="159px"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}

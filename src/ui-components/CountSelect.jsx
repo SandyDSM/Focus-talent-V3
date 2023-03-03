@@ -27,8 +27,9 @@ export default function CountSelect(props) {
       {...rest}
     >
       <SelectField
-        placeholder="Resultados por página: 9"
         width="unset"
+        height="unset"
+        placeholder="Resultados por página: 9"
         grow="1"
         shrink="1"
         basis="0"

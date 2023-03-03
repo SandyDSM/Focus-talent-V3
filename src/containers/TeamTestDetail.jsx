@@ -5,8 +5,9 @@ import HeadCollaborator from "../components/HeadCollaborator";
 import { useEffect, useContext, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import BreadCrums from "../components/BreadCrums";
-import { Loader } from "@aws-amplify/ui-react";
+import { Button, Loader } from "@aws-amplify/ui-react";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
+
 
 function TeamTestDetail() {
   const { id } = useParams();
@@ -55,6 +56,20 @@ function TeamTestDetail() {
     Organitation: { children: collDetail.ORGANIZACION },
     Profile: { src: `data:image/jpg;base64,${collDetail.FOTO}` },
   };
+
+  const sendOverridesBehavior = {
+    nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
+    Id: { children: collDetail.ID_COLABORADOR },
+    Job: { children: collDetail.PUESTO },
+    Organitation: { children: collDetail.ORGANIZACION },
+    "image 4": {
+      src:
+        `${collDetail.FOTO}` != ""
+          ? `data:image/jpg;base64,${collDetail?.FOTO}`
+          : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
+    },
+
+  }
 
   const sendOverridesPerformanceTest = {
     nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
@@ -125,15 +140,14 @@ function TeamTestDetail() {
           />
         </div>
         <div className="col-span-1 md:col-span-3">
-          <div className="flex flex-col gap-4">
             <PerformaceAndSucesion
               aniosFill={aniosFill}
+              sendOverridesBehavior={sendOverridesBehavior}
               sendOverridesPerformanceTest={sendOverridesPerformanceTest}
               testPreguntas={testPreguntas}
               sendOverridesSuccesionTest={sendOverridesSuccesionTest}
               datosUsuario={vardatosusuario}
             />
-          </div>
         </div>
       </div>
     </div>

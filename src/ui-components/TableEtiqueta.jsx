@@ -196,6 +196,7 @@ export default function TableEtiqueta(props) {
         </Flex>
         <Divider
           width="unset"
+          height="1px"
           shrink="0"
           alignSelf="stretch"
           size="small"
@@ -217,8 +218,9 @@ export default function TableEtiqueta(props) {
         {...getOverrideProps(overrides, "Frame 474")}
       >
         <TextField
-          placeholder="Nombre"
           width="unset"
+          height="unset"
+          placeholder="Nombre"
           grow="1"
           shrink="1"
           basis="0"
@@ -230,8 +232,9 @@ export default function TableEtiqueta(props) {
           {...getOverrideProps(overrides, "TextField35794401")}
         ></TextField>
         <TextField
-          placeholder="Español"
           width="unset"
+          height="unset"
+          placeholder="Español"
           grow="1"
           shrink="1"
           basis="0"
@@ -243,8 +246,9 @@ export default function TableEtiqueta(props) {
           {...getOverrideProps(overrides, "TextField35794402")}
         ></TextField>
         <TextField
-          placeholder="Inglés"
           width="unset"
+          height="unset"
+          placeholder="Inglés"
           grow="1"
           shrink="1"
           basis="0"
@@ -256,8 +260,9 @@ export default function TableEtiqueta(props) {
           {...getOverrideProps(overrides, "TextField35794403")}
         ></TextField>
         <TextField
-          placeholder="Frances"
           width="unset"
+          height="unset"
+          placeholder="Frances"
           grow="1"
           shrink="1"
           basis="0"
@@ -269,8 +274,9 @@ export default function TableEtiqueta(props) {
           {...getOverrideProps(overrides, "TextField35794404")}
         ></TextField>
         <TextField
-          placeholder="Portugues"
           width="unset"
+          height="unset"
+          placeholder="Portugues"
           grow="1"
           shrink="1"
           basis="0"
@@ -282,8 +288,9 @@ export default function TableEtiqueta(props) {
           {...getOverrideProps(overrides, "TextField35794405")}
         ></TextField>
         <TextField
-          placeholder="Chino"
           width="unset"
+          height="unset"
+          placeholder="Chino"
           grow="1"
           shrink="1"
           basis="0"

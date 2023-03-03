@@ -6,16 +6,14 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { DividerProps, FlexProps, HeadingProps, PlaceholderProps } from "@aws-amplify/ui-react";
+import { IconProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type BoxOverridesProps = {
-    Box?: PrimitiveOverrideProps<FlexProps>;
-    "Frame 467"?: PrimitiveOverrideProps<FlexProps>;
-    Heading?: PrimitiveOverrideProps<HeadingProps>;
-    Divider?: PrimitiveOverrideProps<DividerProps>;
-    Placeholder?: PrimitiveOverrideProps<PlaceholderProps>;
+export declare type StarOverridesProps = {
+    Star?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
-export declare type BoxProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: BoxOverridesProps | undefined | null;
+export declare type StarProps = React.PropsWithChildren<Partial<IconProps> & {
+    type?: "active" | "default";
+} & {
+    overrides?: StarOverridesProps | undefined | null;
 }>;
-export default function Box(props: BoxProps): React.ReactElement;
+export default function Star(props: StarProps): React.ReactElement;

@@ -1,21 +1,33 @@
 import SuccesionTest from "../components/SuccesionTest";
 import PerformanceTest from "../components/PerformanceTest";
+import BehaviorTest  from "../components/BehaviorTest";
+
+
 function PerformaceAndSucesion({
   aniosFill,
   sendOverridesPerformanceTest,
   testPreguntas,
   sendOverridesSuccesionTest,
   datosUsuario,
+  sendOverridesBehavior
 }) {
   return (
     <div>
       {aniosFill.map((anio) => (
         <>
         <div className="mb-9 mt-4 shadow">
+          <BehaviorTest
+          width={"100%"}
+          overrides={sendOverridesBehavior}
+          anios={anio}
+          datosUsuario={datosUsuario}
+
+          />
+        </div>
+        <div className="mb-9 mt-4 shadow">
           <PerformanceTest
             width={"100%"}
             overrides={sendOverridesPerformanceTest}
-            arrayPreguntas={testPreguntas}
             anios={anio}
             datosUsuario={datosUsuario}
           />

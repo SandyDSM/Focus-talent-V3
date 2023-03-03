@@ -134,6 +134,8 @@ export default function FiltersExtend(props) {
           {...getOverrideProps(overrides, "Frame 43834663424")}
         >
           <CheckboxField
+            width="unset"
+            height="unset"
             label="Puesto 1"
             shrink="0"
             alignSelf="stretch"
@@ -144,6 +146,8 @@ export default function FiltersExtend(props) {
             {...getOverrideProps(overrides, "CheckboxField34663393")}
           ></CheckboxField>
           <CheckboxField
+            width="unset"
+            height="unset"
             label="Puesto 2"
             shrink="0"
             alignSelf="stretch"
@@ -154,6 +158,8 @@ export default function FiltersExtend(props) {
             {...getOverrideProps(overrides, "CheckboxField34663408")}
           ></CheckboxField>
           <CheckboxField
+            width="unset"
+            height="unset"
             label="Puesto 3"
             shrink="0"
             alignSelf="stretch"
@@ -167,6 +173,7 @@ export default function FiltersExtend(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
@@ -214,6 +221,8 @@ export default function FiltersExtend(props) {
           {...getOverrideProps(overrides, "Frame 43835413246")}
         >
           <CheckboxField
+            width="unset"
+            height="unset"
             label="Organización 1"
             shrink="0"
             alignSelf="stretch"
@@ -224,6 +233,8 @@ export default function FiltersExtend(props) {
             {...getOverrideProps(overrides, "CheckboxField35413247")}
           ></CheckboxField>
           <CheckboxField
+            width="unset"
+            height="unset"
             label="Organización 2"
             shrink="0"
             alignSelf="stretch"
@@ -234,6 +245,8 @@ export default function FiltersExtend(props) {
             {...getOverrideProps(overrides, "CheckboxField35413248")}
           ></CheckboxField>
           <CheckboxField
+            width="unset"
+            height="unset"
             label="Organización 3"
             shrink="0"
             alignSelf="stretch"

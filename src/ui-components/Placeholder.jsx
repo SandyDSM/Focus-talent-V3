@@ -305,6 +305,8 @@ export default function Placeholder(props) {
         </Flex>
       </Flex>
       <Heading
+        width="unset"
+        height="unset"
         shrink="0"
         alignSelf="stretch"
         level="4"

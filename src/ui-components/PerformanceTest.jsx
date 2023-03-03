@@ -204,6 +204,8 @@ export default function PerformanceTest(props) {
           {...getOverrideProps(overrides, "Frame 467")}
         >
           <Heading
+            width="unset"
+            height="unset"
             shrink="0"
             alignSelf="stretch"
             level="4"
@@ -403,6 +405,7 @@ export default function PerformanceTest(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
@@ -778,6 +781,8 @@ export default function PerformanceTest(props) {
         {...getOverrideProps(overrides, "Frame 13973")}
       >
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           size="small"
           isDisabled={false}

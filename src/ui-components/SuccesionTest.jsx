@@ -325,6 +325,8 @@ export default function SuccesionTest(props) {
           {...getOverrideProps(overrides, "Frame 46838284857")}
         >
           <Heading
+            width="unset"
+            height="unset"
             shrink="0"
             alignSelf="stretch"
             level="4"
@@ -524,6 +526,7 @@ export default function SuccesionTest(props) {
       </Flex>
       <Divider
         width="848px"
+        height="1px"
         shrink="0"
         size="small"
         orientation="horizontal"
@@ -590,6 +593,7 @@ export default function SuccesionTest(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
@@ -955,6 +959,7 @@ export default function SuccesionTest(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
@@ -1164,6 +1169,7 @@ export default function SuccesionTest(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
@@ -1359,6 +1365,7 @@ export default function SuccesionTest(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
@@ -1559,6 +1566,7 @@ export default function SuccesionTest(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
@@ -1761,6 +1769,7 @@ export default function SuccesionTest(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
@@ -1841,6 +1850,8 @@ export default function SuccesionTest(props) {
         {...getOverrideProps(overrides, "Frame 13974")}
       >
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           size="small"
           isDisabled={false}

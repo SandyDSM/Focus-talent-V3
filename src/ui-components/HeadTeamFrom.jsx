@@ -151,8 +151,9 @@ export default function HeadTeamFrom(props) {
         {...getOverrideProps(overrides, "nameColl")}
       ></Text>
       <SearchField
-        placeholder="Buscar colaborador"
         width="unset"
+        height="unset"
+        placeholder="Buscar colaborador"
         shrink="0"
         size="default"
         isDisabled={false}

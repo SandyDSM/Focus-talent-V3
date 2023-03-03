@@ -96,6 +96,8 @@ export default function ModalQuestion(props) {
           {...getOverrideProps(overrides, "MyIcon")}
         ></MyIcon>
         <Heading
+          width="unset"
+          height="unset"
           grow="1"
           shrink="1"
           basis="0"
@@ -119,6 +121,8 @@ export default function ModalQuestion(props) {
         {...getOverrideProps(overrides, "Frame 463")}
       >
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}
@@ -127,6 +131,8 @@ export default function ModalQuestion(props) {
           {...getOverrideProps(overrides, "Button35595832")}
         ></Button>
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           size="default"
           isDisabled={false}

@@ -104,6 +104,8 @@ export default function Tablerows(props) {
           {...getOverrideProps(overrides, "FrameSwitch")}
         >
           <SwitchField
+            width="unset"
+            height="unset"
             label="Off"
             shrink="0"
             size="default"
@@ -162,6 +164,7 @@ export default function Tablerows(props) {
       </Flex>
       <Divider
         width="unset"
+        height="1px"
         shrink="0"
         alignSelf="stretch"
         size="small"
