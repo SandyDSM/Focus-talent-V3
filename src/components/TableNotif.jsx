@@ -4,7 +4,12 @@ import { Heading, Divider } from "@aws-amplify/ui-react";
 import HeadNotif from './HeadNotif';
 
 
-function TableNotif() {
+function TableNotif({notif, handleOpen}) {
+  let idioma="";
+function idiomatmp(value){
+  handleOpen(value);
+}
+
   return (
     <div className='card flex flex-col gap-6 p-4 w-full mb-8'>
         <div className="flex flex-col gap-1 my-2">
@@ -12,7 +17,9 @@ function TableNotif() {
         <Divider />
       </div>
         <HeadNotif/>
-        <TableRowNotif/>
+        {notif.map((notifi, index)=>(
+        <TableRowNotif key={index} notif={notifi} handleOpen={idiomatmp}/>
+        ))}
     </div>
   )
 }
