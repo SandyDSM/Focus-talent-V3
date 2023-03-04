@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function CardDos({colaborator}) {
     return (
       <div className="card">
-        {console.log(colaborator)}
+        
         <div className="flex flex-col gap-4">
         <div className="flex gap-4 items-center">
             <img className="w-14 h-14 rounded-full" src= {`${colaborator.FOTO}` != "" ? `data:image/jpg;base64,${colaborator?.FOTO}` : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png" }/>

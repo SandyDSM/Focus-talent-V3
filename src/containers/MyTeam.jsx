@@ -16,10 +16,15 @@ const MyTeam = () => {
     usuarioActualDatos, 
     ordena,
     actualizaBusqueda,
+    futleader,
+        pillbusiness,
+        basebusiness,
+        noteval
   } = useContext(CollaboratorsContext);
 
-  const [option, setOption] = useState(1);
 
+  const [option, setOption] = useState(1);
+ 
   const toggleTab = (index) => {
     setOption(index);
   };
@@ -35,15 +40,12 @@ const MyTeam = () => {
   }, [collaborators]);
 
 
-const futleader=collaborators?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *"));
-const pillbusiness=collaborators?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *"));
-const basebusiness=collaborators?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *"));
-const noteval=collaborators?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null));
+
 
 
 function cambia(evento){
   ordena(evento);
-  console.log(collaborators);//x
+  //console.log(collaborators);//x
 }
 
   if (isLoading) {
@@ -55,7 +57,7 @@ function cambia(evento){
   }
   return (
     <>
-      <HeadTeam title={"Potencial 2022"} />
+      <HeadTeam title={"Potencial 2022"}  OpcionSelect={option}/>
       {separadosCol?.length === 0  ? (
         <div className="flex justify-center my-10 items-center">
           <h3>Usted no cuenta con reportes directos</h3>

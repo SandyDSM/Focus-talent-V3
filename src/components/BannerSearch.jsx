@@ -20,6 +20,9 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 export default function BannerSearch(props) {
+
+  
+  
   const { overrides: overridesProp, ...restProp } = props;
   const variants = [
     {
@@ -61,14 +64,26 @@ export default function BannerSearch(props) {
     overridesProp || {}
   );
 
-  const {  
   
-    collaborators,
-    
-    actualizaBusqueda,
-    restauraUsuarios
-   } =
-    useContext(CollaboratorsContext);
+
+    const {
+      collaborators,
+      getCollaborators,
+      isLoading,
+      separadosCol,
+      usuarioActualDatos, 
+      ordena,
+      actualizaBusqueda,
+      futleader,
+      restauraUserClasif,
+          pillbusiness,
+          basebusiness,
+          noteval,
+          respfutleader,
+        resppillbusiness,
+        respbasebusiness,
+        respnoteval
+    } = useContext(CollaboratorsContext);
 
 
 
@@ -79,15 +94,44 @@ export default function BannerSearch(props) {
 
 
 
-  const onChange = () => {
-   
-   const filtro=document.getElementById("busqueda").value;
- const filBusqueda=collaborators.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-    actualizaBusqueda(filBusqueda);
-  };
+
+  const onChange = (filtro) => {
+    restauraUserClasif(props.OpcionSelect);
+  
+if(props.OpcionSelect===1){
+  if(futleader==respfutleader){
+ const filBusqueda=futleader.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+ actualizaBusqueda(filBusqueda,1);
+  }else{
+  const filBusqueda=respfutleader.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+ actualizaBusqueda(filBusqueda,1);
+  }
+}else if(props.OpcionSelect===2){
+  if(pillbusiness==resppillbusiness){
+  const filBusqueda=pillbusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  actualizaBusqueda(filBusqueda,2); 
+  }else{
+    const filBusqueda=resppillbusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+    actualizaBusqueda(filBusqueda,2);  
+  }
+}else if(props.OpcionSelect===3){
+  if(basebusiness==respbasebusiness){
+  const filBusqueda=basebusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  actualizaBusqueda(filBusqueda,3); 
+  }else{
+    const filBusqueda=respbasebusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+    actualizaBusqueda(filBusqueda,3);   
+  }
+}else if(props.OpcionSelect===4){
+  const filBusqueda=noteval.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  actualizaBusqueda(filBusqueda,4); 
+}
+
+};
 
   const onClear=()=>{
-    restauraUsuarios();
+    restauraUserClasif(props.OpcionSelect);
+    alert("sssssAAAAA");
   };
   
 
@@ -158,7 +202,7 @@ export default function BannerSearch(props) {
           labelHidden={true}
           variation="default"
           label="search"
-          onSubmit={()=>onChange()}
+          onChange={(e)=>onChange(e.target.value)}
           onClear={()=>onClear()}
           id="busqueda"
 

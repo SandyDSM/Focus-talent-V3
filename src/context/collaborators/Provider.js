@@ -19,6 +19,16 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [showPerson, setShowPerson] = useState(true)
   const [sendCode, setSendCode] = useState(false);
 
+  const [futleader, setFutleader] = useState([]);
+  const [respfutleader, setRespfutleader] = useState([]);
+  const [pillbusiness, setPillbusiness] = useState([]);
+  const [resppillbusiness, setRespillbusiness] = useState([]);
+  const [basebusiness, setBasebusiness] = useState([]);
+  const [respbasebusiness, setResbasebusiness] = useState([]);
+  const [noteval, setNoteval] = useState([]);
+  const [respnoteval, setResnoteval] = useState([]);
+
+  
 
   const UserLog = async () => {
     try {
@@ -93,10 +103,18 @@ export default function CollaboratorsProvider({ children, signOut }) {
 
   //const UserPromise = UserLog().then(getAttribColaborators(logueado.email)) 
 
-  const actualizaBusqueda=function(users){
-      setCollaborators(users);//
-      console.log("Datos ordenados",collaborators);
-      separadosCol=separa(users);
+  const actualizaBusqueda=function(users, opcion){
+    if(opcion===1){
+    setFutleader(users);
+    }else if(opcion===2){
+      setPillbusiness(users);
+    }else if(opcion===3){
+      setBasebusiness(users);
+    }else if(opcion===4){
+      setNoteval(users);
+    }
+
+     
   }
 
   const restauraUsuarios=function(){
@@ -105,6 +123,20 @@ export default function CollaboratorsProvider({ children, signOut }) {
     separadosCol=separa(collaborators);
     console.log("log de colabora: ", collaborators)
   }
+
+const restauraUserClasif=function(value){
+  if(value===1){
+    setFutleader(respfutleader);  
+  }else if(value===2){
+    setPillbusiness(resppillbusiness);  
+  }else if(value===3){
+    setBasebusiness(respbasebusiness);  
+  }else if(value===4){
+    setNoteval(respnoteval);
+  }
+}
+
+
 
 
   const getCollaborators = async (idJefe, accion) => {
@@ -126,6 +158,14 @@ export default function CollaboratorsProvider({ children, signOut }) {
       if(accion==="SetColaborators"){
         setCollaborators(datos);
         setCollaboratorsResp(datos);
+        setFutleader(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
+        setRespfutleader(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
+        setPillbusiness(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
+        setRespillbusiness(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
+        setBasebusiness(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
+        setResbasebusiness(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
+        setNoteval(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
+        setResnoteval(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
         }else if(accion==="SetSubColaborators"){
           setSubcollaborators(datos);
         }
@@ -303,6 +343,15 @@ export default function CollaboratorsProvider({ children, signOut }) {
         ordena,
         setIsLoading,
         sendCode, setSendCode,
+        restauraUserClasif,
+        futleader,
+        pillbusiness,
+        basebusiness,
+        noteval,
+        respfutleader,
+        resppillbusiness,
+        respbasebusiness,
+        respnoteval
       }}
     >
       {children}
