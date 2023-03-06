@@ -11,7 +11,6 @@ function HeadNotif() {
             </div>
         <div className={`flex flex-row gap-8`}>
             <div className=""><p className="text-sm">Editar</p></div>
-            <div className=""><p className="text-sm">Eliminar</p></div>
         </div>
       </div>
       <Divider
