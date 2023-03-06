@@ -18,7 +18,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [collaboratorsResp, setCollaboratorsResp] = useState([]);
   const [showPerson, setShowPerson] = useState(true)
   const [sendCode, setSendCode] = useState(false);
-
+//estados de usuario categorizado
   const [futleader, setFutleader] = useState([]);
   const [respfutleader, setRespfutleader] = useState([]);
   const [pillbusiness, setPillbusiness] = useState([]);
@@ -27,7 +27,15 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [respbasebusiness, setResbasebusiness] = useState([]);
   const [noteval, setNoteval] = useState([]);
   const [respnoteval, setResnoteval] = useState([]);
-
+//estados de subusuario categorizado
+const [futleadersub, setFutleadersub] = useState([]);
+const [respfutleadersub, setRespfutleadersub] = useState([]);
+const [pillbusinesssub, setPillbusinesssub] = useState([]);
+const [resppillbusinesssub, setRespillbusinesssub] = useState([]);
+const [basebusinesssub, setBasebusinesssub] = useState([]);
+const [respbasebusinesssub, setResbasebusinesssub] = useState([]);
+const [notevalsub, setNotevalsub] = useState([]);
+const [respnotevalsub, setResnotevalsub] = useState([]);
   
 
   const UserLog = async () => {
@@ -168,6 +176,15 @@ const restauraUserClasif=function(value){
         setResnoteval(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
         }else if(accion==="SetSubColaborators"){
           setSubcollaborators(datos);
+          setFutleadersub(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
+          setRespfutleadersub(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
+          setPillbusinesssub(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
+          setRespillbusinesssub(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
+          setBasebusinesssub(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
+          setResbasebusinesssub(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
+          setNotevalsub(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
+          setResnotevalsub(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
+
         }
     } catch (error) {
       if(accion==="SetColaborators"){
@@ -351,7 +368,17 @@ const restauraUserClasif=function(value){
         respfutleader,
         resppillbusiness,
         respbasebusiness,
-        respnoteval
+        respnoteval, 
+        //datos clasificados subcolaboradores
+        futleadersub,
+        respfutleadersub,
+        pillbusinesssub,
+        resppillbusinesssub,
+        basebusinesssub,
+        respbasebusinesssub,
+        notevalsub,
+        respnotevalsub
+
       }}
     >
       {children}

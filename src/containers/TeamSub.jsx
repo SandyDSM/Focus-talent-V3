@@ -15,6 +15,14 @@ function TeamSub() {
     getCollDetail,
     collDetail,
     isLoading,
+    futleadersub,
+        respfutleadersub,
+        pillbusinesssub,
+        resppillbusinesssub,
+        basebusinesssub,
+        respbasebusinesssub,
+        notevalsub,
+        respnotevalsub
   } = useContext(CollaboratorsContext);
 
   const [option, setOption] = useState(1);
@@ -63,11 +71,11 @@ Loader();
           <div className={`md:rounded-r-lg ${option === 5 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(5)}>No aplica</div>
         </div>
         <div>
-          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={subcollaborators}/>}
-          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={subcollaborators}/>}
-          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={subcollaborators}/>}
-          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={subcollaborators}/>}
-          {option === 5 && <Tabs title={"No aplica"} collaborators={subcollaborators}/>}
+          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={futleadersub}/>}
+          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={pillbusinesssub}/>}
+          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={basebusinesssub}/>}
+          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={notevalsub}/>}
+          {option === 5 && <Tabs title={"No aplica"} collaborators={notevalsub}/>}
         </div>
         </>
 
