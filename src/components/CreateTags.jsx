@@ -2,8 +2,10 @@ import React from "react";
 import { Heading, Divider, TextField, Button } from "@aws-amplify/ui-react";
 import HeadCreateTable from "./HeadCreateTags";
 import { useState } from "react";
+import Swal from 'sweetalert2'
 
-function CreateTags({etiquetasamod, botonhabilitado}) {
+
+function CreateTags({etiquetasamod, botonhabilitado, setetiquetasmod}) {
 
   const [isLoad, setIsLoad ] = useState(false)
 ///////////////////////////////////////////////////////////////// 
@@ -31,12 +33,13 @@ const updateTags= async (etiquetasx, espaniol, ingles, frances, portugues, chino
       }
     ); 
     const datos = await respdesemp.json();
-   console.log("el log es: ",datos);
+   //console.log("el log es: ",datos);
   } catch (error) {
    
    console.log("Si hay error", error);
   }  finally{
     setIsLoad(false)
+    Alerta()
   }
 };
 
@@ -53,6 +56,22 @@ function actualiza()
   )
 }
 
+function clear(){
+  setetiquetasmod(["", "", "", "", "", ""])
+}
+
+function Alerta(){
+  Swal.fire({
+    icon: 'success',
+    text: 'La Etiqueta se ha guardado',
+    confirmButtonText: "Entendido",
+    confirmButtonColor:"#004B85"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      clear();
+    }
+  })
+}
 ///////////////////////////////////////////////////////////////////
   return (
     <div className="card flex flex-col gap-6 w-full">
@@ -72,7 +91,7 @@ function actualiza()
       </div>
       </div>
       <div className="flex flex-row gap-6 justify-end px-5">
-        <Button isDisabled={botonhabilitado}>Cancelar</Button>
+        <Button isDisabled={botonhabilitado} onClick={()=>clear()}>Cancelar</Button>
         <Button variation="primary" isDisabled={botonhabilitado} isLoading={isLoad} loadingText="Guardando" onClick={()=>actualiza()}>Guardar</Button>
       </div>
     </div>
