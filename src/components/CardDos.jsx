@@ -38,12 +38,13 @@ function CardDos({colaborator}) {
         <div className="flex flex-col gap-4">
         <div className="flex gap-4 items-center">
             <img className="w-14 h-14 rounded-full" src= {`${colaborator.FOTO}` != "" ? `data:image/jpg;base64,${colaborator?.FOTO}` : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png" }/>
-            <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>
+            <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>                       
         </div>
         <div>
+        <p style={{margin:5}}><b>Fecha de contratación: </b>{colaborator.FECHA_CONTRATACION}</p>
           {calibracion?.map((cal)=>(
             <>
-            <p>{cal.TITULO} {cal.VALORES}</p>
+            <p>{cal.TITULO} {cal.ANO_EVAL}: {cal.VALORES}</p>
             </>
             ))}
             <p>Colaboradores que evaluaron: 8/10</p>
