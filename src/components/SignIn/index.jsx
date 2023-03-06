@@ -14,7 +14,7 @@ const SignIn = ({ onSignIn }) => {
   const federatedSignInUpdateUser = async () => {
     try {
       const newUser = await Auth.federatedSignIn({
-        customProvider: "focusprod",
+        customProvider: "GBAzure",
       });
       await updateCurrentUser(newUser);
     } catch (error) {

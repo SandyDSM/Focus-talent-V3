@@ -6,9 +6,15 @@ function Tabs({title= "Título", collaborators }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-5 px-4 gap-4 mb-12">
       <div className='cardTitle col-span-1 sm:col-span-2 md:col-span-3 bg-bmb-secundary'>{title}</div>
-      {collaborators?.map((colaborator) => (
+      {collaborators.length <= 0 ?(
+        <p className='col-span-3 items-center text-center mt-6'>No hay colaboradores en esta categoría</p>
+      ):
+      
+
+      (collaborators?.map((colaborator) => (
         <CardDos key={colaborator.id} colaborator={colaborator}/>
-        ))}
+        )))
+        }
   </div>
 
   )
