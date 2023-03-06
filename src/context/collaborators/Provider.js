@@ -2,6 +2,8 @@ import CollaboratorsContext from "./index";
 import { API, graphqlOperation, Storage } from "aws-amplify";
 import { useState } from "react";
 import { Auth } from "aws-amplify";
+import { useNavigate } from "react-router-dom";
+
 
 //import { listUsers, getUsers } from "../../graphql/queries";
 
@@ -37,6 +39,7 @@ const [respbasebusinesssub, setResbasebusinesssub] = useState([]);
 const [notevalsub, setNotevalsub] = useState([]);
 const [respnotevalsub, setResnotevalsub] = useState([]);
   
+const navigate = useNavigate();
 
   const UserLog = async () => {
     try {
@@ -77,7 +80,9 @@ const [respnotevalsub, setResnotevalsub] = useState([]);
 
     } catch (error) {
       console.log("error aqui:", error);
+      navigate("/forbidden");
       signOut();
+
     }finally {
       setIsLoading(false);
     }

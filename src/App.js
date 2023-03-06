@@ -23,6 +23,7 @@ import ForgotPss from "./containers/ForgotPss"
 
 import ScrollToTop from "./components/ScrollToTop";
 import Validations from "./components/Validations";
+import Forbidden from "./containers/Forbidden";
 Amplify.configure(awsExports);
 
 function App() {
@@ -63,7 +64,7 @@ function App() {
           <div>{loggedIn && <NavHeader/>}</div>
             <Routes>
               <Route exact path="/" element={ loggedIn ? <Validations/> : <SignIn onSignIn={assessLoggedInState} />}/>
-              <Route exact path="/home" element={loggedIn ? <HomeAdmin signOut={signOut}/> : <SignIn onSignIn={assessLoggedInState} /> } />
+              <Route exact path="/home" element={loggedIn ? <HomeAdmin signOut={signOut}/> : <Validations/>  } />
               <Route exact path="/test" element={loggedIn ? <Test /> : <SignIn onSignIn={assessLoggedInState} /> } />
               <Route exact path="/tags" element={loggedIn ? <Tags /> : <SignIn onSignIn={assessLoggedInState} />} />
               <Route exact path="/notif" element={loggedIn ? <Notif /> : <SignIn onSignIn={assessLoggedInState} />} />
@@ -71,6 +72,7 @@ function App() {
               <Route exact path="/myteam/:id" element={loggedIn ? <TeamSub /> : <SignIn onSignIn={assessLoggedInState} />} />
               <Route exact path="/test/:id" element={loggedIn ? <TeamTestDetail /> : <SignIn onSignIn={assessLoggedInState} />} />
               <Route exact path="/forgotpassword" element={ loggedIn ? <Validations/> : <ForgotPss/>}/>
+              <Route exact path="/forbidden" element={ <Forbidden/>}/>
             </Routes>
           </CollaboratorsProvider>
         </BrowserRouter>
