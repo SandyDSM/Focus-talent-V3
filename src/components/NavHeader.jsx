@@ -20,6 +20,9 @@ function NavHeader() {
     gb_min: {
       src: "https://pruebabucketsawspruebas.s3.amazonaws.com/logo_GBT_.png",
     },
+    "Frame 13982":{
+      style: { cursor: "pointer" },
+    },
     iconMenuHam: {
       style: { cursor: "pointer" },
       onClick: () => setOpen(true),
@@ -63,6 +66,10 @@ function NavHeader() {
     },
 
     "Frame 451": {
+      className:"hover:bg-sky-100",
+      style: { cursor: "pointer" },
+    },
+    "Frame 13982":{
       className:"hover:bg-sky-100",
       style: { cursor: "pointer" },
     }

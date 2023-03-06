@@ -7,7 +7,6 @@
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps, IconProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
-import { MyIconProps } from "./MyIcon";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MenuOverridesProps = {
     Menu?: PrimitiveOverrideProps<FlexProps>;
@@ -18,7 +17,7 @@ export declare type MenuOverridesProps = {
     name?: PrimitiveOverrideProps<TextProps>;
     puesto?: PrimitiveOverrideProps<TextProps>;
     "ep:close-bold"?: PrimitiveOverrideProps<ViewProps>;
-    Vector?: PrimitiveOverrideProps<IconProps>;
+    Vector37744295?: PrimitiveOverrideProps<IconProps>;
     "Frame 32137744296"?: PrimitiveOverrideProps<FlexProps>;
     FrameTextos?: PrimitiveOverrideProps<FlexProps>;
     FraHome?: PrimitiveOverrideProps<FlexProps>;
@@ -32,9 +31,10 @@ export declare type MenuOverridesProps = {
     Notif?: PrimitiveOverrideProps<TextProps>;
     FraTeam?: PrimitiveOverrideProps<FlexProps>;
     Team?: PrimitiveOverrideProps<TextProps>;
-    "Frame 451"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon?: MyIconProps;
-    Cerrar?: PrimitiveOverrideProps<TextProps>;
+    "Frame 13982"?: PrimitiveOverrideProps<FlexProps>;
+    "GB Talent"?: PrimitiveOverrideProps<TextProps>;
+    "material-symbols:keyboard-return-rounded"?: PrimitiveOverrideProps<ViewProps>;
+    Vector39704629?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type MenuProps = React.PropsWithChildren<Partial<FlexProps> & {
     overrides?: MenuOverridesProps | undefined | null;

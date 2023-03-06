@@ -96,7 +96,7 @@ export default function Login(props) {
           size="default"
           isDisabled={false}
           variation="default"
-          children="SSO Login"
+          children="Iniciar sesión con Azure"
           {...getOverrideProps(overrides, "ButtonSingAzure")}
         ></Button>
         <Button
