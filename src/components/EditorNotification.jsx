@@ -59,7 +59,7 @@ class EditorNotification extends Component {
 	        <ReactQuill theme="snow"  modules={this.modules}
 				formats={this.formats} onChange={this.rteChange}
 				style={{height:400}} id={"editor"} 
-				value={this.value || ''}/>
+				value={this.value || this.props.defcuerpo}/>
 			
 	      </div>
 	    );

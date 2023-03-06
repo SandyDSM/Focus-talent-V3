@@ -4,8 +4,9 @@ import { Heading, Divider } from "@aws-amplify/ui-react";
 import HeadNotif from './HeadNotif';
 
 
-function TableNotif({notif, handleOpen}) {
+function TableNotif({notif, handleOpen, limpia}) {
   let idioma="";
+  limpia('');
 function idiomatmp(value){
   handleOpen(value);
 }

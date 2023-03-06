@@ -15,7 +15,9 @@ function Notif() {
 const [open, setOpen] = useState(false);
 const [cuerpo, setCuerpo]=useState("");
 const [notificaciones, setNotificaciones]=useState([]);
-
+const [titulo, setTitulo]=useState("");
+const [idioma, setIdioma]=useState("idioma");
+const [idiomaDes, setIdiomaDes]=useState("");
 useEffect(() => {
   GetNotificaciones();
 },[]);
@@ -75,8 +77,33 @@ console.log(datos);
   };
 
 function openModal(idioma){
-  alert(idioma);
-setOpen(true);
+  setOpen(true);
+ // alert(document.getElementById("prueba").defaultValue);
+const notificacion=notificaciones?.filter((e)=>(e.IDIOMA)==idioma);
+notificacion.map((not)=>{setTitulo(not.TITULO);
+  if(idioma==="English (US)"){
+    setIdioma("English (US)");
+    setIdiomaDes("Inglés")
+  }else if(idioma==="French (Canada)"){
+    setIdioma("French (Canada)");
+    setIdiomaDes("Francés");
+  }else if(idioma==="Spanish (Latin America)"){
+    setIdioma("Spanish (Latin America)");
+    setIdiomaDes("Español");
+  }else if(idioma==="Chinese (Simplified)"){
+    setIdioma("Chinese (Simplified)");
+    setIdiomaDes("Chino");
+  }else if(idioma==="Portuguese (Brazil)"){
+    setIdioma("Portuguese (Brazil)");
+    setIdiomaDes("Portugués");
+  }else{
+    setIdioma("");
+    setIdiomaDes("Seleciiona");
+  }
+  setCuerpo(not.CUERPO);
+});
+
+ 
 }
 
 
@@ -93,7 +120,7 @@ setOpen(true);
        <div>Editor de Notificaciones
         <br/>
         <select id={"idioma"}>
-          <option value="">Idioma</option>
+          <option defaultValue={idioma} value={idioma}>{idiomaDes}</option>
           <option value="English (US)">Inglés</option>
           <option value="French (Canada)">Francés</option>
           <option value="Spanish (Latin America)">Español</option>
@@ -101,9 +128,9 @@ setOpen(true);
           <option value="Portuguese (Brazil)">Portugués</option>
           </select>
 <br/>
-Asunto:<TextField id="prueba" style={{width:400, marginBottom:15}} />
+Asunto:<TextField id="prueba" style={{width:400, marginBottom:15}} defaultValue={titulo}/>
 
-       <EditorNotification cuerpo={setCuerpo} />
+       <EditorNotification cuerpo={setCuerpo} defcuerpo={cuerpo}/>
        <div className='flex flex-col items-end' style={{marginTop:50, marginBottom:50}}>
          <Button variation='primary' onClick={()=>Insertar()}>Guardar</Button>
         </div>
@@ -113,7 +140,7 @@ Asunto:<TextField id="prueba" style={{width:400, marginBottom:15}} />
 
 
          
-        <TableNotif notif={notificaciones} handleOpen={openModal}/>
+        <TableNotif notif={notificaciones} handleOpen={openModal} limpia={setIdioma}/>
        
      
       </main>   
