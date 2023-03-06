@@ -9,7 +9,8 @@ function PerformaceAndSucesion({
   testPreguntas,
   sendOverridesSuccesionTest,
   datosUsuario,
-  sendOverridesBehavior
+  sendOverridesBehavior,
+  dataBehavior
 }) {
   return (
     <div>
@@ -19,9 +20,8 @@ function PerformaceAndSucesion({
           <BehaviorTest
           width={"100%"}
           overrides={sendOverridesBehavior}
-          arrayPreguntas={testPreguntas}
           anios={anio}
-          datosUsuario={datosUsuario}
+          datosUsuario={dataBehavior}
 
           />
         </div>

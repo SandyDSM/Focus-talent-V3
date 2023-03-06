@@ -88,7 +88,7 @@ const navigate = useNavigate();
     }
   };
 
-
+  
   const ordena=function(orden){
     const collatemp=collaborators;
     if(orden==="descendente"){

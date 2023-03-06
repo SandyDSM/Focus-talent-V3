@@ -29,8 +29,6 @@ export default function BehaviorTest(props) {
   const {
     overrides: overridesProp,
     datosUsuario,
-    arrayPreguntas,
-    testPreguntas,
     anios,
     ...restProp
   } = props;
@@ -1254,15 +1252,13 @@ export default function BehaviorTest(props) {
         display="flex"
         {...getOverrideProps(overrides, "Frame 13974")}
       >
-        <PDFDownloadLink
+      {/*  <PDFDownloadLink
           document={
             <PDFComportamientos
-            DATOS={testPreguntas}
-            anios={anios}
-            datosUsuario={datosUsuario}/>
+           />
           }
           fileName={`Comportamientos_${anios}.pdf`}
-        >
+        >*/}
           <Button
             shrink="0"
             size="small"
@@ -1271,7 +1267,7 @@ export default function BehaviorTest(props) {
             children="Descargar  PDF"
             {...getOverrideProps(overrides, "Button")}
           ></Button>
-        </PDFDownloadLink>
+       {/* </PDFDownloadLink>*/}
       </Flex>
     </Flex>
   );

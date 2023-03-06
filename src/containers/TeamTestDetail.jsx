@@ -7,15 +7,18 @@ import CollaboratorsContext from "../context/collaborators";
 import BreadCrums from "../components/BreadCrums";
 import { Button, Loader } from "@aws-amplify/ui-react";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
+import Configuration from '../utils/Configuration'
+import { Amplify, API } from 'aws-amplify';
 
 
 function TeamTestDetail() {
   const { id } = useParams();
-  const { getCollDetail, collDetail, isLoading } =
+  const { getCollDetail, collDetail, isLoading, usuarioActualDatos } =
     useContext(CollaboratorsContext);
 
   const [testPreguntas, setTestPreguntas] = useState();
   const [aniosFill, setAniosFill] = useState([]);
+  const [dataBehavior, setDataBehavior] =useState([])
 
   const fetchDesemp = async () => {
     const respdesemp = await fetch(
@@ -43,10 +46,36 @@ function TeamTestDetail() {
         setAniosFill([filtros[0].ANO_EVAL]);
   }
 
+  function getData() {
+    const apiName = 'API Behaviors';
+    const path = '/behaviors';
+    const myInit = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
+        USER_ID: `${collDetail.ID_COLABORADOR}` // OPTIONAL
+      }
+    };
+  
+    return API.get(apiName, path, myInit);
+  }
+
+
+  
+  const fetcBehaviors = async () => {
+    try{
+      const response = await getData();
+      setDataBehavior(response)
+      console.log(response)
+    }catch (error) {
+      console.log("error:", error);
+    }
+  };
 
   useEffect(() => {
     getCollDetail(id).catch(null);
     fetchDesemp();
+    fetcBehaviors();
   }, [id]);
 
   const sendOverridesHeadColl = {
@@ -142,6 +171,7 @@ function TeamTestDetail() {
         <div className="col-span-1 md:col-span-3">
             <PerformaceAndSucesion
               aniosFill={aniosFill}
+              behaviors={dataBehavior}
               sendOverridesBehavior={sendOverridesBehavior}
               sendOverridesPerformanceTest={sendOverridesPerformanceTest}
               testPreguntas={testPreguntas}
