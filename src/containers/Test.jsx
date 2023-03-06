@@ -10,6 +10,7 @@ import TalentElements from '../components/TalentElements';
 
 function Test() {
   const[anios, setAnios]=useState([]);
+  const[aniosCalib, setAniosCalib]=useState([]);
   const [open, setOpen] = useState(false)
   const [option, setOption] = useState(1);
 
@@ -20,11 +21,34 @@ function Test() {
 
   useEffect(() => {
     getAnios();
+    getAniosCalib();
  },[]);
 
  function close(){
   setOpen(false)
 }
+
+const getAniosCalib= async () => {
+  try {
+    //setIsLoading(true);
+    const respdesemp = await fetch(
+      `https://talento-itzahuia.com/SAC/gb_anios_calib.php`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      }
+    ); 
+    const datos = await respdesemp.json();
+    setAniosCalib(datos);
+      } catch (error) {
+    setAnios([]);
+  } 
+};
+
+
+
 
   const getAnios= async () => {
     try {
@@ -64,7 +88,7 @@ function Test() {
 
       <main className='px-11'>
         {option===1 && <TableTests aniosx={anios} handleOpen={openModal}/>}
-        {option===2 && <TalentElements/>}
+        {option===2 && <TalentElements aniosc={aniosCalib}/>}
       </main>
     </div>
   )

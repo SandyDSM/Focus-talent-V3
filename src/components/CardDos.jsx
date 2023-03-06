@@ -1,9 +1,38 @@
 import { Button } from "@aws-amplify/ui-react";
 import Iconteam from "../ui-components/Iconteam";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 function CardDos({colaborator}) {
-    return (
+
+ const[calibracion, setCalibracion]=useState([]); 
+  
+  const getcalib= async (id) => {
+    try {
+      //setIsLoading(true);
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_info_calib.php?ID=${id}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json"
+          },
+        }
+      ); 
+      const datos = await respdesemp.json();
+      setCalibracion(datos);
+        } catch (error) {
+      setCalibracion([]);
+    } 
+  };
+  
+  useEffect(() => {
+    getcalib(colaborator.INTERNAL_ID);
+  }, []);
+  
+  
+  
+  return (
       <div className="card">
         
         <div className="flex flex-col gap-4">
@@ -12,9 +41,11 @@ function CardDos({colaborator}) {
             <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>
         </div>
         <div>
-            <p>Calibración: 4</p>
-            <p>Calibración desempeño: 4</p>
-            <p>Comportamientos: 4</p>
+          {calibracion?.map((cal)=>(
+            <>
+            <p>{cal.TITULO} {cal.VALORES}</p>
+            </>
+            ))}
             <p>Colaboradores que evaluaron: 8/10</p>
         </div>
         <div className="flex items-center p-4 bg-bmb-grey-10 justify-between">
