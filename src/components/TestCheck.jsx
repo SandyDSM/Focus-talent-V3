@@ -63,7 +63,7 @@ function TestCheck({ ElementosFiltro, defineAnios }) {
   return (
     <div className="card m-auto">
       <div className="m-4">
-        <h2 className="text-xl">EVALUACIONES</h2>
+        <h2 className="text-xl text-center">EVALUACIONES</h2>
         <Button width={"100%"} variation="link" size="small">
           Seleccionar todo
         </Button>

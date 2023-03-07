@@ -489,7 +489,10 @@ export default function BehaviorTest(props) {
           {...getOverrideProps(overrides, "Divider39504658")}
         ></Divider>
       </Flex>
-      
+      {dataBehavior
+          ?.filter((c) => c.ANIO === anios)
+          .map((dato, index) => (
+      <div key={index}>
       <Flex
         gap="32px"
         direction="column"
@@ -1112,6 +1115,8 @@ export default function BehaviorTest(props) {
         ></Button>
         {/* </PDFDownloadLink>*/}
       </Flex>
+      </div>
+          ))}
     </Flex>
   );
 }
