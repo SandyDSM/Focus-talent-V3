@@ -19,7 +19,8 @@ const MyTeam = () => {
     futleader,
         pillbusiness,
         basebusiness,
-        noteval
+        noteval,
+        notaply
   } = useContext(CollaboratorsContext);
 
 
@@ -76,7 +77,7 @@ function cambia(evento){
           {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={pillbusiness}/>}
           {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={basebusiness}/>}
           {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={noteval}/>}
-          {option === 5 && <Tabs title={"No aplica"} collaborators={noteval}/>}
+          {option === 5 && <Tabs title={"No aplica"} collaborators={notaply}/>}
         </div>
         </>
       )}

@@ -41,13 +41,14 @@ function CardDos({colaborator}) {
             <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>                       
         </div>
         <div>
-        <p style={{margin:5}}><b>Fecha de contratación: </b>{colaborator.FECHA_CONTRATACION}</p>
+        <p><b>Fecha de contratación: </b>{colaborator.FECHA_CONTRATACION}</p>
+        <p><b>Colaboradores que evaluaron:</b> 8/10</p>
           {calibracion?.map((cal)=>(
             <>
-            <p>{cal.TITULO} {cal.ANO_EVAL}: {cal.VALORES}</p>
+            <p><b>{cal.TITULO} {cal.ANO_EVAL}:</b> {cal.VALORES}</p>
             </>
             ))}
-            <p>Colaboradores que evaluaron: 8/10</p>
+            
         </div>
         <div className="flex items-center p-4 bg-bmb-grey-10 justify-between">
           {colaborator.EQUIPO == "1" ? (

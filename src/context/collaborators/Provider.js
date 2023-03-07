@@ -29,6 +29,9 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [respbasebusiness, setResbasebusiness] = useState([]);
   const [noteval, setNoteval] = useState([]);
   const [respnoteval, setResnoteval] = useState([]);
+  const [notaply, setNotaply] = useState([]);
+  const [respnotaply, setRespnotaply] = useState([]);
+
 //estados de subusuario categorizado
 const [futleadersub, setFutleadersub] = useState([]);
 const [respfutleadersub, setRespfutleadersub] = useState([]);
@@ -38,6 +41,8 @@ const [basebusinesssub, setBasebusinesssub] = useState([]);
 const [respbasebusinesssub, setResbasebusinesssub] = useState([]);
 const [notevalsub, setNotevalsub] = useState([]);
 const [respnotevalsub, setResnotevalsub] = useState([]);
+const [notaplysub, setNotaplysub] = useState([]);
+  const [respnotaplysub, setRespnotaplysub] = useState([]);
   
 const navigate = useNavigate();
 
@@ -125,10 +130,31 @@ const navigate = useNavigate();
       setBasebusiness(users);
     }else if(opcion===4){
       setNoteval(users);
+    }else if(opcion===5){
+      setNotaply(users);
     }
 
      
   }
+
+  const actualizaBusquedaSub=function(users, opcion){
+    if(opcion===1){
+    setFutleadersub(users);
+    }else if(opcion===2){
+      setPillbusinesssub(users);
+    }else if(opcion===3){
+      setBasebusinesssub(users);
+    }else if(opcion===4){
+      setNotevalsub(users);
+    }else if(opcion===5){
+      setNotaplysub(users);
+    }
+
+     
+  }
+
+
+
 
   const restauraUsuarios=function(){
     setCollaborators(collaboratorsResp);
@@ -177,8 +203,10 @@ const restauraUserClasif=function(value){
         setRespillbusiness(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
         setBasebusiness(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
         setResbasebusiness(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
-        setNoteval(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
-        setResnoteval(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
+        setNoteval(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" )));
+        setResnoteval(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial")));
+        setNotaply(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" || c.CATEGORIA ==='No aplica')));
+        setRespnotaply(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" || c.CATEGORIA ==='No aplica')));
         }else if(accion==="SetSubColaborators"){
           setSubcollaborators(datos);
           setFutleadersub(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
@@ -189,7 +217,9 @@ const restauraUserClasif=function(value){
           setResbasebusinesssub(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
           setNotevalsub(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
           setResnotevalsub(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
-
+          setNotaplysub(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" || c.CATEGORIA ==='No aplica')));
+          setRespnotaplysub(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" || c.CATEGORIA ==='No aplica')));
+          
         }
     } catch (error) {
       if(accion==="SetColaborators"){
@@ -359,6 +389,7 @@ const restauraUserClasif=function(value){
         photo,
         isAdmin,
         actualizaBusqueda,
+        actualizaBusquedaSub,
         restauraUsuarios, 
         showPerson,
         setShowPerson,
@@ -370,10 +401,12 @@ const restauraUserClasif=function(value){
         pillbusiness,
         basebusiness,
         noteval,
+        notaply,
         respfutleader,
         resppillbusiness,
         respbasebusiness,
-        respnoteval, 
+        respnoteval,
+        respnotaply,
         //datos clasificados subcolaboradores
         futleadersub,
         respfutleadersub,
@@ -382,8 +415,9 @@ const restauraUserClasif=function(value){
         basebusinesssub,
         respbasebusinesssub,
         notevalsub,
-        respnotevalsub
-
+        respnotevalsub,
+        notaplysub,
+        respnotaplysub
       }}
     >
       {children}

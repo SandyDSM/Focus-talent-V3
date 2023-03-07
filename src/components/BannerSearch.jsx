@@ -79,10 +79,12 @@ export default function BannerSearch(props) {
           pillbusiness,
           basebusiness,
           noteval,
+          notaply,
           respfutleader,
         resppillbusiness,
         respbasebusiness,
-        respnoteval
+        respnoteval,
+        respnotaply
     } = useContext(CollaboratorsContext);
 
 
@@ -123,10 +125,23 @@ if(props.OpcionSelect===1){
     actualizaBusqueda(filBusqueda,3);   
   }
 }else if(props.OpcionSelect===4){
+  if(noteval==respnoteval){
   const filBusqueda=noteval.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-  actualizaBusqueda(filBusqueda,4); 
-}
+  actualizaBusqueda(filBusqueda,4);
+  }else{
+    const filBusqueda=respnoteval.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  actualizaBusqueda(filBusqueda,4);
+  }
 
+}else if(props.OpcionSelect===5){
+if(notaply==respnotaply){
+  const filBusqueda=notaply.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  actualizaBusqueda(filBusqueda,5);
+}else{
+  const filBusqueda=respnotaply.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  actualizaBusqueda(filBusqueda,5);
+}
+}
 };
 
   const onClear=()=>{

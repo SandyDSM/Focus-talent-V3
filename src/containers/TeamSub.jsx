@@ -22,7 +22,8 @@ function TeamSub() {
         basebusinesssub,
         respbasebusinesssub,
         notevalsub,
-        respnotevalsub
+        respnotevalsub,
+        notaply
   } = useContext(CollaboratorsContext);
 
   const [option, setOption] = useState(1);
@@ -75,7 +76,7 @@ Loader();
           {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={pillbusinesssub}/>}
           {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={basebusinesssub}/>}
           {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={notevalsub}/>}
-          {option === 5 && <Tabs title={"No aplica"} collaborators={notevalsub}/>}
+          {option === 5 && <Tabs title={"No aplica"} collaborators={notaply}/>}
         </div>
         </>
 

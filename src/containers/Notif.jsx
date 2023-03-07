@@ -45,6 +45,7 @@ function Notif() {
   };
 
   const Insertar = async () => {
+    alert(document.getElementById("idioma").value);
     try {
       const respdesemp = await fetch(
         `https://talento-itzahuia.com/SAC/gb_notificaciones.php`,
@@ -134,11 +135,11 @@ function Notif() {
                     id={"idioma"}
                     placeholder="Selecciona el idioma"
                     width={"100%"}
+                  
+                  onChange={(e)=>setIdioma(e.target.value)}
                   >
-                    <option defaultValue={idioma} value={idioma}>
-                      {idiomaDes}
-                    </option>
-                    <option value="English (US)">Inglés</option>
+                    
+                    <option value="English (US)" >Inglés</option>
                     <option value="French (Canada)">Francés</option>
                     <option value="Spanish (Latin America)">Español</option>
                     <option value="Chinese (Simplified)">Chino</option>
