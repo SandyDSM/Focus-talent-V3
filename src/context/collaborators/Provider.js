@@ -206,8 +206,8 @@ const restauraUserClasif=function(value){
         setResbasebusiness(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
         setNoteval(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" )));
         setResnoteval(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial")));
-        setNotaply(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" || c.CATEGORIA ==='No aplica')));
-        setRespnotaply(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" || c.CATEGORIA ==='No aplica')));
+        setNotaply(datos?.filter(c => (c.CATEGORIA === "N/A" || c.CATEGORIA ===null)));
+        setRespnotaply(datos?.filter(c => (c.CATEGORIA === "N/A" || c.CATEGORIA ===null)));
         }else if(accion==="SetSubColaborators"){
           setSubcollaborators(datos);
           setFutleadersub(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
@@ -216,10 +216,10 @@ const restauraUserClasif=function(value){
           setRespillbusinesssub(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
           setBasebusinesssub(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
           setResbasebusinesssub(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
-          setNotevalsub(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
-          setResnotevalsub(datos?.filter(c => (c.CATEGORIA === "" || c.CATEGORIA === null)));
-          setNotaplysub(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" || c.CATEGORIA ==='No aplica')));
-          setRespnotaplysub(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" || c.CATEGORIA ==='No aplica')));
+          setNotevalsub(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" )));
+          setResnotevalsub(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" )));
+          setNotaplysub(datos?.filter(c => (c.CATEGORIA === "N/A" || c.CATEGORIA ===null)));
+          setRespnotaplysub(datos?.filter(c => (c.CATEGORIA === "N/A" || c.CATEGORIA ===null)));
           
         }
     } catch (error) {
