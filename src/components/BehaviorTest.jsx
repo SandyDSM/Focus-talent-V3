@@ -34,7 +34,8 @@ export default function BehaviorTest(props) {
     ...restProp
   } = props;
 
-  const [thisYear, setThisYear] = React.useState()
+  const thisYear = dataBehavior?.filter((c) => c.ANIO === anios);
+  console.log(thisYear.length)
   const variants = [
     {
       overrides: {
@@ -489,10 +490,8 @@ export default function BehaviorTest(props) {
           {...getOverrideProps(overrides, "Divider39504658")}
         ></Divider>
       </Flex>
-      {dataBehavior
-          ?.filter((c) => c.ANIO === anios)
-          .map((dato, index) => (
-      <div key={index}>
+      {thisYear.length >0 ?        
+      (<div>
       <Flex
         gap="32px"
         direction="column"
@@ -1116,7 +1115,8 @@ export default function BehaviorTest(props) {
         {/* </PDFDownloadLink>*/}
       </Flex>
       </div>
-          ))}
+          ):
+          <div className="w-full"><p>No existen datos</p></div>}
     </Flex>
   );
 }

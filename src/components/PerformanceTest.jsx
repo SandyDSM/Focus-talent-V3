@@ -39,8 +39,10 @@ export default function PerformanceTest(props) {
   } = props;
 
   const testPreguntas = arrayPreguntas;
+  const thisYear = testPreguntas?.filter((c) => c.ANO_EVAL === anios);
+  console.log(thisYear);
 
-  console.log("El año es:" + anios);
+  console.log(testPreguntas);
 
   const variants = [
     {
@@ -431,93 +433,97 @@ export default function PerformanceTest(props) {
         orientation="horizontal"
         {...getOverrideProps(overrides, "Divider")}
       ></Divider>
-      {console.log("Preguntas",testPreguntas)}
-      {testPreguntas
-        ?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios)
-        .map((pre) => (
-          <Flex
-            gap="12px"
-            direction="column"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            display="flex"
-            {...getOverrideProps(overrides, "qOne")}
+      {thisYear.length > 0 ? (
+        <div>
+          {testPreguntas
+            ?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios)
+            .map((pre, index) => (
+              <Flex
+                key={index}
+                gap="12px"
+                direction="column"
+                width="unset"
+                height="unset"
+                justifyContent="flex-start"
+                alignItems="flex-start"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                display="flex"
+                {...getOverrideProps(overrides, "qOne")}
+              >
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="500"
+                  color="rgba(0,0,0,0.8)"
+                  lineHeight="20px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  shrink="0"
+                  alignSelf="stretch"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={`${pre.TITULO}`}
+                  {...getOverrideProps(overrides, "questionOne38284684")}
+                ></Text>
+                <Text
+                  fontFamily="Inter"
+                  fontSize="14px"
+                  fontWeight="400"
+                  color="rgba(0,0,0,0.8)"
+                  lineHeight="17.5px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  shrink="0"
+                  alignSelf="stretch"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={`${pre.VALORES}`}
+                  {...getOverrideProps(overrides, "answerQone38284685")}
+                ></Text>
+              </Flex>
+            ))}
+          <PDFDownloadLink
+            document={
+              <PDFdesempeno
+                DATOS={testPreguntas}
+                anios={anios}
+                datosUsuario={datosUsuario}
+              />
+            }
+            fileName={`Evaluación_de_desempeño_${anios}.pdf`}
           >
-            <Text
-              fontFamily="Inter"
-              fontSize="16px"
-              fontWeight="500"
-              color="rgba(0,0,0,0.8)"
-              lineHeight="20px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
+            <Button
               shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children={`${pre.TITULO}`}
-              {...getOverrideProps(overrides, "questionOne38284684")}
-            ></Text>
-            <Text
-              fontFamily="Inter"
-              fontSize="14px"
-              fontWeight="400"
-              color="rgba(0,0,0,0.8)"
-              lineHeight="17.5px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children={`${pre.VALORES}`}
-              {...getOverrideProps(overrides, "answerQone38284685")}
-            ></Text>
-          </Flex>
-        ))}
-      {anios === "2022" ? <div className="w-full"><p>No existen datos</p></div> :
-      <PDFDownloadLink
-        document={
-          <PDFdesempeno
-            DATOS={testPreguntas}
-            anios={anios}
-            datosUsuario={datosUsuario}
-          />
-        }
-        fileName={`Evaluación_de_desempeño_${anios}.pdf`}
-      >
-        <Button
-          shrink="0"
-          size="small"
-          isDisabled={false}
-          variation="primary"
-          children="Descargar  PDF"
-          {...getOverrideProps(overrides, "ButtonPDF")}
-        ></Button>
-      </PDFDownloadLink>
-}
-
-      
+              size="small"
+              isDisabled={false}
+              variation="primary"
+              children="Descargar  PDF"
+              {...getOverrideProps(overrides, "ButtonPDF")}
+            ></Button>
+          </PDFDownloadLink>
+        </div>
+      ) : (
+        <div className="w-full">
+          <p>No existen datos</p>
+        </div>
+      )}
     </Flex>
   );
 }

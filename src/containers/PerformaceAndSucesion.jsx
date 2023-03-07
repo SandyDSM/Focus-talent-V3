@@ -67,6 +67,7 @@ function PerformaceAndSucesion({
             overrides={sendOverridesPerformanceTest}
             anios={anio}
             datosUsuario={datosUsuario}
+            arrayPreguntas={testPreguntas}
           />
           </div>
           <div className="my-9 shadow">
