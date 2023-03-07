@@ -14,7 +14,7 @@ const SignIn = ({ onSignIn }) => {
   const federatedSignInUpdateUser = async () => {
     try {
       const newUser = await Auth.federatedSignIn({
-        customProvider: "GBAzure",
+        customProvider: "focusprod",
       });
       await updateCurrentUser(newUser);
     } catch (error) {
@@ -41,7 +41,8 @@ const SignIn = ({ onSignIn }) => {
     logoImg: {
       src: "https://pruebabucketsawspruebas.s3.amazonaws.com/EN_logo_Slogan+GB.png",
     },
-    ButtonSingAzure: { onClick: () => federatedSignInUpdateUser() },
+    ButtonSingAzure: { onClick: () => federatedSignInUpdateUser(),
+      children:"SSO Login" },
     ButtonSingIn: { onClick: () => signIn() },
     ButtonForgot:{onClick: () => navigate("/forgotpassword")},
     FrameImage: { height: "150px" },
