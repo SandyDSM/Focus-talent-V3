@@ -440,7 +440,7 @@ export default function PerformanceTest(props) {
             .map((pre, index) => (
               <Flex
                 key={index}
-                gap="12px"
+                gap="16px"
                 direction="column"
                 width="unset"
                 height="unset"
@@ -458,7 +458,6 @@ export default function PerformanceTest(props) {
                   fontSize="16px"
                   fontWeight="500"
                   color="rgba(0,0,0,0.8)"
-                  lineHeight="20px"
                   textAlign="left"
                   display="block"
                   direction="column"
@@ -480,7 +479,6 @@ export default function PerformanceTest(props) {
                   fontSize="14px"
                   fontWeight="400"
                   color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
                   textAlign="left"
                   display="block"
                   direction="column"
@@ -494,11 +492,14 @@ export default function PerformanceTest(props) {
                   position="relative"
                   padding="0px 0px 0px 0px"
                   whiteSpace="pre-wrap"
+                  marginBottom={"16px"}
+                  marginTop="-10px"
                   children={`${pre.VALORES}`}
                   {...getOverrideProps(overrides, "answerQone38284685")}
                 ></Text>
               </Flex>
             ))}
+            <div className="w-full text-end">
           <PDFDownloadLink
             document={
               <PDFdesempeno
@@ -518,6 +519,7 @@ export default function PerformanceTest(props) {
               {...getOverrideProps(overrides, "ButtonPDF")}
             ></Button>
           </PDFDownloadLink>
+          </div>
         </div>
       ) : (
         <div className="w-full">
