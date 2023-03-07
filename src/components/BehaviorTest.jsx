@@ -35,7 +35,7 @@ export default function BehaviorTest(props) {
   } = props;
 
   const thisYear = dataBehavior?.filter((c) => c.ANIO === anios);
-  console.log(thisYear.length)
+  //console.log(thisYear.length)
   const variants = [
     {
       overrides: {
@@ -491,7 +491,7 @@ export default function BehaviorTest(props) {
         ></Divider>
       </Flex>
       {thisYear.length >0 ?        
-      (<div>
+      (<div className="w-full">
       <Flex
         gap="32px"
         direction="column"

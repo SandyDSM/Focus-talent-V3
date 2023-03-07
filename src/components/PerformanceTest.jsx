@@ -39,8 +39,8 @@ export default function PerformanceTest(props) {
   } = props;
 
   const testPreguntas = arrayPreguntas;
-  const thisYear = testPreguntas?.filter((c) => c.ANO_EVAL === anios);
-  console.log(thisYear);
+  const thisYear = testPreguntas?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios);
+  console.log(thisYear.length);
 
   console.log(testPreguntas);
 
@@ -434,7 +434,7 @@ export default function PerformanceTest(props) {
         {...getOverrideProps(overrides, "Divider")}
       ></Divider>
       {thisYear.length > 0 ? (
-        <div>
+        <div className="w-full">
           {testPreguntas
             ?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios)
             .map((pre, index) => (
