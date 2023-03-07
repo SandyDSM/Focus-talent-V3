@@ -14,8 +14,9 @@ function RowTalentElement({anio}) {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            "ANIO": id,
+            "ANIO": id.split('-')[0],
             "VALUE": valor,
+            "AGRUPACION": id.split('-')[1],
             "TOKEN": "a27aba5cd302dc049acf86aaef16be746242cda0"
           })
         }
@@ -45,9 +46,9 @@ function RowTalentElement({anio}) {
                 shrink="0"
                 size="default"
                 defaultChecked={anio.ACTIVO==="1" && "Checked"}
-                id={anio.ANIO}
+                id={`${anio.ANIO}-${anio.AGRUPACION}`}
                 name={anio.ANIO}
-                value={anio.ANIO}
+                value={"aaa"+anio.ANIO}
                 onChange={(e) => {
                   updateAnios(e.target.id, e.target.checked);
                   setIsChecked(e.target.checked);
@@ -55,7 +56,7 @@ function RowTalentElement({anio}) {
               />
             <div className="flex flex-col">
               <p className="text-sm">
-              Calibración {anio.ANIO}
+              {anio.AGRUPACION} {anio.ANIO}
               </p>
             </div>
           </div>
