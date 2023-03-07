@@ -73,10 +73,10 @@ function cambia(evento){
           <div className={`md:rounded-r-lg ${option === 5 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(5)}>No aplica</div>
         </div>
         <div>
-          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={futleader}/>}
-          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={pillbusiness}/>}
-          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={basebusiness}/>}
-          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={noteval}/>}
+          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={futleader} sub={false}/>}
+          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={pillbusiness} sub={false}/>}
+          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={basebusiness} sub={false}/>}
+          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={noteval} sub={false}/>}
           {option === 5 && <Tabs title={"No aplica"} collaborators={notaply}/>}
         </div>
         </>

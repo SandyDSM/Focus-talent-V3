@@ -20,6 +20,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [collaboratorsResp, setCollaboratorsResp] = useState([]);
   const [showPerson, setShowPerson] = useState(true)
   const [sendCode, setSendCode] = useState(false);
+  
 //estados de usuario categorizado
   const [futleader, setFutleader] = useState([]);
   const [respfutleader, setRespfutleader] = useState([]);

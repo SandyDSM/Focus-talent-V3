@@ -3,7 +3,7 @@ import Iconteam from "../ui-components/Iconteam";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-function CardDos({colaborator}) {
+function CardDos({colaborator, sub}) {
 
  const[calibracion, setCalibracion]=useState([]); 
   
@@ -51,7 +51,7 @@ function CardDos({colaborator}) {
             
         </div>
         <div className="flex items-center p-4 bg-bmb-grey-10 justify-between">
-          {colaborator.EQUIPO == "1" ? (
+          {colaborator.EQUIPO == "1" & sub === false  ? (
             <Link to={`/myteam/${colaborator.INTERNAL_ID}`} >
               <div className={colaborator.EQUIPO == "1"  && "cursor-pointer"}>
                 <Iconteam state="Active"/>

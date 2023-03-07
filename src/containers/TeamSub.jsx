@@ -31,8 +31,6 @@ function TeamSub() {
   const toggleTab = (index) => {
     setOption(index);
   };
-
-
   console.log("subs",subcollaborators)
 
   useEffect(() => {
@@ -72,10 +70,10 @@ Loader();
           <div className={`md:rounded-r-lg ${option === 5 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(5)}>No aplica</div>
         </div>
         <div>
-          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={futleadersub}/>}
-          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={pillbusinesssub}/>}
-          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={basebusinesssub}/>}
-          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={notevalsub}/>}
+          {option === 1 && <Tabs title={"Futuro Líder"} collaborators={futleadersub} sub={true}/>}
+          {option === 2 && <Tabs title={"Pilar de negocio"} collaborators={pillbusinesssub} sub={true}/>}
+          {option === 3 && <Tabs title={"Cimiento de negocio"} collaborators={basebusinesssub} sub={true}/>}
+          {option === 4 && <Tabs title={"No evaluados en potencial"} collaborators={notevalsub} sub={true}/>}
           {option === 5 && <Tabs title={"No aplica"} collaborators={notaply}/>}
         </div>
         </>
