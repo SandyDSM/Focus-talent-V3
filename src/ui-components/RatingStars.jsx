@@ -27,7 +27,7 @@ export default function RatingStars(props) {
         TxtRating: { children: "1. Modelo a seguir" },
         RatingStars: {},
       },
-      variantValues: { rating: "one" },
+      variantValues: { rating: "1" },
     },
     {
       overrides: {
@@ -40,7 +40,7 @@ export default function RatingStars(props) {
         TxtRating: {},
         RatingStars: {},
       },
-      variantValues: { rating: "default" },
+      variantValues: { rating: "0" },
     },
     {
       overrides: {
@@ -53,7 +53,7 @@ export default function RatingStars(props) {
         TxtRating: { children: "2. Modelo a seguir" },
         RatingStars: {},
       },
-      variantValues: { rating: "two" },
+      variantValues: { rating: "2" },
     },
     {
       overrides: {
@@ -66,7 +66,7 @@ export default function RatingStars(props) {
         TxtRating: { children: "3. Modelo a seguir" },
         RatingStars: {},
       },
-      variantValues: { rating: "three" },
+      variantValues: { rating: "3" },
     },
     {
       overrides: {
@@ -79,7 +79,7 @@ export default function RatingStars(props) {
         TxtRating: { children: "4. Excede espectativas" },
         RatingStars: {},
       },
-      variantValues: { rating: "four" },
+      variantValues: { rating: "4" },
     },
     {
       overrides: {
@@ -92,7 +92,7 @@ export default function RatingStars(props) {
         TxtRating: { children: "5. Modelo a seguir" },
         RatingStars: {},
       },
-      variantValues: { rating: "five" },
+      variantValues: { rating: "5" },
     },
   ];
   const overrides = mergeVariantsAndOverrides(

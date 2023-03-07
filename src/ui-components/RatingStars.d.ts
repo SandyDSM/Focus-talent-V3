@@ -20,7 +20,7 @@ export declare type RatingStarsOverridesProps = {
     TxtRating?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type RatingStarsProps = React.PropsWithChildren<Partial<FlexProps> & {
-    rating?: "default" | "five" | "four" | "one" | "three" | "two";
+    rating?: "0" | "1" | "2" | "3" | "4" | "5";
 } & {
     overrides?: RatingStarsOverridesProps | undefined | null;
 }>;

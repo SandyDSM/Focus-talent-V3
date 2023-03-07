@@ -14,8 +14,6 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 import IconMenuHam from "./IconMenuHam";
-import { Link } from "react-router-dom";
-
 export default function Header(props) {
   const { overrides: overridesProp, ...rest } = props;
   const variants = [
@@ -84,8 +82,6 @@ export default function Header(props) {
         display="flex"
         {...getOverrideProps(overrides, "FrameLogo")}
       >
-       <Link to="/">
-
         <Image
           width="47px"
           height="38px"
@@ -99,7 +95,6 @@ export default function Header(props) {
           objectFit="cover"
           {...getOverrideProps(overrides, "gb_min")}
         ></Image>
-        </Link>
       </Flex>
       <IconMenuHam
         display="none"
@@ -125,9 +120,6 @@ export default function Header(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         display="flex"
-        onClick={() => {
-          gBTalentOnClick();
-        }}
         {...getOverrideProps(overrides, "Frame 13982")}
       >
         <Text
@@ -149,6 +141,9 @@ export default function Header(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="GB Talent"
+          onClick={() => {
+            gBTalentOnClick();
+          }}
           {...getOverrideProps(overrides, "GB Talent")}
         ></Text>
         <View
