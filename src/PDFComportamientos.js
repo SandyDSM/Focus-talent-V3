@@ -163,7 +163,6 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
                     marginBottom: "5",
                   }}
                 >
-<<<<<<< HEAD
                   {
 
 
@@ -180,12 +179,10 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
                 }}
                 src={pre.QUEST_RESP_RATING_SCORE=='1' ? "data:image/jpg;base64,"+stars1 : pre.QUEST_RESP_RATING_SCORE=='2' ? "data:image/jpg;base64,"+stars2: pre.QUEST_RESP_RATING_SCORE=='3' ? "data:image/jpg;base64,"+stars3 : pre.QUEST_RESP_RATING_SCORE=='4' ? "data:image/jpg;base64,"+stars4 : pre.QUEST_RESP_RATING_SCORE=='5' ? "data:image/jpg;base64,"+stars5 : ''}
               ></Image>
-=======
                   {"Evaluación Jefe Directo"}
                 </Text>
                 <View style={styles.divider}></View>
               </View>
->>>>>>> 02f853a (Cambios PDF behaviors)
 
               <View style={styles.rowsGrey}>
                 <Text style={styles.txtTitle}>Revisor</Text>
