@@ -1,15 +1,18 @@
 import React from 'react'
 import BannerSearch from './BannerSearch';
+import { useContext} from "react";
+import CollaboratorsContext from "../context/collaborators";
 
 
 function HeadTeam({title = "Mi Equipo", OpcionSelect}) {
-    const sendOverridesBanner = {
+  const {buttonMyTeam, busqueda } = useContext(CollaboratorsContext);
+  const sendOverridesBanner = {
         "SearchField": { 
-          placeholder: "Buscar colaborador",
+          placeholder: busqueda,
           hasSearchButton: false,
           hasSearchIcon: true
          },
-         Heading:{children: title}
+         Heading:{children: buttonMyTeam}
          
     }
     

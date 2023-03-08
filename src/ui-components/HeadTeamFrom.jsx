@@ -19,6 +19,7 @@ import {
 } from "@aws-amplify/ui-react";
 import Iconteam from "./Iconteam";
 export default function HeadTeamFrom(props) {
+  const{busqueda}=useContext(CollaboratorsContext)
   const { overrides: overridesProp, ...restProp } = props;
   const variants = [
     {
@@ -153,7 +154,7 @@ export default function HeadTeamFrom(props) {
       <SearchField
         width="unset"
         height="unset"
-        placeholder="Buscar colaborador"
+        placeholder= {busqueda}
         shrink="0"
         size="default"
         isDisabled={false}

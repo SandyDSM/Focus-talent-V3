@@ -17,6 +17,7 @@ function TeamTestDetail() {
 
   const [testPreguntas, setTestPreguntas] = useState();
   const [aniosFill, setAniosFill] = useState([]);
+  const [selall, setSelall]=useState(false);
 
   const fetchDesemp = async () => {
     const respdesemp = await fetch(
@@ -48,7 +49,8 @@ function TeamTestDetail() {
   useEffect(() => {
     getCollDetail(id).catch(null);
     fetchDesemp();
-  }, [id]);
+  }, [id,selall]);
+  
 
   const sendOverridesHeadColl = {
     NameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
@@ -138,6 +140,8 @@ function TeamTestDetail() {
           <TestCheck
             ElementosFiltro={testPreguntas}
             defineAnios={setAniosFill}
+            Setselectall={setSelall}
+            selecall={selall}
           />
         </div>
         <div className="col-span-1 md:col-span-3">

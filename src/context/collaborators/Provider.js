@@ -44,7 +44,32 @@ const [notevalsub, setNotevalsub] = useState([]);
 const [respnotevalsub, setResnotevalsub] = useState([]);
 const [notaplysub, setNotaplysub] = useState([]);
   const [respnotaplysub, setRespnotaplysub] = useState([]);
-  
+//Etiquetas web
+const[banerSearch, setBanerSearch]=useState('Potencial 2022');
+const[busqueda, setBusqueda]=useState('Buscar Colaborador');
+const[myteamOption1, setMyteamOption1]=useState('Futuro Líder');
+const[myteamOption2, setMyteamOption2]=useState('Pilar de negocio');
+const[myteamOption3, setMyteamOption3]=useState('Cimiento de negocio');
+const[myteamOption4, setMyteamOption4]=useState('No evaluados en potencial');
+const[myteamOption5, setMyteamOption5]=useState('No aplica');
+const[myteamViewDetail, setMyteamViewDetail]=useState('Ver detalles');
+const[teamFrom, setTeamFrom]=useState('Equipo de');
+const[noColaborators, setNoColaborators]=useState('No hay colaboradores en esta categoría');
+const[origHireDate, setOrigHireDate]=useState('Fecha de Contratación');
+const[evaluators, setEvaluators ]=useState('Colaboradores que evaluaron');
+const[noData, setNoData]=useState('No existen datos');
+const[filterEvaluations, setFilterEvaluations]=useState('EVALUACIONES');
+const[buttonSelectAll, setButtonSelectAll]=useState('Seleccionar Todo');
+const[buttonClear, setButtonClear]=useState('Limpiar');
+const[buttonView, setButtonView]=useState('Ver');
+const[buttonBack, setButtonBack]=useState('Regresar');
+const[buttonMyTeam, setButtonMyTeam]=useState('Mi Equipo');
+const[downloadPDF, setDownloadPDF]=useState('Descargar PDF');
+const[downloadAllPDF, setDownloadAllPDF]=useState('Descargar todo PDF');
+
+
+
+
 const navigate = useNavigate();
 
   const UserLog = async () => {
@@ -418,7 +443,29 @@ const restauraUserClasif=function(value){
         notevalsub,
         respnotevalsub,
         notaplysub,
-        respnotaplysub
+        respnotaplysub,
+        //etiquetas
+banerSearch,
+busqueda,
+myteamOption1,
+myteamOption2,
+myteamOption3,
+myteamOption4,
+myteamOption5,
+myteamViewDetail,
+teamFrom,
+noColaborators,
+origHireDate,
+evaluators,
+noData,
+filterEvaluations,
+buttonSelectAll,
+buttonClear,
+buttonView,
+buttonBack,
+buttonMyTeam,
+downloadPDF,
+downloadAllPDF
       }}
     >
       {children}

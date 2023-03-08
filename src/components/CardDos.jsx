@@ -43,9 +43,9 @@ function CardDos({colaborator, sub}) {
         <div>
         <p><b>Fecha de contratación: </b>{colaborator.FECHA_CONTRATACION}</p>
         <p><b>Colaboradores que evaluaron:</b> 8/10</p>
-          {calibracion?.map((cal)=>(
+          {calibracion?.map((cal, index)=>(
             <>
-            <p><b>{cal.TITULO} {cal.ANO_EVAL}:</b> {cal.VALORES}</p>
+            <p key={index}><b>{cal.TITULO} {cal.ANO_EVAL}:</b> {cal.VALORES}</p>
             </>
             ))}
             
