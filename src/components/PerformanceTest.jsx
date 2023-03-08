@@ -42,7 +42,7 @@ export default function PerformanceTest(props) {
   const thisYear = testPreguntas?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios);
   console.log(thisYear.length);
 
-  console.log(testPreguntas);
+  
 
   const variants = [
     {

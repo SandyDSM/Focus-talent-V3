@@ -34,6 +34,8 @@ export default function BehaviorTest(props) {
     ...restProp
   } = props;
 
+  console.log("los datos son",dataBehavior);
+
   const thisYear = dataBehavior?.filter((c) => c.ANIO === anios);
   //console.log(thisYear.length)
   const variants = [
@@ -1097,13 +1099,17 @@ export default function BehaviorTest(props) {
         display="flex"
         {...getOverrideProps(overrides, "Frame 13974")}
       >
-        {/*  <PDFDownloadLink
+       
+          <PDFDownloadLink
           document={
             <PDFComportamientos
-           />
+            DATOS={dataBehavior}
+                anios={anios}
+                datosUsuario={datosUsuario}
+          />
           }
           fileName={`Comportamientos_${anios}.pdf`}
-        >*/}
+        >
         <Button
           shrink="0"
           size="small"
@@ -1112,7 +1118,8 @@ export default function BehaviorTest(props) {
           children="Descargar  PDF"
           {...getOverrideProps(overrides, "Button")}
         ></Button>
-        {/* </PDFDownloadLink>*/}
+        </PDFDownloadLink>
+
       </Flex>
       </div>
           ):
