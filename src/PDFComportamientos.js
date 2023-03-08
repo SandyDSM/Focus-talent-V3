@@ -191,6 +191,7 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
                   height: "10px",
                   display: "block",
                   borderRadius: "8px",
+                  marginRight: "210px"
                 }}
                 src={pre.QUEST_RESP_RATING_SCORE=='1' ? "data:image/jpg;base64,"+stars1 : pre.QUEST_RESP_RATING_SCORE=='2' ? "data:image/jpg;base64,"+stars2: pre.QUEST_RESP_RATING_SCORE=='3' ? "data:image/jpg;base64,"+stars3 : pre.QUEST_RESP_RATING_SCORE=='4' ? "data:image/jpg;base64,"+stars4 : pre.QUEST_RESP_RATING_SCORE=='5' ? "data:image/jpg;base64,"+stars5 : ''}
               ></Image>
