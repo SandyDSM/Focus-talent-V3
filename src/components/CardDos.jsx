@@ -1,10 +1,11 @@
 import { Button } from "@aws-amplify/ui-react";
 import Iconteam from "../ui-components/Iconteam";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, {useContext, useState, useEffect } from "react";
+import CollaboratorsContext from "../context/collaborators";
 
 function CardDos({colaborator, sub}) {
-
+  const{origHireDate, evaluators, myteamViewDetail} =useContext(CollaboratorsContext);
  const[calibracion, setCalibracion]=useState([]); 
   
   const getcalib= async (id) => {
@@ -41,8 +42,8 @@ function CardDos({colaborator, sub}) {
             <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>                       
         </div>
         <div>
-        <p><b>Fecha de contratación: </b>{colaborator.FECHA_CONTRATACION}</p>
-        <p><b>Colaboradores que evaluaron:</b> 8/10</p>
+        <p><b>{origHireDate}:</b>{colaborator.FECHA_CONTRATACION}</p>
+        <p><b>{evaluators}:</b> 8/10</p>
           {calibracion?.map((cal, index)=>(
             <>
             <p key={index}><b>{cal.TITULO} {cal.ANO_EVAL}:</b> {cal.VALORES}</p>
@@ -63,7 +64,7 @@ function CardDos({colaborator, sub}) {
             <Button
             size="small"
             variation="link"
-            >Ver detalles</Button></Link>
+            >{myteamViewDetail}</Button></Link>
         </div>
         </div>
       </div>

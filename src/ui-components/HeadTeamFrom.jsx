@@ -18,8 +18,10 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import Iconteam from "./Iconteam";
+import { useContext,  } from "react";
+import CollaboratorsContext from "../context/collaborators";
 export default function HeadTeamFrom(props) {
-  const{busqueda}=useContext(CollaboratorsContext)
+  const{busqueda, teamFrom} =useContext(CollaboratorsContext)
   const { overrides: overridesProp, ...restProp } = props;
   const variants = [
     {
@@ -124,7 +126,7 @@ export default function HeadTeamFrom(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Equipo de: "
+          children={teamFrom}
           {...getOverrideProps(overrides, "txt")}
         ></Text>
       </Flex>

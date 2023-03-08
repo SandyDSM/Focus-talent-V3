@@ -1,9 +1,13 @@
 import { CheckboxField, Button } from "@aws-amplify/ui-react";
 import React from "react";
 import { useEffect, useContext, useState } from "react";
+import CollaboratorsContext from "../context/collaborators";
 
 function TestCheck({ ElementosFiltro, defineAnios, selecall, Setselectall }) {
   ////////////////////////////////////////////////////////////////////////////
+const {filterEvaluations, buttonSelectAll, buttonClear, buttonView}=useContext(CollaboratorsContext);
+
+
   function obtenAnios(anio) {
     let datos = anio;
 
@@ -80,13 +84,13 @@ function limpiar(){
   return (
     <div className="card m-auto">
       <div className="m-4">
-        <h2 className="text-xl text-center">EVALUACIONES</h2>
+        <h2 className="text-xl text-center">{filterEvaluations}</h2>
         <Button width={"100%"} variation="link" size="small" 
         onClick={() => {
           checar();
         }}
         >
-          Seleccionar todo
+          {buttonSelectAll}
         </Button>
       </div>
       <div className="flex flex-col gap-2">{Arrfiltros()}</div>
@@ -97,7 +101,7 @@ function limpiar(){
         }}
         
         >
-          Limpiar
+          {buttonClear}
         </Button>
         <Button
           width={"100%"}
@@ -107,7 +111,7 @@ function limpiar(){
             buscar();
           }}
         >
-          Ver
+          {buttonView}
         </Button>
       </div>
     </div>
