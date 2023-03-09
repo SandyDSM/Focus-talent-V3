@@ -85,7 +85,7 @@ function cambia(evento){
           {option === 2 && <Tabs title={myteamOption2} collaborators={pillbusiness} sub={false}/>}
           {option === 3 && <Tabs title={myteamOption3} collaborators={basebusiness} sub={false}/>}
           {option === 4 && <Tabs title={myteamOption4} collaborators={noteval} sub={false}/>}
-          {option === 5 && <Tabs title={myteamOption5} collaborators={notaply}/>}
+          {option === 5 && <Tabs title={myteamOption5} collaborators={notaply} sub={false}/>}
         </div>
         </>
       )}

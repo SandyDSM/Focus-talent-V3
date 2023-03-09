@@ -7,7 +7,7 @@ import CollaboratorsContext from "../context/collaborators";
 function CardDos({colaborator, sub}) {
   const{origHireDate, evaluators, myteamViewDetail} =useContext(CollaboratorsContext);
  const[calibracion, setCalibracion]=useState([]); 
-  
+  console.log('el valor de sub es:'+sub+'el usuario es:'+colaborator.APELLIDOS);
   const getcalib= async (id) => {
     try {
       //setIsLoading(true);
