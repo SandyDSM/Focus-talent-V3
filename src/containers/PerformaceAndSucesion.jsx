@@ -13,36 +13,12 @@ function PerformaceAndSucesion({
   datosUsuario,
   sendOverridesBehavior,
   usuarioActualDatos,
-  collDetail
+  collDetail, dataBehavior
 }) {
 
-  const [dataBehavior, setDataBehavior] =useState([])
-
-  function getData() {
-    const apiName = 'API Behaviors';
-    const path = '/behaviors';
-    const myInit = {
-      headers: {}, // OPTIONAL
-      queryStringParameters: {
-        LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
-        USER_ID: `${collDetail.ID_COLABORADOR}` // OPTIONAL
-      }
-    };
   
-    return API.get(apiName, path, myInit);
-  }
-
-  const fetcBehaviors = async () => {
-    try{
-      const response = await getData();
-      setDataBehavior(response)
-      //console.log(response)
-    }catch (error) {
-      console.log("error:", error);
-    }
-  };
   useEffect(() => {
-    fetcBehaviors();
+   
   }, []);
 
 

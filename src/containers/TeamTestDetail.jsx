@@ -8,7 +8,7 @@ import BreadCrums from "../components/BreadCrums";
 import { Button, Loader } from "@aws-amplify/ui-react";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
 import Configuration from '../utils/Configuration'
-
+import { Amplify, API } from 'aws-amplify';
 
 function TeamTestDetail() {
   const { id } = useParams();
@@ -18,7 +18,35 @@ function TeamTestDetail() {
   const [testPreguntas, setTestPreguntas] = useState();
   const [aniosFill, setAniosFill] = useState([]);
   const [selall, setSelall]=useState(false);
+//////////////////////////////////////////////////////////////////////////////////
+const [dataBehavior, setDataBehavior] =useState([])
 
+  function getData() {
+    const apiName = 'API Behaviors';
+    const path = '/behaviors';
+    const myInit = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
+        USER_ID: `${collDetail.ID_COLABORADOR}` // OPTIONAL
+      }
+    };
+  
+    return API.get(apiName, path, myInit);
+  }
+
+  const fetcBehaviors = async () => {
+    try{
+      const response = await getData();
+      setDataBehavior(response)
+      //console.log(response)
+    }catch (error) {
+      console.log("error:", error);
+    }
+  };
+
+
+////////////////////////////////////////////////////////////////////////////////////
   const fetchDesemp = async () => {
     const respdesemp = await fetch(
       `https://talento-itzahuia.com/SAC/gb_info.php?ID=${id}`,
@@ -48,6 +76,7 @@ function TeamTestDetail() {
 
   useEffect(() => {
     getCollDetail(id).catch(null);
+    fetcBehaviors();
     fetchDesemp();
   }, [id,selall]);
   
@@ -132,6 +161,7 @@ function TeamTestDetail() {
             datosUsuario={vardatosusuario}
             aniosFill={aniosFill}
             testPreguntas={testPreguntas}
+            dataBehavior={dataBehavior}
           />
         </div>
       </div>
@@ -154,6 +184,7 @@ function TeamTestDetail() {
               datosUsuario={vardatosusuario}
               usuarioActualDatos={usuarioActualDatos}
               collDetail={collDetail}
+              dataBehavior={dataBehavior}
             />
         </div>
       </div>
