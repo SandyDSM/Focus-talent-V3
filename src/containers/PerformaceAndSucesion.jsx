@@ -12,13 +12,14 @@ function PerformaceAndSucesion({
   sendOverridesSuccesionTest,
   datosUsuario,
   sendOverridesBehavior,
+  fetcBehaviors,
   usuarioActualDatos,
   collDetail, dataBehavior
 }) {
 
   
   useEffect(() => {
-   
+    fetcBehaviors()
   }, []);
 
 

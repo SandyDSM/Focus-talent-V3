@@ -76,7 +76,7 @@ const [dataBehavior, setDataBehavior] =useState([])
 
   useEffect(() => {
     getCollDetail(id).catch(null);
-    fetcBehaviors();
+   // fetcBehaviors();
     fetchDesemp();
   }, [id,selall]);
   
@@ -177,6 +177,7 @@ const [dataBehavior, setDataBehavior] =useState([])
         <div className="col-span-1 md:col-span-3">
             <PerformaceAndSucesion
               aniosFill={aniosFill}
+              fetcBehaviors={fetcBehaviors}
               sendOverridesBehavior={sendOverridesBehavior}
               sendOverridesPerformanceTest={sendOverridesPerformanceTest}
               testPreguntas={testPreguntas}

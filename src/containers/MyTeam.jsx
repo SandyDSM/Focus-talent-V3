@@ -48,10 +48,6 @@ myteamOption5
     //actualizaBusqueda(collaborators);
   }, [collaborators]);
 
-
-
-
-
 function cambia(evento){
   ordena(evento);
   //console.log(collaborators);//x

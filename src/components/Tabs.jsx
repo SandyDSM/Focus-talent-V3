@@ -20,8 +20,8 @@ function Tabs({title= "Título", collaborators, sub }) {
       {collaborators != null ? (collaborators.length <= 0 ?(
         <p className='col-span-3 items-center text-center mt-6'>{noColaborators}</p>
       ):      
-      (collaborators?.map((colaborator) => (
-        <CardDos key={colaborator.id} colaborator={colaborator} sub={sub}/>
+      (collaborators?.map((colaborator, index) => (
+        <CardDos key={index} colaborator={colaborator} sub={sub}/>
         )))):(<p className='col-span-3 items-center text-center mt-6'>{noColaborators}</p>)
         }
   </div>

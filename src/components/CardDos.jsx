@@ -7,7 +7,7 @@ import CollaboratorsContext from "../context/collaborators";
 function CardDos({colaborator, sub}) {
   const{origHireDate, evaluators, myteamViewDetail} =useContext(CollaboratorsContext);
  const[calibracion, setCalibracion]=useState([]); 
-  console.log('el valor de sub es:'+sub+'el usuario es:'+colaborator.APELLIDOS);
+  //console.log('el valor de sub es:'+sub+'el usuario es:'+colaborator.APELLIDOS);
   const getcalib= async (id) => {
     try {
       //setIsLoading(true);
@@ -45,9 +45,9 @@ function CardDos({colaborator, sub}) {
         <p><b>{origHireDate}:</b>{colaborator.FECHA_CONTRATACION}</p>
         <p><b>{evaluators}:</b>{colaborator.NO_EVALUADORES}</p>
           {calibracion?.map((cal, index)=>(
-            <>
-            <p key={index}><b>{cal.TITULO} {cal.ANO_EVAL}:</b> {cal.VALORES}</p>
-            </>
+            <div key={index}>
+            <p><b>{cal.TITULO} {cal.ANO_EVAL}:</b> {cal.VALORES}</p>
+            </div>
             ))}
             
         </div>
