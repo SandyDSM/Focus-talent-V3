@@ -18,6 +18,7 @@ function TeamTestDetail() {
   const [testPreguntas, setTestPreguntas] = useState();
   const [aniosFill, setAniosFill] = useState([]);
   const [selall, setSelall]=useState(false);
+  const [load, setLoad] = useState(true)
 //////////////////////////////////////////////////////////////////////////////////
 const [dataBehavior, setDataBehavior] =useState([])
 
@@ -37,11 +38,14 @@ const [dataBehavior, setDataBehavior] =useState([])
 
   const fetcBehaviors = async () => {
     try{
+      setLoad(true)
       const response = await getData();
       setDataBehavior(response)
       //console.log(response)
     }catch (error) {
       console.log("error:", error);
+    }finally{
+      setLoad(false)
     }
   };
 
@@ -136,10 +140,9 @@ const [dataBehavior, setDataBehavior] =useState([])
           : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
     },
   };
-  if (isLoading) {
+  if (isLoading & load) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        {" "}
         <Loader size="large" />
       </div>
     );

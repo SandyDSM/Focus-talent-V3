@@ -3,7 +3,6 @@ import { useEffect, useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import { Loader } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
-import { API } from 'aws-amplify';
 
 
 function Validations() {
