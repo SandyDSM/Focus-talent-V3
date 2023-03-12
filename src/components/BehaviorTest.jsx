@@ -13,6 +13,7 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
+
 import {
   Button,
   Divider,
@@ -25,6 +26,10 @@ import {
 import IconProfile from "../ui-components/IconProfile";
 import RatingStars from "../ui-components/RatingStars";
 import PDFComportamientos from "../PDFComportamientos";
+
+import { useContext} from "react";
+import CollaboratorsContext from "../context/collaborators";
+
 export default function BehaviorTest(props) {
   const {
     overrides: overridesProp,
@@ -34,7 +39,23 @@ export default function BehaviorTest(props) {
     ...restProp
   } = props;
 
-  console.log("los datos son",dataBehavior);
+  //console.log("los datos son",dataBehavior);
+
+  const {
+    behaReview,
+    managerReview,
+    reviewer,
+    rating,
+    comments,
+    subReview,
+    downloadPDF,
+    noData
+
+    } = useContext(CollaboratorsContext);
+
+
+
+
 
   const thisYear = dataBehavior?.filter((c) => c.ANIO === anios);
   //console.log(thisYear.length)
@@ -288,7 +309,7 @@ export default function BehaviorTest(props) {
               shrink="0"
               alignSelf="stretch"
               level="4"
-              children={`Comportamientos ${anios}`}
+              children={`${behaReview} ${anios}`}
               {...getOverrideProps(overrides, "Heading")}
             ></Heading>
             <Text
@@ -545,7 +566,7 @@ export default function BehaviorTest(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children="Evaluación Jefe Directo"
+                children={`${managerReview}`}
                 {...getOverrideProps(
                   overrides,
                   "PerformanceCalibration39504660"
@@ -609,7 +630,7 @@ export default function BehaviorTest(props) {
                     position="relative"
                     padding="0px 0px 0px 0px"
                     whiteSpace="pre-wrap"
-                    children="Revisor"
+                    children={`${reviewer}`}
                     {...getOverrideProps(overrides, "Revisor39504667")}
                   ></Text>
                   <Text
@@ -632,7 +653,7 @@ export default function BehaviorTest(props) {
                     position="relative"
                     padding="0px 0px 0px 0px"
                     whiteSpace="pre-wrap"
-                    children="Clasificación"
+                    children= {rating}
                     {...getOverrideProps(
                       overrides,
                       "Clasificaci\u00F3n39504670"
@@ -745,7 +766,7 @@ export default function BehaviorTest(props) {
                   position="relative"
                   padding="0px 0px 0px 0px"
                   whiteSpace="pre-wrap"
-                  children="Comentarios"
+                  children= {comments}
                   {...getOverrideProps(overrides, "Comentarios39504685")}
                 ></Text>
                 <Text
@@ -815,7 +836,7 @@ export default function BehaviorTest(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Evaluación de Reportes directos"
+            children={subReview}
             {...getOverrideProps(overrides, "PerformanceCalibration39504914")}
           ></Text>
           <Divider
@@ -876,7 +897,7 @@ export default function BehaviorTest(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children="Revisor"
+                children={`${reviewer}`}
                 {...getOverrideProps(overrides, "Revisor39514553")}
               ></Text>
               <Text
@@ -899,7 +920,7 @@ export default function BehaviorTest(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children="Clasificación"
+                children= {rating}
                 {...getOverrideProps(overrides, "Clasificaci\u00F3n39514554")}
               ></Text>
             </Flex>
@@ -1015,7 +1036,7 @@ export default function BehaviorTest(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Comentarios"
+              children={comments}
               {...getOverrideProps(overrides, "Comentarios")}
             ></Text>
           </Flex>
@@ -1115,7 +1136,7 @@ export default function BehaviorTest(props) {
           size="small"
           isDisabled={false}
           variation="primary"
-          children="Descargar  PDF"
+          children={downloadPDF}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
         </PDFDownloadLink>
@@ -1123,7 +1144,7 @@ export default function BehaviorTest(props) {
       </Flex>
       </div>
           ):
-          <div className="w-full"><p>No existen datos</p></div>}
+          <div className="w-full"><p>{noData}</p></div>}
     </Flex>
   );
 }

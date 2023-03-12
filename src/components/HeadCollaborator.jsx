@@ -18,8 +18,23 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Text, useBreakpointValue } from "@aws-amplify/ui-react";
 import { IconProfile } from "../ui-components";
+import { useContext, useEffect, useState } from "react";
+import CollaboratorsContext from "../context/collaborators";
+
+
+
+
+
 export default function HeadCollaborator(props) {
   const {aniosFill, datosUsuario, testPreguntas, dataBehavior, overrides: overridesProp, ...restProp } = props;
+  
+  const {
+    downloadAllPDF
+
+  } = useContext(CollaboratorsContext);
+
+  
+  
   const variants = [
     {
       overrides: {
@@ -347,7 +362,7 @@ export default function HeadCollaborator(props) {
         size="default"
         isDisabled={false}
         variation="primary"
-        children="Descargar todo PDF"
+        children= {downloadAllPDF}
         {...getOverrideProps(overrides, "ButtonPDF")}
       ></Button>
       </PDFDownloadLink>

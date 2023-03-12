@@ -5,7 +5,9 @@ import CollaboratorsContext from "../context/collaborators";
 
 
 function Tabs({title= "Título", collaborators, sub }) {
-  const {isLoading, noColaborators} = useContext(CollaboratorsContext);
+  const {isLoading, noColaborators, origHireDate} = useContext(CollaboratorsContext);
+  console.log("sdasdadasdasdasdasdasd", origHireDate);
+  console.log("ffffffffffffffffff", noColaborators);
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">

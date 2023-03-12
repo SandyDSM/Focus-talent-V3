@@ -66,6 +66,14 @@ const[buttonBack, setButtonBack]=useState('Regresar');
 const[buttonMyTeam, setButtonMyTeam]=useState('Mi Equipo');
 const[downloadPDF, setDownloadPDF]=useState('Descargar PDF');
 const[downloadAllPDF, setDownloadAllPDF]=useState('Descargar todo PDF');
+const[perReview, setPerReview]=useState('Evaluación de Desempeño');
+const [behaReview, setBehaReview]=useState('Comportamientos');
+const [managerReview, setManagerReview]=useState('Evaluación Jefe Directo');
+const [reviewer, setReviewer]=useState('Revisor');
+const [rating, setRating]=useState('Clasificación');
+const [comments, setComments]=useState('Comentarios');
+const [subReview, setSubReview]=useState('Evaluación de Reportes directos');
+const [potReview, setPotReview]=useState('Evaluación de potencial');
 
 
 
@@ -83,7 +91,69 @@ const navigate = useNavigate();
       console.log("error:", error);
     }
   };
+////////////////////////////////////////7
+function getData(idioma) {
+  const apiName = 'API Behaviors';
+  const path = '/translations';
+  const myInit = {
+    headers: {}, // OPTIONAL
+    queryStringParameters: {
+      LANGUAGE: `'${idioma}'`,
+    }
+  };
 
+  return API.get(apiName, path, myInit);
+}
+
+const fetcLanguage = async (idioma) => {
+  try{
+    const response = await getData(idioma);
+   // console.log("Languajeeeee",response);
+   
+   response?.filter((c)=>(c.ETIQUETA=='banersearch')).map((trad)=>(setBanerSearch(trad.TRADUCCION)));
+   response?.filter((c)=>(c.ETIQUETA=='busqueda')).map((trad)=>(setBusqueda(trad.TRADUCCION)));
+   response?.filter((c)=>(c.ETIQUETA=='myteamoption1')).map((trad)=>(setMyteamOption1(trad.TRADUCCION)));
+   response?.filter((c)=>(c.ETIQUETA=='myteamoption2')).map((trad)=>(setMyteamOption2(trad.TRADUCCION)));
+   response?.filter((c)=>(c.ETIQUETA=='myteamoption3')).map((trad)=>(setMyteamOption3(trad.TRADUCCION)));
+   response?.filter((c)=>(c.ETIQUETA=='myteamoption4')).map((trad)=>(setMyteamOption4(trad.TRADUCCION)));
+   response?.filter((c)=>(c.ETIQUETA=='myteamoption5')).map((trad)=>(setMyteamOption5(trad.TRADUCCION)));
+   response?.filter((c)=>(c.ETIQUETA=='myteamviewdetail')).map((trad)=>(setMyteamViewDetail(trad.TRADUCCION)));
+   response?.filter((c)=>(c.ETIQUETA=='teamfrom')).map((trad)=>(setTeamFrom(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='nocollaborators')).map((trad)=>(setNoColaborators(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='orighiredate')).map((trad)=>(setOrigHireDate(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='evaluators')).map((trad)=>(setEvaluators(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='nodata')).map((trad)=>(setNoData(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='filterevaluations')).map((trad)=>(setFilterEvaluations(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='buttonselectall')).map((trad)=>(setButtonSelectAll(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='buttonclear')).map((trad)=>(setButtonClear(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='buttonview')).map((trad)=>(setButtonView(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='buttonback')).map((trad)=>(setButtonBack(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='buttonmyteam')).map((trad)=>(setButtonMyTeam(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='downloadpdf')).map((trad)=>(setDownloadPDF(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='downloadallpdf')).map((trad)=>(setDownloadAllPDF(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='perreview')).map((trad)=>(setPerReview(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='behareview')).map((trad)=>(setBehaReview(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='managerreview')).map((trad)=>(setManagerReview(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='reviewer')).map((trad)=>(setReviewer(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='rating')).map((trad)=>(setRating(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='comments')).map((trad)=>(setComments(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='subreview')).map((trad)=>(setSubReview(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='potreview')).map((trad)=>(setPotReview(trad.TRADUCCION)));
+
+
+   
+
+
+
+
+
+  }catch (error) {
+    console.log("error:", error);
+  }
+};
+
+
+/////////////////////////////////////
  
   const getAttribColaborators = async (correo) => {
     try {
@@ -102,6 +172,7 @@ const navigate = useNavigate();
       //console.log("Usuario logueado: ", datos[0]);
       setUsuarioActualDatos(datos[0]);
       const esAdmin = datos[0].ADMIN;
+      fetcLanguage(datos[0].IDIOMA);
       if(esAdmin === "1") {
         setIsAdmin(true);
       }else {
@@ -465,7 +536,15 @@ buttonView,
 buttonBack,
 buttonMyTeam,
 downloadPDF,
-downloadAllPDF
+downloadAllPDF,
+perReview,
+behaReview,
+managerReview,
+reviewer,
+rating,
+comments,
+subReview,
+potReview
       }}
     >
       {children}

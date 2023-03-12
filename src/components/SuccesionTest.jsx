@@ -27,6 +27,11 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import { IconProfile } from "../ui-components";
+
+import { useContext} from "react";
+import CollaboratorsContext from "../context/collaborators";
+
+
 export default function SuccesionTest(props) {
   const {
     datosUsuario,
@@ -36,6 +41,18 @@ export default function SuccesionTest(props) {
     ...restProp
   } = props;
   const testPreguntas = arrayPreguntas;
+  
+  const {
+    potReview,
+    downloadPDF,
+    noData
+
+    } = useContext(CollaboratorsContext);
+  
+  
+
+  
+  
   const variants = [
     {
       overrides: {
@@ -342,7 +359,7 @@ export default function SuccesionTest(props) {
             shrink="0"
             alignSelf="stretch"
             level="4"
-            children={`Evaluación de potencial ${anios}`}
+            children={`${potReview} ${anios}`}
             {...getOverrideProps(overrides, "Heading")}
           ></Heading>
           <Text
@@ -1904,7 +1921,7 @@ export default function SuccesionTest(props) {
             size="small"
             isDisabled={false}
             variation="primary"
-            children="Descargar  PDF"
+            children={downloadPDF}
             {...getOverrideProps(overrides, "Button")}
           ></Button>
         </PDFDownloadLink>

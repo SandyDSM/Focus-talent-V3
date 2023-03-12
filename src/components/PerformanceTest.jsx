@@ -24,6 +24,8 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import IconProfile from "../ui-components/IconProfile";
+import { useContext } from "react";
+import CollaboratorsContext from "../context/collaborators";
 //////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////
@@ -37,6 +39,10 @@ export default function PerformanceTest(props) {
     overrides: overridesProp,
     ...restProp
   } = props;
+
+
+const {perReview, noData, downloadPDF}=useContext(CollaboratorsContext);
+
 
   const testPreguntas = arrayPreguntas;
   const thisYear = testPreguntas?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios);
@@ -231,7 +237,7 @@ export default function PerformanceTest(props) {
             shrink="0"
             alignSelf="stretch"
             level="4"
-            children={`Evaluación de desempeño ${anios}`}
+            children={`${perReview} ${anios}`}
             {...getOverrideProps(overrides, "Heading")}
           ></Heading>
           <Text
@@ -515,7 +521,7 @@ export default function PerformanceTest(props) {
               size="small"
               isDisabled={false}
               variation="primary"
-              children="Descargar  PDF"
+              children={downloadPDF}
               {...getOverrideProps(overrides, "ButtonPDF")}
             ></Button>
           </PDFDownloadLink>
@@ -523,7 +529,7 @@ export default function PerformanceTest(props) {
         </div>
       ) : (
         <div className="w-full">
-          <p>No existen datos</p>
+          <p>{noData}</p>
         </div>
       )}
     </Flex>

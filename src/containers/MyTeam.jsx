@@ -30,7 +30,8 @@ myteamOption1,
 myteamOption2,
 myteamOption3,
 myteamOption4,
-myteamOption5
+myteamOption5,
+downloadAllPDF
 
   } = useContext(CollaboratorsContext);
 
@@ -58,9 +59,9 @@ myteamOption5
   const fetcLanguage = async () => {
     try{
       const response = await getData();
-      console.log("Languaje",response)
+     // console.log("Languaje",response)
     }catch (error) {
-      console.log("error:", error);
+     // console.log("error:", error);
     }
   };
 

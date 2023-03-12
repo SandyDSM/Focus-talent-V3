@@ -402,7 +402,7 @@ const PDFConjunto = ({ DATOS, anios, datosUsuario, comportamientos }) => {
 
         
        
-        {anio != "2022" &&
+        {anio != "2023" &&
           <Page size="A4">
             <View
               style={{
