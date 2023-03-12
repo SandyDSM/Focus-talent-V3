@@ -53,6 +53,8 @@ export default function BehaviorTest(props) {
 
     } = useContext(CollaboratorsContext);
 
+    const etiquetas= useContext(CollaboratorsContext);
+
 
 
 
@@ -1127,6 +1129,7 @@ export default function BehaviorTest(props) {
             DATOS={dataBehavior}
                 anios={anios}
                 datosUsuario={datosUsuario}
+                etiquetas={etiquetas}
           />
           }
           fileName={`Comportamientos_${anios}.pdf`}

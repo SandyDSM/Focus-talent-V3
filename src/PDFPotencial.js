@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PDFPotencial = ({ DATOS, anios, datosUsuario }) => {
+const PDFPotencial = ({ DATOS, anios, datosUsuario, etiquetas }) => {
   const testPreguntas = DATOS;
   return (
     <Document>
@@ -93,7 +93,7 @@ const PDFPotencial = ({ DATOS, anios, datosUsuario }) => {
                   marginBottom: "5",
                 }}
               >
-                Evaluación de potencial {anios}
+                {etiquetas} {anios}
               </Text>
               <Text
                 style={{

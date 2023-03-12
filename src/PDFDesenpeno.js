@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PDFdesempeno = ({ DATOS, anios, datosUsuario }) => {
+const PDFdesempeno = ({ DATOS, anios, datosUsuario, etiquetas }) => {
   return (
     <Document>
       <Page size="A4">
@@ -90,7 +90,7 @@ const PDFdesempeno = ({ DATOS, anios, datosUsuario }) => {
                   marginBottom: "5",
                 }}
               >
-                Evaluación de desempeño {anios}
+                {etiquetas} {anios}
               </Text>
               <Text
                 style={{

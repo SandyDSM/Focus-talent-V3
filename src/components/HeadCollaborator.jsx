@@ -33,7 +33,9 @@ export default function HeadCollaborator(props) {
 
   } = useContext(CollaboratorsContext);
 
-  
+  const etiquetas=useContext(CollaboratorsContext);
+
+
   
   const variants = [
     {
@@ -356,7 +358,7 @@ export default function HeadCollaborator(props) {
           </Flex>
         </Flex>
       </Flex>
-      <PDFDownloadLink document={<PDFConjunto DATOS={testPreguntas} anios={aniosFill} datosUsuario={datosUsuario} comportamientos={dataBehavior}/>} fileName={`Evalución_de_desempeño_potencial.pdf`}>
+      <PDFDownloadLink document={<PDFConjunto DATOS={testPreguntas} anios={aniosFill} datosUsuario={datosUsuario} comportamientos={dataBehavior} etiquetas={etiquetas}/>} fileName={`Evalución_de_desempeño_potencial.pdf`}>
       <Button
         shrink="0"
         size="default"

@@ -93,7 +93,7 @@ const stars4 =
 const stars5 =
   "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";
 
-const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
+const PDFComportamientos = ({ DATOS, anios, datosUsuario, etiquetas }) => {
   const testPreguntas = DATOS;
   return (
     <Document>
@@ -133,7 +133,7 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
                   marginBottom: "5",
                 }}
               >
-                Comportamientos {anios}
+                {etiquetas.behaReview} {anios}
               </Text>
               <Text
                 style={{
@@ -179,14 +179,14 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
                 }}
                 src={pre.QUEST_RESP_RATING_SCORE=='1' ? "data:image/jpg;base64,"+stars1 : pre.QUEST_RESP_RATING_SCORE=='2' ? "data:image/jpg;base64,"+stars2: pre.QUEST_RESP_RATING_SCORE=='3' ? "data:image/jpg;base64,"+stars3 : pre.QUEST_RESP_RATING_SCORE=='4' ? "data:image/jpg;base64,"+stars4 : pre.QUEST_RESP_RATING_SCORE=='5' ? "data:image/jpg;base64,"+stars5 : ''}
               ></Image>
-                  {"Evaluación Jefe Directo"}
+                  {etiquetas.managerReview}
                 </Text>
                 <View style={styles.divider}></View>
               </View>
 
               <View style={styles.rowsGrey}>
-                <Text style={styles.txtTitle}>Revisor</Text>
-                <Text style={styles.txtTitle}>Clasificación</Text>
+                <Text style={styles.txtTitle}>{etiquetas.reviewer}</Text>
+                <Text style={styles.txtTitle}>{etiquetas.rating}</Text>
               </View>
               <View style={styles.rowsbetween}>
                 <Text
@@ -253,7 +253,7 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
                 </View>
               </View>
               <View style={styles.colums}>
-                <Text style={styles.txtTitle}>Comentarios</Text>
+                <Text style={styles.txtTitle}>{etiquetas.comments}</Text>
                 <View>
                   <Text style={styles.txtBody}>
                     {pre.QUESTION_RESP_COMMENT}
@@ -279,13 +279,13 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
                   marginBottom: "5",
                 }}
               >
-                Evaluación de Reportes directos
+                {etiquetas.subReview}
               </Text>
             </View>
             <View style={styles.divider}></View>
             <View style={styles.rowsGrey}>
-              <Text style={styles.txtTitle}>Revisor</Text>
-              <Text style={styles.txtTitle}>Clasificación</Text>
+              <Text style={styles.txtTitle}>{etiquetas.reviewer}</Text>
+              <Text style={styles.txtTitle}>{etiquetas.rating}</Text>
             </View>
 
             {DATOS?.filter(
@@ -346,7 +346,7 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario }) => {
             <View style={styles.colums}>
               <View style={styles.rowsGrey}>
 
-                <Text style={styles.txtTitle}>Comentarios</Text>
+                <Text style={styles.txtTitle}>{etiquetas.comments}</Text>
               </View>
               {DATOS?.filter(
                 (c) => c.ANIO == anios && c.MANAGER_OR_SUBORD == "false"

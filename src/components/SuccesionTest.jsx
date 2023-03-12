@@ -1912,6 +1912,7 @@ export default function SuccesionTest(props) {
               DATOS={testPreguntas}
               anios={anios}
               datosUsuario={datosUsuario}
+              etiquetas={potReview}
             />
           }
           fileName={`Evalución_de_potencial_${anios}.pdf`}
