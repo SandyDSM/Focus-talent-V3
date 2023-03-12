@@ -1,8 +1,8 @@
 import React from "react";
 import { Amplify, Auth } from "aws-amplify";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import "@aws-amplify/ui-react/styles.css";
 
@@ -24,11 +24,15 @@ import ForgotPss from "./containers/ForgotPss"
 import ScrollToTop from "./components/ScrollToTop";
 import Validations from "./components/Validations";
 import Forbidden from "./containers/Forbidden";
+import { ProtectedRoutes } from "./context/ProtectRoutes";
+import CollaboratorsContext from "./context/collaborators";
+
 Amplify.configure(awsExports);
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const { usuarioActualDatos, isAdmin } = useContext(CollaboratorsContext);
 
   const assessLoggedInState = () => {
     Auth.currentAuthenticatedUser()
@@ -44,7 +48,8 @@ function App() {
   };
   useEffect(() => {
     assessLoggedInState();
-  }, []);
+  }, [loggedIn]);
+  
 
   const signOut = async () => {
     try {
@@ -64,14 +69,16 @@ function App() {
           <div>{loggedIn && <NavHeader/>}</div>
             <Routes>
               <Route exact path="/" element={ loggedIn ? <Validations/> : <SignIn onSignIn={assessLoggedInState} />}/>
-              <Route exact path="/home" element={loggedIn ? <HomeAdmin signOut={signOut}/> : <Validations/>  } />
-              <Route exact path="/test" element={loggedIn ? <Test /> : <SignIn onSignIn={assessLoggedInState} /> } />
-              <Route exact path="/tags" element={loggedIn ? <Tags /> : <SignIn onSignIn={assessLoggedInState} />} />
-              <Route exact path="/notif" element={loggedIn ? <Notif /> : <SignIn onSignIn={assessLoggedInState} />} />
-              <Route exact path="/myteam" element={loggedIn ? <MyTeam /> : <SignIn onSignIn={assessLoggedInState} />} />
-              <Route exact path="/myteam/:id" element={loggedIn ? <TeamSub /> : <SignIn onSignIn={assessLoggedInState} />} />
-              <Route exact path="/test/:id" element={loggedIn ? <TeamTestDetail /> : <SignIn onSignIn={assessLoggedInState} />} />
-              <Route exact path="/forgotpassword" element={ loggedIn ? <Validations/> : <ForgotPss/>}/>
+              <Route element={<ProtectedRoutes loggedIn={loggedIn} />}>
+              <Route exact path="/home" element={<HomeAdmin signOut={signOut}/>} />
+                <Route exact path="/test" element={<Test /> } />
+                <Route exact path="/tags" element={<Tags /> }/>
+                <Route exact path="/notif" element={<Notif />}/>
+                <Route exact path="/myteam" element={<MyTeam /> } />
+                <Route exact path="/myteam/:id" element={<TeamSub /> } />
+                <Route exact path="/test/:id" element={<TeamTestDetail /> } />
+              </Route>
+              <Route exact path="/forgotpassword" element={ <ForgotPss/>}/>
               <Route exact path="/forbidden" element={ <Forbidden/>}/>
             </Routes>
           </CollaboratorsProvider>

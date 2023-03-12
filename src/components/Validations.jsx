@@ -10,8 +10,13 @@ function Validations() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    isAdminister();
+    if(usuarioActualDatos.ID_COLABORADOR!= undefined){
+      isAdminister();
+    }
   }, [usuarioActualDatos.ID_COLABORADOR]);
+
+  //console.log(isAdmin);
+  //console.log(usuarioActualDatos);
 
   function isAdminister() {
     if (isAdmin) {

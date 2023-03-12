@@ -31,6 +31,7 @@ const SignIn = ({ onSignIn }) => {
       const user = await Auth.signIn(username, password);
       setError(false);
       onSignIn();
+      
     } catch (error) {
       console.log("there was an error logging in", error);
       setError(true);
