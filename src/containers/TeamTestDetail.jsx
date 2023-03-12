@@ -8,7 +8,7 @@ import BreadCrums from "../components/BreadCrums";
 import { Button, Loader } from "@aws-amplify/ui-react";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
 import Configuration from '../utils/Configuration'
-import { Amplify, API } from 'aws-amplify';
+import { API } from 'aws-amplify';
 
 function TeamTestDetail() {
   const { id } = useParams();

@@ -3,6 +3,8 @@ import React from "react";
 import HeadTeam from "../components/HeadTeam";
 import { Loader } from "@aws-amplify/ui-react";
 import { API } from 'aws-amplify';
+import Configuration from '../utils/Configuration'
+
 
 import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -38,14 +40,15 @@ myteamOption5
   const toggleTab = (index) => {
     setOption(index);
   };
-/*
+
+  console.log(usuarioActualDatos.IDIOMA)
   function getData() {
     const apiName = 'API Behaviors';
     const path = '/translations';
     const myInit = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
+        LANGUAGE: `'${usuarioActualDatos.IDIOMA}'`,
       }
     };
   
@@ -59,7 +62,7 @@ myteamOption5
     }catch (error) {
       console.log("error:", error);
     }
-  };*/
+  };
 
 
   useEffect(() => {
@@ -70,7 +73,7 @@ myteamOption5
 
   useEffect(() => { 
     //actualizaBusqueda(collaborators);
-    //fetcLanguage();
+    fetcLanguage();
   }, [usuarioActualDatos]);
 
 function cambia(evento){
