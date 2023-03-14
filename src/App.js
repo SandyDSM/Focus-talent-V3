@@ -25,24 +25,24 @@ import ScrollToTop from "./components/ScrollToTop";
 import Validations from "./components/Validations";
 import Forbidden from "./containers/Forbidden";
 import { ProtectedRoutes } from "./context/ProtectRoutes";
-import CollaboratorsContext from "./context/collaborators";
 
 Amplify.configure(awsExports);
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const { usuarioActualDatos, isAdmin } = useContext(CollaboratorsContext);
+  const [loggedIn, setLoggedIn] = useState(window.localStorage.getItem('logged'));
 
   const assessLoggedInState = () => {
     Auth.currentAuthenticatedUser()
       .then((sess) => {
         console.log("logged in");
         setLoggedIn(true);
+        window.localStorage.setItem("logged", true)
       })
       .catch(() => {
         console.log("not logged in");
         setLoggedIn(false);
+        window.localStorage.setItem("logged", false)
         console.log({ setLoggedIn });
       });
   };
