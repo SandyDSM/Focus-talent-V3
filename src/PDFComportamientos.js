@@ -151,98 +151,105 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario, etiquetas }) => {
           {DATOS?.filter(
             (c) => c.ANIO == anios && c.MANAGER_OR_SUBORD == "true"
           ).map((pre) => (
-            <View style={styles.colums}>
-              <Text
-                style={{
-                  fontSize: "16px",
-                  marginBottom: "5px",
-                }}
-              >
-                {etiquetas.managerReview}
-              </Text>
+            <View>
               <View style={styles.colums}>
-                <View style={styles.rowsGrey}>
-                  <Text
-                    style={{
-                      fontFamily: "Open Sans",
-                      width: "45%",
-                      fontSize: "12px",
-                      fontWeight: "600",
-                      margin: "5px",
-                    }}
-                  >
-                    {etiquetas.reviewer}
-                  </Text>
-                  <Text style={{
-                      fontFamily: "Open Sans",
-                      width: "50%",
-                      fontSize: "12px",
-                      fontWeight: "600",
-                      margin: "5px",
-                    }}>{etiquetas.rating}</Text>
-                </View>
-                <View style={styles.rowsbetween}>
-                  <Text style={styles.txtBody}>
-                    {pre.NOMBRE} {pre.APELLIDOS}
-                  </Text>
-                  <View style={{marginLeft:"120px"}}>
-                    <Image
-                      style={{
-                        width: "60px",
-                        height: "10px",
-                        display: "block",
-                        borderRadius: "8px",
-                        marginRight: "210px",
-                      }}
-                      src={
-                        pre.QUEST_RESP_RATING_SCORE == "1"
-                          ? "data:image/jpg;base64," + stars1
-                          : pre.QUEST_RESP_RATING_SCORE == "2"
-                          ? "data:image/jpg;base64," + stars2
-                          : pre.QUEST_RESP_RATING_SCORE == "3"
-                          ? "data:image/jpg;base64," + stars3
-                          : pre.QUEST_RESP_RATING_SCORE == "4"
-                          ? "data:image/jpg;base64," + stars4
-                          : pre.QUEST_RESP_RATING_SCORE == "5"
-                          ? "data:image/jpg;base64," + stars5
-                          : ""
-                      }
-                    ></Image>
+                <Text
+                  style={{
+                    fontSize: "16px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  {etiquetas.managerReview}
+                </Text>
+                <View style={styles.colums}>
+                  <View style={styles.rowsGrey}>
                     <Text
                       style={{
                         fontFamily: "Open Sans",
-                        fontSize: "6px",
-                        marginRight: "5px",
-                        marginTop: "2px",
-                        color: "#5e615c",
-                        marginBottom: "5px",
+                        width: "45%",
+                        fontSize: "12px",
+                        fontWeight: "600",
+                        margin: "5px",
                       }}
                     >
-                      {pre.QUEST_RESP_RATING_TITLE}
+                      {etiquetas.reviewer}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: "Open Sans",
+                        width: "50%",
+                        fontSize: "12px",
+                        fontWeight: "600",
+                        margin: "5px",
+                      }}
+                    >
+                      {etiquetas.rating}
                     </Text>
                   </View>
-                </View>
-
-                <View style={styles.colums}>
-                  <Text style={styles.txtTitle}>{etiquetas.comments}</Text>
-                  <View>
+                  <View style={styles.rowsbetween}>
                     <Text style={styles.txtBody}>
-                      {pre.QUESTION_RESP_COMMENT}
+                      {pre.NOMBRE} {pre.APELLIDOS}
                     </Text>
+                    <View style={{ marginLeft: "120px" }}>
+                      <Image
+                        style={{
+                          width: "60px",
+                          height: "10px",
+                          display: "block",
+                          borderRadius: "8px",
+                          marginRight: "210px",
+                        }}
+                        src={
+                          pre.QUEST_RESP_RATING_SCORE == "1"
+                            ? "data:image/jpg;base64," + stars1
+                            : pre.QUEST_RESP_RATING_SCORE == "2"
+                            ? "data:image/jpg;base64," + stars2
+                            : pre.QUEST_RESP_RATING_SCORE == "3"
+                            ? "data:image/jpg;base64," + stars3
+                            : pre.QUEST_RESP_RATING_SCORE == "4"
+                            ? "data:image/jpg;base64," + stars4
+                            : pre.QUEST_RESP_RATING_SCORE == "5"
+                            ? "data:image/jpg;base64," + stars5
+                            : ""
+                        }
+                      ></Image>
+                      <Text
+                        style={{
+                          fontFamily: "Open Sans",
+                          fontSize: "6px",
+                          marginRight: "5px",
+                          marginTop: "2px",
+                          color: "#5e615c",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        {pre.QUEST_RESP_RATING_TITLE}
+                      </Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.colums}>
+                    <Text style={styles.txtTitle}>{etiquetas.comments}</Text>
+                    <View>
+                      <Text style={styles.txtBody}>
+                        {pre.QUESTION_RESP_COMMENT}
+                      </Text>
+                    </View>
                   </View>
                 </View>
+              </View>
+
+              <View
+                style={{
+                  marginTop: "15px",
+                  marginBottom: "15px",
+                }}
+              >
+                <View style={styles.divider}></View>
               </View>
             </View>
           ))}
 
-          <View
-            style={{
-              marginTop: "15px",
-              marginBottom: "15px",
-            }}
-          >
-            <View style={styles.divider}></View>
-          </View>
           {DATOS?.filter(
             (c) => c.ANIO == anios && c.MANAGER_OR_SUBORD == "false"
           ) != 0 && (

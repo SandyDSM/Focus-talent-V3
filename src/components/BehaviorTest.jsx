@@ -535,12 +535,12 @@ export default function BehaviorTest(props) {
             display="flex"
             {...getOverrideProps(overrides, "Frame 13981")}
           >
-            {console.log(dataBehavior)}
             {dataBehavior
               ?.filter(
                 (c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "true"
               )
               .map((dato, index) => (
+                <>
                 <Flex
                   gap="12px"
                   direction="column"
@@ -839,7 +839,7 @@ export default function BehaviorTest(props) {
                     ></Text>
                   </Flex>
                 </Flex>
-              ))}
+             
             <Divider
               width="unset"
               height="1px"
@@ -849,6 +849,8 @@ export default function BehaviorTest(props) {
               orientation="horizontal"
               {...getOverrideProps(overrides, "Divider39504942")}
             ></Divider>
+            </>
+             ))}
             {dataBehavior?.filter(
               (c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "false"
             ) != 0 && (
