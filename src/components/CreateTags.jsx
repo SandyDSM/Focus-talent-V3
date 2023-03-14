@@ -2,13 +2,57 @@ import React from "react";
 import { Heading, Divider, TextField, Button } from "@aws-amplify/ui-react";
 import HeadCreateTable from "./HeadCreateTags";
 import { useState } from "react";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { API } from "aws-amplify";
 
 
 function CreateTags({etiquetasamod, botonhabilitado, setetiquetasmod}) {
 
   const [isLoad, setIsLoad ] = useState(false)
 ///////////////////////////////////////////////////////////////// 
+
+function getData(etiquetasx, espaniol, ingles, frances, portugues, chino) {
+  const apiName = 'API Behaviors';
+  const path = '/edittags';
+  const myInit = {
+    headers: {}, // OPTIONAL
+    queryStringParameters: {
+      ETIQUETA: `'${etiquetasx}'`,
+      es_MX: `'${espaniol}'`, 
+      en_US : `'${ingles}'`,
+      fr_CA : `'${frances}'`,
+      pt_BR : `'${portugues}'`, 
+      zh_CN : `'${chino}'`
+    }
+  };
+
+  return API.get(apiName, path, myInit);
+}
+
+const updateTags = async (etiquetasx, espaniol, ingles, frances, portugues, chino) => {
+ 
+  console.log("la etiqueta ********* es:",etiquetasx);
+  console.log("la etiqueta en español es:",espaniol);
+  
+  try{
+    const response = await getData(etiquetasx, espaniol, ingles, frances, portugues, chino);
+   
+    console.log("Datos actualizados");
+
+  }catch (error) {
+  
+    console.log("error:", error);
+  }finally{
+    setIsLoad(false);
+  }
+
+};
+
+
+
+
+
+/*
 const updateTags= async (etiquetasx, espaniol, ingles, frances, portugues, chino) => {
   try {
     //alert("si intenta actualizar");
@@ -38,11 +82,10 @@ const updateTags= async (etiquetasx, espaniol, ingles, frances, portugues, chino
    
    console.log("Si hay error", error);
   }  finally{
-    setIsLoad(false)
-    Alerta()
+    setIsLoad(false);
   }
 };
-
+*/
 //////////////////////////////////////////////////////////////////
 function actualiza()
 {

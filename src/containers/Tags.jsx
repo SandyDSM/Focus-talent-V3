@@ -7,6 +7,7 @@ import CollaboratorsContext from "../context/collaborators";
 import { Loader } from "@aws-amplify/ui-react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { API } from "aws-amplify";
 
 function Tags() {
   const [etiquetas, setEtiquetas] = useState([]);
@@ -15,9 +16,35 @@ function Tags() {
 
   useEffect(() => {
     gettags();
-  }, [etiquetas]);
+  }, []);
+
+
+  function getData() {
+    const apiName = 'API Behaviors';
+    const path = '/admintags';
+    const myInit = {
+   
+    };
+  
+    return API.get(apiName, path, myInit);
+  }
+  
+  const gettags = async () => {
+    try{
+      const response = await getData();
+   
+  setEtiquetas(response);
+  
+    }catch (error) {
+    setEtiquetas([]);
+      console.log("error:", error);
+    }
+  };
+
+
 
   //const {isLoading, setIsLoading}=useContext(CollaboratorsContext)
+  /*
   const gettags = async () => {
     try {
       const respdesemp = await fetch(
@@ -36,7 +63,7 @@ function Tags() {
       setEtiquetas([]);
     }
   };
-
+*/
   return (
     <div className="flex flex-col gap-6">
       <HeadAdmin title={"Administrar etiquetas"} />

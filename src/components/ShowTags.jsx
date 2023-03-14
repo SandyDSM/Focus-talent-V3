@@ -22,8 +22,8 @@ function ShowTags({etiquetas, etiquetasmod, buttonhabilitado}) {
         
       
       {etiquetas?.map((etiq)=>(  
-        <TableRowTags key={etiq.ID}
-        etiqueta={etiq.ID}
+        <TableRowTags key={etiq.ETIQUETA}
+        etiqueta={etiq.ETIQUETA}
         espvalue={etiq.es_MX}
         engvalue={etiq.en_US}
         fravalue={etiq.fr_CA}
