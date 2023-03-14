@@ -6,7 +6,8 @@ import Swal from 'sweetalert2';
 import { API } from "aws-amplify";
 
 
-function CreateTags({etiquetasamod, botonhabilitado, setetiquetasmod}) {
+
+function CreateTags({etiquetasamod, botonhabilitado, setetiquetasmod, reloadTags, setReloadTags}) {
 
   const [isLoad, setIsLoad ] = useState(false)
 ///////////////////////////////////////////////////////////////// 
@@ -31,13 +32,21 @@ function getData(etiquetasx, espaniol, ingles, frances, portugues, chino) {
 
 const updateTags = async (etiquetasx, espaniol, ingles, frances, portugues, chino) => {
  
-  console.log("la etiqueta ********* es:",etiquetasx);
-  console.log("la etiqueta en español es:",espaniol);
-  
   try{
     const response = await getData(etiquetasx, espaniol, ingles, frances, portugues, chino);
-   
-    console.log("Datos actualizados");
+   setReloadTags(!reloadTags);
+    //console.log("Datos actualizados");
+
+    Swal.fire({
+      icon: 'success',
+      text: 'Las etiquetas se han almacenado exitosamente',
+      confirmButtonText: "Entendido",
+      confirmButtonColor:"#004B85"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //setOpen(false)
+      }
+    })
 
   }catch (error) {
   

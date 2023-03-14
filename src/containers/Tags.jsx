@@ -13,10 +13,11 @@ function Tags() {
   const [etiquetas, setEtiquetas] = useState([]);
   const [etiquetasmod, setetiquetasmod] = useState(["", "", "", "", "", ""]);
   const [buttonavailable, setButtonavailable] = useState(true);
+  const [reloadTags, setReloadTags] = useState(true);
 
   useEffect(() => {
     gettags();
-  }, []);
+  }, [etiquetas, reloadTags]);
 
 
   function getData() {
@@ -72,6 +73,8 @@ function Tags() {
           etiquetasamod={etiquetasmod}
           setetiquetasmod={setetiquetasmod}
           botonhabilitado={buttonavailable}
+          reloadTags ={reloadTags}
+          setReloadTags = {setReloadTags}
         />
         <ShowTags
           etiquetas={etiquetas}
