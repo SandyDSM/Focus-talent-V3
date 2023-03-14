@@ -7,7 +7,7 @@
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { StarProps } from "./Star";
-import { FlexProps, TextProps } from "@aws-amplify/ui-react";
+import { FlexProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type RatingStarsOverridesProps = {
     RatingStars?: PrimitiveOverrideProps<FlexProps>;
@@ -17,7 +17,6 @@ export declare type RatingStarsOverridesProps = {
     Star39504873?: StarProps;
     Star39504874?: StarProps;
     Star39504875?: StarProps;
-    TxtRating?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type RatingStarsProps = React.PropsWithChildren<Partial<FlexProps> & {
     rating?: "0" | "1" | "2" | "3" | "4" | "5";

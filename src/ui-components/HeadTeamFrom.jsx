@@ -18,10 +18,7 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import Iconteam from "./Iconteam";
-import { useContext,  } from "react";
-import CollaboratorsContext from "../context/collaborators";
 export default function HeadTeamFrom(props) {
-  const{busqueda, teamFrom} =useContext(CollaboratorsContext)
   const { overrides: overridesProp, ...restProp } = props;
   const variants = [
     {
@@ -126,7 +123,7 @@ export default function HeadTeamFrom(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={teamFrom}
+          children="Equipo de: "
           {...getOverrideProps(overrides, "txt")}
         ></Text>
       </Flex>
@@ -156,7 +153,7 @@ export default function HeadTeamFrom(props) {
       <SearchField
         width="unset"
         height="unset"
-        placeholder= {busqueda}
+        placeholder="Buscar colaborador"
         shrink="0"
         size="default"
         isDisabled={false}

@@ -14,7 +14,6 @@ import {
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Loader } from "@aws-amplify/ui-react";
 
-
 import {
   Button,
   Divider,
@@ -28,7 +27,7 @@ import IconProfile from "../ui-components/IconProfile";
 import RatingStars from "../ui-components/RatingStars";
 import PDFComportamientos from "../PDFComportamientos";
 
-import { useContext} from "react";
+import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
 
 export default function BehaviorTest(props) {
@@ -51,15 +50,10 @@ export default function BehaviorTest(props) {
     comments,
     subReview,
     downloadPDF,
-    noData
+    noData,
+  } = useContext(CollaboratorsContext);
 
-    } = useContext(CollaboratorsContext);
-
-    const etiquetas= useContext(CollaboratorsContext);
-
-
-
-
+  const etiquetas = useContext(CollaboratorsContext);
 
   const thisYear = dataBehavior?.filter((c) => c.ANIO === anios);
   //console.log(thisYear.length)
@@ -525,76 +519,341 @@ export default function BehaviorTest(props) {
           {...getOverrideProps(overrides, "Divider39504658")}
         ></Divider>
       </Flex>
-      {thisYear.length >0 ?        
-      (<div className="w-full">
-      <Flex
-        gap="32px"
-        direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Frame 13981")}
-      >
-        {console.log(dataBehavior)}
-        {dataBehavior
-          ?.filter((c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "true")
-          .map((dato, index) => (
-            <Flex
-              gap="12px"
-              direction="column"
+      {thisYear.length > 0 ? (
+        <div className="w-full">
+          <Flex
+            gap="32px"
+            direction="column"
+            width="unset"
+            height="unset"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            display="flex"
+            {...getOverrideProps(overrides, "Frame 13981")}
+          >
+            {console.log(dataBehavior)}
+            {dataBehavior
+              ?.filter(
+                (c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "true"
+              )
+              .map((dato, index) => (
+                <Flex
+                  gap="12px"
+                  direction="column"
+                  width="unset"
+                  height="unset"
+                  justifyContent="flex-start"
+                  alignItems="flex-start"
+                  shrink="0"
+                  alignSelf="stretch"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  display="flex"
+                  {...getOverrideProps(overrides, "Frame 13979")}
+                >
+                  <Text
+                    fontFamily="Inter"
+                    fontSize="20px"
+                    fontWeight="700"
+                    color="rgba(0,0,0,0.8)"
+                    lineHeight="25px"
+                    textAlign="left"
+                    display="block"
+                    direction="column"
+                    justifyContent="unset"
+                    width="unset"
+                    height="unset"
+                    gap="unset"
+                    alignItems="unset"
+                    shrink="0"
+                    alignSelf="stretch"
+                    position="relative"
+                    padding="0px 0px 0px 0px"
+                    whiteSpace="pre-wrap"
+                    children={`${managerReview}`}
+                    {...getOverrideProps(
+                      overrides,
+                      "PerformanceCalibration39504660"
+                    )}
+                  ></Text>
+                  <Divider
+                    width="unset"
+                    height="1px"
+                    shrink="0"
+                    alignSelf="stretch"
+                    size="small"
+                    orientation="horizontal"
+                    {...getOverrideProps(overrides, "Divider39504662")}
+                  ></Divider>
+                  <Flex
+                    gap="16px"
+                    direction="column"
+                    width="unset"
+                    height="unset"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    shrink="0"
+                    alignSelf="stretch"
+                    position="relative"
+                    padding="0px 0px 0px 0px"
+                    display="flex"
+                    {...getOverrideProps(overrides, "Frame 1396539504665")}
+                  >
+                    <Flex
+                      gap="12px"
+                      direction="row"
+                      width="unset"
+                      height="unset"
+                      justifyContent="flex-start"
+                      alignItems="center"
+                      shrink="0"
+                      alignSelf="stretch"
+                      position="relative"
+                      padding="8px 8px 8px 8px"
+                      backgroundColor="rgba(239,240,240,1)"
+                      display="flex"
+                      {...getOverrideProps(overrides, "Frame 460")}
+                    >
+                      <Text
+                        fontFamily="Inter"
+                        fontSize="14px"
+                        fontWeight="700"
+                        color="rgba(0,0,0,0.8)"
+                        lineHeight="21px"
+                        textAlign="left"
+                        display="block"
+                        direction="column"
+                        justifyContent="unset"
+                        width="unset"
+                        height="unset"
+                        gap="unset"
+                        alignItems="unset"
+                        grow="1"
+                        shrink="1"
+                        basis="0"
+                        position="relative"
+                        padding="0px 0px 0px 0px"
+                        whiteSpace="pre-wrap"
+                        children={`${reviewer}`}
+                        {...getOverrideProps(overrides, "Revisor39504667")}
+                      ></Text>
+                      <Text
+                        fontFamily="Inter"
+                        fontSize="14px"
+                        fontWeight="700"
+                        color="rgba(0,0,0,0.8)"
+                        lineHeight="21px"
+                        textAlign="left"
+                        display="block"
+                        direction="column"
+                        justifyContent="unset"
+                        width="unset"
+                        height="unset"
+                        gap="unset"
+                        alignItems="unset"
+                        grow="1"
+                        shrink="1"
+                        basis="0"
+                        position="relative"
+                        padding="0px 0px 0px 0px"
+                        whiteSpace="pre-wrap"
+                        children={rating}
+                        {...getOverrideProps(
+                          overrides,
+                          "Clasificaci\u00F3n39504670"
+                        )}
+                      ></Text>
+                    </Flex>
+
+                    <Flex
+                      key={index}
+                      gap="12px"
+                      direction="row"
+                      width="unset"
+                      height="unset"
+                      justifyContent="flex-start"
+                      alignItems="center"
+                      shrink="0"
+                      alignSelf="stretch"
+                      position="relative"
+                      padding="0px 8px 0px 8px"
+                      display="flex"
+                      {...getOverrideProps(overrides, "Frame 46139504669")}
+                    >
+                      {console.log(dato)}
+                      <Text
+                        fontFamily="Inter"
+                        fontSize="14px"
+                        fontWeight="400"
+                        color="rgba(0,0,0,0.8)"
+                        lineHeight="17.5px"
+                        textAlign="left"
+                        display="block"
+                        direction="column"
+                        justifyContent="unset"
+                        width="unset"
+                        height="unset"
+                        gap="unset"
+                        alignItems="unset"
+                        grow="1"
+                        shrink="1"
+                        basis="0"
+                        alignSelf="stretch"
+                        position="relative"
+                        padding="0px 0px 0px 0px"
+                        whiteSpace="pre-wrap"
+                        children={`${dato.NOMBRE} ${dato.APELLIDOS}`}
+                        {...getOverrideProps(overrides, "answerPeople39504746")}
+                      ></Text>
+                      <Flex
+                        gap="10px"
+                        direction="column"
+                        width="unset"
+                        height="unset"
+                        justifyContent="flex-start"
+                        alignItems="flex-start"
+                        grow="1"
+                        shrink="1"
+                        basis="0"
+                        position="relative"
+                        padding="0px 0px 0px 0px"
+                        display="flex"
+                        {...getOverrideProps(overrides, "Frame 1397739504883")}
+                      >
+                        <Flex
+                          gap="4px"
+                          direction="column"
+                          width="unset"
+                          height="unset"
+                          justifyContent="flex-start"
+                          alignItems="flex-start"
+                          shrink="0"
+                          alignSelf="stretch"
+                          position="relative"
+                          padding="0px 8px 0px 8px"
+                          display="flex"
+                        >
+                          <RatingStars
+                            display="flex"
+                            gap="4px"
+                            direction="column"
+                            width="unset"
+                            height="unset"
+                            justifyContent="flex-start"
+                            alignItems="center"
+                            shrink="0"
+                            position="relative"
+                            padding="0px 0px 0px 0px"
+                            rating={`${dato.QUEST_RESP_RATING_SCORE}`}
+                            {...getOverrideProps(
+                              overrides,
+                              "RatingStars39504747"
+                            )}
+                          ></RatingStars>
+                          <Text
+                            fontFamily="Inter"
+                            fontSize="10px"
+                            fontWeight="400"
+                            color="rgba(0,0,0,0.8)"
+                            lineHeight="21px"
+                            textAlign="left"
+                            display="block"
+                            direction="column"
+                            justifyContent="unset"
+                            width="unset"
+                            height="unset"
+                            gap="unset"
+                            alignItems="unset"
+                            shrink="0"
+                            alignSelf="stretch"
+                            position="relative"
+                            padding="0px 0px 0px 0px"
+                            whiteSpace="pre-wrap"
+                            children={dato.QUEST_RESP_RATING_TITLE}
+                          ></Text>
+                        </Flex>
+                      </Flex>
+                    </Flex>
+                  </Flex>
+                  <Flex
+                    gap="16px"
+                    direction="column"
+                    width="unset"
+                    height="unset"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    shrink="0"
+                    alignSelf="stretch"
+                    position="relative"
+                    padding="0px 8px 0px 8px"
+                    display="flex"
+                    {...getOverrideProps(overrides, "Frame 1396839504683")}
+                  >
+                    <Text
+                      fontFamily="Inter"
+                      fontSize="14px"
+                      fontWeight="700"
+                      color="rgba(0,0,0,0.8)"
+                      lineHeight="21px"
+                      textAlign="left"
+                      display="block"
+                      direction="column"
+                      justifyContent="unset"
+                      width="unset"
+                      height="unset"
+                      gap="unset"
+                      alignItems="unset"
+                      shrink="0"
+                      alignSelf="stretch"
+                      position="relative"
+                      padding="0px 0px 0px 0px"
+                      whiteSpace="pre-wrap"
+                      children={comments}
+                      {...getOverrideProps(overrides, "Comentarios39504685")}
+                    ></Text>
+                    <Text
+                      fontFamily="Inter"
+                      fontSize="14px"
+                      fontWeight="400"
+                      color="rgba(0,0,0,0.8)"
+                      lineHeight="17.5px"
+                      textAlign="left"
+                      display="block"
+                      direction="column"
+                      justifyContent="unset"
+                      width="unset"
+                      height="unset"
+                      gap="unset"
+                      alignItems="unset"
+                      shrink="0"
+                      alignSelf="stretch"
+                      position="relative"
+                      padding="0px 0px 0px 0px"
+                      whiteSpace="pre-wrap"
+                      children={dato.QUESTION_RESP_COMMENT}
+                      {...getOverrideProps(overrides, "answerFeels39504689")}
+                    ></Text>
+                  </Flex>
+                </Flex>
+              ))}
+            <Divider
               width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="flex-start"
+              height="1px"
               shrink="0"
               alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              display="flex"
-              {...getOverrideProps(overrides, "Frame 13979")}
-            >
-              <Text
-                fontFamily="Inter"
-                fontSize="20px"
-                fontWeight="700"
-                color="rgba(0,0,0,0.8)"
-                lineHeight="25px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={`${managerReview}`}
-                {...getOverrideProps(
-                  overrides,
-                  "PerformanceCalibration39504660"
-                )}
-              ></Text>
-              <Divider
-                width="unset"
-                height="1px"
-                shrink="0"
-                alignSelf="stretch"
-                size="small"
-                orientation="horizontal"
-                {...getOverrideProps(overrides, "Divider39504662")}
-              ></Divider>
+              size="small"
+              orientation="horizontal"
+              {...getOverrideProps(overrides, "Divider39504942")}
+            ></Divider>
+            {dataBehavior?.filter(
+              (c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "false"
+            ) != 0 && (
               <Flex
-                gap="16px"
+                gap="12px"
                 direction="column"
                 width="unset"
                 height="unset"
@@ -605,8 +864,242 @@ export default function BehaviorTest(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 display="flex"
-                {...getOverrideProps(overrides, "Frame 1396539504665")}
+                {...getOverrideProps(overrides, "Frame 13980")}
               >
+                <Text
+                  fontFamily="Inter"
+                  fontSize="20px"
+                  fontWeight="700"
+                  color="rgba(0,0,0,0.8)"
+                  lineHeight="25px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  shrink="0"
+                  alignSelf="stretch"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children={subReview}
+                  {...getOverrideProps(
+                    overrides,
+                    "PerformanceCalibration39504914"
+                  )}
+                ></Text>
+                <Divider
+                  width="unset"
+                  height="1px"
+                  shrink="0"
+                  alignSelf="stretch"
+                  size="small"
+                  orientation="horizontal"
+                  {...getOverrideProps(overrides, "Divider39504915")}
+                ></Divider>
+                <Flex
+                  gap="16px"
+                  direction="column"
+                  width="unset"
+                  height="unset"
+                  justifyContent="flex-start"
+                  alignItems="flex-start"
+                  shrink="0"
+                  alignSelf="stretch"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  display="flex"
+                  {...getOverrideProps(overrides, "Frame 1396539504916")}
+                >
+                  <Flex
+                    gap="12px"
+                    direction="row"
+                    width="unset"
+                    height="unset"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                    shrink="0"
+                    alignSelf="stretch"
+                    position="relative"
+                    padding="8px 8px 8px 8px"
+                    backgroundColor="rgba(239,240,240,1)"
+                    display="flex"
+                    {...getOverrideProps(overrides, "Frame 464")}
+                  >
+                    <Text
+                      fontFamily="Inter"
+                      fontSize="14px"
+                      fontWeight="700"
+                      color="rgba(0,0,0,0.8)"
+                      lineHeight="21px"
+                      textAlign="left"
+                      display="block"
+                      direction="column"
+                      justifyContent="unset"
+                      width="unset"
+                      height="unset"
+                      gap="unset"
+                      alignItems="unset"
+                      grow="1"
+                      shrink="1"
+                      basis="0"
+                      position="relative"
+                      padding="0px 0px 0px 0px"
+                      whiteSpace="pre-wrap"
+                      children={`${reviewer}`}
+                      {...getOverrideProps(overrides, "Revisor39514553")}
+                    ></Text>
+                    <Text
+                      fontFamily="Inter"
+                      fontSize="14px"
+                      fontWeight="700"
+                      color="rgba(0,0,0,0.8)"
+                      lineHeight="21px"
+                      textAlign="left"
+                      display="block"
+                      direction="column"
+                      justifyContent="unset"
+                      width="unset"
+                      height="unset"
+                      gap="unset"
+                      alignItems="unset"
+                      grow="1"
+                      shrink="1"
+                      basis="0"
+                      position="relative"
+                      padding="0px 0px 0px 0px"
+                      whiteSpace="pre-wrap"
+                      children={rating}
+                      {...getOverrideProps(
+                        overrides,
+                        "Clasificaci\u00F3n39514554"
+                      )}
+                    ></Text>
+                  </Flex>
+                  {dataBehavior
+                    ?.filter(
+                      (c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "false"
+                    )
+                    .map((dato, index) => (
+                      <Flex
+                        key={index}
+                        gap="12px"
+                        direction="row"
+                        width="unset"
+                        height="unset"
+                        justifyContent="flex-start"
+                        alignItems="center"
+                        shrink="0"
+                        alignSelf="stretch"
+                        position="relative"
+                        padding="0px 8px 0px 8px"
+                        display="flex"
+                        {...getOverrideProps(overrides, "Frame 46139504920")}
+                      >
+                        <Text
+                          fontFamily="Inter"
+                          fontSize="14px"
+                          fontWeight="400"
+                          color="rgba(0,0,0,0.8)"
+                          lineHeight="17.5px"
+                          textAlign="left"
+                          display="block"
+                          direction="column"
+                          justifyContent="unset"
+                          width="unset"
+                          height="unset"
+                          gap="unset"
+                          alignItems="unset"
+                          grow="1"
+                          shrink="1"
+                          basis="0"
+                          alignSelf="stretch"
+                          position="relative"
+                          padding="0px 0px 0px 0px"
+                          whiteSpace="pre-wrap"
+                          children={`${dato.NOMBRE} ${dato.APELLIDOS}`}
+                          {...getOverrideProps(
+                            overrides,
+                            "answerPeople39504921"
+                          )}
+                        ></Text>
+                        <Flex
+                          gap="10px"
+                          direction="column"
+                          width="unset"
+                          height="unset"
+                          justifyContent="flex-start"
+                          alignItems="flex-start"
+                          grow="1"
+                          shrink="1"
+                          basis="0"
+                          position="relative"
+                          padding="0px 0px 0px 0px"
+                          display="flex"
+                          {...getOverrideProps(
+                            overrides,
+                            "Frame 1397739504922"
+                          )}
+                        >
+                          <Flex
+                            gap="4px"
+                            direction="column"
+                            width="unset"
+                            height="unset"
+                            justifyContent="flex-start"
+                            alignItems="flex-start"
+                            shrink="0"
+                            alignSelf="stretch"
+                            position="relative"
+                            padding="0px 8px 0px 8px"
+                            display="flex"
+                          >
+                            <RatingStars
+                              display="flex"
+                              gap="4px"
+                              direction="column"
+                              width="unset"
+                              height="unset"
+                              justifyContent="flex-start"
+                              alignItems="center"
+                              shrink="0"
+                              position="relative"
+                              padding="0px 0px 0px 0px"
+                              rating={`${dato.QUEST_RESP_RATING_SCORE}`}
+                              {...getOverrideProps(
+                                overrides,
+                                "RatingStars39504923"
+                              )}
+                            ></RatingStars>
+                            <Text
+                              fontFamily="Inter"
+                              fontSize="10px"
+                              fontWeight="400"
+                              color="rgba(0,0,0,0.8)"
+                              lineHeight="21px"
+                              textAlign="left"
+                              display="block"
+                              direction="column"
+                              justifyContent="unset"
+                              width="unset"
+                              height="unset"
+                              gap="unset"
+                              alignItems="unset"
+                              shrink="0"
+                              alignSelf="stretch"
+                              position="relative"
+                              padding="0px 0px 0px 0px"
+                              whiteSpace="pre-wrap"
+                              children={dato.QUEST_RESP_RATING_TITLE}
+                            ></Text>
+                          </Flex>
+                        </Flex>
+                      </Flex>
+                    ))}
+                </Flex>
                 <Flex
                   gap="12px"
                   direction="row"
@@ -620,7 +1113,7 @@ export default function BehaviorTest(props) {
                   padding="8px 8px 8px 8px"
                   backgroundColor="rgba(239,240,240,1)"
                   display="flex"
-                  {...getOverrideProps(overrides, "Frame 460")}
+                  {...getOverrideProps(overrides, "Frame 464")}
                 >
                   <Text
                     fontFamily="Inter"
@@ -642,522 +1135,120 @@ export default function BehaviorTest(props) {
                     position="relative"
                     padding="0px 0px 0px 0px"
                     whiteSpace="pre-wrap"
-                    children={`${reviewer}`}
-                    {...getOverrideProps(overrides, "Revisor39504667")}
-                  ></Text>
-                  <Text
-                    fontFamily="Inter"
-                    fontSize="14px"
-                    fontWeight="700"
-                    color="rgba(0,0,0,0.8)"
-                    lineHeight="21px"
-                    textAlign="left"
-                    display="block"
-                    direction="column"
-                    justifyContent="unset"
-                    width="unset"
-                    height="unset"
-                    gap="unset"
-                    alignItems="unset"
-                    grow="1"
-                    shrink="1"
-                    basis="0"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    whiteSpace="pre-wrap"
-                    children= {rating}
-                    {...getOverrideProps(
-                      overrides,
-                      "Clasificaci\u00F3n39504670"
-                    )}
+                    children={comments}
+                    {...getOverrideProps(overrides, "Comentarios")}
                   ></Text>
                 </Flex>
-
-                <Flex
-                  key={index}
-                  gap="12px"
-                  direction="row"
-                  width="unset"
-                  height="unset"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 8px 0px 8px"
-                  display="flex"
-                  {...getOverrideProps(overrides, "Frame 46139504669")}
-                >
-                  {console.log(dato)}
-                  <Text
-                    fontFamily="Inter"
-                    fontSize="14px"
-                    fontWeight="400"
-                    color="rgba(0,0,0,0.8)"
-                    lineHeight="17.5px"
-                    textAlign="left"
-                    display="block"
-                    direction="column"
-                    justifyContent="unset"
-                    width="unset"
-                    height="unset"
-                    gap="unset"
-                    alignItems="unset"
-                    grow="1"
-                    shrink="1"
-                    basis="0"
-                    alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    whiteSpace="pre-wrap"
-                    children={`${dato.NOMBRE} ${dato.APELLIDOS}`}
-                    {...getOverrideProps(overrides, "answerPeople39504746")}
-                  ></Text>
-                  <Flex
-                    gap="10px"
-                    direction="column"
-                    width="unset"
-                    height="unset"
-                    justifyContent="flex-start"
-                    alignItems="flex-start"
-                    grow="1"
-                    shrink="1"
-                    basis="0"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    display="flex"
-                    {...getOverrideProps(overrides, "Frame 1397739504883")}
-                  >
-                    <RatingStars
-                      display="flex"
-                      gap="4px"
+                {dataBehavior
+                  ?.filter(
+                    (c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "false"
+                  )
+                  .map((dato, index) => (
+                    <Flex
+                      key={index}
+                      gap="16px"
                       direction="column"
                       width="unset"
                       height="unset"
                       justifyContent="flex-start"
-                      alignItems="center"
+                      alignItems="flex-start"
                       shrink="0"
+                      alignSelf="stretch"
                       position="relative"
-                      padding="0px 0px 0px 0px"
-                      rating={`${dato.QUEST_RESP_RATING_SCORE}`}
-                      {...getOverrideProps(overrides, "RatingStars39504747")}
-                    ></RatingStars>
-                  </Flex>
-                </Flex>
+                      padding="0px 8px 0px 8px"
+                      display="flex"
+                      {...getOverrideProps(overrides, "Frame 1396839504925")}
+                    >
+                      <Text
+                        fontFamily="Inter"
+                        fontSize="14px"
+                        fontWeight="700"
+                        color="rgba(0,0,0,0.8)"
+                        lineHeight="21px"
+                        textAlign="left"
+                        display="block"
+                        direction="column"
+                        justifyContent="unset"
+                        width="unset"
+                        height="unset"
+                        gap="unset"
+                        alignItems="unset"
+                        shrink="0"
+                        alignSelf="stretch"
+                        position="relative"
+                        padding="0px 0px 0px 0px"
+                        whiteSpace="pre-wrap"
+                        children={`${dato.NOMBRE} ${dato.APELLIDOS}`}
+                        {...getOverrideProps(overrides, "Comentarios39504926")}
+                      ></Text>
+                      <Text
+                        fontFamily="Inter"
+                        fontSize="14px"
+                        fontWeight="400"
+                        color="rgba(0,0,0,0.8)"
+                        lineHeight="17.5px"
+                        textAlign="left"
+                        display="block"
+                        direction="column"
+                        justifyContent="unset"
+                        width="unset"
+                        height="unset"
+                        gap="unset"
+                        alignItems="unset"
+                        shrink="0"
+                        alignSelf="stretch"
+                        position="relative"
+                        padding="0px 0px 0px 0px"
+                        whiteSpace="pre-wrap"
+                        children={dato.QUESTION_RESP_COMMENT}
+                        {...getOverrideProps(overrides, "answerFeels39504927")}
+                      ></Text>
+                    </Flex>
+                  ))}
               </Flex>
-              <Flex
-                gap="16px"
-                direction="column"
-                width="unset"
-                height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 8px 0px 8px"
-                display="flex"
-                {...getOverrideProps(overrides, "Frame 1396839504683")}
-              >
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="700"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="21px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children= {comments}
-                  {...getOverrideProps(overrides, "Comentarios39504685")}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={dato.QUESTION_RESP_COMMENT}
-                  {...getOverrideProps(overrides, "answerFeels39504689")}
-                ></Text>
-              </Flex>
-            </Flex>
-          ))}
-        <Divider
-          width="unset"
-          height="1px"
-          shrink="0"
-          alignSelf="stretch"
-          size="small"
-          orientation="horizontal"
-          {...getOverrideProps(overrides, "Divider39504942")}
-        ></Divider>
-        <Flex
-          gap="12px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 13980")}
-        >
-          <Text
-            fontFamily="Inter"
-            fontSize="20px"
-            fontWeight="700"
-            color="rgba(0,0,0,0.8)"
-            lineHeight="25px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children={subReview}
-            {...getOverrideProps(overrides, "PerformanceCalibration39504914")}
-          ></Text>
-          <Divider
-            width="unset"
-            height="1px"
-            shrink="0"
-            alignSelf="stretch"
-            size="small"
-            orientation="horizontal"
-            {...getOverrideProps(overrides, "Divider39504915")}
-          ></Divider>
+            )}
+          </Flex>
           <Flex
-            gap="16px"
+            gap="10px"
             direction="column"
             width="unset"
             height="unset"
             justifyContent="flex-start"
-            alignItems="flex-start"
+            alignItems="flex-end"
             shrink="0"
             alignSelf="stretch"
             position="relative"
-            padding="0px 0px 0px 0px"
+            padding="10px 0px 10px 0px"
             display="flex"
-            {...getOverrideProps(overrides, "Frame 1396539504916")}
+            {...getOverrideProps(overrides, "Frame 13974")}
           >
-            <Flex
-              gap="12px"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="center"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="8px 8px 8px 8px"
-              backgroundColor="rgba(239,240,240,1)"
-              display="flex"
-              {...getOverrideProps(overrides, "Frame 464")}
+            <PDFDownloadLink
+              document={
+                <PDFComportamientos
+                  DATOS={dataBehavior}
+                  anios={anios}
+                  datosUsuario={datosUsuario}
+                  etiquetas={etiquetas}
+                />
+              }
+              fileName={`Comportamientos_${anios}.pdf`}
             >
-              <Text
-                fontFamily="Inter"
-                fontSize="14px"
-                fontWeight="700"
-                color="rgba(0,0,0,0.8)"
-                lineHeight="21px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                grow="1"
-                shrink="1"
-                basis="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={`${reviewer}`}
-                {...getOverrideProps(overrides, "Revisor39514553")}
-              ></Text>
-              <Text
-                fontFamily="Inter"
-                fontSize="14px"
-                fontWeight="700"
-                color="rgba(0,0,0,0.8)"
-                lineHeight="21px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                grow="1"
-                shrink="1"
-                basis="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children= {rating}
-                {...getOverrideProps(overrides, "Clasificaci\u00F3n39514554")}
-              ></Text>
-            </Flex>
-            {dataBehavior
-              ?.filter(
-                (c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "false"
-              )
-              .map((dato, index) => (
-                <Flex
-                  key={index}
-                  gap="12px"
-                  direction="row"
-                  width="unset"
-                  height="unset"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 8px 0px 8px"
-                  display="flex"
-                  {...getOverrideProps(overrides, "Frame 46139504920")}
-                >
-                  <Text
-                    fontFamily="Inter"
-                    fontSize="14px"
-                    fontWeight="400"
-                    color="rgba(0,0,0,0.8)"
-                    lineHeight="17.5px"
-                    textAlign="left"
-                    display="block"
-                    direction="column"
-                    justifyContent="unset"
-                    width="unset"
-                    height="unset"
-                    gap="unset"
-                    alignItems="unset"
-                    grow="1"
-                    shrink="1"
-                    basis="0"
-                    alignSelf="stretch"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    whiteSpace="pre-wrap"
-                    children={`${dato.NOMBRE} ${dato.APELLIDOS}`}
-                    {...getOverrideProps(overrides, "answerPeople39504921")}
-                  ></Text>
-                  <Flex
-                    gap="10px"
-                    direction="column"
-                    width="unset"
-                    height="unset"
-                    justifyContent="flex-start"
-                    alignItems="flex-start"
-                    grow="1"
-                    shrink="1"
-                    basis="0"
-                    position="relative"
-                    padding="0px 0px 0px 0px"
-                    display="flex"
-                    {...getOverrideProps(overrides, "Frame 1397739504922")}
-                  >
-                    <RatingStars
-                      display="flex"
-                      gap="4px"
-                      direction="column"
-                      width="unset"
-                      height="unset"
-                      justifyContent="flex-start"
-                      alignItems="center"
-                      shrink="0"
-                      position="relative"
-                      padding="0px 0px 0px 0px"
-                      rating={`${dato.QUEST_RESP_RATING_SCORE}`}
-                      {...getOverrideProps(overrides, "RatingStars39504923")}
-                    ></RatingStars>
-                  </Flex>
-                </Flex>
-              ))}
-          </Flex>
-          <Flex
-            gap="12px"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="center"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="8px 8px 8px 8px"
-            backgroundColor="rgba(239,240,240,1)"
-            display="flex"
-            {...getOverrideProps(overrides, "Frame 464")}
-          >
-            <Text
-              fontFamily="Inter"
-              fontSize="14px"
-              fontWeight="700"
-              color="rgba(0,0,0,0.8)"
-              lineHeight="21px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              grow="1"
-              shrink="1"
-              basis="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children={comments}
-              {...getOverrideProps(overrides, "Comentarios")}
-            ></Text>
-          </Flex>
-          {dataBehavior
-            ?.filter((c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "false")
-            .map((dato, index) => (
-              <Flex
-                key={index}
-                gap="16px"
-                direction="column"
-                width="unset"
-                height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+              <Button
                 shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 8px 0px 8px"
-                display="flex"
-                {...getOverrideProps(overrides, "Frame 1396839504925")}
-              >
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="700"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="21px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={`${dato.NOMBRE} ${dato.APELLIDOS}`}
-                  {...getOverrideProps(overrides, "Comentarios39504926")}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  lineHeight="17.5px"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={dato.QUESTION_RESP_COMMENT}
-                  {...getOverrideProps(overrides, "answerFeels39504927")}
-                ></Text>
-              </Flex>
-            ))}
-        </Flex>
-      </Flex>
-      <Flex
-        gap="10px"
-        direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-end"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="10px 0px 10px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Frame 13974")}
-      >
-       
-          <PDFDownloadLink
-          document={
-            <PDFComportamientos
-            DATOS={dataBehavior}
-                anios={anios}
-                datosUsuario={datosUsuario}
-                etiquetas={etiquetas}
-          />
-          }
-          fileName={`Comportamientos_${anios}.pdf`}
-        >
-        <Button
-          shrink="0"
-          size="small"
-          isDisabled={false}
-          variation="primary"
-          children={downloadPDF}
-          {...getOverrideProps(overrides, "Button")}
-        ></Button>
-        </PDFDownloadLink>
-
-      </Flex>
-      </div>
-          ):
-          <div className="w-full"><p>{noData}</p></div>}
+                size="small"
+                isDisabled={false}
+                variation="primary"
+                children={downloadPDF}
+                {...getOverrideProps(overrides, "Button")}
+              ></Button>
+            </PDFDownloadLink>
+          </Flex>
+        </div>
+      ) : (
+        <div className="w-full">
+          <p>{noData}</p>
+        </div>
+      )}
     </Flex>
   );
 }

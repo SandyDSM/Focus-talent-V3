@@ -26,17 +26,15 @@ const styles = StyleSheet.create({
     width: "100%",
     fontSize: "12px",
     fontWeight: "600",
-    marginRight: "5",
-    marginTop: "5",
-    marginBottom: "5",
+    margin: "5px",
   },
   txtBody: {
     fontFamily: "Open Sans",
     fontSize: "11px",
-    marginRight: "5",
+    marginRight: "5px",
     marginTop: "5px",
     color: "#5e615c",
-    marginBottom: "5",
+    marginBottom: "5px",
   },
   colums: {
     display: "flex",
@@ -45,14 +43,14 @@ const styles = StyleSheet.create({
     flexGrow: "1",
     flexShrink: "1",
     position: "relative",
-    marginTop: "10",
+    marginTop: "10px",
   },
   rows: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: "5",
-    marginRight: "5",
+    marginBottom: "5px",
+    marginRight: "5px",
   },
   rowsbetween: {
     display: "flex",
@@ -60,8 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "5",
-    marginTop: "5",
+    margin: "5px",
   },
   rowsGrey: {
     display: "flex",
@@ -69,8 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "5",
-    marginTop: "5",
+    margin: "5px",
     backgroundColor: "#EFF0F0",
   },
   divider: {
@@ -78,7 +74,7 @@ const styles = StyleSheet.create({
     flexBasis: "auto",
     borderBottom: "1px",
     borderBottomColor: "grey",
-    marginVertical: "5",
+    marginVertical: "5px",
   },
 });
 
@@ -113,7 +109,7 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario, etiquetas }) => {
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 alignItems: "flex-end",
-                marginRight: "20",
+                marginRight: "20px",
               }}
             >
               <Image
@@ -130,7 +126,7 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario, etiquetas }) => {
               <Text
                 style={{
                   fontSize: "18px",
-                  marginBottom: "5",
+                  marginBottom: "5px",
                 }}
               >
                 {etiquetas.behaReview} {anios}
@@ -138,7 +134,7 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario, etiquetas }) => {
               <Text
                 style={{
                   fontSize: "12px",
-                  marginBottom: "5",
+                  marginBottom: "5px",
                 }}
               >
                 {datosUsuario.nombre}
@@ -156,108 +152,84 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario, etiquetas }) => {
             (c) => c.ANIO == anios && c.MANAGER_OR_SUBORD == "true"
           ).map((pre) => (
             <View style={styles.colums}>
-              <View style={styles.colums}>
-                <Text
-                  style={{
-                    fontSize: "16px",
-                    marginBottom: "5",
-                  }}
-                >
-                  {
-
-
-                  }
-                  
-                  
-                  <Image
+              <Text
                 style={{
-                  width: "60px",
-                  height: "10px",
-                  display: "block",
-                  borderRadius: "8px",
-                  marginRight: "210px"
+                  fontSize: "16px",
+                  marginBottom: "5px",
                 }}
-                src={pre.QUEST_RESP_RATING_SCORE=='1' ? "data:image/jpg;base64,"+stars1 : pre.QUEST_RESP_RATING_SCORE=='2' ? "data:image/jpg;base64,"+stars2: pre.QUEST_RESP_RATING_SCORE=='3' ? "data:image/jpg;base64,"+stars3 : pre.QUEST_RESP_RATING_SCORE=='4' ? "data:image/jpg;base64,"+stars4 : pre.QUEST_RESP_RATING_SCORE=='5' ? "data:image/jpg;base64,"+stars5 : ''}
-              ></Image>
-                  {etiquetas.managerReview}
-                </Text>
-                <View style={styles.divider}></View>
-              </View>
-
-              <View style={styles.rowsGrey}>
-                <Text style={styles.txtTitle}>{etiquetas.reviewer}</Text>
-                <Text style={styles.txtTitle}>{etiquetas.rating}</Text>
-              </View>
-              <View style={styles.rowsbetween}>
-                <Text
-                  style={styles.txtBody}
-                >{`${pre.NOMBRE} ${pre.APELLIDOS}`}</Text>
-                <View>
-                  <View
+              >
+                {etiquetas.managerReview}
+              </Text>
+              <View style={styles.colums}>
+                <View style={styles.rowsGrey}>
+                  <Text
                     style={{
-                      display: "flex",
-                      width: "100%",
-                      justifyContent: "flex-start",
+                      fontFamily: "Open Sans",
+                      width: "45%",
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      margin: "5px",
                     }}
                   >
-                    <View>
-                      <Image
-                        style={{
-                          width: "60px",
-                          height: "10px",
-                          display: "block",
-                          borderRadius: "8px",
-                          marginRight: "210px",
-                          
-                        }}
-                        src={
-                          pre.QUEST_RESP_RATING_SCORE == "1"
-                            ? "data:image/jpg;base64," + stars1
-                            : pre.QUEST_RESP_RATING_SCORE == "2"
-                            ? "data:image/jpg;base64," + stars2
-                            : pre.QUEST_RESP_RATING_SCORE == "3"
-                            ? "data:image/jpg;base64," + stars3
-                            : pre.QUEST_RESP_RATING_SCORE == "4"
-                            ? "data:image/jpg;base64," + stars4
-                            : pre.QUEST_RESP_RATING_SCORE == "5"
-                            ? "data:image/jpg;base64," + stars5
-                            : ""
-                        }
-                      ></Image>
-                      <Text
-                        style={{
-                          fontFamily: "Open Sans",
-                          fontSize: "6px",
-                          marginRight: "5",
-                          marginTop: "2px",
-                          color: "#5e615c",
-                          marginBottom: "5",
-                        }}
-                      >
-                        {pre.QUEST_RESP_RATING_SCORE == "1"
-                          ? `${pre.QUEST_RESP_RATING_TITLE}`
+                    {etiquetas.reviewer}
+                  </Text>
+                  <Text style={{
+                      fontFamily: "Open Sans",
+                      width: "50%",
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      margin: "5px",
+                    }}>{etiquetas.rating}</Text>
+                </View>
+                <View style={styles.rowsbetween}>
+                  <Text style={styles.txtBody}>
+                    {pre.NOMBRE} {pre.APELLIDOS}
+                  </Text>
+                  <View style={{marginLeft:"120px"}}>
+                    <Image
+                      style={{
+                        width: "60px",
+                        height: "10px",
+                        display: "block",
+                        borderRadius: "8px",
+                        marginRight: "210px",
+                      }}
+                      src={
+                        pre.QUEST_RESP_RATING_SCORE == "1"
+                          ? "data:image/jpg;base64," + stars1
                           : pre.QUEST_RESP_RATING_SCORE == "2"
-                          ? `${pre.QUEST_RESP_RATING_TITLE}`
+                          ? "data:image/jpg;base64," + stars2
                           : pre.QUEST_RESP_RATING_SCORE == "3"
-                          ? `${pre.QUEST_RESP_RATING_TITLE}`
+                          ? "data:image/jpg;base64," + stars3
                           : pre.QUEST_RESP_RATING_SCORE == "4"
-                          ? `${pre.QUEST_RESP_RATING_TITLE}`
+                          ? "data:image/jpg;base64," + stars4
                           : pre.QUEST_RESP_RATING_SCORE == "5"
-                          ? `${pre.QUEST_RESP_RATING_TITLE}`
-                          : ""}
-                      </Text>
-                    </View>
-
-                    <Text style={styles.txtBody}></Text>
+                          ? "data:image/jpg;base64," + stars5
+                          : ""
+                      }
+                    ></Image>
+                    <Text
+                      style={{
+                        fontFamily: "Open Sans",
+                        fontSize: "6px",
+                        marginRight: "5px",
+                        marginTop: "2px",
+                        color: "#5e615c",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {pre.QUEST_RESP_RATING_TITLE}
+                    </Text>
                   </View>
                 </View>
-              </View>
-              <View style={styles.colums}>
-                <Text style={styles.txtTitle}>{etiquetas.comments}</Text>
-                <View>
-                  <Text style={styles.txtBody}>
-                    {pre.QUESTION_RESP_COMMENT}
-                  </Text>
+
+                <View style={styles.colums}>
+                  <Text style={styles.txtTitle}>{etiquetas.comments}</Text>
+                  <View>
+                    <Text style={styles.txtBody}>
+                      {pre.QUESTION_RESP_COMMENT}
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -265,102 +237,95 @@ const PDFComportamientos = ({ DATOS, anios, datosUsuario, etiquetas }) => {
 
           <View
             style={{
-              marginTop: "15",
-              marginBottom: "15",
+              marginTop: "15px",
+              marginBottom: "15px",
             }}
           >
             <View style={styles.divider}></View>
           </View>
-          <View style={styles.colums}>
+          {DATOS?.filter(
+            (c) => c.ANIO == anios && c.MANAGER_OR_SUBORD == "false"
+          ) != 0 && (
             <View style={styles.colums}>
-              <Text
-                style={{
-                  fontSize: "16px",
-                  marginBottom: "5",
-                }}
-              >
-                {etiquetas.subReview}
-              </Text>
-            </View>
-            <View style={styles.divider}></View>
-            <View style={styles.rowsGrey}>
-              <Text style={styles.txtTitle}>{etiquetas.reviewer}</Text>
-              <Text style={styles.txtTitle}>{etiquetas.rating}</Text>
-            </View>
-
-            {DATOS?.filter(
-              (c) => c.ANIO == anios && c.MANAGER_OR_SUBORD == "false"
-            ).map((pre) => (
-              <View style={styles.rowsbetween}>
-                <Text style={styles.txtBody}>
-                  {pre.NOMBRE} {pre.APELLIDOS}
+              <View style={styles.colums}>
+                <Text
+                  style={{
+                    fontSize: "16px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  {etiquetas.subReview}
                 </Text>
-                <View>
-                  <Image
-                    style={{
-                      width: "60px",
-                      height: "10px",
-                      display: "block",
-                      borderRadius: "8px",
-                      marginRight: "210px",
-                    }}
-                    src={
-                      pre.QUEST_RESP_RATING_SCORE == "1"
-                        ? "data:image/jpg;base64," + stars1
-                        : pre.QUEST_RESP_RATING_SCORE == "2"
-                        ? "data:image/jpg;base64," + stars2
-                        : pre.QUEST_RESP_RATING_SCORE == "3"
-                        ? "data:image/jpg;base64," + stars3
-                        : pre.QUEST_RESP_RATING_SCORE == "4"
-                        ? "data:image/jpg;base64," + stars4
-                        : pre.QUEST_RESP_RATING_SCORE == "5"
-                        ? "data:image/jpg;base64," + stars5
-                        : ""
-                    }
-                  ></Image>
-                  <Text
-                    style={{
-                      fontFamily: "Open Sans",
-                      fontSize: "6px",
-                      marginRight: "5",
-                      marginTop: "2px",
-                      color: "#5e615c",
-                      marginBottom: "5",
-                    }}
-                  >
-                    {pre.QUEST_RESP_RATING_SCORE == "1"
-                      ? `${pre.QUEST_RESP_RATING_TITLE}`
-                      : pre.QUEST_RESP_RATING_SCORE == "2"
-                      ? `${pre.QUEST_RESP_RATING_TITLE}`
-                      : pre.QUEST_RESP_RATING_SCORE == "3"
-                      ? `${pre.QUEST_RESP_RATING_TITLE}`
-                      : pre.QUEST_RESP_RATING_SCORE == "4"
-                      ? `${pre.QUEST_RESP_RATING_TITLE}`
-                      : pre.QUEST_RESP_RATING_SCORE == "5"
-                      ? `${pre.QUEST_RESP_RATING_TITLE}`
-                      : ""}
-                  </Text>
-                </View>
               </View>
-            ))}
-            <View style={styles.colums}>
               <View style={styles.rowsGrey}>
-
-                <Text style={styles.txtTitle}>{etiquetas.comments}</Text>
+                <Text style={styles.txtTitle}>{etiquetas.reviewer}</Text>
+                <Text style={styles.txtTitle}>{etiquetas.rating}</Text>
               </View>
+
               {DATOS?.filter(
                 (c) => c.ANIO == anios && c.MANAGER_OR_SUBORD == "false"
               ).map((pre) => (
-                <View>
-                  <Text style={styles.txtTitle}>
-                    {pre.NOMBRE} {pre.APELLIDOS}</Text>
+                <View style={styles.rowsbetween}>
                   <Text style={styles.txtBody}>
-                    {pre.QUESTION_RESP_COMMENT}
+                    {pre.NOMBRE} {pre.APELLIDOS}
                   </Text>
+                  <View>
+                    <Image
+                      style={{
+                        width: "60px",
+                        height: "10px",
+                        display: "block",
+                        borderRadius: "8px",
+                        marginRight: "210px",
+                      }}
+                      src={
+                        pre.QUEST_RESP_RATING_SCORE == "1"
+                          ? "data:image/jpg;base64," + stars1
+                          : pre.QUEST_RESP_RATING_SCORE == "2"
+                          ? "data:image/jpg;base64," + stars2
+                          : pre.QUEST_RESP_RATING_SCORE == "3"
+                          ? "data:image/jpg;base64," + stars3
+                          : pre.QUEST_RESP_RATING_SCORE == "4"
+                          ? "data:image/jpg;base64," + stars4
+                          : pre.QUEST_RESP_RATING_SCORE == "5"
+                          ? "data:image/jpg;base64," + stars5
+                          : ""
+                      }
+                    ></Image>
+                    <Text
+                      style={{
+                        fontFamily: "Open Sans",
+                        fontSize: "6px",
+                        marginRight: "5px",
+                        marginTop: "2px",
+                        color: "#5e615c",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {pre.QUEST_RESP_RATING_TITLE}
+                    </Text>
+                  </View>
                 </View>
               ))}
+              <View style={styles.colums}>
+                <View style={styles.rowsGrey}>
+                  <Text style={styles.txtTitle}>{etiquetas.comments}</Text>
+                </View>
+                {DATOS?.filter(
+                  (c) => c.ANIO == anios && c.MANAGER_OR_SUBORD == "false"
+                ).map((pre) => (
+                  <View>
+                    <Text style={styles.txtTitle}>
+                      {pre.NOMBRE} {pre.APELLIDOS}
+                    </Text>
+                    <Text style={styles.txtBody}>
+                      {pre.QUESTION_RESP_COMMENT}
+                    </Text>
+                  </View>
+                ))}
+              </View>
             </View>
-          </View>
+          )}
         </View>
       </Page>
     </Document>

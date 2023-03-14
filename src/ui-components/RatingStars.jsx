@@ -12,7 +12,7 @@ import {
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
 import Star from "./Star";
-import { Flex, Text } from "@aws-amplify/ui-react";
+import { Flex } from "@aws-amplify/ui-react";
 export default function RatingStars(props) {
   const { overrides: overridesProp, ...rest } = props;
   const variants = [
@@ -24,7 +24,6 @@ export default function RatingStars(props) {
         Star39504874: {},
         Star39504875: {},
         "Frame 13976": {},
-        TxtRating: { children: "1. Modelo a seguir" },
         RatingStars: {},
       },
       variantValues: { rating: "1" },
@@ -37,7 +36,6 @@ export default function RatingStars(props) {
         Star39504874: {},
         Star39504875: {},
         "Frame 13976": {},
-        TxtRating: {},
         RatingStars: {},
       },
       variantValues: { rating: "0" },
@@ -50,7 +48,6 @@ export default function RatingStars(props) {
         Star39504874: {},
         Star39504875: {},
         "Frame 13976": {},
-        TxtRating: { children: "2. Modelo a seguir" },
         RatingStars: {},
       },
       variantValues: { rating: "2" },
@@ -63,7 +60,6 @@ export default function RatingStars(props) {
         Star39504874: {},
         Star39504875: {},
         "Frame 13976": {},
-        TxtRating: { children: "3. Modelo a seguir" },
         RatingStars: {},
       },
       variantValues: { rating: "3" },
@@ -76,7 +72,6 @@ export default function RatingStars(props) {
         Star39504874: { type: "active" },
         Star39504875: {},
         "Frame 13976": {},
-        TxtRating: { children: "4. Excede espectativas" },
         RatingStars: {},
       },
       variantValues: { rating: "4" },
@@ -89,7 +84,6 @@ export default function RatingStars(props) {
         Star39504874: { type: "active" },
         Star39504875: { type: "active" },
         "Frame 13976": {},
-        TxtRating: { children: "5. Modelo a seguir" },
         RatingStars: {},
       },
       variantValues: { rating: "5" },
@@ -197,27 +191,6 @@ export default function RatingStars(props) {
           {...getOverrideProps(overrides, "Star39504875")}
         ></Star>
       </Flex>
-      <Text
-        fontFamily="Inter"
-        fontSize="10px"
-        fontWeight="400"
-        color="rgba(92,102,112,1)"
-        lineHeight="15px"
-        textAlign="left"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="unset"
-        height="unset"
-        gap="unset"
-        alignItems="unset"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="0. Modelo a seguir"
-        {...getOverrideProps(overrides, "TxtRating")}
-      ></Text>
     </Flex>
   );
 }
