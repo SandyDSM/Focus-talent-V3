@@ -19,6 +19,7 @@ function TeamTestDetail() {
   const [aniosFill, setAniosFill] = useState([]);
   const [selall, setSelall]=useState(false);
   const [load, setLoad] = useState(true)
+
 //////////////////////////////////////////////////////////////////////////////////
 const [dataBehavior, setDataBehavior] =useState([])
 
@@ -140,7 +141,7 @@ const [dataBehavior, setDataBehavior] =useState([])
           : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
     },
   };
-  if (isLoading & load) {
+  if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
         <Loader size="large" />
@@ -181,6 +182,7 @@ const [dataBehavior, setDataBehavior] =useState([])
             <PerformaceAndSucesion
               aniosFill={aniosFill}
               fetcBehaviors={fetcBehaviors}
+              load={load}
               sendOverridesBehavior={sendOverridesBehavior}
               sendOverridesPerformanceTest={sendOverridesPerformanceTest}
               testPreguntas={testPreguntas}

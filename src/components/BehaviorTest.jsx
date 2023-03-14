@@ -12,6 +12,7 @@ import {
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Loader } from "@aws-amplify/ui-react";
 
 
 import {
@@ -36,6 +37,7 @@ export default function BehaviorTest(props) {
     datosUsuario,
     anios,
     dataBehavior,
+    load,
     ...restProp
   } = props;
 
@@ -217,6 +219,14 @@ export default function BehaviorTest(props) {
     }),
     overridesProp || {}
   );
+  if (load) {
+    return (
+      <div className="h-screen flex justify-center items-center ">
+        <Loader size="large" />
+      </div>
+    );
+  }
+
   return (
     <Flex
       gap="24px"

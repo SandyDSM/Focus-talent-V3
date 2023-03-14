@@ -2,7 +2,6 @@ import SuccesionTest from "../components/SuccesionTest";
 import PerformanceTest from "../components/PerformanceTest";
 import BehaviorTest  from "../components/BehaviorTest";
 import { useEffect, useState } from "react";
-import { Amplify, API } from 'aws-amplify';
 
 
 function PerformaceAndSucesion({
@@ -13,17 +12,17 @@ function PerformaceAndSucesion({
   datosUsuario,
   sendOverridesBehavior,
   fetcBehaviors,
-  usuarioActualDatos,
-  collDetail, dataBehavior
+  dataBehavior,
+  load
 }) {
 
-  
+
   useEffect(() => {
     fetcBehaviors()
   }, []);
 
-
-
+  console.log(dataBehavior);
+  
   return (
     <div>
       {aniosFill.map((anio, index) => (
@@ -35,7 +34,7 @@ function PerformaceAndSucesion({
           anios={anio}
           datosUsuario={datosUsuario}
           dataBehavior={dataBehavior}
-
+          load={load}
           />
         </div>
         <div className="mb-9 mt-4 shadow">
