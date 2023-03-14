@@ -17,12 +17,12 @@ function getData(etiquetasx, espaniol, ingles, frances, portugues, chino) {
   const myInit = {
     headers: {}, // OPTIONAL
     queryStringParameters: {
-      ETIQUETA: `'${etiquetasx}'`,
-      es_MX: `'${espaniol}'`, 
-      en_US : `'${ingles}'`,
-      fr_CA : `'${frances}'`,
-      pt_BR : `'${portugues}'`, 
-      zh_CN : `'${chino}'`
+      ETIQUETA: `${etiquetasx}`,
+      es_MX: `${espaniol}`, 
+      en_US : `${ingles}`,
+      fr_CA : `${frances}`,
+      pt_BR : `${portugues}`, 
+      zh_CN : `${chino}`
     }
   };
 
