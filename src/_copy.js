@@ -17,7 +17,7 @@ const awsmobile = {
             "email",
             "openid","aws.cognito.signin.user.admin", "profile"
         ],
-        "redirectSignIn": "http://localhost:3000/",
+        "redirectSignIn": "https://www.grupobimbo-focustalent.com/myteam",
         "redirectSignOut": "http://localhost:3000/",
         "responseType": "code"
     },

@@ -45,6 +45,7 @@ const updateTags = async (etiquetasx, espaniol, ingles, frances, portugues, chin
     }).then((result) => {
       if (result.isConfirmed) {
         //setOpen(false)
+        clear();
       }
     })
 
@@ -112,7 +113,7 @@ function clear(){
   setetiquetasmod(["", "", "", "", "", ""])
 }
 
-function Alerta(){
+/*function Alerta(){
   Swal.fire({
     icon: 'success',
     text: 'La Etiqueta se ha guardado',
@@ -123,7 +124,7 @@ function Alerta(){
       clear();
     }
   })
-}
+}*/
 ///////////////////////////////////////////////////////////////////
   return (
     <div className="card flex flex-col gap-6 w-full">

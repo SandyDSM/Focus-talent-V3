@@ -1,4 +1,4 @@
-const awsConfig = {
+/*const awsConfig = {
   Auth: {
     identityPoolId: 'us-east-1_f8AdJ10FA',
     region: 'us-east-1',
@@ -15,4 +15,4 @@ const awsConfig = {
   "federationTarget": "COGNITO_USER_POOLS",
 };
 
-export default awsConfig;
+export default awsConfig;*/
