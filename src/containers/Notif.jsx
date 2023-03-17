@@ -131,20 +131,14 @@ function Notif() {
                   defaultValue={titulo}
                 />
                 <div className="w-full">
-                  <SelectField
+                  <TextField
                     id={"idioma"}
                     placeholder="Selecciona el idioma"
                     width={"100%"}
-                  
-                  onChange={(e)=>setIdioma(e.target.value)}
+                    defaultValue={idioma}
+                    isDisabled={true}
                   >
-                    
-                    <option value="English (US)" >Inglés</option>
-                    <option value="French (Canada)">Francés</option>
-                    <option value="Spanish (Latin America)">Español</option>
-                    <option value="Chinese (Simplified)">Chino</option>
-                    <option value="Portuguese (Brazil)">Portugués</option>
-                  </SelectField>
+                  </TextField>
                 </div>
               </div>
               <EditorNotification cuerpo={setCuerpo} defcuerpo={cuerpo} />

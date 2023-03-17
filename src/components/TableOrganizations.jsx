@@ -26,7 +26,7 @@ if(orgval.length===0){
   orgtemp.push(obj);
 }
 setOrganizationsSelect([...orgtemp]);
-console.log(organizationSelect);
+console.log("los objetos son: ", organizationSelect);
 }
 
 useEffect(()=>{

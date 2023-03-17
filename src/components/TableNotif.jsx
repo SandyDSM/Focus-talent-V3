@@ -6,7 +6,7 @@ import HeadNotif from './HeadNotif';
 
 function TableNotif({notif, handleOpen, limpia}) {
   let idioma="";
-  limpia('');
+  
 function idiomatmp(value){
   handleOpen(value);
 }
