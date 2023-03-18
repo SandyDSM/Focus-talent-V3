@@ -89,7 +89,8 @@ function PaginationEstructuras({
           size="small"
           onClick={() => {
             if (PActual > 0) {
-              BackPag();
+              SeteoActual(PActual-1);
+              //BackPag();
               botones(PActual, true);
             }
           }}
@@ -129,7 +130,7 @@ function PaginationEstructuras({
         <Button variation="link"
           onClick={() => {
             if (PActual < MaxPaginas - 1) {
-              NextPag();
+              SeteoActual(PActual+1);
               botones(PActual + 2, false);
             }
           }}

@@ -10,7 +10,10 @@ import { useEffect } from "react";
 function TableOrganizations({close}) {
   const [organizations, setOrganizations]=useState([]);
   const [organizationSelect, setOrganizationsSelect]=useState([]);
-
+  const [usuariosCorreos, setUsuariosCorreos]=useState([]);
+  const [estrucCorreo, setEstrucCorreo]=useState([]);
+  const [organizationsPag, setOrganizationsPag]=useState([]);
+  const [pagina, setPagina]=useState(0);
 const pullOrg=(indice)=>{
   let orgtemp=organizationSelect;
   orgtemp.splice(indice,1);
@@ -30,8 +33,8 @@ console.log("los objetos son: ", organizationSelect);
 }
 
 useEffect(()=>{
-
- },[organizationSelect]);
+  setOrganizationsPag(separa(organizations));
+ },[organizations, pagina]);
 
   //////////////////////////////////////////////////////////////
 
@@ -85,7 +88,11 @@ const searchbyName=async(name)=>{
 //////////////////////////////////////////////////////////////////
  useEffect(()=>{
   getOus();
+  GetNotificaciones();
+ 
  },[]);
+
+
 
  const getOus= async () => {
   try {
@@ -107,6 +114,68 @@ const searchbyName=async(name)=>{
     setOrganizations([]);
   } 
 };
+
+const GetNotificaciones = async () => {
+  try {
+    const respdesemp = await fetch(
+      `https://talento-itzahuia.com/SAC/gb_notificaciones.php`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          TOKEN: "8da9aebd984ef3897b280ff7efabf83d931f591b",
+        }),
+      }
+    );
+    const datos = await respdesemp.json();
+    setEstrucCorreo(datos);
+    console.log(datos);
+  } catch (error) {
+    setEstrucCorreo([]);
+  }
+};
+
+
+const getCorreos= async (id, include) => {
+  try {
+      const respdesemp = await fetch(
+      `https://talento-itzahuia.com/SAC/gb_envio_correos.php?ID=${id}&INCLUDE=${include}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      }
+    ); 
+    const datos = await respdesemp.json();
+    setUsuariosCorreos(datos);
+  } catch (error) {
+    setUsuariosCorreos([]);
+  } 
+};
+//////////////////paginado////////////////////////////
+function separa(datos) {
+  if (datos) {
+    
+    let firstpanels = [];
+    firstpanels[0] = [...datos].splice(0, 5);
+    //alert("tamaño de datos="+ datos.length+"hojas="+datos.length/maxPorPagina+ "registros="+maxPorPagina);
+    for (let i = 1; i < Math.ceil(datos.length / 5); i++) {
+      firstpanels[i] = [...datos].splice(i * 5, 5);
+    }
+
+    return firstpanels;
+  } else {
+    return (datos = 0);
+  }
+}
+
+/////////////////////paginado//////////////////////////////////////
+
+
+
 
 
  //////////////////////////////////////////////////////////////
@@ -163,11 +232,13 @@ const searchbyName=async(name)=>{
           col3={"Título"}
           col4={"ID"}
         />
-{organizations?.map((org, index)=>(
+{organizationsPag[pagina]?.map((org, index)=>(
         <TableRowOrganization key={index} organization={org} setchild={getOusbyParent} selectorg={pushOrg}/>
         ))}
       </div>
-        <PaginationEstructuras />
+        <PaginationEstructuras PActual={pagina}
+  MaxPaginas={organizationsPag.length}
+  SeteoActual={setPagina} />
       <div className="flex flex-row gap-5 justify-end px-4">
         <Button width={"150px"}
         onClick={()=>close()}
