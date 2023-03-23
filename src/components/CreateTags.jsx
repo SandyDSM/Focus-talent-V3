@@ -100,12 +100,12 @@ const updateTags= async (etiquetasx, espaniol, ingles, frances, portugues, chino
 function actualiza()
 {
   updateTags(
-    document.getElementById("etiqueta").value,
-    document.getElementById("es_MX").value,
-    document.getElementById("en_US").value,
-    document.getElementById("fr_CA").value,
-    document.getElementById("pt_BR").value,
-    document.getElementById("zh_CN").value
+    document.getElementById("etiqueta").value.replace("'","''"),
+    document.getElementById("es_MX").value.replace("'","''"),
+    document.getElementById("en_US").value.replace("'","''"),
+    document.getElementById("fr_CA").value.replace("'","''"),
+    document.getElementById("pt_BR").value.replace("'","''"),
+    document.getElementById("zh_CN").value.replace("'","''")
   )
 }
 

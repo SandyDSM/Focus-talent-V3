@@ -17,7 +17,7 @@ function Tags() {
 
   useEffect(() => {
     gettags();
-  }, [etiquetas, reloadTags]);
+  }, [reloadTags]);
 
 
   function getData() {
