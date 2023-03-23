@@ -13,6 +13,14 @@ Amplify.configure({
             {
                 name: "API Behaviors",
                 endpoint: "https://vlzue8oog7.execute-api.us-east-1.amazonaws.com/TEST"
+            },
+            {
+                name: "API PerfPoten",
+                endpoint: "https://xoiabhzb2j.execute-api.us-east-1.amazonaws.com/prod"  
+            },
+            {
+                name: "API Anios",
+                endpoint: "https://42d2x1t7cj.execute-api.us-east-1.amazonaws.com/prod"  
             }
         ]
     }

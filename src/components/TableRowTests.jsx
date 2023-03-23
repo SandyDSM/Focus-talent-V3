@@ -1,9 +1,10 @@
 import { Button, Divider, SwitchField } from "@aws-amplify/ui-react";
 import React, { useState, useEffect } from "react";
 import { IconNotification } from "../ui-components";
+import { API } from "aws-amplify";
 
 function TableRowTests({ anio, handleOpen }) {
-  
+  /*
   const updateAnios= async (id, valor) => {
     try {
       const respdesemp = await fetch(
@@ -24,7 +25,36 @@ function TableRowTests({ anio, handleOpen }) {
     } catch (error) {
     } 
   };
+  */
+  function getData(papiName, ppath, pparameters) {
+    const apiName = papiName;
+    const path = ppath;
+    const myInit = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: pparameters
+    };
   
+    return API.get(apiName, path, myInit);
+  }
+
+  const updateAnios = async (id, valor) => {
+    let idtemp=id*1;
+    try{
+      let parametros={ANIO: idtemp,
+      VALUE: valor};
+      console.log('El valor de parametros es: ', parametros);
+      const response = await getData('API Anios', '/setanios', parametros);
+     console.log("la respuesta es ", response);
+    }catch (error) {
+      console.log("error:", error);
+    }
+  };
+
+
+
+
+
+
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {

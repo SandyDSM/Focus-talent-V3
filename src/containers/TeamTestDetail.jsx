@@ -23,15 +23,12 @@ function TeamTestDetail() {
 //////////////////////////////////////////////////////////////////////////////////
 const [dataBehavior, setDataBehavior] =useState([])
 
-  function getData() {
-    const apiName = 'API Behaviors';
-    const path = '/behaviors';
+  function getData(papiName, ppath, pparameters) {
+    const apiName = papiName;
+    const path = ppath;
     const myInit = {
       headers: {}, // OPTIONAL
-      queryStringParameters: {
-        LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
-        USER_ID: `${collDetail.ID_COLABORADOR}` // OPTIONAL
-      }
+      queryStringParameters: pparameters
     };
   
     return API.get(apiName, path, myInit);
@@ -39,8 +36,10 @@ const [dataBehavior, setDataBehavior] =useState([])
 
   const fetcBehaviors = async () => {
     try{
-      setLoad(true)
-      const response = await getData();
+      setLoad(true);
+      let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
+      USER_ID: `${collDetail.ID_COLABORADOR}`};
+      const response = await getData('API Behaviors', '/behaviors', parametros);
       setDataBehavior(response)
       //console.log(response)
     }catch (error) {
@@ -52,7 +51,8 @@ const [dataBehavior, setDataBehavior] =useState([])
 
 
 ////////////////////////////////////////////////////////////////////////////////////
-  const fetchDesemp = async () => {
+/*  
+const fetchDesemp = async () => {
     const respdesemp = await fetch(
       `https://talento-itzahuia.com/SAC/gb_info.php?ID=${id}`,
       {
@@ -64,6 +64,32 @@ const [dataBehavior, setDataBehavior] =useState([])
     obtenMaxAnio(datos);
     setTestPreguntas(datos);
   };
+*/
+///////////////////////////////////////////////////////////////////////////////
+
+
+const fetchDesemp = async () => {
+  
+  let idtemp=id*1;
+  
+  let parametros={INTERNAL_ID: idtemp,
+  LANGUAGE: `'${usuarioActualDatos.IDIOMA}'`
+};
+  console.log("los parametros van ", parametros);
+  try{
+    const response = await getData('API PerfPoten', '/perfpot', parametros);
+   console.log("La data que llega es ", response);
+    obtenMaxAnio(response);
+    setTestPreguntas(response);
+
+  }catch (error) {
+  
+    console.log("error aaa:", error);
+  }
+};
+
+
+
 
   const obtenMaxAnio=(datos)=>
   {

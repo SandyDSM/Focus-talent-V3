@@ -146,7 +146,7 @@ if(notaply==respnotaply){
 
   const onClear=()=>{
     restauraUserClasif(props.OpcionSelect);
-    alert("sssssAAAAA");
+   
   };
   
 
