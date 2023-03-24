@@ -6,7 +6,7 @@ import Modal from '../components/Modal';
 import TableTests from '../components/TableTests'
 import TableOrganizations from '../components/TableOrganizations'
 import TalentElements from '../components/TalentElements';
-
+import { API } from "aws-amplify";
 
 function Test() {
   const[anios, setAnios]=useState([]);
@@ -28,6 +28,24 @@ function Test() {
   setOpen(false)
 }
 
+function getData(papiName, ppath, pparameters) {
+  const apiName = papiName;
+  const path = ppath;
+  const myInit = {
+    headers: {}, // OPTIONAL
+    queryStringParameters: pparameters
+  };
+
+  return API.get(apiName, path, myInit);
+}
+
+
+
+
+
+
+
+/*
 const getAniosCalib= async () => {
   try {
     //setIsLoading(true);
@@ -48,7 +66,7 @@ const getAniosCalib= async () => {
 };
 
 
-
+/*
 
   const getAnios= async () => {
     try {
@@ -68,6 +86,31 @@ const getAniosCalib= async () => {
       setAnios([]);
     } 
   };
+*/
+
+const getAnios = async () => {
+  try{
+    let parametros={};
+    const response = await getData('API Anios', '/getanios', parametros);
+    setAnios(response);
+  }catch (error) {
+    console.log("error:", error);
+  }
+};
+
+const getAniosCalib = async () => {
+  try{
+    let parametros={};
+    const response = await getData('API Anios', '/getanioscalib', parametros);
+    setAniosCalib(response);
+  }catch (error) {
+    console.log("error:", error);
+  }
+};
+
+
+
+
   function openModal(){
     setOpen(true)
     console.log("abrir")

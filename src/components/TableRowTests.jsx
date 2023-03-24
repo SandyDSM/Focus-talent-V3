@@ -58,7 +58,7 @@ function TableRowTests({ anio, handleOpen }) {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    if (anio.ACTIVO === "1") {
+    if (anio.ACTIVO === 1) {
       setIsChecked(true);
     } else {
       setIsChecked(false);
@@ -78,7 +78,7 @@ function TableRowTests({ anio, handleOpen }) {
           <SwitchField
             shrink="0"
             size="default"
-            defaultChecked={anio.ACTIVO==="1" && "Checked"}
+            defaultChecked={anio.ACTIVO===1 && "Checked"}
             id={anio.ANIO}
             name={anio.ANIO}
             value={anio.ANIO}

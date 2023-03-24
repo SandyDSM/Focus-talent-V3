@@ -33,7 +33,6 @@ function Tags() {
   const gettags = async () => {
     try{
       const response = await getData();
-   
   setEtiquetas(response);
   
     }catch (error) {

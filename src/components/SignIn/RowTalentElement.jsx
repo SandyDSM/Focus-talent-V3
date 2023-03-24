@@ -1,9 +1,23 @@
 import { Divider, SwitchField } from '@aws-amplify/ui-react';
 import React, { useState, useEffect } from "react";
+import { API } from "aws-amplify";
 
 function RowTalentElement({anio}) {
+
+  function getData(papiName, ppath, pparameters) {
+    const apiName = papiName;
+    const path = ppath;
+    const myInit = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: pparameters
+    };
   
-  const updateAnios= async (id, valor) => {
+    return API.get(apiName, path, myInit);
+  }
+  
+
+/*
+  const updateAniosCalib= async (id, valor) => {
     try {
     
       const respdesemp = await fetch(
@@ -25,6 +39,21 @@ function RowTalentElement({anio}) {
     } catch (error) {
     } 
   };
+*/
+
+const updateAniosCalib = async (id, valor) => {
+  let idtemp=id.split('-')[0]*1;
+  try{
+    let parametros={ANIO: idtemp,
+    VALUE: valor,
+    AGRUPACION: id.split('-')[1]
+  };
+    console.log('El valor de parametros es: ', parametros);
+    const response = await getData('API Anios', '/updateanioscalib', parametros);
+  }catch (error) {
+    console.log("error:", error);
+  }
+};
 
 
 
@@ -32,7 +61,7 @@ function RowTalentElement({anio}) {
 
 
   useEffect(() => {
-    if (anio.ACTIVO === "1") {
+    if (anio.ACTIVO === 1) {
       setIsChecked(true);
     } else {
       setIsChecked(false);
@@ -45,12 +74,12 @@ function RowTalentElement({anio}) {
               <SwitchField
                 shrink="0"
                 size="default"
-                defaultChecked={anio.ACTIVO==="1" && "Checked"}
+                defaultChecked={anio.ACTIVO===1 && "Checked"}
                 id={`${anio.ANIO}-${anio.AGRUPACION}`}
                 name={anio.ANIO}
                 value={"aaa"+anio.ANIO}
                 onChange={(e) => {
-                  updateAnios(e.target.id, e.target.checked);
+                  updateAniosCalib(e.target.id, e.target.checked);
                   setIsChecked(e.target.checked);
                 }}
               />
