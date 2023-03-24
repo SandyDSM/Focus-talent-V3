@@ -3,12 +3,26 @@ import Iconteam from "../ui-components/Iconteam";
 import { Link } from "react-router-dom";
 import React, { useContext, useState, useEffect } from "react";
 import CollaboratorsContext from "../context/collaborators";
+import { API } from "aws-amplify";
 
 function CardDos({ colaborator, sub }) {
-  const { origHireDate, evaluators, myteamViewDetail } =
+  const { origHireDate, evaluators, myteamViewDetail, usuarioActualDatos } =
     useContext(CollaboratorsContext);
   const [calibracion, setCalibracion] = useState([]);
-  //console.log('el valor de sub es:'+sub+'el usuario es:'+colaborator.APELLIDOS);
+  
+  
+  function getData(papiName, ppath, pparameters) {
+    const apiName = papiName;
+    const path = ppath;
+    const myInit = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: pparameters
+    };
+  
+    return API.get(apiName, path, myInit);
+  } 
+  
+/*
   const getcalib = async (id) => {
     try {
       //setIsLoading(true);
@@ -27,6 +41,25 @@ function CardDos({ colaborator, sub }) {
       setCalibracion([]);
     }
   };
+*/
+const getcalib = async (id) => {
+  try{
+    let idtemp=id*1;
+    let parametros={LANGUAGE: `'${usuarioActualDatos.IDIOMA}'`,
+    INTERNAL_ID: idtemp};
+    const response = await getData('API PerfPoten', '/getcarddata', parametros);
+    setCalibracion(response)
+    //console.log(response)
+  }catch (error) {
+    setCalibracion([]);
+    console.log("error:", error);
+  }finally{
+  
+  }
+};
+
+
+
 
   useEffect(() => {
     getcalib(colaborator.INTERNAL_ID);
