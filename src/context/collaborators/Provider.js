@@ -156,6 +156,7 @@ response?.filter((c)=>(c.ETIQUETA=='potreview')).map((trad)=>(setPotReview(trad.
 /////////////////////////////////////
  
   const getAttribColaborators = async (correo) => {
+    console.log("obteniendo datos de usuario");
     try {
       setIsLoading(true);
       const respdesemp = await fetch(
@@ -171,6 +172,9 @@ response?.filter((c)=>(c.ETIQUETA=='potreview')).map((trad)=>(setPotReview(trad.
       const datos = await respdesemp.json();
       //console.log("Usuario logueado: ", datos[0]);
       setUsuarioActualDatos(datos[0]);
+if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaUsuario")==="undefined"){
+  localStorage.setItem("IdiomaUsuario", datos[0].IDIOMA);
+}      
       const esAdmin = datos[0].ADMIN;
       fetcLanguage(datos[0].IDIOMA);
       if(esAdmin === "1") {

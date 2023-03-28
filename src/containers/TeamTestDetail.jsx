@@ -14,7 +14,7 @@ function TeamTestDetail() {
   const { id } = useParams();
   const { getCollDetail, collDetail, isLoading, usuarioActualDatos } =
     useContext(CollaboratorsContext);
-
+console.log("Datos de usario actual", usuarioActualDatos);
   const [testPreguntas, setTestPreguntas] = useState();
   const [aniosFill, setAniosFill] = useState([]);
   const [selall, setSelall]=useState(false);
@@ -73,9 +73,9 @@ const fetchDesemp = async () => {
   let idtemp=id*1;
   
   let parametros={INTERNAL_ID: idtemp,
-  LANGUAGE: `'${usuarioActualDatos.IDIOMA}'`
+  LANGUAGE: `'${localStorage.getItem("IdiomaUsuario")}'`
 };
-  console.log("los parametros van ", parametros);
+  console.log("los parametros van XXXXXXXXXXXXXXXXXXXXXXXXXX", parametros);
   try{
     const response = await getData('API PerfPoten', '/perfpot', parametros);
    console.log("La data que llega es ", response);
