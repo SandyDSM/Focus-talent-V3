@@ -15,20 +15,25 @@ function TableOrganizations({ close }) {
   const [organizationsPag, setOrganizationsPag] = useState([]);
   const [pagina, setPagina] = useState(0);
   const [breadcrumbs, setBreadcrumbs] = useState([]);
+  const [carray ,setCarray]=useState([]);
   const pullOrg = (indice) => {
     let orgtemp = organizationSelect;
     orgtemp.splice(indice, 1);
     setOrganizationsSelect([...orgtemp]);
+  alert("El indice dice ",indice);
   };
 
   const pushOrg = (obj) => {
     let orgtemp = organizationSelect;
+    let arreglo=carray;
     let orgval = [];
     orgval = orgtemp.filter((element) => element.ID === obj.ID);
     if (orgval.length === 0) {
       orgtemp.push(obj);
+      arreglo.push([obj.ID][obj.INCLUDE_SUB]);
     }
     setOrganizationsSelect([...orgtemp]);
+       
     //console.log("los objetos son: ", organizationSelect);
   };
 
@@ -93,6 +98,39 @@ function TableOrganizations({ close }) {
       setOrganizations([]);
     }
   };
+
+const listaEnviada= async (arreglotmp)=>{
+  
+
+  //console.log("carray es",carray);
+
+  try {
+    const respdesemp = await fetch(
+      
+      
+      
+      
+      `https://talento-itzahuia.com/SAC/gb_usuarios_mail.php`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          token: "8da9aebd984ef3897b280ff7efabf83d931f99lb",
+          //lista:JSON.stringify(organizationSelect)
+          lista:arreglotmp
+        },
+      }
+    );
+    const datos = await respdesemp.json();
+    console.log("los datos de correo son: ",datos);
+  } catch (error) {
+    console.log("el maldito error es: ",error);
+    //setOrganizations([]);
+  }
+  
+};
+
+
 
   //////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -176,6 +214,19 @@ function TableOrganizations({ close }) {
       return (datos = 0);
     }
   }
+
+
+const enviar_correo=()=>{
+  let arreglotmp=[];
+  organizationSelect.map((obj)=>(
+arreglotmp.push(obj.ID+";"+obj.INCLUDE_SUB)
+  ));
+  //setCarray([...arreglotmp]);
+  console.log("Carray es: ", arreglotmp);
+  listaEnviada(arreglotmp);
+  
+}
+
 
   //console.log(breadcrumbs);
   /////////////////////paginado//////////////////////////////////////
@@ -282,6 +333,7 @@ function TableOrganizations({ close }) {
           width={"150px"}
           variation="primary"
           style={{ backgroundColor: "#004B85", color: "white" }}
+          onClick={()=>enviar_correo()}
         >
           Enviar
         </Button>

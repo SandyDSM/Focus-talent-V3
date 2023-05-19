@@ -7,7 +7,7 @@ function TableRowOrganizationSelect({organization, indice, pullorg}) {
     <div className="flex flex-col w-full">
       <div className="flex flex-row items-center pr-9 relative justify-between">
         <div className="flex flex-row justify-start self-stretch py-1 px-9 items-center relative gap-8 w-7/12">
-          <div className="flex flex-col w-7 h-6 cursor-pointer items-center" onClick={()=>{pullorg(indice)}}>
+          <div className="flex flex-col w-7 h-6 cursor-pointer items-center" onClick={()=>{pullorg(indice);}}>
             <IconActions width="20px" height="20px" name="delete" />
           </div>
           <div className="flex flex-row gap-1 grow shrink relative whitespace-pre-wrap">
@@ -21,6 +21,7 @@ function TableRowOrganizationSelect({organization, indice, pullorg}) {
           value="yes"
           size="small"
           defaultChecked
+          onChange={(e)=>{ if(e.target.checked){organization.INCLUDE_SUB=1;}else{organization.INCLUDE_SUB=0;}}}
         />
       </div>
       <Divider
