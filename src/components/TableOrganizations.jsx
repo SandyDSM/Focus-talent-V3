@@ -6,6 +6,7 @@ import TableRowOrganizationSelect from "./TableRowOrganizationSelect";
 import PaginationEstructuras from "./PaginationEstructuras";
 import { useState } from "react";
 import { useEffect } from "react";
+import {invokeLambdaFunction} from "./email";
 
 function TableOrganizations({ close }) {
   const [organizations, setOrganizations] = useState([]);
@@ -122,9 +123,42 @@ const listaEnviada= async (arreglotmp)=>{
       }
     );
     const datos = await respdesemp.json();
-    console.log("los datos de correo son: ",datos);
+    //setUsuariosCorreos(datos);
+    //console.log("los datos de correo son: ",datos);
+ /*   
+ datos?.map((a)=>(console.log("El nombre del usuario es: ",a.NOMBRE)
+ 
+ let payload = { subject: 'Correo de prueba enviado desde Focus Talent', 
+    body:"<p>asdasd<strong class='ql-font-serif'>sadasdasdas</strong><strong class='ql-font-serif' style='color: rgb(230, 0, 0);'>d<em>sdasdasd<u>xczc</u></em></strong></p>", email:"jorge.loeza@banloeconsulting.com" };
+    const lambdaResponse = await invokeLambdaFunction('sendEmails', payload);
+ 
+ 
+ ))
+
+ */
+
+
+
+ for(let i=0; i<2; i++){
+  //console.log("El nombre del usuario es: ",datos[i].NOMBRE);
+  let cuerpo="el correo a donde se enviará es: "+datos[i].EMAIL;
+
+ estrucCorreo?.filter((fil=>fil.IDIOMA===datos[i].IDIOMA))?.map((tem)=>(cuerpo=cuerpo+"<br/>"+tem.CUERPO.replace('&lt;&lt;Nombre&gt;&gt;', datos[i].NOMBRE).replace('&lt;&lt;Apellidos&gt;&gt;', datos[i].APELLIDOS)));
+ 
+//cuerpo=cuerpo+"<br/>"+bodytemp.CUERPO;//.replace('<<Nombre>>', datos[i].NOMBRE);
+//cuerpo=cuerpo.replace('<<Apellidos>>',datos[i].APELLIDOS);
+
+console.log("El mensaje es", cuerpo);
+
+  let payload = { subject: 'Correo de prueba enviado desde Focus Talent', 
+  body:cuerpo, email:"jorge.loeza@banloeconsulting.com" };
+ const lambdaResponse = await invokeLambdaFunction('sendEmails', payload);
+
+}
+
+   // console.log("los datos de correo son: ",datos);
   } catch (error) {
-    console.log("el maldito error es: ",error);
+    console.log("el error es: ",error);
     //setOrganizations([]);
   }
   
@@ -176,7 +210,7 @@ const listaEnviada= async (arreglotmp)=>{
       );
       const datos = await respdesemp.json();
       setEstrucCorreo(datos);
-      //console.log(datos);
+      console.log("los cuerpos de correos son",datos);
     } catch (error) {
       setEstrucCorreo([]);
     }
