@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import { useContext,  } from "react";
 import CollaboratorsContext from "../context/collaborators";
 
-function BreadCrums({ text, colaborator }) {
-  const{buttonBack, buttonMyTeam} =useContext(CollaboratorsContext);
+function BreadCrums({ text, user, colaborator=null }) {
+  const{buttonBack, buttonMyTeam, teamFrom, teamOne, subOne} =useContext(CollaboratorsContext);
+
+  console.log("---------",subOne);
   return (
     <div className="my-2 flex gap-1 items-center">
       <Link to="/myteam">
@@ -17,11 +19,26 @@ function BreadCrums({ text, colaborator }) {
         <Button size="small" variation="link">{buttonMyTeam}</Button>
       </Link>
       <PageArrow type="Go" />
+      {colaborator != null & subOne ? 
+      (<>
+      <Link to={`/myteam/${teamOne.INTERNAL_ID}`}>
+      <Button
+        variation="link"
+        isDisabled={false}
+        size="small"
+      >{`${teamFrom} ${teamOne.NOMBRE}`}</Button></Link>
+      <PageArrow type="Go" />
       <Button
         variation="link"
         isDisabled={true}
         size="small"
       >{`${text} ${colaborator}`}</Button>
+      </>):
+      <Button
+      variation="link"
+      isDisabled={true}
+      size="small"
+    >{subOne ? `${text} ${user}` : `${text} ${colaborator}`}</Button>}
     </div>
   );
 }

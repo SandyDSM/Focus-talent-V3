@@ -6,10 +6,9 @@ import CollaboratorsContext from "../context/collaborators";
 import { API } from "aws-amplify";
 
 function CardDos({ colaborator, sub }) {
-  const { origHireDate, evaluators, myteamViewDetail, usuarioActualDatos } =
+  const { origHireDate, evaluators, myteamViewDetail, usuarioActualDatos, setSubOne} =
     useContext(CollaboratorsContext);
   const [calibracion, setCalibracion] = useState([]);
-  
   
   function getData(papiName, ppath, pparameters) {
     const apiName = papiName;
@@ -58,11 +57,9 @@ const getcalib = async (id) => {
   }
 };
 
-
-
-
   useEffect(() => {
     getcalib(colaborator.INTERNAL_ID);
+    setSubOne(sub);
   }, []);
 
   return (
@@ -100,6 +97,7 @@ const getcalib = async (id) => {
           ))}
         </div>
         <div className="flex items-center p-4 bg-bmb-grey-10 justify-between">
+        
           {(colaborator.EQUIPO == "1") & (sub === false) ? (
             <Link to={`/myteam/${colaborator.INTERNAL_ID}`}>
               <div className={colaborator.EQUIPO == "1" && "cursor-pointer"}>

@@ -20,6 +20,8 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [collaboratorsResp, setCollaboratorsResp] = useState([]);
   const [showPerson, setShowPerson] = useState(true)
   const [sendCode, setSendCode] = useState(false);
+  const [teamOne, setTeamOne] = useState([]);
+  const [subOne, setSubOne] = useState(false);
   
 //estados de usuario categorizado
   const [futleader, setFutleader] = useState([]);
@@ -54,6 +56,7 @@ const[myteamOption4, setMyteamOption4]=useState('No evaluados en potencial');
 const[myteamOption5, setMyteamOption5]=useState('No aplica');
 const[myteamViewDetail, setMyteamViewDetail]=useState('Ver detalles');
 const[teamFrom, setTeamFrom]=useState('Equipo de');
+const[evalTxt, setEvalTxt]=useState('Eval. de');
 const[noColaborators, setNoColaborators]=useState('No hay colaboradores en esta categoría');
 const[origHireDate, setOrigHireDate]=useState('Fecha de Contratación');
 const[evaluators, setEvaluators ]=useState('Colaboradores que evaluaron');
@@ -529,6 +532,7 @@ myteamOption4,
 myteamOption5,
 myteamViewDetail,
 teamFrom,
+evalTxt,
 noColaborators,
 origHireDate,
 evaluators,
@@ -548,7 +552,9 @@ reviewer,
 rating,
 comments,
 subReview,
-potReview
+potReview,
+teamOne,
+setTeamOne, subOne, setSubOne
       }}
     >
       {children}

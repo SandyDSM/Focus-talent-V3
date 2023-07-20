@@ -30,7 +30,7 @@ function TeamSub() {
         myteamOption4,
         myteamOption5,
         teamFrom,
-        notaplysub
+        notaplysub, teamOne, setTeamOne,  
   } = useContext(CollaboratorsContext);
 
   const [option, setOption] = useState(1);
@@ -44,6 +44,7 @@ function TeamSub() {
     getCollDetail(id)
     .then(getCollaborators(collDetail.ID_COLABORADOR, "SetSubColaborators"))
     .catch(null);
+    setTeamOne(collDetail)
   }, [collDetail.ID_COLABORADOR]);
 
   const sendOverridesTeamFrom = {
@@ -60,12 +61,13 @@ function TeamSub() {
     );
   }
 })
+ 
 
 Loader();
   return (
     <>
       <div className="mx-4">
-        <BreadCrums text={teamFrom} colaborator={collDetail.NOMBRE} />
+        <BreadCrums text={teamFrom} user={collDetail.NOMBRE} />
       </div>
       <HeadTeamFrom width={"100%"} overrides={sendOverridesTeamFrom} />
       <>

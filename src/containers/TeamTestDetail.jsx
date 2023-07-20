@@ -12,7 +12,7 @@ import { API } from 'aws-amplify';
 
 function TeamTestDetail() {
   const { id } = useParams();
-  const { getCollDetail, collDetail, isLoading, usuarioActualDatos } =
+  const { getCollDetail, collDetail, isLoading, usuarioActualDatos, evalTxt } =
     useContext(CollaboratorsContext);
 console.log("Datos de usario actual", usuarioActualDatos);
   const [testPreguntas, setTestPreguntas] = useState();
@@ -180,7 +180,7 @@ const fetchDesemp = async () => {
       <div className="mt-2 flex flex-col gap-2">
         <div className="mx-4">
           <BreadCrums
-            text="Evaluación de"
+            text={evalTxt}
             colaborator={collDetail.NOMBRE}
           />
         </div>
