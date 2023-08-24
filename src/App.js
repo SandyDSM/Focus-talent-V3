@@ -16,6 +16,7 @@ import Test from "./containers/Test";
 import Tags from "./containers/Tags";
 import Notif from "./containers/Notif";
 import MyTeam from "./containers/MyTeam";
+import SearchTeam from "./containers/SearchTeam";
 import NavHeader from "./components/NavHeader";
 import TeamTestDetail from "./containers/TeamTestDetail";
 import TeamSub from "./containers/TeamSub";
@@ -74,7 +75,7 @@ function App() {
                 <Route exact path="/test" element={<Test /> } />
                 <Route exact path="/tags" element={<Tags /> }/>
                 <Route exact path="/notif" element={<Notif />}/>
-                <Route exact path="/myteam" element={<MyTeam /> } />
+                <Route exact path="/myteam" element={<SearchTeam /> } />
                 <Route exact path="/myteam/:id" element={<TeamSub /> } />
                 <Route exact path="/test/:id" element={<TeamTestDetail /> } />
               </Route>

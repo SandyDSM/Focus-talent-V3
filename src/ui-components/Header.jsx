@@ -50,7 +50,7 @@ export default function Header(props) {
   );
   const gBTalentOnClick = useNavigateAction({
     type: "url",
-    url: "https://grupobimbo.csod.com/LMS/catalog/Welcome.aspx?tab_page_id=-67&tab_id=-1",
+    url: "https://grupobimbo-pilot.csod.com/LMS/catalog/Welcome.aspx?tab_page_id=-67&tab_id=-1",
   });
   return (
     <Flex

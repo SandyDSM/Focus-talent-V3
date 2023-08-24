@@ -13,8 +13,7 @@ function HeadTeam({title = "Mi Equipo", OpcionSelect}) {
           hasSearchIcon: true
          },
          Heading:{children: buttonMyTeam}
-         
-    }
+  }
     
   return (
     <div className='mt-2 flex flex-col gap-2'>
