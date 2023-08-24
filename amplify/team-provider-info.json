@@ -1,0 +1,41 @@
+{
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-focusbmbv2-prod-04951-authRole",
+      "UnauthRoleArn": "arn:aws:iam::988833764050:role/amplify-focusbmbv2-prod-04951-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::988833764050:role/amplify-focusbmbv2-prod-04951-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-focusbmbv2-prod-04951-deployment",
+      "UnauthRoleName": "amplify-focusbmbv2-prod-04951-unauthRole",
+      "StackName": "amplify-focusbmbv2-prod-04951",
+      "StackId": "arn:aws:cloudformation:us-east-1:988833764050:stack/amplify-focusbmbv2-prod-04951/5aeb7260-93a5-11ed-b775-12c3aacfe84f",
+      "AmplifyAppId": "dbap29m95h4qw"
+    },
+    "categories": {
+      "auth": {
+        "focusbmbv2": {
+          "userPoolId": "us-east-1_fv09rJ7aK",
+          "userPoolName": "focus-bmb-v2",
+          "webClientId": "39s7dfmvtso0306r9appsnqapc",
+          "nativeClientId": "39s7dfmvtso0306r9appsnqapc",
+          "identityPoolId": "us-east-1:e0dc029c-fc99-4079-900e-c1a5f0a9bfa3",
+          "identityPoolName": "idpool-focus-bmb-v2",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::988833764050:role/Cognito_idpoolfocusbmbv2Auth_Role",
+          "authRoleName": "Cognito_idpoolfocusbmbv2Auth_Role",
+          "unauthRoleArn": "arn:aws:iam::988833764050:role/Cognito_idpoolfocusbmbv2Unauth_Role",
+          "unauthRoleName": "Cognito_idpoolfocusbmbv2Unauth_Role"
+        }
+      },
+      "storage": {
+        "s3focusbmbv2amplify": {}
+      },
+      "api": {
+        "focusbmbv2": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  }
+}

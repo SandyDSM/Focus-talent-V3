@@ -1,0 +1,94 @@
+import { SelectField } from "@aws-amplify/ui-react";
+import { Loader } from "@aws-amplify/ui-react";
+import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import CollaboratorsContext from "../context/collaborators";
+import { HeadTeamFrom } from "../ui-components";
+import BreadCrums from "../components/BreadCrums";
+import Tabs from "../components/Tabs";
+
+function TeamSub() {
+  const { id } = useParams();
+  const {
+    getCollaborators,
+    subcollaborators,
+    getCollDetail,
+    collDetail,
+    isLoading,
+    futleadersub,
+        respfutleadersub,
+        pillbusinesssub,
+        resppillbusinesssub,
+        basebusinesssub,
+        respbasebusinesssub,
+        notevalsub,
+        respnotevalsub,
+        notaply,
+        myteamOption1,
+        myteamOption2,
+        myteamOption3,
+        myteamOption4,
+        myteamOption5,
+        teamFrom,
+        notaplysub, teamOne, setTeamOne,  
+  } = useContext(CollaboratorsContext);
+
+  const [option, setOption] = useState(1);
+
+  const toggleTab = (index) => {
+    setOption(index);
+  };
+  console.log("subs",subcollaborators)
+
+  useEffect(() => {
+    getCollDetail(id)
+    .then(getCollaborators(collDetail.ID_COLABORADOR, "SetSubColaborators"))
+    .catch(null);
+    setTeamOne(collDetail)
+  }, [collDetail.ID_COLABORADOR]);
+
+  const sendOverridesTeamFrom = {
+    nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
+    SearchField: {display: 'none'}
+  };
+
+  const Loader = (()=>{
+  if (isLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center ">
+        <Loader size="large" />
+      </div>
+    );
+  }
+})
+ 
+
+Loader();
+  return (
+    <>
+      <div className="mx-4">
+        <BreadCrums text={teamFrom} user={collDetail.NOMBRE} />
+      </div>
+      <HeadTeamFrom width={"100%"} overrides={sendOverridesTeamFrom} />
+      <>
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 m-5 px-4">
+          <div className={`md:rounded-l-lg ${option === 1 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(1)}>{myteamOption1}</div>
+          <div className={option === 2 ? "tabActive" : "tab"} onClick={()=>toggleTab(2)}>{myteamOption2}</div>
+          <div className={option === 3 ? "tabActive" : "tab"} onClick={()=>toggleTab(3)}>{myteamOption3}</div>
+          <div className={option === 4 ? "tabActive" : "tab"} onClick={()=>toggleTab(4)}>{myteamOption4}</div>
+          <div className={`md:rounded-r-lg ${option === 5 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(5)}>{myteamOption5}</div>
+        </div>
+        <div>
+          {option === 1 && <Tabs title={myteamOption1} collaborators={futleadersub} sub={true}/>}
+          {option === 2 && <Tabs title={myteamOption2} collaborators={pillbusinesssub} sub={true}/>}
+          {option === 3 && <Tabs title={myteamOption3} collaborators={basebusinesssub} sub={true}/>}
+          {option === 4 && <Tabs title={myteamOption4} collaborators={notevalsub} sub={true}/>}
+          {option === 5 && <Tabs title={myteamOption5} collaborators={notaplysub}/>}
+        </div>
+        </>
+
+    </>
+  );
+}
+
+export default TeamSub;

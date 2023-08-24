@@ -1,0 +1,379 @@
+import React from "react";
+import TableRowOrganization from "./TableRowOrganization";
+import HeadTable from "./HeadTable";
+import { Button, Divider, Heading, TextField } from "@aws-amplify/ui-react";
+import TableRowOrganizationSelect from "./TableRowOrganizationSelect";
+import PaginationEstructuras from "./PaginationEstructuras";
+import { useState } from "react";
+import { useEffect } from "react";
+import {invokeLambdaFunction} from "./email";
+
+function TableOrganizations({ close }) {
+  const [organizations, setOrganizations] = useState([]);
+  const [organizationSelect, setOrganizationsSelect] = useState([]);
+  const [usuariosCorreos, setUsuariosCorreos] = useState([]);
+  const [estrucCorreo, setEstrucCorreo] = useState([]);
+  const [organizationsPag, setOrganizationsPag] = useState([]);
+  const [pagina, setPagina] = useState(0);
+  const [breadcrumbs, setBreadcrumbs] = useState([]);
+  const [carray ,setCarray]=useState([]);
+  const pullOrg = (indice) => {
+    let orgtemp = organizationSelect;
+    orgtemp.splice(indice, 1);
+    setOrganizationsSelect([...orgtemp]);
+  alert("El indice dice ",indice);
+  };
+
+  const pushOrg = (obj) => {
+    let orgtemp = organizationSelect;
+    let arreglo=carray;
+    let orgval = [];
+    orgval = orgtemp.filter((element) => element.ID === obj.ID);
+    if (orgval.length === 0) {
+      orgtemp.push(obj);
+      arreglo.push([obj.ID][obj.INCLUDE_SUB]);
+    }
+    setOrganizationsSelect([...orgtemp]);
+       
+    //console.log("los objetos son: ", organizationSelect);
+  };
+
+  const pushBreadcumbs = (obj) => {
+    let bread = breadcrumbs;
+    if (bread.indexOf(obj) === -1){
+      bread.push(obj);
+      setBreadcrumbs([...bread]);
+    }else{
+      let pos = bread.indexOf(obj);
+      bread.splice(pos +1);
+    }
+  };
+
+  useEffect(() => {
+    setOrganizationsPag(separa(organizations));
+  }, [organizations, pagina]);
+
+  //////////////////////////////////////////////////////////////
+
+  ////////  ////////   ////////
+  //        //    //   //    //
+  ////////  ///////    //////
+  //  //    //   //  //
+  ////////  ////////   //   //
+  const searchbyName = async (name) => {
+    try {
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_orgest.php?ID='${name}'`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            token: "8da9aebd984ef3897b280ff7efabf83d931f99lb",
+          },
+        }
+      );
+      const datos = await respdesemp.json();
+      setOrganizations(datos);
+    } catch (error) {
+      setOrganizations([]);
+    }
+  };
+
+  ///////////////////////////////////////////////////////////////////
+  const getOusbyParent = async (ID) => {
+    pushBreadcumbs(ID);
+    try {
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_orgest.php?parentID='${ID}'`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            token: "8da9aebd984ef3897b280ff7efabf83d931f99lb",
+          },
+        }
+      );
+      const datos = await respdesemp.json();
+      setOrganizations(datos);
+    } catch (error) {
+      setOrganizations([]);
+    }
+  };
+
+const listaEnviada= async (arreglotmp)=>{
+  
+
+  //console.log("carray es",carray);
+
+  try {
+    const respdesemp = await fetch(
+      
+      
+      
+      
+      `https://talento-itzahuia.com/SAC/gb_usuarios_mail.php`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          token: "8da9aebd984ef3897b280ff7efabf83d931f99lb",
+          //lista:JSON.stringify(organizationSelect)
+          lista:arreglotmp
+        },
+      }
+    );
+    const datos = await respdesemp.json();
+    //setUsuariosCorreos(datos);
+    //console.log("los datos de correo son: ",datos);
+ /*   
+ datos?.map((a)=>(console.log("El nombre del usuario es: ",a.NOMBRE)
+ 
+ let payload = { subject: 'Correo de prueba enviado desde Focus Talent', 
+    body:"<p>asdasd<strong class='ql-font-serif'>sadasdasdas</strong><strong class='ql-font-serif' style='color: rgb(230, 0, 0);'>d<em>sdasdasd<u>xczc</u></em></strong></p>", email:"jorge.loeza@banloeconsulting.com" };
+    const lambdaResponse = await invokeLambdaFunction('sendEmails', payload);
+ 
+ 
+ ))
+
+ */
+
+
+
+ for(let i=0; i<2; i++){
+  //console.log("El nombre del usuario es: ",datos[i].NOMBRE);
+  let cuerpo="el correo a donde se enviará es: "+datos[i].EMAIL;
+
+ estrucCorreo?.filter((fil=>fil.IDIOMA===datos[i].IDIOMA))?.map((tem)=>(cuerpo=cuerpo+"<br/>"+tem.CUERPO.replace('&lt;&lt;Nombre&gt;&gt;', datos[i].NOMBRE).replace('&lt;&lt;Apellidos&gt;&gt;', datos[i].APELLIDOS)));
+ 
+//cuerpo=cuerpo+"<br/>"+bodytemp.CUERPO;//.replace('<<Nombre>>', datos[i].NOMBRE);
+//cuerpo=cuerpo.replace('<<Apellidos>>',datos[i].APELLIDOS);
+
+console.log("El mensaje es", cuerpo);
+
+  let payload = { subject: 'Correo de prueba enviado desde Focus Talent', 
+  body:cuerpo, email:"jorge.loeza@banloeconsulting.com" };
+ const lambdaResponse = await invokeLambdaFunction('sendEmails', payload);
+
+}
+
+   // console.log("los datos de correo son: ",datos);
+  } catch (error) {
+    console.log("el error es: ",error);
+    //setOrganizations([]);
+  }
+  
+};
+
+
+
+  //////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    getOus();
+    GetNotificaciones();
+  }, []);
+
+  const getOus = async () => {
+    setBreadcrumbs([])
+    try {
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_orgest.php`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            token: "8da9aebd984ef3897b280ff7efabf83d931f591b",
+          },
+        }
+      );
+      const datos = await respdesemp.json();
+      setOrganizations(datos);
+      //console.log("datos", datos);
+      // alert(datos);
+    } catch (error) {
+      setOrganizations([]);
+    }
+  };
+
+  const GetNotificaciones = async () => {
+    try {
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_notificaciones.php`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            TOKEN: "8da9aebd984ef3897b280ff7efabf83d931f591b",
+          }),
+        }
+      );
+      const datos = await respdesemp.json();
+      setEstrucCorreo(datos);
+      console.log("los cuerpos de correos son",datos);
+    } catch (error) {
+      setEstrucCorreo([]);
+    }
+  };
+
+  const getCorreos = async (id, include) => {
+    try {
+      const respdesemp = await fetch(
+        `https://talento-itzahuia.com/SAC/gb_envio_correos.php?ID=${id}&INCLUDE=${include}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const datos = await respdesemp.json();
+      setUsuariosCorreos(datos);
+    } catch (error) {
+      setUsuariosCorreos([]);
+    }
+  };
+  //////////////////paginado////////////////////////////
+  function separa(datos) {
+    if (datos) {
+      let firstpanels = [];
+      firstpanels[0] = [...datos].splice(0, 5);
+      //alert("tamaño de datos="+ datos.length+"hojas="+datos.length/maxPorPagina+ "registros="+maxPorPagina);
+      for (let i = 1; i < Math.ceil(datos.length / 5); i++) {
+        firstpanels[i] = [...datos].splice(i * 5, 5);
+      }
+
+      return firstpanels;
+    } else {
+      return (datos = 0);
+    }
+  }
+
+
+const enviar_correo=()=>{
+  let arreglotmp=[];
+  organizationSelect.map((obj)=>(
+arreglotmp.push(obj.ID+";"+obj.INCLUDE_SUB)
+  ));
+  //setCarray([...arreglotmp]);
+  console.log("Carray es: ", arreglotmp);
+  listaEnviada(arreglotmp);
+  
+}
+
+
+  //console.log(breadcrumbs);
+  /////////////////////paginado//////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////
+
+  return (
+    <div className="flex flex-col gap-4 p-4 w-full">
+      <Heading level={5}>
+        Seleccionar la estructura organizacional a notificar
+      </Heading>
+      <div className="flex flex-col gap-1">
+        <Heading level={6}> Busqueda</Heading>
+        <Divider />
+      </div>
+      <div className="flex flex-row gap-4 items-end	">
+        <TextField
+          label={"Nombre"}
+          id={"nombre"}
+          placeholder={"Buscar por nombre"}
+          size="small"
+        />
+        <TextField
+          id={"ID"}
+          label={"ID"}
+          placeholder={"Buscar por ID"}
+          size="small"
+        />
+        <Button
+          variation="primary"
+          style={{ backgroundColor: "#004B85", color: "white" }}
+          loadingText="Buscando"
+          size="small"
+          onClick={() => {
+            if (document.getElementById("nombre").value !== null) {
+              searchbyName(document.getElementById("nombre").value);
+            } else if (document.getElementById("ID").value !== null) {
+              searchbyName(document.getElementById("ID").value);
+            }
+          }}
+        >
+          Buscar
+        </Button>
+      </div>
+      <div className="flex flex-col gap-1">
+        <Heading level={6}> Estructuras seleccionadas</Heading>
+        <Divider />
+      </div>
+      <div className="flex flex-col gap-0">
+        {organizationSelect?.map((org, index) => (
+          <TableRowOrganizationSelect
+            organization={org}
+            key={index}
+            indice={index}
+            pullorg={pullOrg}
+          />
+        ))}
+      </div>
+      <div className="flex flex-col gap-1">
+        <Heading level={6}> Estructuras</Heading>
+        <Divider />
+      </div>
+      <div className="w-full rounded-md bg-neutral-100 px-5 py-3 dark:bg-neutral-600">
+        <ol className="list-reset flex items-center">
+              <li className="text-primary transition duration-150 ease-in-out text-xs hover:text-blue-600 focus:text-primary-600 active:text-primary-700 cursor-pointer" onClick={()=>getOus()}>
+                INICIO
+              </li>
+          {breadcrumbs?.map((bread, index) => (
+            <>
+              <li><span className="mx-2 text-neutral-500 text-xs">/</span></li>
+              <li className="text-primary transition duration-150 ease-in-out text-xs hover:text-blue-600 focus:text-primary-600 active:text-primary-700 cursor-pointer" onClick={()=>getOusbyParent(bread)}>
+                {bread}
+              </li>
+            </>
+          ))}
+        </ol>
+      </div>
+      <div className="flex flex-col gap-0">
+        <HeadTable
+          col1={"Agregar"}
+          classcol2={"hidden"}
+          col3={"Título"}
+          col4={"ID"}
+        />
+        {organizationsPag[pagina]?.map((org, index) => (
+          <TableRowOrganization
+            key={index}
+            organization={org}
+            setchild={getOusbyParent}
+            selectorg={pushOrg}
+          />
+        ))}
+      </div>
+      <PaginationEstructuras
+        PActual={pagina}
+        MaxPaginas={organizationsPag.length}
+        SeteoActual={setPagina}
+      />
+      <div className="flex flex-row gap-5 justify-end px-4">
+        <Button width={"150px"} onClick={() => close()}>
+          Cancelar
+        </Button>
+        <Button
+          width={"150px"}
+          variation="primary"
+          style={{ backgroundColor: "#004B85", color: "white" }}
+          onClick={()=>enviar_correo()}
+        >
+          Enviar
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+export default TableOrganizations;
