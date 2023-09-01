@@ -12,7 +12,6 @@ import CollaboratorsContext from "../context/collaborators";
 const SearchTeam = () => {
   const {collaborators, getCollaborators, isLoading, usuarioActualDatos, ordena, banerSearch} = useContext(CollaboratorsContext);
  
-  console.log(usuarioActualDatos.IDIOMA)
   function getData() {
     const apiName = 'API Behaviors';
     const path = '/translations';
@@ -42,7 +41,6 @@ const SearchTeam = () => {
     }
   }, [usuarioActualDatos.ID_COLABORADOR]);
 
-  console.log("aqui ",collaborators);
   useEffect(() => { 
     //actualizaBusqueda(collaborators);
     fetcLanguage();
@@ -63,7 +61,7 @@ function cambia(evento){
   }
   return (
     <>
-      <HeadTeam title={banerSearch} />
+      <HeadTeam title={banerSearch} btn='true' all='true' />
     { /* <CardSerch collaborators={collaborators}/>*/}
       <Filters/>
     </>

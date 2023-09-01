@@ -258,6 +258,8 @@ if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaU
   }
 
 
+
+
   const restauraUsuarios=function(){
     setCollaborators(collaboratorsResp);
 
@@ -276,6 +278,9 @@ const restauraUserClasif=function(value){
     setNoteval(respnoteval);
   }
 }
+
+
+
 
   const getCollaborators = async (idJefe, accion) => {
     //console.log("El id de jefe es:", idJefe);

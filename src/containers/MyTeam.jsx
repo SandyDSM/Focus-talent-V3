@@ -43,6 +43,7 @@ downloadAllPDF
   };
 
   console.log(usuarioActualDatos.IDIOMA)
+
   function getData() {
     const apiName = 'API Behaviors';
     const path = '/translations';
@@ -61,7 +62,7 @@ downloadAllPDF
       const response = await getData();
      // console.log("Languaje",response)
     }catch (error) {
-     // console.log("error:", error);
+      console.log("error:", error);
     }
   };
 

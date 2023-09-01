@@ -6,8 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useState  } from "react";
 import CollaboratorsContext from "../context/collaborators";
+import { API } from 'aws-amplify';
+import CardSerch from "../components/CardSerch";
+
 import {
   getOverrideProps,
   getOverridesFromVariants,
@@ -19,10 +22,8 @@ import {
   SearchField,
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
-export default function BannerSearch(props) {
+export default function BannerSearchAll(props) {
 
-  
-  
   const { overrides: overridesProp, ...restProp } = props;
   const variants = [
     {
@@ -65,87 +66,49 @@ export default function BannerSearch(props) {
   );
 
   
+    const {} = useContext(CollaboratorsContext);
+    const [busqueda, setBusqueda] = useState('')
+    const [results, setResults] = useState([])
 
-    const {
-      actualizaBusqueda,
-      futleader,
-      restauraUserClasif,
-          pillbusiness,
-          basebusiness,
-          noteval,
-          notaply,
-          respfutleader,
-        resppillbusiness,
-        respbasebusiness,
-        respnoteval,
-        respnotaply
-    } = useContext(CollaboratorsContext);
+    const handleChange=(e)=>{
+      let busqueda = e.target.value
+      if(busqueda.length >= 3){
+        setBusqueda(busqueda.toUpperCase());
+      }else{
+        setBusqueda('');
+      }
+    }
+    const onClear = () => {
+      setBusqueda('');
+    };
 
-
-
-
-
-
-
-
-
-
-
-  const onChange = (filtro) => {
-    restauraUserClasif(props.OpcionSelect);
+    function getData(busqueda) {
+      const apiName = 'Usuarios';
+      const path = '/busq_limit';
+      const myInit = {
+        headers: {}, // OPTIONAL
+        queryStringParameters: {
+          BUSQUEDA: `${busqueda}`,
+        }
+      };
+    
+      return API.get(apiName, path, myInit);
+    }
   
-if(props.OpcionSelect===1){
-  if(futleader==respfutleader){
- const filBusqueda=futleader.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
- actualizaBusqueda(filBusqueda,1);
-  }else{
-  const filBusqueda=respfutleader.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
- actualizaBusqueda(filBusqueda,1);
-  }
-}else if(props.OpcionSelect===2){
-  if(pillbusiness==resppillbusiness){
-  const filBusqueda=pillbusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-  actualizaBusqueda(filBusqueda,2); 
-  }else{
-    const filBusqueda=resppillbusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-    actualizaBusqueda(filBusqueda,2);  
-  }
-}else if(props.OpcionSelect===3){
-  if(basebusiness==respbasebusiness){
-  const filBusqueda=basebusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-  actualizaBusqueda(filBusqueda,3); 
-  }else{
-    const filBusqueda=respbasebusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-    actualizaBusqueda(filBusqueda,3);   
-  }
-}else if(props.OpcionSelect===4){
-  if(noteval==respnoteval){
-  const filBusqueda=noteval.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-  actualizaBusqueda(filBusqueda,4);
-  }else{
-    const filBusqueda=respnoteval.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-  actualizaBusqueda(filBusqueda,4);
-  }
+    const fetchCollAll = async (busqueda) => {
+      try{
+        const response = await getData(busqueda);
+        console.log(response);
+        setResults(response)
+      }catch (error) {
+        console.log("error:", error);
+      }
+    };
+    useEffect(() => { 
+        fetchCollAll(busqueda);
+    }, [busqueda]);
 
-}else if(props.OpcionSelect===5){
-if(notaply==respnotaply){
-  const filBusqueda=notaply.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-  actualizaBusqueda(filBusqueda,5);
-}else{
-  const filBusqueda=respnotaply.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
-  actualizaBusqueda(filBusqueda,5);
-}
-}
-};
-
-  const onClear=()=>{
-    restauraUserClasif(props.OpcionSelect);
-   
-  };
-  
-
-
-  
+    console.log(busqueda)
 
   return (
     <Flex
@@ -203,7 +166,7 @@ if(notaply==respnotaply){
 
         
         <SearchField
-          placeholder="sdasaddsasda"
+          placeholder="Buscar Colaraborador"
           width="unset"
           shrink="0"
           size="default"
@@ -211,13 +174,14 @@ if(notaply==respnotaply){
           labelHidden={true}
           variation="default"
           label="search"
-          onChange={(e)=>onChange(e.target.value)}
+          onChange={handleChange}
           onClear={()=>onClear()}
           id="busqueda"
 
           {...getOverrideProps(overrides, "SearchField")}
         ></SearchField>
       </Flex>
+      {busqueda && <CardSerch collaborators={results} />}
     </Flex>
   );
 }
