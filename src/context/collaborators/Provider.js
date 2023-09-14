@@ -22,6 +22,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [sendCode, setSendCode] = useState(false);
   const [teamOne, setTeamOne] = useState([]);
   const [subOne, setSubOne] = useState(false);
+  const [resultsComplete, setResultsComplete] = useState([])
   
 //estados de usuario categorizado
   const [futleader, setFutleader] = useState([]);
@@ -465,6 +466,30 @@ const restauraUserClasif=function(value){
     });
     return result;
   }
+/////////////////BUSQUEDA DE TODOS ////////////////////////////
+function getDataClic(busqueda) {
+  const apiName = 'Usuarios';
+  const path = '/getallusers';
+  const myInit = {
+    headers: {}, // OPTIONAL
+    queryStringParameters: {
+      BUSQUEDA: `${busqueda}`,
+    }
+  };
+
+  return API.get(apiName, path, myInit);
+}
+
+const fetchCollAllClic = async (busqueda) => {
+  console.log(busqueda);
+    try{
+    const response = await getDataClic(busqueda);
+    console.log(response);
+    setResultsComplete(response)
+  }catch (error) {
+    console.log("error:", error);
+  }
+};
 
   return (
     <CollaboratorsContext.Provider
@@ -554,7 +579,10 @@ comments,
 subReview,
 potReview,
 teamOne,
-setTeamOne, subOne, setSubOne
+setTeamOne, subOne, setSubOne,
+fetchCollAllClic,
+resultsComplete,
+
       }}
     >
       {children}

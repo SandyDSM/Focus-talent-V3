@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useContext, useEffect, useState  } from "react";
+import { useContext, useEffect, useState, useRef, useCallback  } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import { API } from 'aws-amplify';
 import CardSerch from "../components/CardSerch";
@@ -66,9 +66,10 @@ export default function BannerSearchAll(props) {
   );
 
   
-    const {} = useContext(CollaboratorsContext);
+    const {fetchCollAllClic, resultsComplete} = useContext(CollaboratorsContext);
     const [busqueda, setBusqueda] = useState('')
     const [results, setResults] = useState([])
+
 
     const handleChange=(e)=>{
       let busqueda = e.target.value
@@ -98,17 +99,41 @@ export default function BannerSearchAll(props) {
     const fetchCollAll = async (busqueda) => {
       try{
         const response = await getData(busqueda);
-        console.log(response);
+        //console.log(response);
         setResults(response)
       }catch (error) {
         console.log("error:", error);
       }
     };
+
+    ////////////////////////////////////////////////////////////////
+    
+    const inputRef = useRef(null);
+    const searchButtonRef = useRef(null);
+
+  const onClick = useCallback(() => {
+    inputRef.current.focus();
+    const search = inputRef.current.value
+    fetchCollAllClic(search);
+  }, []);
+
+  useEffect(() => {
+    const searchButtonRefCurrent = searchButtonRef.current;
+    if (searchButtonRef && searchButtonRefCurrent) {
+      searchButtonRefCurrent.addEventListener('click', onClick, false);
+      return () => {
+        searchButtonRefCurrent.removeEventListener('click', onClick, false);
+      };
+    }
+  }, [onClick]);
+
+    ////////////////////////////////////////////////////////////////
+
     useEffect(() => { 
         fetchCollAll(busqueda);
     }, [busqueda]);
 
-    console.log(busqueda)
+    //console.log(busqueda)
 
   return (
     <Flex
@@ -176,6 +201,8 @@ export default function BannerSearchAll(props) {
           label="search"
           onChange={handleChange}
           onClear={()=>onClear()}
+          ref={inputRef}
+          searchButtonRef={searchButtonRef}
           id="busqueda"
 
           {...getOverrideProps(overrides, "SearchField")}
