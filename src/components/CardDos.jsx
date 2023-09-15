@@ -74,7 +74,7 @@ const getcalib = async (id) => {
                 : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png"
             }
           />
-          <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>
+          <p className="font-bold">{`${colaborator.NOMBRE.toUpperCase()} ${colaborator.APELLIDOS.toUpperCase()}`}</p>
         </div>
         <div>
           <p>

@@ -23,6 +23,7 @@ export default function CollaboratorsProvider({ children, signOut }) {
   const [teamOne, setTeamOne] = useState([]);
   const [subOne, setSubOne] = useState(false);
   const [resultsComplete, setResultsComplete] = useState([])
+  const [resultsCompleteOrg, setResultsCompleteOrg] = useState([])
   
 //estados de usuario categorizado
   const [futleader, setFutleader] = useState([]);
@@ -486,6 +487,7 @@ const fetchCollAllClic = async (busqueda) => {
     const response = await getDataClic(busqueda);
     console.log(response);
     setResultsComplete(response)
+    setResultsCompleteOrg(response)
   }catch (error) {
     console.log("error:", error);
   }
@@ -582,6 +584,8 @@ teamOne,
 setTeamOne, subOne, setSubOne,
 fetchCollAllClic,
 resultsComplete,
+setResultsComplete,
+resultsCompleteOrg
 
       }}
     >
