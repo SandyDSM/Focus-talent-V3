@@ -54,6 +54,12 @@ function HomeAdmin({signOut}) {
       backgroundColor: "#D9D9D9",
     }
   };
+  const sendOverridesCard5 = {
+    Title: { children: "Administrar permisos de busqueda" },
+    CardBtn: {
+      backgroundColor: "#5A7BBC",
+    }
+  };
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
@@ -104,8 +110,19 @@ function HomeAdmin({signOut}) {
             <Link to="/myteam"><CardBtn width={"100%"} type={"Equipo"} overrides={sendOverridesCard3}/></Link>
           }
         </div>
+        <div className="col-start-1 lg:col-start-2 col-span-2 ">
+          <Link to="/permissions">
+            <CardBtn
+              width={"100%"}
+              type={"Equipo"}
+              overrides={sendOverridesCard5}
+            />
+          </Link>
+        </div>
       </div>
-      <Button onClick={signOut} color="primary">Log Out</Button>
+      <div className="my-2 mx-8">
+        <Button onClick={signOut} color="primary">Log Out</Button>
+      </div>
     </div>
   );
 }
