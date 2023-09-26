@@ -69,7 +69,7 @@ const getcalib = async (id) => {
           <img
             className="w-14 h-14 rounded-full"
             src={
-              `${colaborator.FOTO}` != ""
+              `${colaborator?.FOTO}` != ""
                 ? `data:image/jpg;base64,${colaborator?.FOTO}`
                 : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png"
             }

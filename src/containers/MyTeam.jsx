@@ -9,6 +9,7 @@ import Configuration from '../utils/Configuration'
 import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import Tabs from "../components/Tabs";
+import SearchTeam from "./SearchTeam";
 
 const MyTeam = () => {
   const {
@@ -37,12 +38,14 @@ downloadAllPDF
 
 
   const [option, setOption] = useState(1);
+  const [all, setAll] = useState("false");
+  const [closeSerchAll, setCloseSerchAll] = useState(0);
  
   const toggleTab = (index) => {
     setOption(index);
   };
 
-  console.log(usuarioActualDatos.IDIOMA)
+  //console.log(all)
 
   function getData() {
     const apiName = 'API Behaviors';
@@ -76,6 +79,7 @@ downloadAllPDF
   useEffect(() => { 
     //actualizaBusqueda(collaborators);
     fetcLanguage();
+    setAll(usuarioActualDatos.BUSQUEDA_GLOBAL)
   }, [usuarioActualDatos]);
 
 
@@ -93,7 +97,9 @@ function cambia(evento){
   }
   return (
     <>
-      <HeadTeam title={banerSearch}  OpcionSelect={option}/>
+      <HeadTeam title={banerSearch}  OpcionSelect={option} all={all} setCloseSerchAll={setCloseSerchAll}/>
+      {closeSerchAll === 1 ? <SearchTeam setCloseSerchAll={setCloseSerchAll}/> :(
+        <> 
       {separadosCol?.length === 0  ? (
         <div className="flex justify-center my-10 items-center">
           <h3>Usted no cuenta con reportes directos</h3>
@@ -115,6 +121,7 @@ function cambia(evento){
           {option === 5 && <Tabs title={myteamOption5} collaborators={notaply} sub={false}/>}
         </div>
         </>
+      )}</>
       )}
     </>
   );

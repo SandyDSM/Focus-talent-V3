@@ -1,5 +1,5 @@
 import React from 'react'
-import { SelectField, Heading } from '@aws-amplify/ui-react';
+import { SelectField, Heading, Button } from '@aws-amplify/ui-react';
 import Iconfilter from '../ui-components/Iconfilter'
 import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -12,6 +12,10 @@ function Filters() {
   const [organizacion, setOrganizacion] = useState([])
   const [puesto, setPuesto] = useState([])
   const [geo, setGeo] = useState([])
+  const [eEntidad, setEEntidad] = useState("");
+  const [eOrg, setEOrg] = useState("");
+  const [ePuesto, setEPuesto] = useState("");
+  const [eGeo, setEGeo] = useState("");
 
   useEffect(()=>{
     Entidad();
@@ -71,6 +75,10 @@ function Filters() {
 
   const handleChangeEntidad=(e)=>{
     //setCanal(e.target.value)
+    setEGeo("")
+  setEOrg("")
+  setEPuesto("")
+    setEEntidad(e.target.value);
     FilterEntidad(e.target.value);
   }
 //
@@ -85,6 +93,10 @@ function Filters() {
 
   const handleChangeOrg=(e)=>{
     //setCanal(e.target.value)
+    setEEntidad("")
+    setEGeo("")
+    setEPuesto("")
+    setEOrg(e.target.value);
     FilterOrg(e.target.value);
   }
 //
@@ -99,6 +111,10 @@ const FilterPuesto = (puesto) => {
 
 const handleChangePuesto=(e)=>{
   //setCanal(e.target.value)
+  setEEntidad("")
+  setEOrg("")
+  setEGeo("")
+  setEPuesto(e.target.value);
   FilterPuesto(e.target.value);
 }
 
@@ -114,21 +130,26 @@ const FilterGeo = (geo) => {
 
 const handleChangeGeo=(e)=>{
   //setCanal(e.target.value)
+  setEEntidad("")
+  setEOrg("")
+  setEPuesto("")
+  setEGeo(e.target.value);
   FilterGeo(e.target.value);
 }
 
   return (
-    <div className='card mt-2'>
+    <div className='card mt-2 mx-8'>
         <div className='flex align-center'>
             <Iconfilter/>
             <p className='font-bold py-1.5'>Filtrar Colaboradores</p>
         </div>
-        
         <div className='flex flex-col gap-2 md:flex-row md:gap-6 align-center mt-2'>
             
             <SelectField 
             placeholder="Entidad Legal"          
             onChange={handleChangeEntidad}
+            width={{ base: "100%", large: "25%" }}
+            value={eEntidad}
             >
             {entidad.map((option, index) => (
           <option key={index} value={option}>
@@ -136,21 +157,27 @@ const handleChangeGeo=(e)=>{
           </option>
         ))}
             </SelectField>
-            <SelectField placeholder="Organización" onChange={handleChangeOrg}>
+            <SelectField placeholder="Organización" onChange={handleChangeOrg} width={{ base: "100%", large: "25%" }}
+            value={eOrg}
+            >
             {organizacion.map((option, index) => (
           <option key={index} value={option}>
             {option.toUpperCase()}
           </option>
         ))}
             </SelectField>
-            <SelectField placeholder="Puesto" onChange={handleChangePuesto}>
+            <SelectField placeholder="Puesto" onChange={handleChangePuesto} width={{ base: "100%", large: "25%" }} 
+            value={ePuesto}
+            >
             {puesto.map((option, index) => (
           <option key={index} value={option}>
             {option.toUpperCase()}
           </option>
         ))}
             </SelectField>
-            <SelectField placeholder="Ubicación geografíca" onChange={handleChangeGeo}>
+            <SelectField placeholder="Ubicación geografíca" onChange={handleChangeGeo} width={{ base: "100%", large: "25%" }}
+            value={eGeo}
+            >
             {geo.map((option, index) => (
           <option key={index} value={option}>
             {option.toUpperCase()}

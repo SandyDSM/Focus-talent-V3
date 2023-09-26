@@ -77,7 +77,7 @@ function App() {
                 <Route exact path="/tags" element={<Tags /> }/>
                 <Route exact path="/notif" element={<Notif />}/>
                 <Route exact path="/permissions" element={<Permissions />}/>
-                <Route exact path="/myteam" element={<SearchTeam /> } />
+                <Route exact path="/myteam" element={<MyTeam /> } />
                 <Route exact path="/myteam/:id" element={<TeamSub /> } />
                 <Route exact path="/test/:id" element={<TeamTestDetail /> } />
               </Route>

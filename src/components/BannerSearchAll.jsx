@@ -115,6 +115,8 @@ export default function BannerSearchAll(props) {
     inputRef.current.focus();
     const search = inputRef.current.value
     fetchCollAllClic(search);
+    props.setCloseSerchAll(1);
+    setBusqueda('');
   }, []);
 
   useEffect(() => {

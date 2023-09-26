@@ -17,10 +17,10 @@ function TableColl({colaborator, selectorg, add, indice}) {
           
         </div>
         <div className="w-full"><p className="text-sm">{`${colaborator?.NOMBRE.toUpperCase()} ${colaborator?.APELLIDOS.toUpperCase()}`}</p></div>
-        <div className="w-full"><p className="text-sm">{colaborator?.ENTIDAD_LEGAL.toUpperCase()}</p></div>
-        <div className="w-full"><p className="text-sm">{colaborator?.ORGANIZACION.toUpperCase()}</p></div>
-        <div className="w-full"><p className="text-sm">{colaborator?.PUESTO.toUpperCase()}</p></div>
-        <div className="w-full"><p className="text-sm">{colaborator?.UBICACION_GEOGRAFICA.toUpperCase()}</p></div>
+        <div className="w-full"><p className="text-sm">{colaborator?.ENTIDAD_LEGAL}</p></div>
+        <div className="w-full"><p className="text-sm">{colaborator?.ORGANIZACION}</p></div>
+        <div className="w-full"><p className="text-sm">{colaborator?.PUESTO}</p></div>
+        <div className="w-full"><p className="text-sm">{colaborator?.UBICACION_GEOGRAFICA}</p></div>
       </div>
       <Divider
         width="unset"
