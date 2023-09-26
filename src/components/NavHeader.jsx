@@ -61,6 +61,12 @@ function NavHeader() {
       onClick: () => setOpen(false),
     },
 
+    FraPermission: {
+      className:"hover:bg-sky-100",
+      style: { cursor: "pointer" },
+      onClick: () => setOpen(false),
+    },
+
     FraTeam: {
       onClick: () => setOpen(false),
     },
