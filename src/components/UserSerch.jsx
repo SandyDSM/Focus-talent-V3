@@ -18,7 +18,7 @@ const UserSerch = ({colaborator}) => {
           />
           <div className="flex flex-col gap-0">
             <p className="text-sm font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>
-            <p className="text-xs uppercase">{`${colaborator.ENTIDAD_LEGAL} - ${colaborator.NIVEL}`}</p>
+            <p className="text-xs uppercase text-zinc-600	">{`${colaborator.ID_COLABORADOR} - ${colaborator.ENTIDAD_LEGAL}`}</p>
           </div>
         </div>
         <div className="flex items-center p-4 gap-2">

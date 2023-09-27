@@ -45,7 +45,7 @@ downloadAllPDF
     setOption(index);
   };
 
-  //console.log(all)
+  //console.log(collaborators)
 
   function getData() {
     const apiName = 'API Behaviors';

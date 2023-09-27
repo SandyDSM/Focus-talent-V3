@@ -482,15 +482,18 @@ function getDataClic(busqueda) {
 }
 
 const fetchCollAllClic = async (busqueda) => {
-  console.log(busqueda);
+  //console.log(busqueda);
     try{
+      setIsLoading(true);
     const response = await getDataClic(busqueda);
     console.log(response);
     setResultsComplete(response)
     setResultsCompleteOrg(response)
   }catch (error) {
     console.log("error:", error);
-  }
+  }finally {
+  setIsLoading(false);
+}
 };
 
   return (

@@ -7,11 +7,11 @@ import CardDos from "../components/CardDos";
 import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
 
-const SearchTeam = (sub) => {
-  const {getCollaborators, isLoading, usuarioActualDatos, resultsComplete} = useContext(CollaboratorsContext);
+const SearchTeam = ({sub, setCloseSerchAll}) => {
+  const {isLoading, resultsComplete} = useContext(CollaboratorsContext);
 
   const onClose = () => {
-    sub.setCloseSerchAll(0)
+    setCloseSerchAll(0)
   };
  
   if (isLoading) {
@@ -53,7 +53,7 @@ const SearchTeam = (sub) => {
         <p className='col-span-3 items-center text-center mt-6'>"No se encontraron colaboradores"</p>
       ):      
       (resultsComplete?.map((colaborator, index) => (
-        <CardDos key={index} colaborator={colaborator} sub={sub}/>
+        <CardDos key={index} colaborator={colaborator} sub={sub} serch="true"/>
         )))):(<p className='col-span-3 items-center text-center mt-6'>No se encontraron colaboradores</p>)
         }
   </div>
