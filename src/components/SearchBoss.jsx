@@ -4,17 +4,19 @@ import HeadTableColl from "./HeadTableColl";
 import TableColl from "./TableColl";
 import CollaboratorsContext from "../context/collaborators";
 import { useContext, useState, useEffect } from "react";
+import { API } from "aws-amplify";
+import Swal from 'sweetalert2'
+
 
 function SearchBoss({ tablePermission, handleChange, onClear }) {
   const { resultsComplete } = useContext(CollaboratorsContext);
   const [collSelect, setCollSelect] = useState([]);
-  const [carray, setCarray] = useState([]);
 
   useEffect(() => { 
     setCollSelect(tablePermission);
 }, [tablePermission]);
 
-  //console.log(collSelect);
+  console.log(collSelect);
 
   const pullOrg = (indice) => {
     let orgtemp = collSelect;
@@ -34,9 +36,50 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
     }
     setCollSelect([...orgtemp]);
   };
-  const Insertar = async () => {
-    console.log("Insertar");
+
+  function getData(papiName, ppath, pparameters) {
+    const apiName = papiName;
+    const path = ppath;
+    const myInit = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: pparameters
+    };
+  
+    return API.get(apiName, path, myInit);
+  } 
+
+  const updatePermissions = async (ids) => {
+    //console.log(typeof ids, ids);
+    try{
+      let parametros={ARRAY: ids};
+      const response = await getData('Usuarios', '/searchupdtusr', parametros);
+      Swal.fire({
+        icon: 'success',
+        text: 'Los permisos se han actualizado con éxito',
+        confirmButtonText: "Entendido",
+        confirmButtonColor:"#004B85"
+      })
+    }catch (error) {
+      console.log("error:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por el momento no se pueden guardar los cambios, por favor intenta más tarde',
+        confirmButtonText: "Entendido",
+        confirmButtonColor:"#004B85"
+      })
+    }
   };
+
+  const Insertar = async () => {
+    const tempArray = collSelect.map((dato) =>{
+      return dato.INTERNAL_ID;
+    })
+    console.log(tempArray);
+    updatePermissions(tempArray.toString());
+  };
+
+
   return (
     <div className="flex flex-col gap-6 w-full">
       <div>
