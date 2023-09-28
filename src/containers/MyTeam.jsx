@@ -32,7 +32,8 @@ myteamOption2,
 myteamOption3,
 myteamOption4,
 myteamOption5,
-downloadAllPDF
+downloadAllPDF,
+setSubOne
 
   } = useContext(CollaboratorsContext);
 
@@ -78,6 +79,7 @@ downloadAllPDF
 
   useEffect(() => { 
     //actualizaBusqueda(collaborators);
+    setSubOne(false);
     fetcLanguage();
     setAll(usuarioActualDatos.BUSQUEDA_GLOBAL)
   }, [usuarioActualDatos]);

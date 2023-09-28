@@ -37,6 +37,8 @@ const getcalib = async (id) => {
   }
 };
 
+console.log(sub)
+
   useEffect(() => {
     getcalib(colaborator.INTERNAL_ID);
     setSubOne(sub);

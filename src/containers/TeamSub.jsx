@@ -30,7 +30,7 @@ function TeamSub() {
         myteamOption4,
         myteamOption5,
         teamFrom,
-        notaplysub, teamOne, setTeamOne,  
+        notaplysub, teamOne, setTeamOne, setSubOne
   } = useContext(CollaboratorsContext);
 
   const [option, setOption] = useState(1);
@@ -45,6 +45,7 @@ function TeamSub() {
     .then(getCollaborators(collDetail.ID_COLABORADOR, "SetSubColaborators"))
     .catch(null);
     setTeamOne(collDetail)
+    setSubOne(true);
   }, [collDetail.ID_COLABORADOR]);
 
   const sendOverridesTeamFrom = {
@@ -83,7 +84,7 @@ Loader();
           {option === 2 && <Tabs title={myteamOption2} collaborators={pillbusinesssub} sub={true}/>}
           {option === 3 && <Tabs title={myteamOption3} collaborators={basebusinesssub} sub={true}/>}
           {option === 4 && <Tabs title={myteamOption4} collaborators={notevalsub} sub={true}/>}
-          {option === 5 && <Tabs title={myteamOption5} collaborators={notaplysub}/>}
+          {option === 5 && <Tabs title={myteamOption5} collaborators={notaplysub} sub={true}/>}
         </div>
         </>
 
