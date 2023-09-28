@@ -23,26 +23,6 @@ function CardDos({ colaborator, sub, serch="false" }) {
     return API.get(apiName, path, myInit);
   } 
   
-/*
-  const getcalib = async (id) => {
-    try {
-      //setIsLoading(true);
-      const respdesemp = await fetch(
-        `https://talento-itzahuia.com/SAC/gb_info_calib.php?ID=${id}`,
-        {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const datos = await respdesemp.json();
-      setCalibracion(datos);
-    } catch (error) {
-      setCalibracion([]);
-    }
-  };
-*/
 const getcalib = async (id) => {
   try{
     let idtemp=id*1;

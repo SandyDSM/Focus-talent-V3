@@ -170,6 +170,7 @@ function getAttribColaboratorsDB(correo) {
   const getAttribColaborators = async (correo) => {
     //console.log(correo);
     try{
+      setIsLoading(true);
       const datos = await getAttribColaboratorsDB(correo);
       setUsuarioActualDatos(datos[0])
     //console.log("AQUI",datos[0]);

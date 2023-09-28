@@ -98,7 +98,7 @@ function cambia(evento){
   return (
     <>
       <HeadTeam title={banerSearch}  OpcionSelect={option} all={all} setCloseSerchAll={setCloseSerchAll}/>
-      {closeSerchAll === 1 ? <SearchTeam setCloseSerchAll={setCloseSerchAll}/> :(
+      {closeSerchAll === 1 ? <SearchTeam setCloseSerchAll={setCloseSerchAll}  sub={false}/> :(
         <> 
       {separadosCol?.length === 0  ? (
         <div className="flex justify-center my-10 items-center">
