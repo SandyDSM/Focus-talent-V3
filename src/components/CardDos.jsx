@@ -41,7 +41,7 @@ const getcalib = async (id) => {
     getcalib(colaborator.INTERNAL_ID);
     setSubOne(sub);
   }, []);
-
+  
   return (
     <div className="card flex flex-col gap-4 justify-between">
       <div className="flex flex-col gap-4">
