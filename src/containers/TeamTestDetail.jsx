@@ -14,7 +14,7 @@ function TeamTestDetail() {
   const { id } = useParams();
   const { getCollDetail, collDetail, isLoading, usuarioActualDatos, evalTxt } =
     useContext(CollaboratorsContext);
-console.log("Datos de usario actual", usuarioActualDatos);
+  //console.log("Datos de usario actual", usuarioActualDatos);
   const [testPreguntas, setTestPreguntas] = useState();
   const [aniosFill, setAniosFill] = useState([]);
   const [selall, setSelall]=useState(false);
@@ -49,25 +49,6 @@ const [dataBehavior, setDataBehavior] =useState([])
     }
   };
 
-
-////////////////////////////////////////////////////////////////////////////////////
-/*  
-const fetchDesemp = async () => {
-    const respdesemp = await fetch(
-      `https://talento-itzahuia.com/SAC/gb_info.php?ID=${id}`,
-      {
-        method: "get",
-        headers: { "Content-Type": "application/json" },
-      }
-    ); //.then(respdesemp => {setTestPreguntas(respdesemp.json);})
-    const datos = await respdesemp.json();
-    obtenMaxAnio(datos);
-    setTestPreguntas(datos);
-  };
-*/
-///////////////////////////////////////////////////////////////////////////////
-
-
 const fetchDesemp = async () => {
   
   let idtemp=id*1;
@@ -75,10 +56,10 @@ const fetchDesemp = async () => {
   let parametros={INTERNAL_ID: idtemp,
   LANGUAGE: `'${localStorage.getItem("IdiomaUsuario")}'`
 };
-  console.log("los parametros van XXXXXXXXXXXXXXXXXXXXXXXXXX", parametros);
+  //console.log("los parametros van XXXXXXXXXXXXXXXXXXXXXXXXXX", parametros);
   try{
     const response = await getData('API PerfPoten', '/perfpot', parametros);
-   console.log("La data que llega es ", response);
+   //console.log("La data que llega es ", response);
     obtenMaxAnio(response);
     setTestPreguntas(response);
 
@@ -87,9 +68,6 @@ const fetchDesemp = async () => {
     console.log("error aaa:", error);
   }
 };
-
-
-
 
   const obtenMaxAnio=(datos)=>
   {

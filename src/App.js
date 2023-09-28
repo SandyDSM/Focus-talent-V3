@@ -45,7 +45,7 @@ function App() {
         console.log("not logged in");
         setLoggedIn(false);
         window.localStorage.setItem("logged", false)
-        console.log({ setLoggedIn });
+       // console.log({ setLoggedIn });
       });
   };
   useEffect(() => {

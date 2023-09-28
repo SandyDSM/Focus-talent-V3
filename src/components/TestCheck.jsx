@@ -18,7 +18,7 @@ const {filterEvaluations, buttonSelectAll, buttonClear, buttonView}=useContext(C
     let result = anios.filter((item, index) => {
       return anios.indexOf(item) === index;
     });
-    console.log(result);
+    //console.log(result);
     return result;
   }
   let listaFiltros;

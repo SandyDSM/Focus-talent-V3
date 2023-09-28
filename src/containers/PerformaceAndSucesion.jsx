@@ -21,7 +21,7 @@ function PerformaceAndSucesion({
     fetcBehaviors()
   }, []);
 
-  console.log(dataBehavior);
+  //console.log(dataBehavior);
   
   return (
     <div>

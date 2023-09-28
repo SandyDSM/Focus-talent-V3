@@ -50,7 +50,7 @@ const getcalib = async (id) => {
     INTERNAL_ID: idtemp};
     const response = await getData('API PerfPoten', '/getcarddata', parametros);
     setCalibracion(response)
-    console.log("Calib",response)
+    //console.log("Calib",response)
   }catch (error) {
     setCalibracion([]);
     console.log("error:", error);

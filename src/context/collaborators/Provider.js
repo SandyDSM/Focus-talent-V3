@@ -90,7 +90,7 @@ const navigate = useNavigate();
       setIsLoading(true);
       const coguserdata = await Auth.currentUserInfo();
       setLogueado(coguserdata.attributes);
-     // console.log(coguserdata.attributes.email);
+      //console.log("mail",coguserdata.attributes.email);
       getAttribColaborators(coguserdata.attributes.email);
     } catch (error) {
       console.log("error:", error);
@@ -145,38 +145,34 @@ response?.filter((c)=>(c.ETIQUETA=='comments')).map((trad)=>(setComments(trad.TR
 response?.filter((c)=>(c.ETIQUETA=='subreview')).map((trad)=>(setSubReview(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='potreview')).map((trad)=>(setPotReview(trad.TRADUCCION)));
 
-
-   
-
-
-
-
-
   }catch (error) {
     console.log("error:", error);
   }
 };
+/////////////////////////////////////
+function getAttribColaboratorsDB(correo) {
+  //console.log(correo)
+  const apiName = 'Usuarios';
+  const path = '/getattribcolaborators';
+  const myInit = {
+    headers: {}, // OPTIONAL
+    queryStringParameters: {
+      correo: `'${correo}'`,
+    }
+  };
+
+  return API.get(apiName, path, myInit);
+}
 
 
 /////////////////////////////////////
  
   const getAttribColaborators = async (correo) => {
-    console.log("obteniendo datos de usuario");
-    try {
-      setIsLoading(true);
-      const respdesemp = await fetch(
-        `https://talento-itzahuia.com/SAC/gb_UserInfo.php?EMAIL=${correo}`,
-        {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-            token: "8da9aebd984ef3897b280ff7efabf83d931f591b",
-          },
-        }
-      ); //.then(respdesemp => {setTestPreguntas(respdesemp.json);})
-      const datos = await respdesemp.json();
-      //console.log("Usuario logueado: ", datos[0]);
-      setUsuarioActualDatos(datos[0]);
+    //console.log(correo);
+    try{
+      const datos = await getAttribColaboratorsDB(correo);
+      setUsuarioActualDatos(datos[0])
+    //console.log("AQUI",datos[0]);
 if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaUsuario")==="undefined"){
   localStorage.setItem("IdiomaUsuario", datos[0].IDIOMA);
 }      
@@ -217,14 +213,9 @@ if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaU
        if (a.APELLIDOS.toUpperCase() < b.APELLIDOS.toUpperCase()) return -1
        return 0
      });
-     actualizaBusqueda([...temascendente]);  
-          
+     actualizaBusqueda([...temascendente]);       
     }
-     
    };
-   
-
-
   //const UserPromise = UserLog().then(getAttribColaborators(logueado.email)) 
 
   const actualizaBusqueda=function(users, opcion){
@@ -238,9 +229,7 @@ if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaU
       setNoteval(users);
     }else if(opcion===5){
       setNotaply(users);
-    }
-
-     
+    }     
   }
 
   const actualizaBusquedaSub=function(users, opcion){
@@ -258,9 +247,6 @@ if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaU
 
      
   }
-
-
-
 
   const restauraUsuarios=function(){
     setCollaborators(collaboratorsResp);
@@ -281,24 +267,24 @@ const restauraUserClasif=function(value){
   }
 }
 
+function getCollaboratorsDB(idJefe) {
+  const apiName = 'Usuarios';
+  const path = '/getcollaborators';
+  const myInit = {
+    headers: {}, // OPTIONAL
+    queryStringParameters: {
+      idJefe: `'${idJefe}'`,
+    }
+  };
 
-
+  return API.get(apiName, path, myInit);
+}
 
   const getCollaborators = async (idJefe, accion) => {
     //console.log("El id de jefe es:", idJefe);
     try {
       setIsLoading(true);
-      const respdesemp = await fetch(
-        `https://talento-itzahuia.com/SAC/gb_UserInfo.php?IdJefe=${idJefe}`,
-        {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-            token: "8da9aebd984ef3897b280ff7efabf83d931f591b",
-          },
-        }
-      ); //.then(respdesemp => {setTestPreguntas(respdesemp.json);})
-      const datos = await respdesemp.json();
+      const datos = await getCollaboratorsDB(idJefe);
       //console.log("Resultado de team: ", datos);
       if(accion==="SetColaborators"){
         setCollaborators(datos);
@@ -338,23 +324,26 @@ const restauraUserClasif=function(value){
     }
   };
 
+  function getCollDetailDB(id) {
+    const apiName = 'Usuarios';
+    const path = '/getcolldetail';
+    const myInit = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        id: id,
+      }
+    };
+  
+    return API.get(apiName, path, myInit);
+  }
+  
+
   const getCollDetail = async (id) => {
-    //console.log("El id de jefe es:", id);
     try {
       setIsLoading(true);
-      const respdesemp = await fetch(
-        `https://talento-itzahuia.com/SAC/gb_UserInfo.php?ID=${id}`,
-        {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-            token: "8da9aebd984ef3897b280ff7efabf83d931f591b",
-          },
-        }
-      );
-      const datos = await respdesemp.json();
+      const datos = await getCollDetailDB(id);
       setCollDetail(datos[0]);
-      //console.log(datos[0])
+     // console.log("coll detail",datos[0])
     } catch (error) {
       console.log("error:", error);
       setCollDetail([]);
