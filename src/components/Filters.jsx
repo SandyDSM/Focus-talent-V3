@@ -7,7 +7,7 @@ import CollaboratorsContext from "../context/collaborators";
 
 function Filters() {
 
-  const {resultsComplete, setResultsComplete, resultsCompleteOrg} = useContext(CollaboratorsContext);
+  const {resultsComplete, setResultsComplete, resultsCompleteOrg, filtColab, filtEntLegal, filtOrg, filtPuesto, filtUbicGeog} = useContext(CollaboratorsContext);
   const [entidad, setEntidad] = useState([])
   const [organizacion, setOrganizacion] = useState([])
   const [puesto, setPuesto] = useState([])
@@ -141,12 +141,12 @@ const handleChangeGeo=(e)=>{
     <div className='card mt-2 mx-8'>
         <div className='flex align-center'>
             <Iconfilter/>
-            <p className='font-bold py-1.5'>Filtrar Colaboradores</p>
+            <p className='font-bold py-1.5'>{filtColab}</p>
         </div>
         <div className='flex flex-col gap-2 md:flex-row md:gap-6 align-center mt-2'>
             
             <SelectField 
-            placeholder="Entidad Legal"          
+            placeholder={filtEntLegal}          
             onChange={handleChangeEntidad}
             width={{ base: "100%", large: "25%" }}
             value={eEntidad}
@@ -157,7 +157,7 @@ const handleChangeGeo=(e)=>{
           </option>
         ))}
             </SelectField>
-            <SelectField placeholder="Organización" onChange={handleChangeOrg} width={{ base: "100%", large: "25%" }}
+            <SelectField placeholder={filtOrg} onChange={handleChangeOrg} width={{ base: "100%", large: "25%" }}
             value={eOrg}
             >
             {organizacion.map((option, index) => (
@@ -166,7 +166,7 @@ const handleChangeGeo=(e)=>{
           </option>
         ))}
             </SelectField>
-            <SelectField placeholder="Puesto" onChange={handleChangePuesto} width={{ base: "100%", large: "25%" }} 
+            <SelectField placeholder= {filtPuesto} onChange={handleChangePuesto} width={{ base: "100%", large: "25%" }} 
             value={ePuesto}
             >
             {puesto.map((option, index) => (
@@ -175,7 +175,7 @@ const handleChangeGeo=(e)=>{
           </option>
         ))}
             </SelectField>
-            <SelectField placeholder="Ubicación geografíca" onChange={handleChangeGeo} width={{ base: "100%", large: "25%" }}
+            <SelectField placeholder= {filtUbicGeog} onChange={handleChangeGeo} width={{ base: "100%", large: "25%" }}
             value={eGeo}
             >
             {geo.map((option, index) => (

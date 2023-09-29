@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
 
 const SearchTeam = ({sub, setCloseSerchAll}) => {
-  const {isLoading, resultsComplete} = useContext(CollaboratorsContext);
+  const {isLoading, resultsComplete, resBusq, buttonCerrar} = useContext(CollaboratorsContext);
 
   const onClose = () => {
     setCloseSerchAll(0)
@@ -24,9 +24,9 @@ const SearchTeam = ({sub, setCloseSerchAll}) => {
   return (
     <div className="mt-4">
       <div className='cardTitle col-span-1 sm:col-span-2 md:col-span-3 bg-bmb-secundary flex flex-row items-center gap-6 justify-between mx-8'>
-        <p>Resultado de la Búsqueda</p>
+        <p>{resBusq}</p>
         <Button variation="link" style={{ color: "#FFF" }}onClick={() => onClose()}>
-        <p className="mx-2">Cerrar</p>
+        <p className="mx-2">{buttonCerrar}</p>
         <Icon
             width="12px"
             height="12px"

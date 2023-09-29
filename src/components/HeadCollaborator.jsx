@@ -29,7 +29,7 @@ export default function HeadCollaborator(props) {
   const {aniosFill, datosUsuario, testPreguntas, dataBehavior, overrides: overridesProp, ...restProp } = props;
   
   const {
-    downloadAllPDF
+    downloadAllPDF, evalTxt
 
   } = useContext(CollaboratorsContext);
 
@@ -167,7 +167,7 @@ export default function HeadCollaborator(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Evaluación de: "
+            children= {evalTxt}
             {...getOverrideProps(overrides, "txt")}
           ></Text>
           <Text

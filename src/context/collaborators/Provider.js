@@ -78,8 +78,14 @@ const [reviewer, setReviewer]=useState('Revisor');
 const [rating, setRating]=useState('Clasificación');
 const [comments, setComments]=useState('Comentarios');
 const [subReview, setSubReview]=useState('Evaluación de Reportes directos');
-const [potReview, setPotReview]=useState('Evaluación de potencial');
-
+const [potReview, setPotReview]=useState('Evaluación de potencial'); 
+const [resBusq, setResBusq]=useState('Resultado de la Búsqueda');
+const [filtColab, setFiltColab]=useState('Filtrar Colaboradores');
+const [buttonCerrar, setButtonCerrar]=useState('Cerrar');
+const [filtEntLegal, setFiltEntLegal]=useState('Entidad Legal');
+const [filtOrg, setFiltOrg]=useState('Organización');
+const [filtPuesto, setFiltPuesto]=useState('Puesto');
+const [filtUbicGeog, setFiltUbicGeog]=useState('Ubicación Geográfica');
 
 
 
@@ -144,7 +150,14 @@ response?.filter((c)=>(c.ETIQUETA=='rating')).map((trad)=>(setRating(trad.TRADUC
 response?.filter((c)=>(c.ETIQUETA=='comments')).map((trad)=>(setComments(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='subreview')).map((trad)=>(setSubReview(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='potreview')).map((trad)=>(setPotReview(trad.TRADUCCION)));
-
+response?.filter((c)=>(c.ETIQUETA=='resbusq')).map((trad)=>(setResBusq(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='filtcolab')).map((trad)=>(setFiltColab(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='buttoncerrar')).map((trad)=>(setButtonCerrar(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='filtentlegal')).map((trad)=>(setFiltEntLegal(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='filtorg')).map((trad)=>(setFiltOrg(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='filtpuesto')).map((trad)=>(setFiltPuesto(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='filtubicgeog')).map((trad)=>(setFiltUbicGeog(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='evaltxt')).map((trad)=>(setEvalTxt(trad.TRADUCCION)));
   }catch (error) {
     console.log("error:", error);
   }
@@ -573,6 +586,14 @@ rating,
 comments,
 subReview,
 potReview,
+resBusq,
+filtColab,
+buttonCerrar,
+filtEntLegal,
+filtOrg,
+filtPuesto,
+filtUbicGeog,
+evalTxt,
 teamOne,
 setTeamOne, subOne, setSubOne,
 fetchCollAllClic,
