@@ -96,6 +96,7 @@ const fetchDesemp = async () => {
     Job: { children: collDetail.PUESTO },
     Organitation: { children: collDetail.ORGANIZACION },
     Profile: { src: `data:image/jpg;base64,${collDetail.FOTO}` },
+    txt: { children: `${evalTxt}`  },
   };
 
   const sendOverridesBehavior = {
