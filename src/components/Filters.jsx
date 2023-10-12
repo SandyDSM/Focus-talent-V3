@@ -24,8 +24,16 @@ function Filters() {
     Geo();
   },[resultsComplete])
 
+  function DeleteFilter(){
+    setEEntidad("")
+    setEOrg("")
+    setEPuesto("")
+    setEGeo("");
+    setResultsComplete(resultsCompleteOrg);
+  }
+
   function Entidad(){
-    let optionEntidades = resultsCompleteOrg.reduce((entidades,item)=>{
+    let optionEntidades = resultsComplete.reduce((entidades,item)=>{
         if(!entidades.includes(item.ENTIDAD_LEGAL)){
           entidades.push(item.ENTIDAD_LEGAL);
         }
@@ -35,7 +43,7 @@ function Filters() {
   } 
 
   function Organizacion(){
-    let optionOrganizacion = resultsCompleteOrg.reduce((organizacion,item)=>{
+    let optionOrganizacion = resultsComplete.reduce((organizacion,item)=>{
         if(!organizacion.includes(item.ORGANIZACION)){
           organizacion.push(item.ORGANIZACION);
         }
@@ -45,7 +53,7 @@ function Filters() {
   } 
 
   function Puesto(){
-    let optionPuesto = resultsCompleteOrg.reduce((puesto,item)=>{
+    let optionPuesto = resultsComplete.reduce((puesto,item)=>{
         if(!puesto.includes(item.PUESTO)){
           puesto.push(item.PUESTO);
         }
@@ -55,7 +63,7 @@ function Filters() {
   }
 
   function Geo(){
-    let optionGeo = resultsCompleteOrg.reduce((geo,item)=>{
+    let optionGeo = resultsComplete.reduce((geo,item)=>{
         if(!geo.includes(item.UBICACION_GEOGRAFICA)){
           geo.push(item.UBICACION_GEOGRAFICA);
         }
@@ -65,7 +73,7 @@ function Filters() {
   }
 
   const FilterEntidad = (entidad) => {
-    let resultadosFiltro = resultsCompleteOrg.filter((result) => {
+    let resultadosFiltro = resultsComplete.filter((result) => {
       if (result.ENTIDAD_LEGAL?.toString().includes(entidad)) {
         return result;
       }
@@ -75,15 +83,16 @@ function Filters() {
 
   const handleChangeEntidad=(e)=>{
     //setCanal(e.target.value)
-    setEGeo("")
-  setEOrg("")
-  setEPuesto("")
+    /*setEGeo("")
+    setEOrg("")
+    setEPuesto("")*/
     setEEntidad(e.target.value);
     FilterEntidad(e.target.value);
   }
+  console.log(eEntidad);
 //
   const FilterOrg = (organizacion) => {
-    let resultadosFiltro = resultsCompleteOrg.filter((result) => {
+    let resultadosFiltro = resultsComplete.filter((result) => {
       if (result.ORGANIZACION?.toString().includes(organizacion)) {
         return result;
       }
@@ -93,15 +102,15 @@ function Filters() {
 
   const handleChangeOrg=(e)=>{
     //setCanal(e.target.value)
-    setEEntidad("")
+   /* setEEntidad("")
     setEGeo("")
-    setEPuesto("")
+    setEPuesto("")*/
     setEOrg(e.target.value);
     FilterOrg(e.target.value);
   }
 //
 const FilterPuesto = (puesto) => {
-  let resultadosFiltro = resultsCompleteOrg.filter((result) => {
+  let resultadosFiltro = resultsComplete.filter((result) => {
     if (result.PUESTO?.toString().includes(puesto)) {
       return result;
     }
@@ -111,16 +120,16 @@ const FilterPuesto = (puesto) => {
 
 const handleChangePuesto=(e)=>{
   //setCanal(e.target.value)
-  setEEntidad("")
+  /*setEEntidad("")
   setEOrg("")
-  setEGeo("")
+  setEGeo("")*/
   setEPuesto(e.target.value);
   FilterPuesto(e.target.value);
 }
 
 //
 const FilterGeo = (geo) => {
-  let resultadosFiltro = resultsCompleteOrg.filter((result) => {
+  let resultadosFiltro = resultsComplete.filter((result) => {
     if (result.UBICACION_GEOGRAFICA?.toString().includes(geo)) {
       return result;
     }
@@ -130,18 +139,21 @@ const FilterGeo = (geo) => {
 
 const handleChangeGeo=(e)=>{
   //setCanal(e.target.value)
-  setEEntidad("")
+  /*setEEntidad("")
   setEOrg("")
-  setEPuesto("")
+  setEPuesto("")*/
   setEGeo(e.target.value);
   FilterGeo(e.target.value);
 }
 
   return (
     <div className='card mt-2 mx-8'>
-        <div className='flex align-center'>
+        <div className='flex align-center justify-between	'>
+          <div className='flex align-center '> 
             <Iconfilter/>
             <p className='font-bold py-1.5'>{filtColab}</p>
+          </div>
+            <Button variation='link' onClick={()=>DeleteFilter()}>Limpiar filtros</Button>
         </div>
         <div className='flex flex-col gap-2 md:flex-row md:gap-6 align-center mt-2'>
             
