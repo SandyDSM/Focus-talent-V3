@@ -86,6 +86,7 @@ const [filtEntLegal, setFiltEntLegal]=useState('Entidad Legal');
 const [filtOrg, setFiltOrg]=useState('Organización');
 const [filtPuesto, setFiltPuesto]=useState('Puesto');
 const [filtUbicGeog, setFiltUbicGeog]=useState('Ubicación Geográfica');
+const [filtBorrFiltr, setBorrFiltr]=useState('Borrar Filtros');
 
 
 
@@ -158,6 +159,7 @@ response?.filter((c)=>(c.ETIQUETA=='filtorg')).map((trad)=>(setFiltOrg(trad.TRAD
 response?.filter((c)=>(c.ETIQUETA=='filtpuesto')).map((trad)=>(setFiltPuesto(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='filtubicgeog')).map((trad)=>(setFiltUbicGeog(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='evaltxt')).map((trad)=>(setEvalTxt(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='borrfiltr')).map((trad)=>(setBorrFiltr(trad.TRADUCCION)));
   }catch (error) {
     console.log("error:", error);
   }
@@ -593,7 +595,7 @@ filtEntLegal,
 filtOrg,
 filtPuesto,
 filtUbicGeog,
-evalTxt,
+filtBorrFiltr,
 teamOne,
 setTeamOne, subOne, setSubOne,
 fetchCollAllClic,

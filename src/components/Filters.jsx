@@ -7,7 +7,7 @@ import CollaboratorsContext from "../context/collaborators";
 
 function Filters() {
 
-  const {resultsComplete, setResultsComplete, resultsCompleteOrg, filtColab, filtEntLegal, filtOrg, filtPuesto, filtUbicGeog} = useContext(CollaboratorsContext);
+  const {resultsComplete, setResultsComplete, resultsCompleteOrg, filtColab, filtEntLegal, filtOrg, filtPuesto, filtUbicGeog, filtBorrFiltr} = useContext(CollaboratorsContext);
   const [entidad, setEntidad] = useState([])
   const [organizacion, setOrganizacion] = useState([])
   const [puesto, setPuesto] = useState([])
@@ -153,7 +153,7 @@ const handleChangeGeo=(e)=>{
             <Iconfilter/>
             <p className='font-bold py-1.5'>{filtColab}</p>
           </div>
-            <Button variation='link' onClick={()=>DeleteFilter()}>Limpiar filtros</Button>
+            <Button variation='link' onClick={()=>DeleteFilter()}>{filtBorrFiltr}</Button>
         </div>
         <div className='flex flex-col gap-2 md:flex-row md:gap-6 align-center mt-2'>
             
