@@ -50,6 +50,7 @@ function TeamSub() {
 
   const sendOverridesTeamFrom = {
     nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
+    txt:{ children: `${teamFrom}:` },
     SearchField: {display: 'none'}
   };
 
