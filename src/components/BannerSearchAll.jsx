@@ -210,7 +210,7 @@ export default function BannerSearchAll(props) {
           {...getOverrideProps(overrides, "SearchField")}
         ></SearchField>
       </Flex>
-      {busqueda && <CardSerch collaborators={results} />}
+      {busqueda && <CardSerch collaborators={results} setCloseSerchAll={props.setCloseSerchAll}/>}
     </Flex>
   );
 }

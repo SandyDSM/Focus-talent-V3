@@ -2,12 +2,22 @@ import React from 'react'
 import Iconteam from "../ui-components/Iconteam";
 import Icondetail from "../ui-components/Icondetail";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CollaboratorsContext from "../context/collaborators";
 
+const UserSerch = ({colaborator, setCloseSerchAll}) => {
 
-const UserSerch = ({colaborator}) => {
+  console.log(setCloseSerchAll);
+  const {fetchCollAllClic} = useContext(CollaboratorsContext);
+
+  function closeSearch(id){
+    fetchCollAllClic(id)
+    setCloseSerchAll(1)
+  }
+
   return (
     <div className="flex justify-between">
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center cursor-pointer" onClick={()=>closeSearch(`${colaborator.ID_COLABORADOR}`)}>
           <img
             className="w-10 h-10 rounded-full"
             src={
