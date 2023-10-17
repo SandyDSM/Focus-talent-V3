@@ -188,7 +188,7 @@ function getAttribColaboratorsDB(correo) {
       setIsLoading(true);
       const datos = await getAttribColaboratorsDB(correo);
       setUsuarioActualDatos(datos[0])
-    //console.log("AQUI",datos[0]);
+      console.log("AQUI",datos[0]);
 if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaUsuario")==="undefined"){
   localStorage.setItem("IdiomaUsuario", datos[0].IDIOMA);
 }      
@@ -490,7 +490,7 @@ const fetchCollAllClic = async (busqueda) => {
   //console.log(busqueda);
     try{
       setIsLoading(true);
-    const response = await getDataClic(busqueda);
+    const response = await getDataClic(busqueda, usuarioActualDatos.INTERNAL_ID);
     console.log(response);
     setResultsComplete(response)
     setResultsCompleteOrg(response)
@@ -601,7 +601,8 @@ setTeamOne, subOne, setSubOne,
 fetchCollAllClic,
 resultsComplete,
 setResultsComplete,
-resultsCompleteOrg
+resultsCompleteOrg,
+usuarioActualDatos
 
       }}
     >

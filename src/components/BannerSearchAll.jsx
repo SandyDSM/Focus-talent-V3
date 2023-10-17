@@ -66,7 +66,7 @@ export default function BannerSearchAll(props) {
   );
 
   
-    const {fetchCollAllClic, resultsComplete} = useContext(CollaboratorsContext);
+    const {fetchCollAllClic, usuarioActualDatos} = useContext(CollaboratorsContext);
     const [busqueda, setBusqueda] = useState('')
     const [results, setResults] = useState([])
 
@@ -98,7 +98,7 @@ export default function BannerSearchAll(props) {
   
     const fetchCollAll = async (busqueda) => {
       try{
-        const response = await getData(busqueda);
+        const response = await getData(busqueda, usuarioActualDatos.INTERNAL_ID);
         //console.log(response);
         setResults(response)
       }catch (error) {
