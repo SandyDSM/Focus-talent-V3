@@ -480,6 +480,7 @@ function getDataClic(busqueda) {
     headers: {}, // OPTIONAL
     queryStringParameters: {
       BUSQUEDA: `${busqueda}`,
+      USERID: `${usuarioActualDatos.INTERNAL_ID}`,
     }
   };
 
@@ -490,7 +491,7 @@ const fetchCollAllClic = async (busqueda) => {
   //console.log(busqueda);
     try{
       setIsLoading(true);
-    const response = await getDataClic(busqueda, usuarioActualDatos.INTERNAL_ID);
+    const response = await getDataClic(busqueda);
     console.log(response);
     setResultsComplete(response)
     setResultsCompleteOrg(response)

@@ -90,6 +90,7 @@ export default function BannerSearchAll(props) {
         headers: {}, // OPTIONAL
         queryStringParameters: {
           BUSQUEDA: `${busqueda}`,
+          USERID: `${usuarioActualDatos.INTERNAL_ID}`,
         }
       };
     
@@ -98,7 +99,7 @@ export default function BannerSearchAll(props) {
   
     const fetchCollAll = async (busqueda) => {
       try{
-        const response = await getData(busqueda, usuarioActualDatos.INTERNAL_ID);
+        const response = await getData(busqueda);
         //console.log(response);
         setResults(response)
       }catch (error) {
