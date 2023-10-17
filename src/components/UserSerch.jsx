@@ -31,6 +31,7 @@ const UserSerch = ({colaborator, setCloseSerchAll}) => {
             <p className="text-xs uppercase text-zinc-600	">{`${colaborator.ID_COLABORADOR} - ${colaborator.ENTIDAD_LEGAL}`}</p>
           </div>
         </div>
+        {/* 
         <div className="flex items-center p-4 gap-2">
         <Link to={`/test/${colaborator.INTERNAL_ID}`}>
          <Icondetail />
@@ -45,7 +46,7 @@ const UserSerch = ({colaborator, setCloseSerchAll}) => {
             <Iconteam state="Disabled" />
           )}
           
-        </div>
+        </div>*/}
       </div>
   )
 }
