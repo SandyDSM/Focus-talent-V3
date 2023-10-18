@@ -9,7 +9,7 @@ function HeadTeam({title = "Mi Equipo", OpcionSelect, all, setCloseSerchAll}) {
   const {buttonMyTeam, busqueda } = useContext(CollaboratorsContext);
   const sendOverridesBanner = {
         "SearchField": { 
-          width: { base: "100%", large: "360px" },
+          width: { base: "100%", medium: "360px" },
           placeholder: busqueda,
           hasSearchButton: all=="1" ? true :false,
           hasSearchIcon: all=="1" ? false :true
