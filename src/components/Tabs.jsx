@@ -16,14 +16,14 @@ function Tabs({title= "Título", collaborators, sub }) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-5 px-4 gap-4 mb-12">
-      <div className='cardTitle col-span-1 sm:col-span-2 md:col-span-3 bg-bmb-secundary'>{title}</div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-5 px-0 sm:px-4 gap-4 mb-12">
+      <div className='cardTitle col-span-1 sm:col-span-2 md:col-span-3 bg-bmb-secundary w-full'>{title}</div>
       {collaborators != null ? (collaborators.length <= 0 ?(
-        <p className='col-span-3 items-center text-center mt-6'>{noColaborators}</p>
+        <p className='col-span-1 sm:col-span-2 md:col-span-3 items-center text-center mt-6 w-full'>{noColaborators}</p>
       ):      
       (collaborators?.map((colaborator, index) => (
         <CardDos key={index} colaborator={colaborator} sub={sub}/>
-        )))):(<p className='col-span-3 items-center text-center mt-6'>{noColaborators}</p>)
+        )))):(<p className='col-span-1 sm:col-span-2 md:col-span-3 items-center text-center mt-6 w-full'>{noColaborators}</p>)
         }
   </div>
 

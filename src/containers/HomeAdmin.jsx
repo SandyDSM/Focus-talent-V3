@@ -120,7 +120,7 @@ function HomeAdmin({signOut}) {
           </Link>
         </div>
       </div>
-      <div className="my-2 mx-8">
+      <div className="my-2 mx-2 md:mx-8">
         <Button onClick={signOut} color="primary">Log Out</Button>
       </div>
     </div>

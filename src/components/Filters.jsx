@@ -147,7 +147,7 @@ const handleChangeGeo=(e)=>{
 }
 
   return (
-    <div className='card mt-2 mx-8'>
+    <div className='card mt-2 mx-4 md:mx-8'>
         <div className='flex align-center justify-between	'>
           <div className='flex align-center '> 
             <Iconfilter/>

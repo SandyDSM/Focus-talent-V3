@@ -108,7 +108,7 @@ function cambia(evento){
         </div>
       ) : (
         <>
-        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 m-5 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 m-5 px-0 md:px-4">
           <div className={`md:rounded-l-lg ${option === 1 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(1)}>{myteamOption1}</div>
           <div className={option === 2 ? "tabActive" : "tab"} onClick={()=>toggleTab(2)}>{myteamOption2}</div>
           <div className={option === 3 ? "tabActive" : "tab"} onClick={()=>toggleTab(3)}>{myteamOption3}</div>

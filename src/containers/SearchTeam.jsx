@@ -23,7 +23,7 @@ const SearchTeam = ({sub, setCloseSerchAll}) => {
   }
   return (
     <div className="mt-4">
-      <div className='cardTitle col-span-1 sm:col-span-2 md:col-span-3 bg-bmb-secundary flex flex-row items-center gap-6 justify-between mx-8'>
+      <div className='cardTitle col-span-1 sm:col-span-2 md:col-span-3 bg-bmb-secundary flex flex-row items-center gap-6 justify-between mx-4 md:mx-8'>
         <p>{resBusq}</p>
         <Button variation="link" style={{ color: "#FFF" }}onClick={() => onClose()}>
         <p className="mx-2">{buttonCerrar}</p>
@@ -48,13 +48,13 @@ const SearchTeam = ({sub, setCloseSerchAll}) => {
            </Button>
       </div>
       <Filters/>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-5 px-4 gap-4 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-5 px-0 md:px-4 gap-4 mb-12">
       {resultsComplete != null ? (resultsComplete.length <= 0 ?(
-        <p className='col-span-3 items-center text-center mt-6'>"No se encontraron colaboradores"</p>
+        <p className='col-span-3 items-center text-center mt-6 '>"No se encontraron colaboradores"</p>
       ):      
       (resultsComplete?.map((colaborator, index) => (
         <CardDos key={index} colaborator={colaborator} sub={sub} serch="true"/>
-        )))):(<p className='col-span-3 items-center text-center mt-6'>No se encontraron colaboradores</p>)
+        )))):(<p className='col-span-3 items-center text-center mt-6 '>No se encontraron colaboradores</p>)
         }
   </div>
     </div>

@@ -7,7 +7,7 @@ import CollaboratorsContext from "../context/collaborators";
 
 const UserSerch = ({colaborator, setCloseSerchAll}) => {
 
-  console.log(setCloseSerchAll);
+ // console.log(setCloseSerchAll);
   const {fetchCollAllClic} = useContext(CollaboratorsContext);
 
   function closeSearch(id){

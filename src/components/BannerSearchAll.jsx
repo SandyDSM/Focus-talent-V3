@@ -136,7 +136,7 @@ export default function BannerSearchAll(props) {
         fetchCollAll(busqueda);
     }, [busqueda]);
 
-    //console.log(busqueda)
+    //console.log(results.length)
 
   return (
     <Flex
