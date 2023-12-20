@@ -27,6 +27,7 @@ import Validations from "./components/Validations";
 import Forbidden from "./containers/Forbidden";
 import { ProtectedRoutes } from "./context/ProtectRoutes";
 import Permissions from "./containers/Permissions";
+import ReportLogin from "./containers/ReportLogin";
 
 Amplify.configure(awsExports);
 
@@ -77,6 +78,7 @@ function App() {
                 <Route exact path="/tags" element={<Tags /> }/>
                 <Route exact path="/notif" element={<Notif />}/>
                 <Route exact path="/permissions" element={<Permissions />}/>
+                <Route exact path="/reportlogin" element={<ReportLogin />}/>
                 <Route exact path="/myteam" element={<MyTeam /> } />
                 <Route exact path="/myteam/:id" element={<TeamSub /> } />
                 <Route exact path="/test/:id" element={<TeamTestDetail /> } />
