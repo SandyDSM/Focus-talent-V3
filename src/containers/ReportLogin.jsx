@@ -76,8 +76,8 @@ useEffect(() => {
     <div className="flex flex-col gap-6">
     <HeadAdmin title={"Reporte de Accesos"} />
     <div className='px-11'>
-    <div className="card flex flex-row gap-6 items-end	mb-8">
-      
+    <div className="card flex flex-row items-end	mb-8 justify-between">
+      <div className="flex flex-row gap-6">
       <TextField 
       label="De:" 
       type="date" 
@@ -91,7 +91,7 @@ useEffect(() => {
       minWidth={"240px"}
       value={dateA}
       onChange={(e) => setDateA(e.target.value)}
-      ></TextField>
+      ></TextField></div>
       <Excelfile element={<Button variation="primary">Exportar a excel</Button>} filename="Reporte de Accesos">
         <ExcelSheet data={tableAccess} name="Reporte">
           <ExcelColum label="ID Colaborador" value="ID_COLABORADOR"/>
