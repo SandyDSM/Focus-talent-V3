@@ -57,7 +57,7 @@ const getcalib = async (id) => {
             }
           />
           <div className="flex flex-col">
-            <p className="font-bold">{`${colaborator.NOMBRE.toUpperCase()} ${colaborator.APELLIDOS.toUpperCase()}`}</p>
+            <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>
             <div className="flex items-center gap-1">
             <IconProfile type="id"/>
             <p className="text-xs	text-zinc-600">{colaborator.ID_COLABORADOR}</p>

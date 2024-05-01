@@ -165,7 +165,7 @@ const handleChangeGeo=(e)=>{
             >
             {entidad.map((option, index) => (
           <option key={index} value={option}>
-            {option.toUpperCase()}
+            {option}
           </option>
         ))}
             </SelectField>
@@ -174,7 +174,7 @@ const handleChangeGeo=(e)=>{
             >
             {organizacion.map((option, index) => (
           <option key={index} value={option}>
-            {option.toUpperCase()}
+            {option}
           </option>
         ))}
             </SelectField>
@@ -183,7 +183,7 @@ const handleChangeGeo=(e)=>{
             >
             {puesto.map((option, index) => (
           <option key={index} value={option}>
-            {option.toUpperCase()}
+            {option}
           </option>
         ))}
             </SelectField>
@@ -192,7 +192,7 @@ const handleChangeGeo=(e)=>{
             >
             {geo.map((option, index) => (
           <option key={index} value={option}>
-            {option.toUpperCase()}
+            {option}
           </option>
         ))}
             </SelectField>

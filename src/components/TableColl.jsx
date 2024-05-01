@@ -17,7 +17,7 @@ function TableColl({colaborator, selectorg, add, indice}) {
           
         </div>
         <div className="w-2/5"><p className="text-sm">{colaborator?.ID_COLABORADOR}</p></div>
-        <div className="w-full"><p className="text-sm">{`${colaborator?.NOMBRE.toUpperCase()} ${colaborator?.APELLIDOS.toUpperCase()}`}</p></div>
+        <div className="w-full"><p className="text-sm">{`${colaborator?.NOMBRE} ${colaborator?.APELLIDOS}`}</p></div>
         <div className="w-full"><p className="text-sm">{colaborator?.ENTIDAD_LEGAL}</p></div>
         <div className="w-full"><p className="text-sm">{colaborator?.ORGANIZACION}</p></div>
         <div className="w-full"><p className="text-sm">{colaborator?.PUESTO}</p></div>

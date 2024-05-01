@@ -216,8 +216,8 @@ if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaU
     const collatemp=collaborators;
     if(orden==="descendente"){
        const tempdescendente=collatemp.sort((a, b) => {
-       if (a.APELLIDOS.toUpperCase() < b.APELLIDOS.toUpperCase()) return 1
-       if (a.APELLIDOS.toUpperCase() > b.APELLIDOS.toUpperCase()) return -1
+       if (a.APELLIDOS < b.APELLIDOS) return 1
+       if (a.APELLIDOS > b.APELLIDOS) return -1
        return 0
      });
      
@@ -225,8 +225,8 @@ if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaU
      
     }else{
     const temascendente= collatemp.sort((a, b) => {
-       if (a.APELLIDOS.toUpperCase() > b.APELLIDOS.toUpperCase()) return 1
-       if (a.APELLIDOS.toUpperCase() < b.APELLIDOS.toUpperCase()) return -1
+       if (a.APELLIDOS > b.APELLIDOS) return 1
+       if (a.APELLIDOS < b.APELLIDOS) return -1
        return 0
      });
      actualizaBusqueda([...temascendente]);       

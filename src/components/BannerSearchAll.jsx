@@ -74,7 +74,7 @@ export default function BannerSearchAll(props) {
     const handleChange=(e)=>{
       let busqueda = e.target.value
       if(busqueda.length >= 3){
-        setBusqueda(busqueda.toUpperCase());
+        setBusqueda(busqueda);
       }else{
         setBusqueda('');
       }
