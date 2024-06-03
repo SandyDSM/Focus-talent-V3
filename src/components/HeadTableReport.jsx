@@ -9,6 +9,7 @@ function HeadTableReport() {
         <div className="w-full"><p className="text-sm">Nombre del colaborador</p></div>
         <div className="w-3/5"><p className="text-sm">Fecha de último acceso </p></div>
         <div className="w-2/5"><p className="text-sm"> Total de accesos</p></div>
+        <div className="w-2/5"><p className="text-sm"> Organización</p></div>
       </div>
       <Divider
         width="unset"

@@ -5,7 +5,7 @@ import { API } from 'aws-amplify';
 import { useContext, useEffect, useState } from "react";
 import ExportExel from "react-export-excel";
 import { Button, SelectField, TextField } from "@aws-amplify/ui-react";
-import moment from "moment";
+//import moment from "moment";
 
 const Excelfile = ExportExel.ExcelFile;
 const ExcelSheet = ExportExel.ExcelSheet;
@@ -42,7 +42,7 @@ function ReportLogin() {
 }, [tableAccess]);
 */
 
-console.log("------------------------",dateDe, dateA)
+console.log("------------------------",typeof(dateDe), dateA)
 
 function sendReportbydate(dateInit, dateEnd) {
   const apiName = 'Usuarios';
@@ -69,7 +69,7 @@ const getReportbydate = async (dateInit, dateEnd) => {
 
 useEffect(() => { 
   getReportbydate(dateDe, dateA);
-}, [tableAccess, dateDe, dateA]);
+}, [ dateDe, dateA]);
 
 
   return (
@@ -98,6 +98,7 @@ useEffect(() => {
           <ExcelColum label="Nombre del colaborador" value="NOM_COMP"/>
           <ExcelColum label="Fecha de último acceso" value="FECHA_DE_ULTIMO_ACCESO"/>
           <ExcelColum label="Total de accesos" value="NUMERO_DE_ACCESOS"/>
+          <ExcelColum label="Organización" value="ORGANIZACION"/>
         </ExcelSheet>
       </Excelfile>
       </div>

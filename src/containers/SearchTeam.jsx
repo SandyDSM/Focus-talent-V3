@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
 
 const SearchTeam = ({sub, setCloseSerchAll}) => {
-  const {isLoading, resultsComplete, resBusq, buttonCerrar} = useContext(CollaboratorsContext);
+  const {isLoading, resultsComplete, resBusq, buttonCerrar,filtNoSeEncColabs} = useContext(CollaboratorsContext);
 
   const onClose = () => {
     setCloseSerchAll(0)
@@ -50,11 +50,11 @@ const SearchTeam = ({sub, setCloseSerchAll}) => {
       <Filters/>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-5 px-0 md:px-4 gap-4 mb-12">
       {resultsComplete != null ? (resultsComplete.length <= 0 ?(
-        <p className='col-span-3 items-center text-center mt-6 '>"No se encontraron colaboradores"</p>
+        <p className='col-span-3 items-center text-center mt-6 '>"{filtNoSeEncColabs}"</p>
       ):      
       (resultsComplete?.map((colaborator, index) => (
         <CardDos key={index} colaborator={colaborator} sub={sub} serch="true"/>
-        )))):(<p className='col-span-3 items-center text-center mt-6 '>No se encontraron colaboradores</p>)
+        )))):(<p className='col-span-3 items-center text-center mt-6 '>{filtNoSeEncColabs}</p>)
         }
   </div>
     </div>

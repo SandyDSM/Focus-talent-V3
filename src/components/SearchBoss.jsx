@@ -9,8 +9,9 @@ import Swal from 'sweetalert2'
 
 
 function SearchBoss({ tablePermission, handleChange, onClear }) {
-  const { resultsComplete } = useContext(CollaboratorsContext);
+  const { resultsComplete, filtNoSeEncColabs} = useContext(CollaboratorsContext);
   const [collSelect, setCollSelect] = useState([]);
+  
 
   useEffect(() => { 
     setCollSelect(tablePermission);
@@ -139,7 +140,7 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
         {resultsComplete != null ? (
           resultsComplete.length <= 0 ? (
             <p className="col-span-3 items-center text-center mt-6">
-              "No se encontraron colaboradores"
+              "{filtNoSeEncColabs}"
             </p>
           ) : (
             resultsComplete?.map((colaborator, index) => (
@@ -153,7 +154,7 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
           )
         ) : (
           <p className="col-span-3 items-center text-center mt-6">
-            No se encontraron colaboradores
+            {filtNoSeEncColabs}
           </p>
         )}
       </div>
