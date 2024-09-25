@@ -99,6 +99,7 @@ useEffect(() => {
           <ExcelColum label="Fecha de último acceso" value="FECHA_DE_ULTIMO_ACCESO"/>
           <ExcelColum label="Total de accesos" value="NUMERO_DE_ACCESOS"/>
           <ExcelColum label="Organización" value="ORGANIZACION"/>
+          <ExcelColum label="Nivel" value="NIVEL"/>
         </ExcelSheet>
       </Excelfile>
       </div>

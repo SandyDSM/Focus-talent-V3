@@ -11,6 +11,7 @@ function TableCollReport({colaborator}) {
         <div className="w-3/5"><p className="text-sm">{colaborator?.FECHA_DE_ULTIMO_ACCESO}</p></div>
         <div className="w-2/5"><p className="text-sm"> {colaborator?.NUMERO_DE_ACCESOS}</p></div>
         <div className="w-2/5"><p className="text-sm"> {colaborator?.ORGANIZACION}</p></div>
+        <div className="w-2/5"><p className="text-sm"> {colaborator?.NIVEL}</p></div>
       </div>
       <Divider
         width="unset"
