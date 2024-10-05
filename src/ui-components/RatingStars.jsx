@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import Star from "./Star";
 import { Flex } from "@aws-amplify/ui-react";
 export default function RatingStars(props) {

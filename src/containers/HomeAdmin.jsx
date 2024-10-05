@@ -102,7 +102,7 @@ function HomeAdmin({signOut}) {
             <CardBtn width={"100%"} overrides={sendOverridesCardTest} />
           </Link>
         </div>
-        <div className=" col-span-2 cursor-pointer">
+       {/* <div className=" col-span-2 cursor-pointer">
           <Link to="/notif">
             <CardBtn
               width={"100%"}
@@ -110,7 +110,7 @@ function HomeAdmin({signOut}) {
               overrides={sendOverridesCard}
             />
           </Link>
-        </div>
+        </div>*/}
         <div className=" col-span-2 ">
           <Link to="/tags">
             <CardBtn

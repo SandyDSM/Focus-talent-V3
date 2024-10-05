@@ -12,7 +12,7 @@ function TableTests({aniosx, handleOpen}) {
   return (
     <div className='card'>
         <div className='w-full'>
-            <HeadTable  col1={"Notificar" }col2={"Estatus"} col3={"Nombre"} col4={"Años"}/>
+            <HeadTable  col1={"_____"} col2={"Estatus"} col3={"Nombre"} col4={"Años"}/>
             {aniosx?.map((anio, index)=>(
             <TableRowTests key={index} anio={anio} handleOpen={handleOpen}/>
             ))}

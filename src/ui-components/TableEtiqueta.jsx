@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Divider, Flex, Text, TextField } from "@aws-amplify/ui-react";
 export default function TableEtiqueta(props) {
   const { overrides, ...rest } = props;

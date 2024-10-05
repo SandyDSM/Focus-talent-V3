@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import FlatIcons from "./FlatIcons";
 import { Flex, Text } from "@aws-amplify/ui-react";
 export default function CardBtn(props) {

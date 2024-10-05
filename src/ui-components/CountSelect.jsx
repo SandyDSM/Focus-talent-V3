@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Flex, SelectField } from "@aws-amplify/ui-react";
 import Page2Arrow from "./Page2Arrow";
 import PageArrow from "./PageArrow";

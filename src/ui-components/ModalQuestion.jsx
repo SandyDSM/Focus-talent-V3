@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import MyIcon from "./MyIcon";
 import { Button, Flex, Heading } from "@aws-amplify/ui-react";
 export default function ModalQuestion(props) {

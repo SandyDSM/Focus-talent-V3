@@ -11,7 +11,7 @@ import {
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
   useNavigateAction,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 import IconMenuHam from "./IconMenuHam";
 export default function Header(props) {

@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { Flex, Image, Text, useBreakpointValue } from "@aws-amplify/ui-react";
 import Ilustration from "./Ilustration";
 export default function HeadAdminiHome(props) {

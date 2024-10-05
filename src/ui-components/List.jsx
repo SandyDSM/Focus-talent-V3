@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { Flex, Icon, Text } from "@aws-amplify/ui-react";
 export default function List(props) {
   const { overrides: overridesProp, ...rest } = props;

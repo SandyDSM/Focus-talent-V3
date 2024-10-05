@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { CheckboxField, Divider, Flex, Text } from "@aws-amplify/ui-react";
 import List from "./List";
 export default function FiltersExtend(props) {

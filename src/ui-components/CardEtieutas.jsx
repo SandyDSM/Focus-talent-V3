@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Button, Divider, Flex, Heading } from "@aws-amplify/ui-react";
 import TableEtiqueta from "./TableEtiqueta";
 export default function CardEtieutas(props) {

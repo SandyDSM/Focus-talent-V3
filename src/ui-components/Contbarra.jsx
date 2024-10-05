@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import Page2Arrow from "./Page2Arrow";
 import PageArrow from "./PageArrow";
 import Page from "./Page";

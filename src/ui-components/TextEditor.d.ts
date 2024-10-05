@@ -5,9 +5,18 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ButtonProps, DividerProps, FlexProps, HeadingProps, PasswordFieldProps, SelectFieldProps } from "@aws-amplify/ui-react";
 import { MenuTextEditorProps } from "./MenuTextEditor";
+export declare type EscapeHatchProps = {
+    [elementHierarchy: string]: Record<string, unknown>;
+} | null;
+export declare type VariantValues = {
+    [key: string]: string;
+};
+export declare type Variant = {
+    variantValues: VariantValues;
+    overrides: EscapeHatchProps;
+};
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type TextEditorOverridesProps = {
     TextEditor?: PrimitiveOverrideProps<FlexProps>;

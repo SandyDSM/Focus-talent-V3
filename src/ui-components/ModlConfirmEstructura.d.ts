@@ -5,12 +5,21 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ButtonProps, DividerProps, FlexProps, HeadingProps, TextProps } from "@aws-amplify/ui-react";
 import { TableSelectProps } from "./TableSelect";
 import { Page2ArrowProps } from "./Page2Arrow";
 import { PageArrowProps } from "./PageArrow";
 import { PageProps } from "./Page";
+export declare type EscapeHatchProps = {
+    [elementHierarchy: string]: Record<string, unknown>;
+} | null;
+export declare type VariantValues = {
+    [key: string]: string;
+};
+export declare type Variant = {
+    variantValues: VariantValues;
+    overrides: EscapeHatchProps;
+};
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ModlConfirmEstructuraOverridesProps = {
     ModlConfirmEstructura?: PrimitiveOverrideProps<FlexProps>;

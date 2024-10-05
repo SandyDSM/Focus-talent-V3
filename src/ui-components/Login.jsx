@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Button, Flex, Image } from "@aws-amplify/ui-react";
 export default function Login(props) {
   const { frameInputs, overrides, ...rest } = props;
