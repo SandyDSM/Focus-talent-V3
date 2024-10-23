@@ -48,7 +48,7 @@ setSubOne
     setOption(index);
   };
 
-  console.log(usuarioActualDatos.BUSQUEDA_GLOBAL)
+  //console.log(usuarioActualDatos.BUSQUEDA_GLOBAL)
 
   function getData() {
     const apiName = 'API Behaviors';
@@ -102,7 +102,7 @@ function cambia(evento){
   return (
     <>
       <div className="my-3"><BannerUser/></div>
-      <BannersImg language={usuarioActualDatos.IDIOMA} version={usuarioActualDatos.BUSQUEDA_GLOBAL}/>
+      <BannersImg language={usuarioActualDatos.IDIOMA} version={all}/>
       <HeadTeam title={banerSearch}  OpcionSelect={option} all={all} setCloseSerchAll={setCloseSerchAll}/>
       {closeSerchAll === 1 ? <SearchTeam setCloseSerchAll={setCloseSerchAll}  sub={false}/> :(
         <> 
