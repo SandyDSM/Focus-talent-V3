@@ -10,6 +10,8 @@ import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import Tabs from "../components/Tabs";
 import SearchTeam from "./SearchTeam";
+import BannersImg from "../components/BannersImg";
+import BannerUser from "../components/BannerUser";
 
 const MyTeam = () => {
   const {
@@ -46,7 +48,7 @@ setSubOne
     setOption(index);
   };
 
-  //console.log(collaborators)
+  console.log(usuarioActualDatos.BUSQUEDA_GLOBAL)
 
   function getData() {
     const apiName = 'API Behaviors';
@@ -99,6 +101,8 @@ function cambia(evento){
   }
   return (
     <>
+      <div className="my-3"><BannerUser/></div>
+      <BannersImg language={usuarioActualDatos.IDIOMA} version={usuarioActualDatos.BUSQUEDA_GLOBAL}/>
       <HeadTeam title={banerSearch}  OpcionSelect={option} all={all} setCloseSerchAll={setCloseSerchAll}/>
       {closeSerchAll === 1 ? <SearchTeam setCloseSerchAll={setCloseSerchAll}  sub={false}/> :(
         <> 

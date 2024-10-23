@@ -21,7 +21,7 @@ export declare type IconProfileOverridesProps = {
     IconProfile?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type IconProfileProps = React.PropsWithChildren<Partial<IconProps> & {
-    type?: "Job" | "Name" | "Organitation" | "exit" | "id";
+    type?: "Job" | "Name" | "Organitation" | "calibracion" | "comport" | "contribucion" | "exit" | "id" | "test";
 } & {
     overrides?: IconProfileOverridesProps | undefined | null;
 }>;

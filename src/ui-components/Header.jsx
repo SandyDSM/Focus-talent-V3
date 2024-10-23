@@ -62,7 +62,7 @@ export default function Header(props) {
       alignItems="center"
       position="relative"
       padding="11px 24px 11px 24px"
-      backgroundColor="rgba(84,131,232,1)"
+      backgroundColor="rgba(0,0,179,1)"
       display="flex"
       {...getOverrideProps(overrides, "Header")}
       {...rest}
@@ -168,8 +168,8 @@ export default function Header(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 17.5751953125,
-              height: 11.1634521484375,
+              width: 17.575000762939453,
+              height: 11.16350269317627,
             }}
             paths={[
               {

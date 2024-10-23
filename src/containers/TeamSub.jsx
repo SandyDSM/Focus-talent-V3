@@ -6,6 +6,8 @@ import CollaboratorsContext from "../context/collaborators";
 import { HeadTeamFrom } from "../ui-components";
 import BreadCrums from "../components/BreadCrums";
 import Tabs from "../components/Tabs";
+import BannerUser from "../components/BannerUser";
+
 
 function TeamSub() {
   const { id } = useParams();
@@ -68,6 +70,7 @@ function TeamSub() {
 Loader();
   return (
     <>
+    <div className="my-3"><BannerUser/></div>
       <div className="mx-4">
         <BreadCrums text={teamFrom} user={collDetail.NOMBRE} />
       </div>

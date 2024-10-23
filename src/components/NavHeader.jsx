@@ -27,6 +27,7 @@ function NavHeader() {
       style: { cursor: "pointer" },
       onClick: () => setOpen(true),
     },
+    Header:{padding:"4px 24px 4px 24px"}
   };
 
   const sendOverridesMenu = {
@@ -84,11 +85,7 @@ function NavHeader() {
   return (
     <>
       <Header width={"100vw"} type={`${isAdmin ? "menu" : "noMenu"}`} overrides={sendOverridesHeader} />
-      {showPerson && 
-      <div className="my-3">
-          <BannerUser/>
-      </div>
-      }
+      {/*showPerson && <div className="my-3"><BannerUser/></div>*/}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child

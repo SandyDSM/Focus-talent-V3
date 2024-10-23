@@ -9,6 +9,8 @@ import { Button, Loader } from "@aws-amplify/ui-react";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
 import Configuration from '../utils/Configuration'
 import { API } from 'aws-amplify';
+import BannerUser from "../components/BannerUser";
+
 
 function TeamTestDetail() {
   const { id } = useParams();
@@ -156,6 +158,7 @@ const fetchDesemp = async () => {
 
   return (
     <div>
+      <div className="my-3"><BannerUser/></div>
       <div className="mt-2 flex flex-col gap-2">
         <div className="mx-4">
           <BreadCrums

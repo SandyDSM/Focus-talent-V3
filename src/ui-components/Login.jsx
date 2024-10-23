@@ -82,6 +82,8 @@ export default function Login(props) {
         {...getOverrideProps(overrides, "FrameButtons")}
       >
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           alignSelf="stretch"
           size="default"
@@ -91,6 +93,8 @@ export default function Login(props) {
           {...getOverrideProps(overrides, "ButtonSingIn")}
         ></Button>
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           alignSelf="stretch"
           size="default"
@@ -100,6 +104,8 @@ export default function Login(props) {
           {...getOverrideProps(overrides, "ButtonSingAzure")}
         ></Button>
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           alignSelf="stretch"
           size="default"

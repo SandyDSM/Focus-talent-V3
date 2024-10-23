@@ -64,7 +64,7 @@ export default function Header(props) {
       alignItems="center"
       position="relative"
       padding="11px 24px 11px 24px"
-      backgroundColor="rgba(84,131,232,1)"
+      backgroundColor="rgba(0,0,179,1)"
       display="flex"
       {...getOverrideProps(overrides, "Header")}
       {...rest}

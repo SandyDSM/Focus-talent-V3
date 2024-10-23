@@ -69,7 +69,7 @@ export default function HeadAdminiHome(props) {
       position="relative"
       borderRadius="20px"
       padding="0px 0px 0px 0px"
-      backgroundColor="rgba(100,145,237,1)"
+      backgroundColor="rgba(51,51,193,1)"
       display="flex"
       {...getOverrideProps(overrides, "HeadAdminiHome")}
       {...rest}

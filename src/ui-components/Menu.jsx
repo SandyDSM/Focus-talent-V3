@@ -39,7 +39,7 @@ export default function Menu(props) {
         shrink="0"
         position="relative"
         padding="32px 0px 32px 0px"
-        backgroundColor="rgba(84,131,232,1)"
+        backgroundColor="rgba(0,0,179,1)"
         {...getOverrideProps(overrides, "Frame 415")}
       >
         <Flex
@@ -146,7 +146,7 @@ export default function Menu(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 15.7099609375,
+              width: 15.710247039794922,
               height: 15.710247039794922,
             }}
             paths={[
@@ -462,8 +462,8 @@ export default function Menu(props) {
               viewBox={{
                 minX: 0,
                 minY: 0,
-                width: 17.5751953125,
-                height: 11.16351318359375,
+                width: 17.575000762939453,
+                height: 11.16350269317627,
               }}
               paths={[
                 {

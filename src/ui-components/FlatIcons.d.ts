@@ -21,7 +21,7 @@ export declare type FlatIconsOverridesProps = {
     FlatIcons?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type FlatIconsProps = React.PropsWithChildren<Partial<IconProps> & {
-    type?: "eval" | "notf" | "tags" | "team";
+    type?: "eval" | "notf" | "search" | "tags" | "team";
 } & {
     overrides?: FlatIconsOverridesProps | undefined | null;
 }>;

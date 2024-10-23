@@ -32,7 +32,7 @@ export default function CardBtn(props) {
       overrides: {
         FlatIcons: { type: "tags" },
         Title: {},
-        CardBtn: { backgroundColor: "rgba(159,187,244,1)" },
+        CardBtn: { backgroundColor: "rgba(129,129,217,1)" },
       },
       variantValues: { type: "Etiquetas" },
     },
@@ -40,7 +40,7 @@ export default function CardBtn(props) {
       overrides: {
         FlatIcons: { type: "team" },
         Title: {},
-        CardBtn: { backgroundColor: "rgba(38,72,140,1)" },
+        CardBtn: { backgroundColor: "rgba(0,0,107,1)" },
       },
       variantValues: { type: "Equipo" },
     },

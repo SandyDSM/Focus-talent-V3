@@ -72,7 +72,7 @@ export default function Person(props) {
       boxShadow="0px 2px 2px rgba(0.6823529601097107, 0.7019608020782471, 0.7176470756530762, 0.25)"
       borderRadius="4px"
       padding="4px 24px 4px 24px"
-      backgroundColor="rgba(255,255,255,1)"
+      backgroundImage="linear-gradient(0deg, rgba(115,178,245,1), rgba(34,109,225,1), rgba(221,106,73,1), rgba(123,141,226,1), rgba(153,218,154,1))"
       display="flex"
       {...getOverrideProps(overrides, "Person")}
       {...rest}
