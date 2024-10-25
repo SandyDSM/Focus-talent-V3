@@ -146,7 +146,7 @@ export default function Iconidiom(props) {
       position="relative"
       borderRadius="1px"
       padding="7px 2px 7px 2px"
-      backgroundColor="rgba(51,51,193,1)"
+      backgroundColor="rgba(0,0,179,1)"
       display="flex"
       {...getOverrideProps(overrides, "Iconidiom")}
       {...rest}

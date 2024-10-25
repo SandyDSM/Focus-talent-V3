@@ -14,7 +14,10 @@ function HeadTeam({title = "Mi Equipo", OpcionSelect, all, setCloseSerchAll}) {
           hasSearchButton: all=="1" ? true :false,
           hasSearchIcon: all=="1" ? false :true
          },
-         Heading:{children: buttonMyTeam}
+         Heading:{
+          children: buttonMyTeam,
+          color: "#0000B3",
+        }
   }
     
   return (

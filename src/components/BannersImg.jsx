@@ -51,7 +51,7 @@ const BannerImg = ({ language, version}) => {
   return (
     <div 
       className="banner-img" 
-      style={{ backgroundImage: `url(${imageUrl})`, height: '200px', backgroundSize: 'cover', cursor: 'pointer' }} 
+      style={{ backgroundImage: `url(${imageUrl})`, backgroundRepeat: 'no-repeat', backgroundPosition:'left center', height: '200px', backgroundSize: 'cover', cursor: 'pointer' }} 
       onClick={handleBannerClick}
     >
       {/* */}

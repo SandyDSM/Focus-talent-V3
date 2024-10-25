@@ -640,7 +640,7 @@ export default createTheme({
           fontSize: { value: "{fontSizes.medium.value}" },
           fontWeight: { value: "{fontWeights.extrabold.value}" },
         },
-        color: { value: "{colors.font.primary.value}" },
+        color: { value: "{colors.neutral.100.value}" },
         lineHeight: { value: "{lineHeights.small.value}" },
       },
       icon: { lineHeight: { value: "1" }, height: { value: "1em" } },

@@ -31,7 +31,9 @@ function NavHeader() {
   };
 
   const sendOverridesMenu = {
-    name:{children: `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}`},
+    name:{
+      children: `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}`,
+    },
     puesto:{children:`${usuarioActualDatos.PUESTO}`},
 
     "image 3": {

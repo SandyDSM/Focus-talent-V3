@@ -48,7 +48,7 @@ export default function Menu(props) {
         shrink="0"
         position="relative"
         padding="32px 0px 32px 0px"
-        backgroundColor="rgba(84,131,232,1)"
+        backgroundColor="#0000B3"
         {...getOverrideProps(overrides, "Frame 415")}
       >
         <Flex
