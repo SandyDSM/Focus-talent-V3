@@ -63,7 +63,7 @@ export default function RowsNotif(props) {
             position="relative"
             borderRadius="1px"
             padding="7px 2px 7px 2px"
-            backgroundColor="rgba(0,0,179,1)"
+            backgroundColor="rgba(64,106,191,1)"
             language="esp"
             {...getOverrideProps(overrides, "icon-idiom")}
           ></Iconidiom>

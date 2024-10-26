@@ -1230,15 +1230,6 @@ export default createTheme({
       },
       brand: {
         primary: {
-          10: { value: "hsl(206, 49%, 67%)" },
-          20: { value: "hsl(206, 49%, 60%)" },
-          40: { value: "hsl(206, 57%, 46%)" },
-          60: { value: "hsl(206, 100%, 33%)" },
-          80: { value: "hsl(206, 100%, 26%)" },
-          90: { value: "hsl(206, 100%, 20%)" },
-          100: { value: "hsl(206, 100%, 16%)" },
-        },
-        secondary: {
           10: { value: "hsl(240, 54%, 68%)" },
           20: { value: "hsl(240, 54%, 61%)" },
           40: { value: "hsl(240, 58%, 48%)" },
@@ -1246,6 +1237,15 @@ export default createTheme({
           80: { value: "hsl(240, 100%, 28%)" },
           90: { value: "hsl(240, 100%, 21%)" },
           100: { value: "hsl(240, 100%, 18%)" },
+        },
+        secondary: {
+          10: { value: "{colors.blue.10.value}" },
+          20: { value: "{colors.blue.20.value}" },
+          40: { value: "{colors.blue.40.value}" },
+          60: { value: "{colors.blue.60.value}" },
+          80: { value: "{colors.blue.80.value}" },
+          90: { value: "{colors.blue.90.value}" },
+          100: { value: "{colors.blue.100.value}" },
         },
       },
       font: {

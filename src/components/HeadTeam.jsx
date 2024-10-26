@@ -16,7 +16,7 @@ function HeadTeam({title = "Mi Equipo", OpcionSelect, all, setCloseSerchAll}) {
          },
          Heading:{
           children: buttonMyTeam,
-          color: "#0000B3",
+          color: "#043495",
         }
   }
     

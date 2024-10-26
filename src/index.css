@@ -33,7 +33,7 @@ code {
 }
 
 .tab:hover{
-  @apply bg-bmb-blue-20
+  @apply bg-bmb-blue-20 font-bold
 }
 
 .tabActive{

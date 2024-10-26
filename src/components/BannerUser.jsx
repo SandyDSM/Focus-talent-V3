@@ -9,7 +9,7 @@ function BannerUser() {
         "image 3": { src: photo },
         Heading: { 
           children: `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}`,
-          color: "#0000B3"
+          color: "#043495"
          },
         close: {display: 'none '},
     }
