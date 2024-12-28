@@ -32,7 +32,7 @@ const BannerImg = ({ language, version}) => {
         deviceType = 'tablet';
       }
 
-      const selectedLanguage = (language === 'Spanish (Latin America)' || language === 'Spanish (España)') ? 'es' : 'other';
+      const selectedLanguage = (language === 'Spanish (Latin America)' || language === 'Spanish (Spain)') ? 'es' : 'other';
       setImageUrl(resources[selectedLanguage][deviceType]);
       const pdfKey = version === 0 ? 'pdf1' : 'pdf2';
       setPdfUrl(resources[selectedLanguage][pdfKey]);
