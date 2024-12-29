@@ -84,6 +84,7 @@ const [filtColab, setFiltColab]=useState('Filtrar Colaboradores');
 const [buttonCerrar, setButtonCerrar]=useState('Cerrar');
 const [filtEntLegal, setFiltEntLegal]=useState('Entidad Legal');
 const [filtOrg, setFiltOrg]=useState('Organización');
+const [filtNivel, setFiltNivel]=useState('Nivel');
 const [filtPuesto, setFiltPuesto]=useState('Puesto');
 const [filtUbicGeog, setFiltUbicGeog]=useState('Ubicación Geográfica');
 const [filtBorrFiltr, setBorrFiltr]=useState('Borrar Filtros');
@@ -157,6 +158,7 @@ response?.filter((c)=>(c.ETIQUETA=='filtcolab')).map((trad)=>(setFiltColab(trad.
 response?.filter((c)=>(c.ETIQUETA=='buttoncerrar')).map((trad)=>(setButtonCerrar(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='filtentlegal')).map((trad)=>(setFiltEntLegal(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='filtorg')).map((trad)=>(setFiltOrg(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='filtnivel')).map((trad)=>(setFiltNivel(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='filtpuesto')).map((trad)=>(setFiltPuesto(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='filtubicgeog')).map((trad)=>(setFiltUbicGeog(trad.TRADUCCION)));
 response?.filter((c)=>(c.ETIQUETA=='evaltxt')).map((trad)=>(setEvalTxt(trad.TRADUCCION)));
@@ -596,6 +598,7 @@ filtColab,
 buttonCerrar,
 filtEntLegal,
 filtOrg,
+filtNivel,
 filtPuesto,
 filtUbicGeog,
 filtBorrFiltr,

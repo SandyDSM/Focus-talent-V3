@@ -7,20 +7,23 @@ import CollaboratorsContext from "../context/collaborators";
 
 function Filters() {
 
-  const {resultsComplete, setResultsComplete, resultsCompleteOrg, filtColab, filtEntLegal, filtOrg, filtPuesto, filtUbicGeog, filtBorrFiltr} = useContext(CollaboratorsContext);
+  const {resultsComplete, setResultsComplete, resultsCompleteOrg, filtColab, filtEntLegal, filtOrg, filtNivel, filtPuesto, filtUbicGeog, filtBorrFiltr} = useContext(CollaboratorsContext);
   const [entidad, setEntidad] = useState([])
   const [organizacion, setOrganizacion] = useState([])
+  const [nivel, setNivel] = useState([])
   const [puesto, setPuesto] = useState([])
   const [geo, setGeo] = useState([])
   const [eEntidad, setEEntidad] = useState("");
   const [eOrg, setEOrg] = useState("");
   const [ePuesto, setEPuesto] = useState("");
+  const [eNivel, setENivel] = useState("");
   const [eGeo, setEGeo] = useState("");
 
   useEffect(()=>{
     Entidad();
     Organizacion();
     Puesto();
+    Nivel();
     Geo();
   },[resultsComplete])
 
@@ -28,6 +31,7 @@ function Filters() {
     setEEntidad("")
     setEOrg("")
     setEPuesto("")
+    setENivel("")
     setEGeo("");
     setResultsComplete(resultsCompleteOrg);
   }
@@ -60,6 +64,16 @@ function Filters() {
         return puesto ;
       },[])
       setPuesto(optionPuesto);
+  }
+
+  function Nivel(){
+    let optionNivel = resultsComplete.reduce((nivel,item)=>{
+        if(!nivel.includes(item.NIVEL)){
+          nivel.push(item.NIVEL);
+        }
+        return nivel ;
+      },[])
+      setNivel(optionNivel);
   }
 
   function Geo(){
@@ -108,6 +122,24 @@ function Filters() {
     setEOrg(e.target.value);
     FilterOrg(e.target.value);
   }
+//
+const FilterNivel = (nivel) => {
+  let resultadosFiltro = resultsComplete.filter((result) => {
+    if (result.NIVEL?.toString().includes(nivel)) {
+      return result;
+    }
+  });
+  setResultsComplete(resultadosFiltro);
+};
+
+const handleChangeNivel=(e)=>{
+  //setCanal(e.target.value)
+  /*setEEntidad("")
+  setEOrg("")
+  setEGeo("")*/
+  setENivel(e.target.value);
+  FilterNivel(e.target.value);
+}
 //
 const FilterPuesto = (puesto) => {
   let resultadosFiltro = resultsComplete.filter((result) => {
@@ -178,6 +210,15 @@ const handleChangeGeo=(e)=>{
           </option>
         ))}
             </SelectField>
+            <SelectField placeholder= {filtNivel} onChange={handleChangeNivel} width={{ base: "100%", large: "25%" }} 
+            value={eNivel}
+            >
+            {nivel.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+        </SelectField>
             <SelectField placeholder= {filtPuesto} onChange={handleChangePuesto} width={{ base: "100%", large: "25%" }} 
             value={ePuesto}
             >
