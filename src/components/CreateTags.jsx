@@ -12,7 +12,7 @@ function CreateTags({etiquetasamod, botonhabilitado, setetiquetasmod, reloadTags
   const [isLoad, setIsLoad ] = useState(false)
 ///////////////////////////////////////////////////////////////// 
 
-function getData(etiquetasx, espaniol, ingles, frances, portugues, chino) {
+function getData(etiquetasx, espaniol, ingles, frances, portugues, chino, rumano) {
   const apiName = 'API Behaviors';
   const path = '/edittags';
   const myInit = {
@@ -23,17 +23,18 @@ function getData(etiquetasx, espaniol, ingles, frances, portugues, chino) {
       en_US : `${ingles}`,
       fr_CA : `${frances}`,
       pt_BR : `${portugues}`, 
-      zh_CN : `${chino}`
+      zh_CN : `${chino}`,
+      ro_RO : `${rumano}`
     }
   };
 
   return API.get(apiName, path, myInit);
 }
 
-const updateTags = async (etiquetasx, espaniol, ingles, frances, portugues, chino) => {
+const updateTags = async (etiquetasx, espaniol, ingles, frances, portugues, chino, rumano) => {
  
   try{
-    const response = await getData(etiquetasx, espaniol, ingles, frances, portugues, chino);
+    const response = await getData(etiquetasx, espaniol, ingles, frances, portugues, chino, rumano);
    setReloadTags(!reloadTags);
     //console.log("Datos actualizados");
 
@@ -105,12 +106,13 @@ function actualiza()
     document.getElementById("en_US").value.replace("'","''"),
     document.getElementById("fr_CA").value.replace("'","''"),
     document.getElementById("pt_BR").value.replace("'","''"),
-    document.getElementById("zh_CN").value.replace("'","''")
+    document.getElementById("zh_CN").value.replace("'","''"),
+    document.getElementById("ro_RO").value.replace("'","''")
   )
 }
 
 function clear(){
-  setetiquetasmod(["", "", "", "", "", ""])
+  setetiquetasmod(["", "", "", "", "", "", ""])
 }
 
 /*function Alerta(){
@@ -141,6 +143,7 @@ function clear(){
         <TextField placeholder="Frances" id={"fr_CA"} defaultValue={etiquetasamod[3]}/>
         <TextField  placeholder="Portugués" id={"pt_BR"} defaultValue={etiquetasamod[4]}/>
         <TextField placeholder="Chino" id={"zh_CN"} defaultValue={etiquetasamod[5]}/>
+        <TextField placeholder="Rumano" id={"ro_RO"} defaultValue={etiquetasamod[6]}/>
       </div>
       </div>
       <div className="flex flex-row gap-6 justify-end px-5">

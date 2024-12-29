@@ -29,6 +29,7 @@ function ShowTags({etiquetas, etiquetasmod, buttonhabilitado}) {
         fravalue={etiq.fr_CA}
         porvalue={etiq.pt_BR}
         zhovalue={etiq.zh_CN}
+        rumvalue={etiq.ro_RO}
         etiquetasamod={setetiquetasamod}
         buttonavailable={botonhabilitado}
         />
