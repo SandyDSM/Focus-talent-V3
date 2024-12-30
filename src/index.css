@@ -29,15 +29,15 @@ code {
 }
 
 .tab{
-  @apply overflow-hidden border border-solid border-bmb-blue p-2 text-center text-bmb-blue shadow cursor-pointer
+  @apply overflow-hidden border border-solid p-2 text-center text-tab-text shadow cursor-pointer
 }
 
 .tab:hover{
-  @apply bg-bmb-blue-20 font-bold
+  @apply bg-hover font-bold
 }
 
 .tabActive{
-  @apply overflow-hidden border border-solid border-bmb-blue p-2 text-center text-white bg-bmb-blue shadow drop-shadow-lg 
+  @apply overflow-hidden border border-solid p-2 text-center text-white shadow drop-shadow-lg font-bold
 }
 
 .cardTitle{

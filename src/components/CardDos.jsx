@@ -28,7 +28,7 @@ const getcalib = async (id) => {
     let idtemp=id*1;
     let parametros={LANGUAGE: `'${usuarioActualDatos.IDIOMA}'`,
     INTERNAL_ID: idtemp};
-    const response = await getData('API PerfPoten', '/getcarddata', parametros);
+    const response = await getData('API PerfPoten', '/getcarddatanew', parametros);
     setCalibracion(response)
     //console.log("Calib",response)
   }catch (error) {
@@ -43,6 +43,14 @@ const getcalib = async (id) => {
     getcalib(colaborator.INTERNAL_ID);
     setSubOne(sub);
   }, []);
+
+  const colorMap = {
+    1: "bg-clas1-blue border-clas1-blue",
+    2: "bg-clas2-blue border-clas2-blue",
+    3: "bg-clas3-green border-clas3-green",
+    4: "bg-clas4-purple border-clas4-purple",
+    5: "bg-clas5-orange border-clas5-orange",
+  };
   
   return (
     <div className="card flex flex-col gap-4 justify-between">
@@ -65,7 +73,7 @@ const getcalib = async (id) => {
           </div>
         </div>
         <div>
-          {serch === "true" && <div className="text-sm	px-3 py-1 mb-1 bg-bmb-secundary text-white rounded-xl	w-fit	">{calibracion?.[0]?.CLASIFICACION}</div>}
+          {serch === "true" && <div className={`text-sm text-white px-3 py-1 mb-1 rounded-xl w-fit ${colorMap[calibracion?.[0]?.ID_CLASIFICACION]}`}>{calibracion?.[0]?.CLASIFICACION}</div>}
           <p>
             <b>{origHireDate}:</b>
             {` ${colaborator.FECHA_CONTRATACION}`}
