@@ -26,6 +26,9 @@ function TeamSub() {
         notevalsub,
         respnotevalsub,
         notaply,
+        myteamOption11,
+        myteamOption21,
+        myteamOption31,
         myteamOption1,
         myteamOption2,
         myteamOption3,
@@ -77,16 +80,16 @@ Loader();
       <HeadTeamFrom width={"100%"} overrides={sendOverridesTeamFrom} />
       <>
         <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 m-5 px-4">
-          <div className={`md:rounded-l-lg ${option === 1 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(1)}>{myteamOption1}</div>
+          <div className={`md:rounded-l-lg ${option === 1 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(1)}>{myteamOption11}</div>
           <div className={option === 2 ? "tabActive" : "tab"} onClick={()=>toggleTab(2)}>{myteamOption2}</div>
           <div className={option === 3 ? "tabActive" : "tab"} onClick={()=>toggleTab(3)}>{myteamOption3}</div>
           <div className={option === 4 ? "tabActive" : "tab"} onClick={()=>toggleTab(4)}>{myteamOption4}</div>
           <div className={`md:rounded-r-lg ${option === 5 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(5)}>{myteamOption5}</div>
         </div>
         <div>
-          {option === 1 && <Tabs title={myteamOption1} collaborators={futleadersub} sub={true}/>}
-          {option === 2 && <Tabs title={myteamOption2} collaborators={pillbusinesssub} sub={true}/>}
-          {option === 3 && <Tabs title={myteamOption3} collaborators={basebusinesssub} sub={true}/>}
+          {option === 1 && <Tabs title={myteamOption11} collaborators={futleadersub} sub={true}/>}
+          {option === 2 && <Tabs title={myteamOption21} collaborators={pillbusinesssub} sub={true}/>}
+          {option === 3 && <Tabs title={myteamOption31} collaborators={basebusinesssub} sub={true}/>}
           {option === 4 && <Tabs title={myteamOption4} collaborators={notevalsub} sub={true}/>}
           {option === 5 && <Tabs title={myteamOption5} collaborators={notaplysub} sub={true}/>}
         </div>

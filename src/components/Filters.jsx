@@ -188,7 +188,15 @@ const handleChangeGeo=(e)=>{
             <Button variation='link' onClick={()=>DeleteFilter()}>{filtBorrFiltr}</Button>
         </div>
         <div className='flex flex-col gap-2 md:flex-row md:gap-6 align-center mt-2'>
-            
+        <SelectField placeholder={filtOrg} onChange={handleChangeOrg} width={{ base: "100%", large: "25%" }}
+            value={eOrg}
+            >
+            {organizacion.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+            </SelectField>
             <SelectField 
             placeholder={filtEntLegal}          
             onChange={handleChangeEntidad}
@@ -196,15 +204,6 @@ const handleChangeGeo=(e)=>{
             value={eEntidad}
             >
             {entidad.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-            </SelectField>
-            <SelectField placeholder={filtOrg} onChange={handleChangeOrg} width={{ base: "100%", large: "25%" }}
-            value={eOrg}
-            >
-            {organizacion.map((option, index) => (
           <option key={index} value={option}>
             {option}
           </option>
