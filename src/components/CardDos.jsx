@@ -66,9 +66,17 @@ const getcalib = async (id) => {
           />
           <div className="flex flex-col">
             <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>
-            <div className="flex items-center gap-1">
-            <IconProfile type="id"/>
-            <p className="text-xs	text-zinc-600">{colaborator.ID_COLABORADOR}</p>
+            <div className="flex gap-2">
+              <div className="flex gap-1">
+              <IconProfile type="id"/>
+              <p className="text-xs	text-zinc-600 pt-0.5">{colaborator.ID_COLABORADOR}</p></div>
+              <div className="flex gap-1">
+              <IconProfile type="Job"/>
+              <p className="text-xs	text-zinc-600 pt-0.5">{colaborator.PUESTO}</p></div>
+              <div className="flex gap-1">
+              <IconProfile type="Organitation"/>
+              <p className="text-xs	text-zinc-600 pt-0.5">{colaborator.ORGANIZACION_ID}</p>
+              </div>
             </div>
           </div>
         </div>

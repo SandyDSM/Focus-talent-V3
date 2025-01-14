@@ -314,7 +314,7 @@ function getCollaboratorsDB(idJefe) {
     try {
       setIsLoading(true);
       const datos = await getCollaboratorsDB(idJefe);
-      //console.log("Resultado de team: ", datos);
+      console.log("Resultado de team: ", datos);
       if(accion==="SetColaborators"){
         setCollaborators(datos);
         setCollaboratorsResp(datos);

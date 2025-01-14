@@ -92,7 +92,7 @@ setSubOne
 
 function cambia(evento){
   ordena(evento);
-  //console.log(collaborators);//x
+  console.log(collaborators);//x
 }
 
   if (isLoading) {
