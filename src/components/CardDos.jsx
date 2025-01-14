@@ -71,7 +71,7 @@ const getcalib = async (id) => {
               <IconProfile type="id"/>
               <p className="text-xs	text-zinc-600 pt-0.5">{colaborator.ID_COLABORADOR}</p></div>
               <div className="flex gap-1">
-              <IconProfile type="Job"/>
+              <div className="w-5"><IconProfile type="Job"/></div>
               <p className="text-xs	text-zinc-600 pt-0.5">{colaborator.PUESTO}</p></div>
               <div className="flex gap-1">
               <IconProfile type="Organitation"/>
