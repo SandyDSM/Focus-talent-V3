@@ -90,7 +90,7 @@ function TableRowTests({ anio, handleOpen }) {
         </div>
         <div className="flex flex-col grow shrink relative whitespace-pre-wrap">
           <p className="text-sm">
-            Evaluación de desempeño y sucesión {anio.ANIO}
+            Evaluación de Talento {anio.ANIO}
           </p>
         </div>
         <p className="text-sm">{anio.ANIO}</p>
