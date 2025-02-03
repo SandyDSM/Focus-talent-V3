@@ -2,6 +2,7 @@ import SuccesionTest from "../components/SuccesionTest";
 import PerformanceTest from "../components/PerformanceTest";
 import BehaviorTest  from "../components/BehaviorTest";
 import { useEffect, useState } from "react";
+import LiderazgoTest from "../components/LiderazgoTest";
 
 
 function PerformaceAndSucesion({
@@ -27,6 +28,16 @@ function PerformaceAndSucesion({
     <div>
       {aniosFill.map((anio, index) => (
         <>
+        <div key={index} className="mb-9 mt-4 shadow">
+          <LiderazgoTest
+          width={"100%"}
+          overrides={sendOverridesBehavior}
+          anios={anio}
+          datosUsuario={datosUsuario}
+          dataBehavior={dataBehavior}
+          load={load}
+          />
+        </div>
         <div key={index} className="mb-9 mt-4 shadow">
           <BehaviorTest
           width={"100%"}
