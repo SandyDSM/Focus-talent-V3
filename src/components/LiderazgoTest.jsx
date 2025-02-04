@@ -554,12 +554,6 @@ export default function LiderazgoTest(props) {
                         <td>N/D</td>
                         <td>N/D</td>
                       </tr>
-                      <tr className="border-b-4">
-                        <td className="font-bold">Retroalimentación 2024</td>
-                        <td>N/D</td>
-                        <td>N/D</td>
-                        <td>N/D</td>
-                      </tr>
                     </tbody>
                   </table>
             
