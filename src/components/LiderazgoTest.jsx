@@ -40,7 +40,7 @@ export default function LiderazgoTest(props) {
     ...restProp
   } = props;
 
-  console.log("los datos son",cmtLiderazgo);
+  //console.log("los datos son",cmtLiderazgo);
 
   const {
     behaReview,
@@ -65,7 +65,6 @@ export default function LiderazgoTest(props) {
   const encabezados = [
     evalCompCol,
     evalCompJef,
-    titleCompLid,
     evalCompPar,
   ];
   
@@ -75,7 +74,7 @@ export default function LiderazgoTest(props) {
   ];
 
   const thisYear = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
-  //console.log("L",thisYear)
+  console.log("L",titleCompLid)
 
   const variants = [
     {
@@ -572,7 +571,7 @@ export default function LiderazgoTest(props) {
                   
                   {cmtLiderazgo?.map((dato, index) => (
                     <div key={index}>
-                      {console.log("l",dato.ANSWER_)}
+                      
                     <p className="pt-4">{dato.ANSWER_}</p>
                     <p className="text-xs">{dato.RESPONSIBLE_}</p>
                     </div>
