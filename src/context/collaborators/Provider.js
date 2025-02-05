@@ -94,7 +94,13 @@ const[myteamOption11, setMyteamOption11]=useState('Alto Potencial');
 const[myteamOption21, setMyteamOption21]=useState('Talento Promesa');
 const[myteamOption31, setMyteamOption31]=useState('Talento Esencial');
 
-
+const[evalCompCol, setevalCompCol]=useState('Evaluación de Competencias de Liderazgo - Colaborador(es)');
+const[evalCompJef, setevalCompJef]=useState('Evaluación de Competencias de Liderazgo - Jefe');
+const[evalCompPar, setevalCompPar]=useState('Evaluación de Competencias de Liderazgo - Par(es)');
+const[titleCompLid, settitleCompLid]=useState('Competencias de Liderazgo');
+const[culturaGB, setculturaGB]=useState('Cultura GB');
+const[retroAlimentacion, setretroAlimentacion]=useState('Retroalimentación');
+const[califGeneral, setcalifGeneral]=useState('Calificación General:');
 
 const navigate = useNavigate();
 
@@ -170,8 +176,17 @@ response?.filter((c)=>(c.ETIQUETA=='borrfiltr')).map((trad)=>(setBorrFiltr(trad.
 response?.filter((c)=>(c.ETIQUETA=='noseenccolabs')).map((trad)=>(setNoSeEncColabs(trad.TRADUCCION)));
 
 response?.filter((c)=>(c.ETIQUETA=='myteamoption11')).map((trad)=>(setMyteamOption11(trad.TRADUCCION)));
-   response?.filter((c)=>(c.ETIQUETA=='myteamoption21')).map((trad)=>(setMyteamOption21(trad.TRADUCCION)));
-   response?.filter((c)=>(c.ETIQUETA=='myteamoption31')).map((trad)=>(setMyteamOption31(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='myteamoption21')).map((trad)=>(setMyteamOption21(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='myteamoption31')).map((trad)=>(setMyteamOption31(trad.TRADUCCION)));
+
+response?.filter((c)=>(c.ETIQUETA=='evalCompCol')).map((trad)=>(setevalCompCol(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='evalCompJef')).map((trad)=>(setevalCompJef(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='evalCompPar')).map((trad)=>(setevalCompPar(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='titleCompLid')).map((trad)=>(settitleCompLid(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='culturaGB')).map((trad)=>(setculturaGB(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='retroAlimentacion')).map((trad)=>(setretroAlimentacion(trad.TRADUCCION)));
+response?.filter((c)=>(c.ETIQUETA=='califGeneral')).map((trad)=>(setcalifGeneral(trad.TRADUCCION)));
+
 
   }catch (error) {
     console.log("error:", error);
@@ -621,6 +636,13 @@ fetchCollAllClic,
 resultsComplete,
 setResultsComplete,
 resultsCompleteOrg,
+evalCompCol,
+evalCompJef,
+evalCompPar,
+titleCompLid,
+culturaGB,
+retroAlimentacion,
+califGeneral,
 usuarioActualDatos
 
       }}

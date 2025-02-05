@@ -51,19 +51,27 @@ export default function LiderazgoTest(props) {
     subReview,
     downloadPDF,
     noData,
+    evalCompCol,
+    evalCompJef,
+    evalCompPar,
+    titleCompLid,
+    culturaGB,
+    retroAlimentacion,
+    califGeneral,
   } = useContext(CollaboratorsContext);
 
   const etiquetas = useContext(CollaboratorsContext);
 
   const encabezados = [
-    "Evaluación de Competencias de Liderazgo - Colaborador(es)",
-    "Evaluación de Competencias de Liderazgo - Jefe",
-    "Evaluación de Competencias de Liderazgo - Par(es)"
+    evalCompCol,
+    evalCompJef,
+    titleCompLid,
+    evalCompPar,
   ];
   
   const filas = [
-    { titulo: "Competencias de Liderazgo", indices: [1, 2, 3] },
-    { titulo: "Cultura GB", indices: [4, 5, 6] }
+    { titulo: titleCompLid, indices: [1, 2, 3] },
+    { titulo: culturaGB, indices: [4, 5, 6] }
   ];
 
   const thisYear = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
@@ -327,7 +335,7 @@ export default function LiderazgoTest(props) {
               shrink="0"
               alignSelf="stretch"
               level="4"
-              children={`Competencias de liderazgo ${anios}`}
+              children={`${titleCompLid} ${anios}`}
               {...getOverrideProps(overrides, "Heading")}
             ></Heading>
             <Text
@@ -536,7 +544,7 @@ export default function LiderazgoTest(props) {
           <div>
                 <div>
                   <div className="flex gap-2 items-baseline">
-                    <p>Calificación general:</p>
+                    <p>{califGeneral}</p>
                     <h2 className="text-xl font-bold ">{dataLiderazgo[0]?.RATING_}</h2>
                   </div>
                   <table className="table-auto my-8">
@@ -560,7 +568,7 @@ export default function LiderazgoTest(props) {
                     </tbody>
                   </table>
                   <div className="py-6"> 
-                    <p className="font-bold">Retroalimentación</p>
+                    <p className="font-bold">{retroAlimentacion}</p>
                   
                   {cmtLiderazgo?.map((dato, index) => (
                     <div key={index}>
