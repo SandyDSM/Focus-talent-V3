@@ -14,6 +14,10 @@ function PerformaceAndSucesion({
   sendOverridesBehavior,
   fetcBehaviors,
   dataBehavior,
+  datosLiderazgo,
+  dataLiderazgo,
+  comentsLiderazgo,
+  cmtLiderazgo,
   load
 }) {
 
@@ -22,22 +26,32 @@ function PerformaceAndSucesion({
     fetcBehaviors()
   }, []);
 
+  useEffect(() => {
+    datosLiderazgo()
+  }, []);
+
+  useEffect(() => {
+    comentsLiderazgo()
+  }, []);
+
   //console.log(dataBehavior);
   
   return (
     <div>
       {aniosFill.map((anio, index) => (
-        <>
-        <div key={index} className="mb-9 mt-4 shadow">
+        <div key={index}>
+          {anio >= 2025 ?
+        <div className="mb-9 mt-4 shadow">
           <LiderazgoTest
           width={"100%"}
           overrides={sendOverridesBehavior}
           anios={anio}
           datosUsuario={datosUsuario}
-          dataBehavior={dataBehavior}
+          dataLiderazgo={dataLiderazgo}
+          cmtLiderazgo={cmtLiderazgo}
           load={load}
           />
-        </div>
+        </div> :
         <div key={index} className="mb-9 mt-4 shadow">
           <BehaviorTest
           width={"100%"}
@@ -47,7 +61,7 @@ function PerformaceAndSucesion({
           dataBehavior={dataBehavior}
           load={load}
           />
-        </div>
+        </div>}
         <div className="mb-9 mt-4 shadow">
           <PerformanceTest
             width={"100%"}
@@ -66,7 +80,7 @@ function PerformaceAndSucesion({
             datosUsuario={datosUsuario}
           />
           </div>
-        </>
+        </div>
       ))}
     </div>
   );

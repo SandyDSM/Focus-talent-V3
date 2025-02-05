@@ -24,8 +24,7 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import IconProfile from "../ui-components/IconProfile";
-import RatingStars from "../ui-components/RatingStars";
-import PDFComportamientos from "../PDFComportamientos";
+import PDFLiderazgo from "../PDFLiderazgo"
 
 import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -35,12 +34,13 @@ export default function LiderazgoTest(props) {
     overrides: overridesProp,
     datosUsuario,
     anios,
-    dataBehavior,
+    dataLiderazgo,
+    cmtLiderazgo,
     load,
     ...restProp
   } = props;
 
-  //console.log("los datos son",dataBehavior);
+  console.log("los datos son",cmtLiderazgo);
 
   const {
     behaReview,
@@ -55,8 +55,20 @@ export default function LiderazgoTest(props) {
 
   const etiquetas = useContext(CollaboratorsContext);
 
-  const thisYear = dataBehavior?.filter((c) => c.ANIO === anios);
-  //console.log(thisYear.length)
+  const encabezados = [
+    "Evaluación de Competencias de Liderazgo - Colaborador(es)",
+    "Evaluación de Competencias de Liderazgo - Jefe",
+    "Evaluación de Competencias de Liderazgo - Par(es)"
+  ];
+  
+  const filas = [
+    { titulo: "Competencias de Liderazgo", indices: [1, 2, 3] },
+    { titulo: "Cultura GB", indices: [4, 5, 6] }
+  ];
+
+  const thisYear = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
+  console.log("L",thisYear)
+
   const variants = [
     {
       overrides: {
@@ -315,7 +327,7 @@ export default function LiderazgoTest(props) {
               shrink="0"
               alignSelf="stretch"
               level="4"
-              children="Competencias de liderazgo"
+              children={`Competencias de liderazgo ${anios}`}
               {...getOverrideProps(overrides, "Heading")}
             ></Heading>
             <Text
@@ -519,57 +531,83 @@ export default function LiderazgoTest(props) {
           {...getOverrideProps(overrides, "Divider39504658")}
         ></Divider>
       </Flex>
-      {thisYear.length > 0 ? (
+
         <div className="w-full">
           <div>
-            {dataBehavior
-              ?.filter(
-                (c) => c.ANIO === anios && c.MANAGER_OR_SUBORD === "true"
-              )
-              .map((dato, index) => (
                 <div>
                   <div className="flex gap-2 items-baseline">
                     <p>Calificación general:</p>
-                    <h2 className="text-2xl font-bold ">Cumple expectativas</h2>
+                    <h2 className="text-xl font-bold ">{dataLiderazgo[0]?.RATING_}</h2>
                   </div>
                   <table className="table-auto my-8">
                     <thead className="text-left text-sm bg-gray-200">
-                      <tr >
+                      <tr>
                         <th></th>
-                        <th>Evaluación de Competencias de Liderazgo - Colaborador(es)</th>
-                        <th>Evaluación de Competencias de Liderazgo - Jefe</th>
-                        <th>Evaluación de Competencias de Liderazgo - Par(es)</th>
+                        {encabezados.map((encabezado, i) => (
+                          <th key={i}>{encabezado}</th>
+                        ))}
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b-4">
-                        <td className="font-bold">Competencias de Liderazgo</td>
-                        <td>N/D</td>
-                        <td>N/D</td>
-                        <td>N/D</td>
-                      </tr>
-                      <tr className="border-b-4">
-                        <td className="font-bold ">Cultura GB</td>
-                        <td>N/D</td>
-                        <td>N/D</td>
-                        <td>N/D</td>
-                      </tr>
+                      {filas.map((fila, i) => (
+                        <tr key={i} className="border-b-4">
+                          <td className="font-bold">{fila.titulo}</td>
+                          {fila.indices.map((index) => (
+                            <td key={index}>{dataLiderazgo[index]?.RATING_ ?? "-"}</td>
+                          ))}
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
-            
                   <div className="py-6"> 
-                    <p className="font-bold">{comments}</p>
-                    <p className="py-4">{dato.QUESTION_RESP_COMMENT}</p>
+                    <p className="font-bold">Retroalimentación</p>
+                  
+                  {cmtLiderazgo?.map((dato, index) => (
+                    <div key={index}>
+                      {console.log("l",dato.ANSWER_)}
+                    <p className="pt-4">{dato.ANSWER_}</p>
+                    <p className="text-xs">{dato.RESPONSIBLE_}</p>
+                    </div>
+                  ))}
+                  <Flex
+                      gap="10px"
+                      direction="column"
+                      width="unset"
+                      height="unset"
+                      justifyContent="flex-start"
+                      alignItems="flex-end"
+                      shrink="0"
+                      alignSelf="stretch"
+                      position="relative"
+                      padding="10px 0px 10px 0px"
+                      display="flex"
+                      {...getOverrideProps(overrides, "Frame 13974")}
+                    >
+                      <PDFDownloadLink
+                        document={
+                          <PDFLiderazgo
+                            DATOS={dataLiderazgo}
+                            anios={anios}
+                            datosUsuario={datosUsuario}
+                            
+                          />
+                        }
+                        fileName={`Competencias_de_Liderazgo_${anios}.pdf`}
+                      >
+                        <Button
+                          shrink="0"
+                          size="small"
+                          isDisabled={false}
+                          variation="primary"
+                          children={downloadPDF}
+                          {...getOverrideProps(overrides, "Button")}
+                        ></Button>
+                      </PDFDownloadLink>
+                    </Flex>
                   </div>
                 </div>
-             ))}
           </div>
         </div>
-      ) : (
-        <div className="w-full">
-          <p>{noData}</p>
-        </div>
-      )}
     </Flex>
   );
 }

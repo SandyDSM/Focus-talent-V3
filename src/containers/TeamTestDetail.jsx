@@ -24,6 +24,8 @@ function TeamTestDetail() {
 
 //////////////////////////////////////////////////////////////////////////////////
 const [dataBehavior, setDataBehavior] =useState([])
+const [dataLiderazgo, setDataLiderazgo] =useState([])
+const [cmtLiderazgo, setCmtLiderazgo] =useState([])
 
   function getData(papiName, ppath, pparameters) {
     const apiName = papiName;
@@ -44,6 +46,36 @@ const [dataBehavior, setDataBehavior] =useState([])
       const response = await getData('API Behaviors', '/behaviors', parametros);
       setDataBehavior(response)
       //console.log(response)
+    }catch (error) {
+      console.log("error:", error);
+    }finally{
+      setLoad(false)
+    }
+  };
+
+  const datosLiderazgo = async () => {
+    try{
+      setLoad(true);
+      let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
+      USER_ID: `${collDetail.ID_COLABORADOR}`};
+      const response = await getData('API Behaviors', '/competliderazgo', parametros);
+      setDataLiderazgo(response)
+      console.log("liderazgo",response)
+    }catch (error) {
+      console.log("error:", error);
+    }finally{
+      setLoad(false)
+    }
+  };
+
+  const comentsLiderazgo = async () => {
+    try{
+      setLoad(true);
+      let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
+      USER_ID: `${collDetail.ID_COLABORADOR}`};
+      const response = await getData('API Behaviors', '/competliderazgocoment', parametros);
+      setCmtLiderazgo(response)
+      console.log("coments",response)
     }catch (error) {
       console.log("error:", error);
     }finally{
@@ -190,6 +222,8 @@ const fetchDesemp = async () => {
             <PerformaceAndSucesion
               aniosFill={aniosFill}
               fetcBehaviors={fetcBehaviors}
+              datosLiderazgo={datosLiderazgo}
+              comentsLiderazgo={comentsLiderazgo}
               load={load}
               sendOverridesBehavior={sendOverridesBehavior}
               sendOverridesPerformanceTest={sendOverridesPerformanceTest}
@@ -199,6 +233,8 @@ const fetchDesemp = async () => {
               usuarioActualDatos={usuarioActualDatos}
               collDetail={collDetail}
               dataBehavior={dataBehavior}
+              dataLiderazgo={dataLiderazgo}
+              cmtLiderazgo={cmtLiderazgo}
             />
         </div>
       </div>

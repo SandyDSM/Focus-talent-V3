@@ -40,7 +40,7 @@ export default function BehaviorTest(props) {
     ...restProp
   } = props;
 
-  //console.log("los datos son",dataBehavior);
+  //console.log("los datos son beha",dataBehavior);
 
   const {
     behaReview,
@@ -56,7 +56,9 @@ export default function BehaviorTest(props) {
   const etiquetas = useContext(CollaboratorsContext);
 
   const thisYear = dataBehavior?.filter((c) => c.ANIO === anios);
-  //console.log(thisYear.length)
+  console.log("b",thisYear)
+  //console.log(typeof anios, typeof dataBehavior[0]?.ANIO)
+
   const variants = [
     {
       overrides: {
@@ -684,7 +686,7 @@ export default function BehaviorTest(props) {
                       display="flex"
                       {...getOverrideProps(overrides, "Frame 46139504669")}
                     >
-                      {console.log(dato)}
+                      {/*console.log(dato)*/}
                       <Text
                         fontFamily="Inter"
                         fontSize="14px"
