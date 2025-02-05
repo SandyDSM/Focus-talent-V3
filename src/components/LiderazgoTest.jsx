@@ -75,7 +75,7 @@ export default function LiderazgoTest(props) {
   ];
 
   const thisYear = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
-  console.log("L",thisYear)
+  //console.log("L",thisYear)
 
   const variants = [
     {
@@ -547,18 +547,18 @@ export default function LiderazgoTest(props) {
                     <p>{califGeneral}</p>
                     <h2 className="text-xl font-bold ">{dataLiderazgo[0]?.RATING_}</h2>
                   </div>
-                  <table className="table-auto my-8">
-                    <thead className="text-left text-sm bg-gray-200">
+                  <table className="table-auto border-spacing-2 my-8">
+                    <thead className="text-left text-sm">
                       <tr>
-                        <th></th>
+                        <th className="border-b-2  border-gray-200"></th>
                         {encabezados.map((encabezado, i) => (
-                          <th key={i}>{encabezado}</th>
+                          <th key={i} className="border-b-2 border-gray-200">{encabezado}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {filas.map((fila, i) => (
-                        <tr key={i} className="border-b-4">
+                        <tr key={i} className="border-b-2 border-gray-200">
                           <td className="font-bold">{fila.titulo}</td>
                           {fila.indices.map((index) => (
                             <td key={index}>{dataLiderazgo[index]?.RATING_ ?? "-"}</td>
