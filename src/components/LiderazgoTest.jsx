@@ -546,7 +546,7 @@ export default function LiderazgoTest(props) {
                     <p>{califGeneral}</p>
                     <h2 className="text-xl font-bold ">{dataLiderazgo[0]?.RATING_}</h2>
                   </div>
-                  <table className="table-auto border-spacing-2 my-8">
+                  <table className="table-auto border-spacing-2 my-8 w-full">
                     <thead className="text-left text-sm">
                       <tr>
                         <th className="border-b-2  border-gray-200"></th>
