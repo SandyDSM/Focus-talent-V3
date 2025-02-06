@@ -317,7 +317,7 @@ export default function BehaviorTest(props) {
               shrink="0"
               alignSelf="stretch"
               level="4"
-              children={`${behaReview} ${anios}`}
+              children={`${behaReview} ${anios-1}`}
               {...getOverrideProps(overrides, "Heading")}
             ></Heading>
             <Text
@@ -1235,7 +1235,7 @@ export default function BehaviorTest(props) {
                   etiquetas={etiquetas}
                 />
               }
-              fileName={`Comportamientos_${anios}.pdf`}
+              fileName={`Comportamientos_${anios-1}.pdf`}
             >
               <Button
                 shrink="0"

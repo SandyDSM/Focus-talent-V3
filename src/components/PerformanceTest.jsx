@@ -235,7 +235,7 @@ const {perReview, noData, downloadPDF}=useContext(CollaboratorsContext);
             shrink="0"
             alignSelf="stretch"
             level="4"
-            children={`${perReview} ${anios}`}
+            children={`${perReview} ${anios-1}`}
             {...getOverrideProps(overrides, "Heading")}
           ></Heading>
           <Text
@@ -513,7 +513,7 @@ const {perReview, noData, downloadPDF}=useContext(CollaboratorsContext);
                 etiquetas={perReview}
               />
             }
-            fileName={`Evaluación_de_desempeño_${anios}.pdf`}
+            fileName={`Evaluación_de_desempeño_${anios-1}.pdf`}
           >
             <Button
               shrink="0"
