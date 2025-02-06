@@ -40,7 +40,7 @@ function PerformaceAndSucesion({
     <div>
       {aniosFill.map((anio, index) => (
         <div key={index}>
-          {anio >= 2025 ?
+          {anio >= 2024 ?
         <div className="mb-9 mt-4 shadow">
           <LiderazgoTest
           width={"100%"}

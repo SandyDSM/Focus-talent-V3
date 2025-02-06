@@ -43,12 +43,6 @@ export default function LiderazgoTest(props) {
   //console.log("los datos son",cmtLiderazgo);
 
   const {
-    behaReview,
-    managerReview,
-    reviewer,
-    rating,
-    comments,
-    subReview,
     downloadPDF,
     noData,
     evalCompCol,
@@ -74,7 +68,7 @@ export default function LiderazgoTest(props) {
   ];
 
   const thisYear = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
-  console.log("L",titleCompLid)
+  //console.log("L",titleCompLid)
 
   const variants = [
     {
@@ -546,7 +540,7 @@ export default function LiderazgoTest(props) {
                     <p>{califGeneral}</p>
                     <h2 className="text-xl font-bold ">{dataLiderazgo[0]?.RATING_}</h2>
                   </div>
-                  <table className="table-auto border-spacing-2 my-8 w-full">
+                  <table className="table-fixed border-spacing-[7px] my-8 w-full ">
                     <thead className="text-left text-sm">
                       <tr>
                         <th className="border-b-2  border-gray-200"></th>
@@ -596,7 +590,9 @@ export default function LiderazgoTest(props) {
                             DATOS={dataLiderazgo}
                             anios={anios}
                             datosUsuario={datosUsuario}
-                            
+                            encabezados={encabezados}
+                            filas={filas}
+                            etiquetas={etiquetas}
                           />
                         }
                         fileName={`Competencias_de_Liderazgo_${anios}.pdf`}
