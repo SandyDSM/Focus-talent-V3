@@ -90,20 +90,20 @@ const styles = StyleSheet.create({
     marginVertical: "5px",
   },
   titleContainer: { flexDirection: "row", alignItems: "baseline", marginBottom: 10 },
-  title: { fontSize: 14, fontWeight: "bold" },
-  rating: { fontSize: 18, fontWeight: "bold", marginLeft: 8 },
+  title: {fontFamily: "Open Sans", fontSize: 14, fontWeight: "600" },
+  rating: {fontFamily: "Open Sans", fontSize: 18, fontWeight: "600", marginLeft: 8 },
   table: { display: "table", width: "100%", borderStyle: "solid", borderWidth: 1, marginVertical: 10 },
   row: { flexDirection: "row", borderBottomWidth: 1, borderBottomStyle: "solid" },
   header: { backgroundColor: "#E5E7EB", fontWeight: "bold" },
-  cell: { flex: 1, padding: 5, fontSize: 10, wordWrap: "break-word", flexGrow: 1, width: "25%" },
-  boldCell: { fontWeight: "bold", padding: 5, fontSize: 10, wordWrap: "break-word", flexGrow: 1, width: "25%"},
-  feedbackContainer: { marginTop: 20 },
-  feedbackTitle: { fontSize: 12, fontWeight: "bold" },
-  feedbackText: { fontSize: 10, marginTop: 5 },
+  cell: { flex: 1, padding: 5, fontSize: 10, wordWrap: "break-word",  width: "25%"},
+  boldCell: {fontFamily: "Open Sans", fontWeight: "600", padding: 5, fontSize: 10, wordWrap: "break-word", width: "25%"},
+  feedbackContainer: { marginTop: 20, marginBottom: 10 },
+  feedbackTitle: {fontFamily: "Open Sans", fontSize: 12, fontWeight: "600" },
+  feedbackText: {fontSize: 10, marginTop: 5 },
 
 });
 
-
+/*
 const dataLiderazgo = [
   {RATING_:"Lorem ipsum"},
   {RATING_:"Lorem ipsum"},
@@ -117,8 +117,8 @@ const cmtLiderazgo = [
   {ANIO_: "2024", ANSWER_:"Aenean luctus orci eget faucibus ullamcorper. Aliquam placerat blandit accumsan. Praesent condimentum ante risus, vitae aliquet purus fringilla eu. Morbi a condimentum magna, eget lobortis odio. Maecenas tempor, magna sit amet egestas pellentesque, turpis enim rutrum erat, varius auctor velit odio nec lectus. Duis sed nibh condimentum, egestas arcu nec, semper nisl. Nulla ultrices erat ac imperdiet fermentum. Donec quis cursus libero, ut blandit tellus. Maecenas dui neque, pharetra a neque id, fringilla posuere ligula. Sed elementum arcu facilisis erat vulputate, at vestibulum sapien imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus.", RESPONSIBLE_:"Director" },
   {ANIO_: "2024", ANSWER_:"Aenean luctus orci eget faucibus ullamcorper. Aliquam placerat blandit accumsan. Praesent condimentum ante risus, vitae aliquet purus fringilla eu. Morbi a condimentum magna, eget lobortis odio. Maecenas tempor, magna sit amet egestas pellentesque, turpis enim rutrum erat, varius auctor velit odio nec lectus. Duis sed nibh condimentum, egestas arcu nec, semper nisl. Nulla ultrices erat ac imperdiet fermentum. Donec quis cursus libero, ut blandit tellus. Maecenas dui neque, pharetra a neque id, fringilla posuere ligula. Sed elementum arcu facilisis erat vulputate, at vestibulum sapien imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus.", RESPONSIBLE_:"Colaborator" }
 ]; 
-
-const PDFLiderazgo = ({ DATOS, anios, datosUsuario, encabezados, filas, etiquetas }) => {
+*/
+const PDFLiderazgo = ({ dataLiderazgo, anios, datosUsuario, encabezados, filas, etiquetas, coments }) => {
   return (
     <Document>
           <Page size="A4">
@@ -157,7 +157,7 @@ const PDFLiderazgo = ({ DATOS, anios, datosUsuario, encabezados, filas, etiqueta
                       marginBottom: "5px",
                     }}
                   >
-                    {etiquetas.titleCompLid} {anios}
+                    {etiquetas.titleCompLid} {anios-1}
                   </Text>
                   <Text
                     style={{
@@ -205,12 +205,10 @@ const PDFLiderazgo = ({ DATOS, anios, datosUsuario, encabezados, filas, etiqueta
             {/* Retroalimentación */}
             <View style={styles.feedbackContainer}>
               <Text style={styles.feedbackTitle}>{etiquetas.retroAlimentacion}</Text>
-              {cmtLiderazgo
-                ?.filter((c) => Number(c.ANIO_) === Number(anios))
-                .map((dato, i) => (
+              {coments?.map((dato, i) => (
                   <View key={i}>
-                    <Text style={styles.feedbackText}>{cmtLiderazgo.ANSWER_ ?? "Sin respuesta"}</Text>
-                    <Text style={[styles.feedbackText, { fontSize: 8 }]}>{cmtLiderazgo.RESPONSIBLE_ ?? "-"}</Text>
+                    <Text style={styles.feedbackText}>{dato.ANSWER_ ?? "Sin respuesta"}</Text>
+                    <Text style={[styles.feedbackText, { fontSize: 8 }]}>{dato.RESPONSIBLE_ ?? "-"}</Text>
                   </View>
                 ))}
             </View>

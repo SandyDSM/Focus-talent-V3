@@ -26,7 +26,7 @@ import CollaboratorsContext from "../context/collaborators";
 
 
 export default function HeadCollaborator(props) {
-  const {aniosFill, datosUsuario, testPreguntas, dataBehavior, overrides: overridesProp, ...restProp } = props;
+  const {aniosFill, datosUsuario, testPreguntas, dataBehavior, dataLiderazgo, cmtLiderazgo, overrides: overridesProp, ...restProp } = props;
   
   const {
     downloadAllPDF, evalTxt

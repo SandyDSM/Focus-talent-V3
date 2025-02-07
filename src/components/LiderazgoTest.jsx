@@ -328,7 +328,7 @@ export default function LiderazgoTest(props) {
               shrink="0"
               alignSelf="stretch"
               level="4"
-              children={`${titleCompLid} ${anios}`}
+              children={`${titleCompLid} ${anios-1}`}
               {...getOverrideProps(overrides, "Heading")}
             ></Heading>
             <Text
@@ -567,7 +567,7 @@ export default function LiderazgoTest(props) {
                     <div key={index}>
                       
                     <p className="pt-4">{dato.ANSWER_}</p>
-                    <p className="text-xs">{dato.RESPONSIBLE_}</p>
+                    <p className="text-xs pt-2 pb-2">{dato.RESPONSIBLE_}</p>
                     </div>
                   ))}
                   <Flex
@@ -587,7 +587,8 @@ export default function LiderazgoTest(props) {
                       <PDFDownloadLink
                         document={
                           <PDFLiderazgo
-                            DATOS={dataLiderazgo}
+                            dataLiderazgo={dataLiderazgo}
+                            coments={cmtLiderazgo}
                             anios={anios}
                             datosUsuario={datosUsuario}
                             encabezados={encabezados}

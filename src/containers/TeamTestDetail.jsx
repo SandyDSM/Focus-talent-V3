@@ -60,7 +60,7 @@ const [cmtLiderazgo, setCmtLiderazgo] =useState([])
       USER_ID: `${collDetail.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/competliderazgo', parametros);
       setDataLiderazgo(response)
-      console.log("liderazgo",response)
+     // console.log("liderazgo",response)
     }catch (error) {
       console.log("error:", error);
     }finally{
@@ -75,7 +75,7 @@ const [cmtLiderazgo, setCmtLiderazgo] =useState([])
       USER_ID: `${collDetail.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/competliderazgocoment', parametros);
       setCmtLiderazgo(response)
-      console.log("coments",response)
+     //console.log("coments",response)
     }catch (error) {
       console.log("error:", error);
     }finally{
@@ -121,6 +121,7 @@ const fetchDesemp = async () => {
     getCollDetail(id).catch(null);
    // fetcBehaviors();
     fetchDesemp();
+    //datosLiderazgo();
   }, [id,selall]);
   
 
@@ -206,6 +207,9 @@ const fetchDesemp = async () => {
             aniosFill={aniosFill}
             testPreguntas={testPreguntas}
             dataBehavior={dataBehavior}
+            dataLiderazgo={dataLiderazgo}
+            cmtLiderazgo={cmtLiderazgo}
+
           />
         </div>
       </div>
