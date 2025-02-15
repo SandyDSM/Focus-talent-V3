@@ -40,7 +40,7 @@ export default function LiderazgoTest(props) {
     ...restProp
   } = props;
 
-  console.log("los datos son", dataLiderazgo);
+  //console.log("los datos son", dataLiderazgo);
 
   const {
     downloadPDF,

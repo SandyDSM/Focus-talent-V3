@@ -27,15 +27,8 @@ function PerformaceAndSucesion({
     fetcBehaviors()
   }, []);
 
-  useEffect(() => {
-    datosLiderazgo()
-  }, [collDetail.ID_COLABORADOR]);
 
-  useEffect(() => {
-    comentsLiderazgo()
-  }, [collDetail.ID_COLABORADOR]);
-
-  console.log("aqui",collDetail);
+  //console.log("aqui",collDetail);
   
   return (
     <div>

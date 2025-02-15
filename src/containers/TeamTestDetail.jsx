@@ -119,10 +119,16 @@ const fetchDesemp = async () => {
 
   useEffect(() => {
     getCollDetail(id).catch(null);
-   // fetcBehaviors();
     fetchDesemp();
-    //datosLiderazgo();
   }, [id,selall]);
+
+  useEffect(() => {
+    datosLiderazgo()
+  }, [id,selall,usuarioActualDatos]);
+
+  useEffect(() => {
+    comentsLiderazgo()
+  }, [id,selall,usuarioActualDatos]);
   
 
   const sendOverridesHeadColl = {
