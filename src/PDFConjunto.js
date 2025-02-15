@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", borderBottomWidth: 1, borderBottomStyle: "solid" },
   header: { backgroundColor: "#E5E7EB", fontWeight: "bold" },
   cell: { flex: 1, padding: 5, fontSize: 10, wordWrap: "break-word",  width: "25%"},
-  boldCell: {fontFamily: "Open Sans", fontWeight: "600", padding: 5, fontSize: 10, wordWrap: "break-word", width: "25%"},
+  boldCell: {fontFamily: "Open Sans", fontWeight: "600", padding: 5, fontSize: 8, wordWrap: "break-word", width: "25%"},
   feedbackContainer: { marginTop: 20, marginBottom: 10 },
   feedbackTitle: {fontFamily: "Open Sans", fontSize: 12, fontWeight: "600" },
   feedbackText: {fontSize: 10, marginTop: 5 },
@@ -153,10 +153,23 @@ const PDFConjunto = ({ DATOS, anios, datosUsuario, comportamientos, etiquetas, d
   ];
   
   const filas = [
-    { titulo: etiquetas.titleCompLid, indices: [1, 2, 3] },
-    { titulo: etiquetas.culturaGB, indices: [4, 5, 6] }
+    etiquetas.titleCompLid,
+    etiquetas.culturaGB,  
   ];
 
+  const tabla = Array(filas.length)
+  .fill(null)
+  .map(() => Array(encabezados.length).fill("-"));
+
+// Llenar la tabla con los datos
+dataLiderazgo.forEach((item) => {
+  const filaIndex = item.SECTION_TYPE_ID_ - 1; // Ajuste a índice de array
+  const colIndex = item.RESPONSIBLE_ID_ - 1; // Ajuste a índice de array
+  
+  if (tabla[filaIndex] && tabla[filaIndex][colIndex] !== undefined) {
+    tabla[filaIndex][colIndex] = item.RATING_;
+  }
+});
 
   return (
     <Document>
@@ -464,7 +477,9 @@ const PDFConjunto = ({ DATOS, anios, datosUsuario, comportamientos, etiquetas, d
           <Text style={styles.rating}>{dataLiderazgo[0]?.RATING_ ?? "-"}</Text>
         </View>
 
+        {/* Tabla */}
         <View style={styles.table}>
+          {/* Encabezado */}
           <View style={[styles.row, styles.header]}>
             <Text style={styles.boldCell}></Text>
             {encabezados.map((encabezado, i) => (
@@ -472,16 +487,22 @@ const PDFConjunto = ({ DATOS, anios, datosUsuario, comportamientos, etiquetas, d
             ))}
           </View>
 
-          {filas.map((fila, i) => (
-            <View key={i} style={styles.row}>
-              <Text style={styles.boldCell}>{fila.titulo}</Text>
-              {fila.indices.map((index) => (
-                <Text key={index} style={styles.cell}>{dataLiderazgo[index]?.RATING_ ?? "-"}</Text>
-              ))}
-            </View>
-          ))}
+          {/* Filas de datos */}
+          <View style={styles.table}>
+            {tabla.map((fila, i) => (
+              <View key={i} style={styles.row}>
+                <Text style={styles.boldCell}>{filas[i]}</Text>
+                {fila.map((valor, j) => (
+                  <Text key={j} style={styles.cell}>
+                    {valor}
+                  </Text>
+                ))}
+              </View>
+            ))}
+          </View>
         </View>
 
+        {/* Retroalimentación */}
         <View style={styles.feedbackContainer}>
           <Text style={styles.feedbackTitle}>{etiquetas.retroAlimentacion}</Text>
           {cmtLiderazgo?.map((dato, i) => (

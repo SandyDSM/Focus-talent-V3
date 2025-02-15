@@ -24,7 +24,7 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import IconProfile from "../ui-components/IconProfile";
-//import PDFLiderazgo from "../PDFLiderazgo"
+import PDFLiderazgo from "../PDFLiderazgo"
 
 import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -598,7 +598,30 @@ dataLiderazgo.forEach((item) => {
                       display="flex"
                       {...getOverrideProps(overrides, "Frame 13974")}
                     >
-                    {/*pegar aqui*/}
+                     <PDFDownloadLink
+                        document={
+                          <PDFLiderazgo
+                            tabla={tabla}
+                            dataLiderazgo={dataLiderazgo}
+                            coments={cmtLiderazgo}
+                            anios={anios}
+                            datosUsuario={datosUsuario}
+                            encabezados={encabezados}
+                            filas={filas}
+                            etiquetas={etiquetas}
+                          />
+                        }
+                        fileName={`Competencias_de_Liderazgo_${anios}.pdf`}
+                      >
+                        <Button
+                          shrink="0"
+                          size="small"
+                          isDisabled={false}
+                          variation="primary"
+                          children={downloadPDF}
+                          {...getOverrideProps(overrides, "Button")}
+                        ></Button>
+                      </PDFDownloadLink>
                     </Flex>
                   </div>
                 </div>

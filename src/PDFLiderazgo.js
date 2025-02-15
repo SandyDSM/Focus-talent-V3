@@ -96,29 +96,14 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", borderBottomWidth: 1, borderBottomStyle: "solid" },
   header: { backgroundColor: "#E5E7EB", fontWeight: "bold" },
   cell: { flex: 1, padding: 5, fontSize: 10, wordWrap: "break-word",  width: "25%"},
-  boldCell: {fontFamily: "Open Sans", fontWeight: "600", padding: 5, fontSize: 10, wordWrap: "break-word", width: "25%"},
+  boldCell: {fontFamily: "Open Sans", fontWeight: "600", padding: 5, fontSize: 8, wordWrap: "break-word", width: "25%"},
   feedbackContainer: { marginTop: 20, marginBottom: 10 },
   feedbackTitle: {fontFamily: "Open Sans", fontSize: 12, fontWeight: "600" },
   feedbackText: {fontSize: 10, marginTop: 5 },
 
 });
 
-/*
-const dataLiderazgo = [
-  {RATING_:"Lorem ipsum"},
-  {RATING_:"Lorem ipsum"},
-  {RATING_:"Lorem ipsum"},
-  {RATING_:"Lorem ipsum"},
-  {RATING_:"Lorem ipsum"},
-  {RATING_:"Lorem ipsum"}
-]; 
-const cmtLiderazgo = [
-  {ANIO_: "2024", ANSWER_:"Aenean luctus orci eget faucibus ullamcorper. Aliquam placerat blandit accumsan. Praesent condimentum ante risus, vitae aliquet purus fringilla eu. Morbi a condimentum magna, eget lobortis odio. Maecenas tempor, magna sit amet egestas pellentesque, turpis enim rutrum erat, varius auctor velit odio nec lectus. Duis sed nibh condimentum, egestas arcu nec, semper nisl. Nulla ultrices erat ac imperdiet fermentum. Donec quis cursus libero, ut blandit tellus. Maecenas dui neque, pharetra a neque id, fringilla posuere ligula. Sed elementum arcu facilisis erat vulputate, at vestibulum sapien imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus.", RESPONSIBLE_:"Parner" },
-  {ANIO_: "2024", ANSWER_:"Aenean luctus orci eget faucibus ullamcorper. Aliquam placerat blandit accumsan. Praesent condimentum ante risus, vitae aliquet purus fringilla eu. Morbi a condimentum magna, eget lobortis odio. Maecenas tempor, magna sit amet egestas pellentesque, turpis enim rutrum erat, varius auctor velit odio nec lectus. Duis sed nibh condimentum, egestas arcu nec, semper nisl. Nulla ultrices erat ac imperdiet fermentum. Donec quis cursus libero, ut blandit tellus. Maecenas dui neque, pharetra a neque id, fringilla posuere ligula. Sed elementum arcu facilisis erat vulputate, at vestibulum sapien imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus.", RESPONSIBLE_:"Director" },
-  {ANIO_: "2024", ANSWER_:"Aenean luctus orci eget faucibus ullamcorper. Aliquam placerat blandit accumsan. Praesent condimentum ante risus, vitae aliquet purus fringilla eu. Morbi a condimentum magna, eget lobortis odio. Maecenas tempor, magna sit amet egestas pellentesque, turpis enim rutrum erat, varius auctor velit odio nec lectus. Duis sed nibh condimentum, egestas arcu nec, semper nisl. Nulla ultrices erat ac imperdiet fermentum. Donec quis cursus libero, ut blandit tellus. Maecenas dui neque, pharetra a neque id, fringilla posuere ligula. Sed elementum arcu facilisis erat vulputate, at vestibulum sapien imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus.", RESPONSIBLE_:"Colaborator" }
-]; 
-*/
-const PDFLiderazgo = ({ dataLiderazgo, anios, datosUsuario, encabezados, filas, etiquetas, coments }) => {
+const PDFLiderazgo = ({ dataLiderazgo, anios, datosUsuario, encabezados, filas, etiquetas, coments, tabla }) => {
   return (
     <Document>
           <Page size="A4">
@@ -192,14 +177,18 @@ const PDFLiderazgo = ({ dataLiderazgo, anios, datosUsuario, encabezados, filas, 
               </View>
 
               {/* Filas de datos */}
-              {filas.map((fila, i) => (
-                <View key={i} style={styles.row}>
-                  <Text style={styles.boldCell}>{fila.titulo}</Text>
-                  {fila.indices.map((index) => (
-                    <Text key={index} style={styles.cell}>{dataLiderazgo[index]?.RATING_ ?? "-"}</Text>
-                  ))}
-                </View>
-              ))}
+              <View style={styles.table}>
+                {tabla.map((fila, i) => (
+                  <View key={i} style={styles.row}>
+                    <Text style={styles.boldCell}>{filas[i]}</Text>
+                    {fila.map((valor, j) => (
+                      <Text key={j} style={styles.cell}>
+                        {valor}
+                      </Text>
+                    ))}
+                  </View>
+                ))}
+              </View>
             </View>
 
             {/* Retroalimentación */}
