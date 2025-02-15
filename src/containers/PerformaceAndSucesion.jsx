@@ -29,13 +29,13 @@ function PerformaceAndSucesion({
 
   useEffect(() => {
     datosLiderazgo()
-  }, [collDetail]);
+  }, [collDetail.ID_COLABORADOR]);
 
   useEffect(() => {
     comentsLiderazgo()
-  }, [collDetail]);
+  }, [collDetail.ID_COLABORADOR]);
 
-  //console.log(dataBehavior);
+  console.log("aqui",collDetail);
   
   return (
     <div>
