@@ -24,7 +24,7 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import IconProfile from "../ui-components/IconProfile";
-import PDFLiderazgo from "../PDFLiderazgo"
+//import PDFLiderazgo from "../PDFLiderazgo"
 
 import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -40,7 +40,7 @@ export default function LiderazgoTest(props) {
     ...restProp
   } = props;
 
-  //console.log("los datos son",cmtLiderazgo);
+  console.log("los datos son", dataLiderazgo);
 
   const {
     downloadPDF,
@@ -63,9 +63,23 @@ export default function LiderazgoTest(props) {
   ];
   
   const filas = [
-    { titulo: titleCompLid, indices: [1, 2, 3] },
-    { titulo: culturaGB, indices: [4, 5, 6] }
+    titleCompLid, 
+    culturaGB,
   ];
+
+  const tabla = Array(filas.length)
+  .fill(null)
+  .map(() => Array(encabezados.length).fill("-"));
+
+// Llenar la tabla con los datos
+dataLiderazgo.forEach((item) => {
+  const filaIndex = item.SECTION_TYPE_ID_ - 1; // Ajuste a índice de array
+  const colIndex = item.RESPONSIBLE_ID_ - 1; // Ajuste a índice de array
+  
+  if (tabla[filaIndex] && tabla[filaIndex][colIndex] !== undefined) {
+    tabla[filaIndex][colIndex] = item.RATING_;
+  }
+});
 
   const thisYear = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
   //console.log("L",titleCompLid)
@@ -550,15 +564,15 @@ export default function LiderazgoTest(props) {
                       </tr>
                     </thead>
                     <tbody>
-                      {filas.map((fila, i) => (
-                        <tr key={i} className="border-b-2 border-gray-200">
-                          <td className="font-bold">{fila.titulo}</td>
-                          {fila.indices.map((index) => (
-                            <td key={index}>{dataLiderazgo[index]?.RATING_ ?? "-"}</td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
+                    {tabla.map((fila, i) => (
+                      <tr key={i} className="border-b-2 border-gray-200">
+                        <td className="font-bold">{filas[i]}</td>
+                        {fila.map((valor, j) => (
+                          <td key={j}>{valor}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
                   </table>
                   <div className="py-6"> 
                     <p className="font-bold">{retroAlimentacion}</p>
@@ -584,29 +598,7 @@ export default function LiderazgoTest(props) {
                       display="flex"
                       {...getOverrideProps(overrides, "Frame 13974")}
                     >
-                      <PDFDownloadLink
-                        document={
-                          <PDFLiderazgo
-                            dataLiderazgo={dataLiderazgo}
-                            coments={cmtLiderazgo}
-                            anios={anios}
-                            datosUsuario={datosUsuario}
-                            encabezados={encabezados}
-                            filas={filas}
-                            etiquetas={etiquetas}
-                          />
-                        }
-                        fileName={`Competencias_de_Liderazgo_${anios}.pdf`}
-                      >
-                        <Button
-                          shrink="0"
-                          size="small"
-                          isDisabled={false}
-                          variation="primary"
-                          children={downloadPDF}
-                          {...getOverrideProps(overrides, "Button")}
-                        ></Button>
-                      </PDFDownloadLink>
+                    {/*pegar aqui*/}
                     </Flex>
                   </div>
                 </div>
