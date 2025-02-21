@@ -124,11 +124,11 @@ const fetchDesemp = async () => {
 
   useEffect(() => {
     datosLiderazgo()
-  }, [id,selall, getCollDetail]);
+  }, [id,selall, getCollDetail, collDetail]);
 
   useEffect(() => {
     comentsLiderazgo()
-  }, [id,selall, getCollDetail]);
+  }, [id,selall, getCollDetail, collDetail]);
   
 
   const sendOverridesHeadColl = {

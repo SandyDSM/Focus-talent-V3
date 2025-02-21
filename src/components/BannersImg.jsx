@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 const resources = {
   esp: {
     mobile: 'https://pruebabucketsawspruebas.s3.amazonaws.com/IMGs/SP_Talento_GB_banerI_ConocetEquipo350.png',
@@ -58,7 +59,7 @@ const languageMap = {
   'Romanian (Romania)': 'rum'
 };
 
-const BannerImg = ({ language, version}) => {
+const BannersImg = ({ language, version}) => {
   const [imageUrl, setImageUrl] = useState('');
   const [pdfUrl, setPdfUrl] = useState('');
 
@@ -73,6 +74,7 @@ const BannerImg = ({ language, version}) => {
         deviceType = 'tablet';
       }
 
+      console.log("---->",language)
 
       //const selectedLanguage = (language === 'Spanish (Latin America)' || language === 'Spanish (Spain)') ? 'es' : 'other';
       const selectedLanguage = languageMap[language] || 'en';
@@ -102,4 +104,4 @@ const BannerImg = ({ language, version}) => {
   );
 };
 
-export default BannerImg;
+export default BannersImg;

@@ -1,9 +1,9 @@
-import { SelectField } from "@aws-amplify/ui-react";
+//import { SelectField } from "@aws-amplify/ui-react";
 import React from "react";
 import HeadTeam from "../components/HeadTeam";
 import { Loader } from "@aws-amplify/ui-react";
 import { API } from 'aws-amplify';
-import Configuration from '../utils/Configuration'
+//import Configuration from '../utils/Configuration'
 
 
 import { useContext, useEffect, useState } from "react";
@@ -51,7 +51,7 @@ setSubOne
     setOption(index);
   };
 
-  //console.log(usuarioActualDatos.BUSQUEDA_GLOBAL)
+  console.log("de my team",usuarioActualDatos)
 
   function getData() {
     const apiName = 'API Behaviors';
