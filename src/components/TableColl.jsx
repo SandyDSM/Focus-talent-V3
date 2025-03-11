@@ -2,7 +2,7 @@ import { Divider } from "@aws-amplify/ui-react";
 import React from "react";
 import { IconActions } from "../ui-components";
 
-function TableColl({colaborator, selectorg, add, indice}) {
+function TableColl({colaborator, selectorg, add, indice, handleOpen}) {
   return (
     <div className="flex flex-col text-xs">
       <div className="flex flex-row self-stretch py-2  items-center justify-between gap-5">
@@ -22,6 +22,7 @@ function TableColl({colaborator, selectorg, add, indice}) {
         <div className="w-full"><p className="text-sm">{colaborator?.ORGANIZACION}</p></div>
         <div className="w-full"><p className="text-sm">{colaborator?.PUESTO}</p></div>
         <div className="w-full"><p className="text-sm">{colaborator?.UBICACION_GEOGRAFICA}</p></div>
+        {add === "false" && (<div className="flex justify-center cursor-pointer" onClick={()=> handleOpen(colaborator?.INTERNAL_ID)} ><IconActions name="edit"/></div>)}
       </div>
       <Divider
         width="unset"

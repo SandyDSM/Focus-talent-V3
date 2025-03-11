@@ -28,7 +28,7 @@ function Permissions() {
     const fetchPermissions = async () => {
       try{
         const response = await getPermissions();
-        //console.log("Permissions",response)
+        console.log("Permissions",response)
         setTablePermission(response)
       }catch (error) {
         console.log("error:", error);
