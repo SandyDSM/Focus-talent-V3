@@ -14,7 +14,10 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
   const [collSelect, setCollSelect] = useState([]);
   const [open, setOpen] = useState(false);
   const [idCol, setIdCol] = useState(0);
-  const [permExtend, setPermExtend] = useState([])
+  const [permExtend, setPermExtend] = useState([]);
+  const [org, setOrg] = useState([]);
+  const [fun, setFun] = useState([]);
+
   
 
   useEffect(() => { 
@@ -60,7 +63,7 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
   } 
 
   const updatePermissions = async (ids) => {
-    //console.log(typeof ids, ids);
+    //console.log();
     try{
       let parametros={ARRAY: ids};
       const response = await getData('Usuarios', '/searchupdtusr', parametros);
@@ -81,12 +84,53 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
       })
     }
   };
+  
+  const formatToQuotedString = (input) => {
+    if (typeof input === 'string') {
+      // Dividir por comas y eliminar espacios en blanco
+      const array = input.split(',').map(item => item.trim());
+      // Agregar comillas simples a cada elemento
+      return array.map(item => `'${item}'`).join(',');
+    }
+    return '';
+  };
+  
 
+  const updatePermissionsInd = async () => {
+    console.log(org,fun);
+    try{
+      const formattedOrg = formatToQuotedString(org);
+      const formattedFun = formatToQuotedString(fun);
+
+      let parametros={
+        USER_INTERNAL_ID: `${idCol}`,
+        ORG_UNI: formattedOrg,
+        FUNC_AREA: formattedFun
+      };
+      const response = await getData('Usuarios', '/updpermissions', parametros);
+      setOpen(false);
+      Swal.fire({
+        icon: 'success',
+        text: 'Los permisos se han actualizado con éxito',
+        confirmButtonText: "Entendido",
+        confirmButtonColor:"#004B85"
+      })
+    }catch (error) {
+      console.log("error:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por el momento no se pueden guardar los cambios, por favor intenta más tarde',
+        confirmButtonText: "Entendido",
+        confirmButtonColor:"#004B85"
+      })
+    }
+  };
   const Insertar = async () => {
     const tempArray = collSelect.map((dato) =>{
       return dato.INTERNAL_ID;
     })
-    console.log(tempArray);
+    //console.log(tempArray);
     updatePermissions(tempArray.toString());
   };
     
@@ -127,6 +171,7 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
                   id="prueba"
                   label="ID's Unidad Organizacional"
                   defaultValue={permExtend[0]?.ORG_STRUCT_IDS}
+                  onChange={(e) => setOrg(e.target.value)}
                   rows={3}
                 />
                 <div className="w-full">
@@ -134,6 +179,7 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
                     id="area"
                     label="ID's Área funcional"
                     defaultValue={permExtend[0]?.FUNCTIONAL_AREA_IDS}
+                    onChange={(e) => setFun(e.target.value)}
                     rows={3}
                   >
                   </TextAreaField>
@@ -144,7 +190,7 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
                 style={{ marginTop: 50, marginBottom: 10 }}
               >
                 <Button onClick={()=>setOpen(false)}>Cancelar</Button>
-                <Button variation="primary" style={{backgroundColor:"#004B85"}} onClick={() => Insertar()}>
+                <Button variation="primary" style={{backgroundColor:"#004B85"}} onClick={() => updatePermissionsInd()}>
                   Guardar
                 </Button>
               </div>
