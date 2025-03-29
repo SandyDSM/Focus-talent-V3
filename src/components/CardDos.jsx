@@ -30,7 +30,7 @@ const getcalib = async (id) => {
     INTERNAL_ID: idtemp};
     const response = await getData('API PerfPoten', '/getcarddatanew', parametros);
     setCalibracion(response)
-    //console.log("Calib",response)
+    console.log("Calib",response)
   }catch (error) {
     setCalibracion([]);
     console.log("error:", error);
@@ -81,7 +81,28 @@ const getcalib = async (id) => {
           </div>
         </div>
         <div>
-          {serch === "true" && <div className={`text-sm text-white px-3 py-1 mb-1 rounded-xl w-fit ${colorMap[calibracion?.[0]?.ID_CLASIFICACION]}`}>{calibracion?.[0]?.CLASIFICACION}</div>}
+        {serch === "true" ? (
+          <div className="flex gap-2">
+            {/* Pill de Clasificación (siempre visible) */}
+            <div className={`text-sm text-white px-3 py-1 mb-1 rounded-xl w-fit ${colorMap[calibracion?.[0]?.ID_CLASIFICACION]}`}>
+              {calibracion?.[0]?.CLASIFICACION}
+            </div>
+
+            {/* Pill de Key Position (solo si existe) */}
+            {calibracion?.[0]?.KEY_POSITION && (
+              <div className="text-sm text-blue-700 font-medium px-3 py-1 mb-1 rounded-xl w-fit bg-yellow-300">
+                {calibracion?.[0]?.KEY_POSITION}
+              </div>
+            )}
+          </div>
+        )
+        : ( calibracion?.[0]?.KEY_POSITION && 
+          <div className='text-sm text-blue-700 font-medium px-3 py-1 mb-1 rounded-xl w-fit bg-yellow-300'>
+          {calibracion?.[0]?.KEY_POSITION}
+        </div>
+          )
+          }
+
           <p>
             <b>{origHireDate}:</b>
             {` ${colaborator.FECHA_CONTRATACION}`}
