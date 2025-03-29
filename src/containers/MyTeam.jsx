@@ -51,7 +51,7 @@ setSubOne
     setOption(index);
   };
 
-  console.log("de my team",usuarioActualDatos)
+  //console.log("de my team",usuarioActualDatos)
 
   function getData() {
     const apiName = 'API Behaviors';
@@ -92,7 +92,7 @@ setSubOne
 
 function cambia(evento){
   ordena(evento);
-  console.log(collaborators);//x
+  //console.log(collaborators);//x
 }
 
   if (isLoading) {

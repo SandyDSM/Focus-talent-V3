@@ -74,7 +74,7 @@ const BannersImg = ({ language, version}) => {
         deviceType = 'tablet';
       }
 
-      console.log("---->",language)
+      //console.log("---->",language)
 
       //const selectedLanguage = (language === 'Spanish (Latin America)' || language === 'Spanish (Spain)') ? 'es' : 'other';
       const selectedLanguage = languageMap[language] || 'en';

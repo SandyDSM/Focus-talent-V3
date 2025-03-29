@@ -216,7 +216,7 @@ function getAttribColaboratorsDB(correo) {
       setIsLoading(true);
       const datos = await getAttribColaboratorsDB(correo);
       setUsuarioActualDatos(datos[0])
-      console.log("AQUI",datos[0]);
+      //console.log("AQUI",datos[0]);
 if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaUsuario")==="undefined"){
   localStorage.setItem("IdiomaUsuario", datos[0].IDIOMA);
 }      
@@ -296,7 +296,7 @@ if(localStorage.getItem("IdiomaUsuario")===null || localStorage.getItem("IdiomaU
     setCollaborators(collaboratorsResp);
 
     separadosCol=separa(collaborators);
-    console.log("log de colabora: ", collaborators)
+    //console.log("log de colabora: ", collaborators)
   }
 
 const restauraUserClasif=function(value){
@@ -329,7 +329,7 @@ function getCollaboratorsDB(idJefe) {
     try {
       setIsLoading(true);
       const datos = await getCollaboratorsDB(idJefe);
-      console.log("Resultado de team: ", datos);
+      //console.log("Resultado de team: ", datos);
       if(accion==="SetColaborators"){
         setCollaborators(datos);
         setCollaboratorsResp(datos);
@@ -427,8 +427,8 @@ function getCollaboratorsDB(idJefe) {
         console.log("error photo out: ", error);
       }
     }
-    console.log("photosCol", collaboratorsPhotos);
-    console.log(typeof collaboratorsPhotos);
+    //console.log("photosCol", collaboratorsPhotos);
+    //console.log(typeof collaboratorsPhotos);
   };
 
   const [maxPorPagina, setmaxPorPagina] = useState(9);
@@ -520,7 +520,7 @@ const fetchCollAllClic = async (busqueda) => {
     try{
       setIsLoading(true);
     const response = await getDataClic(busqueda);
-    console.log(response);
+    //console.log(response);
     setResultsComplete(response)
     setResultsCompleteOrg(response)
   }catch (error) {

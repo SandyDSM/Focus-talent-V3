@@ -127,7 +127,9 @@ const styles = StyleSheet.create({
   boldCell: {fontFamily: "Open Sans", fontWeight: "600", padding: 5, fontSize: 8, wordWrap: "break-word", width: "25%"},
   feedbackContainer: { marginTop: 20, marginBottom: 10 },
   feedbackTitle: {fontFamily: "Open Sans", fontSize: 12, fontWeight: "600" },
-  feedbackText: {fontSize: 10, marginTop: 5 },
+  feedbackText: {fontSize: 10, marginTop: 8 },
+  feedbackTextMin: {fontSize: 8, marginTop: 4 },
+
 });
 
 const stars1 =
@@ -508,7 +510,9 @@ dataLiderazgo.forEach((item) => {
           {cmtLiderazgo?.map((dato, i) => (
               <View key={i}>
                 <Text style={styles.feedbackText}>{dato.ANSWER_ ?? "Sin respuesta"}</Text>
-                <Text style={[styles.feedbackText, { fontSize: 8 }]}>{dato.RESPONSIBLE_ ?? "-"}</Text>
+                {dato.SHOW_COMMENT === 1 && <Text style={[styles.feedbackText, { fontSize: 8 }]}>{dato.RESPONDER ?? "-"}</Text>}
+                <Text style={styles.feedbackTextMin}>{dato.RESPONSIBLE_ ?? "-"}</Text>
+               
               </View>
             ))}
         </View>

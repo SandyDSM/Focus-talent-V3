@@ -9,7 +9,7 @@ import CollaboratorsContext from "../context/collaborators";
 function BreadCrums({ text, user, colaborator=null }) {
   const{buttonBack, buttonMyTeam, teamFrom, teamOne, subOne} =useContext(CollaboratorsContext);
 
-  console.log("----",teamOne, subOne);
+  //console.log("----",teamOne, subOne);
   return (
     <div className="my-2 flex gap-1 items-center">
       <Link to="/myteam">

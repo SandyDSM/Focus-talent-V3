@@ -60,7 +60,7 @@ const [cmtLiderazgo, setCmtLiderazgo] =useState([])
       USER_ID: `${collDetail.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/competliderazgo', parametros);
       setDataLiderazgo(response)
-     // console.log("liderazgo",response)
+      //console.log("liderazgo",response)
     }catch (error) {
       console.log("error:", error);
     }finally{
@@ -72,10 +72,11 @@ const [cmtLiderazgo, setCmtLiderazgo] =useState([])
     try{
       setLoad(true);
       let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
-      USER_ID: `${collDetail.ID_COLABORADOR}`};
+      USER_ID: `${collDetail.ID_COLABORADOR}`,
+      VP_USER_ID:`${usuarioActualDatos.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/competliderazgocoment', parametros);
       setCmtLiderazgo(response)
-     //console.log("coments",response)
+      //console.log("Coments",response)
     }catch (error) {
       console.log("error:", error);
     }finally{

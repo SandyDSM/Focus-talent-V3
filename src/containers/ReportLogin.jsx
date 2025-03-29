@@ -42,7 +42,7 @@ function ReportLogin() {
 }, [tableAccess]);
 */
 
-console.log("------------------------",typeof(dateDe), dateA)
+//console.log("------------------------",typeof(dateDe), dateA)
 
 function sendReportbydate(dateInit, dateEnd) {
   const apiName = 'Usuarios';
@@ -61,7 +61,7 @@ const getReportbydate = async (dateInit, dateEnd) => {
   try{
     const response = await sendReportbydate(dateInit, dateEnd);
     setTableAccess(response)
-   console.log("-----------dato",response)
+   //console.log("-----------dato",response)
   }catch (error) {
     console.log("error:", error);
   }

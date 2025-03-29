@@ -580,8 +580,9 @@ dataLiderazgo.forEach((item) => {
                   {cmtLiderazgo?.map((dato, index) => (
                     <div key={index}>
                       
-                    <p className="pt-4">{dato.ANSWER_}</p>
-                    <p className="text-xs pt-2 pb-2">{dato.RESPONSIBLE_}</p>
+                    <p className="pt-4 pb-3">{dato.ANSWER_}</p>
+                    {dato.SHOW_COMMENT === 1 && <p className="text-xs">{dato.RESPONDER}</p> }
+                    <p className="text-xs pb-2">{dato.RESPONSIBLE_}</p>
                     </div>
                   ))}
                   <Flex
