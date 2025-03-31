@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import TestCheck from "../components/TestCheck";
 import HeadCollaborator from "../components/HeadCollaborator";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useMemo } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import BreadCrums from "../components/BreadCrums";
 import { Button, Loader } from "@aws-amplify/ui-react";
@@ -10,7 +10,6 @@ import  PerformaceAndSucesion from "./PerformaceAndSucesion";
 import Configuration from '../utils/Configuration'
 import { API } from 'aws-amplify';
 import BannerUser from "../components/BannerUser";
-
 
 function TeamTestDetail() {
   const { id } = useParams();
@@ -28,7 +27,6 @@ const [dataLiderazgo, setDataLiderazgo] =useState([])
 const [cmtLiderazgo, setCmtLiderazgo] =useState([])
 const [cmtLid, setCmtLid] =useState([])
 
-
   function getData(papiName, ppath, pparameters) {
     const apiName = papiName;
     const path = ppath;
@@ -39,7 +37,7 @@ const [cmtLid, setCmtLid] =useState([])
   
     return API.get(apiName, path, myInit);
   }
-
+/*
   const fetcBehaviors = async () => {
     setLoad(true);
     try{
@@ -84,6 +82,38 @@ const [cmtLid, setCmtLid] =useState([])
     }finally{
       setLoad(false)
     }
+  };*/
+
+  const loadAllData = async () => {
+    setLoad(true);
+    try {
+      const parametrosBase = {
+        LANGUAGE: usuarioActualDatos.IDIOMA,
+        USER_ID: collDetail.ID_COLABORADOR,
+      };
+
+      const parametrosComentarios = {
+        ...parametrosBase,
+        VP_USER_ID: usuarioActualDatos.ID_COLABORADOR,
+      };
+
+      const [liderazgoRes, comentariosRes, behaviorsRes] = await Promise.all([
+        getData('API Behaviors', '/competliderazgo', parametrosBase),
+        getData('API Behaviors', '/competliderazgocoment', parametrosComentarios),
+        getData('API Behaviors', '/behaviors', parametrosBase),
+      ]);
+
+      setDataLiderazgo(liderazgoRes || []);
+      setCmtLiderazgo(comentariosRes || []);
+      setDataBehavior(behaviorsRes || []);
+
+      console.log("CMT",comentariosRes)
+
+    } catch (error) {
+      console.log("Error al cargar datos de comportamiento y liderazgo:", error);
+    } finally {
+      setLoad(false);
+    }
   };
 
 const fetchDesemp = async () => {
@@ -119,17 +149,16 @@ const fetchDesemp = async () => {
         setAniosFill([filtros[0].ANO_EVAL]);
   }
 
-
   useEffect(() => {
     getCollDetail(id).catch(null);
     fetchDesemp();
   }, [id,selall]);
 
+  const colaboradorId = useMemo(() => collDetail.ID_COLABORADOR, [collDetail]);
+
   useEffect(() => {
-    //setCmtLiderazgo([]);
-    datosLiderazgo();
-    comentsLiderazgo();
-  }, [id, collDetail.ID_COLABORADOR, aniosFill]);
+    loadAllData();
+  }, [colaboradorId]);
 /*
   useEffect(() => {
     setCmtLiderazgo([]); // Limpia los comentarios antes de cargar nuevos
@@ -240,9 +269,9 @@ const fetchDesemp = async () => {
         <div className="col-span-1 md:col-span-3">
             <PerformaceAndSucesion
               aniosFill={aniosFill}
-              fetcBehaviors={fetcBehaviors}
-              datosLiderazgo={datosLiderazgo}
-              comentsLiderazgo={comentsLiderazgo}
+              fetcBehaviors={loadAllData}
+            datosLiderazgo={() => {}}
+            comentsLiderazgo={() => {}}
               load={load}
               sendOverridesBehavior={sendOverridesBehavior}
               sendOverridesPerformanceTest={sendOverridesPerformanceTest}
@@ -262,3 +291,4 @@ const fetchDesemp = async () => {
 }
 
 export default TeamTestDetail;
+
