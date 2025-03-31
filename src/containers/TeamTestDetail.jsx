@@ -76,7 +76,8 @@ const [cmtLiderazgo, setCmtLiderazgo] =useState([])
       VP_USER_ID:`${usuarioActualDatos.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/competliderazgocoment', parametros);
       setCmtLiderazgo(response)
-      //console.log("Coments",response)
+      //setCmtLiderazgo({ ...response });
+      console.log("Coments",response)
     }catch (error) {
       console.log("error:", error);
     }finally{
@@ -124,13 +125,19 @@ const fetchDesemp = async () => {
   }, [id,selall]);
 
   useEffect(() => {
-    datosLiderazgo()
-  }, [id,selall, getCollDetail, collDetail]);
-
+    setCmtLiderazgo([]);
+    datosLiderazgo();
+    comentsLiderazgo();
+  }, [id, collDetail.ID_COLABORADOR, load]);
+/*
   useEffect(() => {
-    comentsLiderazgo()
-  }, [id,selall, getCollDetail, collDetail]);
-  
+    setCmtLiderazgo([]); // Limpia los comentarios antes de cargar nuevos
+    getCollDetail(id).catch(null);
+  if (collDetail?.ID_COLABORADOR) {
+    comentsLiderazgo();
+  }
+  }, [id,selall,collDetail.ID_COLABORADOR]);
+  */
 
   const sendOverridesHeadColl = {
     NameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
