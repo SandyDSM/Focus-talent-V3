@@ -26,6 +26,8 @@ function TeamTestDetail() {
 const [dataBehavior, setDataBehavior] =useState([])
 const [dataLiderazgo, setDataLiderazgo] =useState([])
 const [cmtLiderazgo, setCmtLiderazgo] =useState([])
+const [cmtLid, setCmtLid] =useState([])
+
 
   function getData(papiName, ppath, pparameters) {
     const apiName = papiName;
@@ -76,7 +78,6 @@ const [cmtLiderazgo, setCmtLiderazgo] =useState([])
       VP_USER_ID:`${usuarioActualDatos.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/competliderazgocoment', parametros);
       setCmtLiderazgo(response)
-      //setCmtLiderazgo({ ...response });
       console.log("Coments",response)
     }catch (error) {
       console.log("error:", error);
@@ -128,7 +129,7 @@ const fetchDesemp = async () => {
     setCmtLiderazgo([]);
     datosLiderazgo();
     comentsLiderazgo();
-  }, [id, collDetail.ID_COLABORADOR, load]);
+  }, [id, collDetail.ID_COLABORADOR, aniosFill]);
 /*
   useEffect(() => {
     setCmtLiderazgo([]); // Limpia los comentarios antes de cargar nuevos
