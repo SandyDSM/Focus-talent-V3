@@ -41,8 +41,8 @@ const [cmtLid, setCmtLid] =useState([])
   }
 
   const fetcBehaviors = async () => {
+    setLoad(true);
     try{
-      setLoad(true);
       let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
       USER_ID: `${collDetail.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/behaviors', parametros);
@@ -56,8 +56,8 @@ const [cmtLid, setCmtLid] =useState([])
   };
 
   const datosLiderazgo = async () => {
+    setLoad(true);
     try{
-      setLoad(true);
       let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
       USER_ID: `${collDetail.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/competliderazgo', parametros);
@@ -71,8 +71,8 @@ const [cmtLid, setCmtLid] =useState([])
   };
 
   const comentsLiderazgo = async () => {
+    setLoad(true);
     try{
-      setLoad(true);
       let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
       USER_ID: `${collDetail.ID_COLABORADOR}`,
       VP_USER_ID:`${usuarioActualDatos.ID_COLABORADOR}`};
@@ -126,7 +126,7 @@ const fetchDesemp = async () => {
   }, [id,selall]);
 
   useEffect(() => {
-    setCmtLiderazgo([]);
+    //setCmtLiderazgo([]);
     datosLiderazgo();
     comentsLiderazgo();
   }, [id, collDetail.ID_COLABORADOR, aniosFill]);
@@ -196,7 +196,7 @@ const fetchDesemp = async () => {
           : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
     },
   };
-  if (isLoading) {
+  if (load) {
     return (
       <div className="h-screen flex justify-center items-center ">
         <Loader size="large" />
