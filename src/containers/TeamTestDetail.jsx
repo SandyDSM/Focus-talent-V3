@@ -25,7 +25,7 @@ function TeamTestDetail() {
 const [dataBehavior, setDataBehavior] =useState([])
 const [dataLiderazgo, setDataLiderazgo] =useState([])
 const [cmtLiderazgo, setCmtLiderazgo] =useState([])
-const [cmtLid, setCmtLid] =useState(true)
+const [collLoaded, setCollLoaded] = useState(false);
 
   function getData(papiName, ppath, pparameters) {
     const apiName = papiName;
@@ -84,6 +84,7 @@ const [cmtLid, setCmtLid] =useState(true)
     }
   };*/
 
+
   const loadAllData = useCallback(async () => {
     setLoad(true);
     try {
@@ -112,17 +113,40 @@ const [cmtLid, setCmtLid] =useState(true)
       console.log("Error al cargar datos de comportamiento y liderazgo:", error);
     } finally {
       setLoad(false);
-      setCmtLid(false)
     }
   }, [collDetail.ID_COLABORADOR, usuarioActualDatos.IDIOMA]);
   
-  useEffect(() => {
-    if(cmtLid){
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await getCollDetail(id);
+      setCollLoaded(true); // Indicar que la data se ha cargado
+      fetchDesemp();
+    };
+  
+    fetchData();
+  }, [id, selall]);
+  
+  useEffect(() => {
+    if (collLoaded && collDetail.ID_COLABORADOR) {
+      console.log("ID", collDetail.ID_COLABORADOR);
       loadAllData();
     }
-  }, [loadAllData]);
-  
+  }, [collLoaded, collDetail.ID_COLABORADOR]);
+
+/*
+  useEffect(() => {
+    getCollDetail(id).catch(null);
+    fetchDesemp();
+  }, [id,selall]);
+
+
+  const colaboradorId = useMemo(() => collDetail.ID_COLABORADOR, [collDetail]);
+  useEffect(() => {
+    console.log("ID",collDetail.ID_COLABORADOR)
+      loadAllData();
+  }, [colaboradorId]);
+  */
 
 const fetchDesemp = async () => {
   
@@ -156,13 +180,6 @@ const fetchDesemp = async () => {
       }
         setAniosFill([filtros[0].ANO_EVAL]);
   }
-
-  useEffect(() => {
-    getCollDetail(id).catch(null);
-    fetchDesemp();
-  }, [id,selall]);
-
-  const colaboradorId = useMemo(() => collDetail.ID_COLABORADOR, [collDetail]);
 
 /*
   useEffect(() => {

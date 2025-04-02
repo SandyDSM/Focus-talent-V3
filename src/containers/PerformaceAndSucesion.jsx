@@ -22,11 +22,11 @@ function PerformaceAndSucesion({
   collDetail
 }) {
 
-
+/*
   useEffect(() => {
     fetcBehaviors()
   }, []);
-
+*/
 
   //console.log("aqui",collDetail);
   
