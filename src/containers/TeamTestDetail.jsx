@@ -108,7 +108,7 @@ const [collLoaded, setCollLoaded] = useState(false);
       setCmtLiderazgo(comentariosRes || []);
       setDataBehavior(behaviorsRes || []);
   
-      console.log("CMT", comentariosRes);
+      //console.log("CMT", comentariosRes);
     } catch (error) {
       console.log("Error al cargar datos de comportamiento y liderazgo:", error);
     } finally {
@@ -129,7 +129,7 @@ const [collLoaded, setCollLoaded] = useState(false);
   
   useEffect(() => {
     if (collLoaded && collDetail.ID_COLABORADOR) {
-      console.log("ID", collDetail.ID_COLABORADOR);
+      //console.log("ID", collDetail.ID_COLABORADOR);
       loadAllData();
     }
   }, [collLoaded, collDetail.ID_COLABORADOR]);

@@ -388,7 +388,7 @@ function getCollaboratorsDB(idJefe) {
     try {
       const datos = await getCollDetailDB(id);
       setCollDetail(datos[0]);
-      console.log("coll detail",datos[0])
+      //console.log("coll detail",datos[0])
     } catch (error) {
       console.log("error:", error);
       //setCollDetail([]);
