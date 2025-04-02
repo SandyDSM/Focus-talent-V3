@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import TestCheck from "../components/TestCheck";
 import HeadCollaborator from "../components/HeadCollaborator";
-import { useEffect, useContext, useState, useMemo } from "react";
+import { useEffect, useContext, useState, useMemo, useCallback } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import BreadCrums from "../components/BreadCrums";
 import { Button, Loader } from "@aws-amplify/ui-react";
@@ -25,7 +25,7 @@ function TeamTestDetail() {
 const [dataBehavior, setDataBehavior] =useState([])
 const [dataLiderazgo, setDataLiderazgo] =useState([])
 const [cmtLiderazgo, setCmtLiderazgo] =useState([])
-const [cmtLid, setCmtLid] =useState([])
+const [cmtLid, setCmtLid] =useState(true)
 
   function getData(papiName, ppath, pparameters) {
     const apiName = papiName;
@@ -84,37 +84,45 @@ const [cmtLid, setCmtLid] =useState([])
     }
   };*/
 
-  const loadAllData = async () => {
+  const loadAllData = useCallback(async () => {
     setLoad(true);
     try {
       const parametrosBase = {
         LANGUAGE: usuarioActualDatos.IDIOMA,
         USER_ID: collDetail.ID_COLABORADOR,
       };
-
+  
       const parametrosComentarios = {
         ...parametrosBase,
         VP_USER_ID: usuarioActualDatos.ID_COLABORADOR,
       };
-
+  
       const [liderazgoRes, comentariosRes, behaviorsRes] = await Promise.all([
         getData('API Behaviors', '/competliderazgo', parametrosBase),
         getData('API Behaviors', '/competliderazgocoment', parametrosComentarios),
         getData('API Behaviors', '/behaviors', parametrosBase),
       ]);
-
+  
       setDataLiderazgo(liderazgoRes || []);
       setCmtLiderazgo(comentariosRes || []);
       setDataBehavior(behaviorsRes || []);
-
-      console.log("CMT",comentariosRes)
-
+  
+      console.log("CMT", comentariosRes);
     } catch (error) {
       console.log("Error al cargar datos de comportamiento y liderazgo:", error);
     } finally {
       setLoad(false);
+      setCmtLid(false)
     }
-  };
+  }, [collDetail.ID_COLABORADOR, usuarioActualDatos.IDIOMA]);
+  
+  useEffect(() => {
+    if(cmtLid){
+
+      loadAllData();
+    }
+  }, [loadAllData]);
+  
 
 const fetchDesemp = async () => {
   
@@ -156,9 +164,6 @@ const fetchDesemp = async () => {
 
   const colaboradorId = useMemo(() => collDetail.ID_COLABORADOR, [collDetail]);
 
-  useEffect(() => {
-    loadAllData();
-  }, [colaboradorId]);
 /*
   useEffect(() => {
     setCmtLiderazgo([]); // Limpia los comentarios antes de cargar nuevos
