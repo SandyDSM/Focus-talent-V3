@@ -384,7 +384,7 @@ function getCollaboratorsDB(idJefe) {
 
   const getCollDetail = async (id) => {
     setIsLoading(true);
-    setCollDetail([]);
+    //setCollDetail([]);
     try {
       const datos = await getCollDetailDB(id);
       setCollDetail(datos[0]);
