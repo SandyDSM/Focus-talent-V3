@@ -94,13 +94,31 @@ const getcalib = async (id) => {
                 {calibracion?.[0]?.KEY_POSITION}
               </div>
             )}
+            
+            {/* Pill de ELDP (solo si existe) */}
+            {calibracion?.[0]?.ELDP && (
+              <div className="text-sm text-white font-medium px-3 py-1 mb-1 rounded-xl w-fit bg-purple-600">
+                {calibracion?.[0]?.ELDP}
+              </div>
+            )}
+
           </div>
         )
-        : ( calibracion?.[0]?.KEY_POSITION && 
-          <div className='text-sm text-blue-700 font-medium px-3 py-1 mb-1 rounded-xl w-fit bg-yellow-300'>
-          {calibracion?.[0]?.KEY_POSITION}
-        </div>
-          )
+        : (
+          <div className="flex gap-2">
+            {calibracion?.[0]?.KEY_POSITION && 
+              <div className='text-sm text-blue-700 font-medium px-3 py-1 mb-1 rounded-xl w-fit bg-yellow-300'>
+                {calibracion?.[0]?.KEY_POSITION}
+              </div>
+            }
+        
+            {calibracion?.[0]?.ELDP && 
+              <div className='text-sm text-white font-medium px-3 py-1 mb-1 rounded-xl w-fit bg-purple-600'>
+                {calibracion?.[0]?.ELDP}
+              </div>
+            }
+          </div>
+        )
           }
 
           <p>
