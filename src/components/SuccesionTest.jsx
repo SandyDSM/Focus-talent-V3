@@ -1915,7 +1915,7 @@ export default function SuccesionTest(props) {
               etiquetas={potReview}
             />
           }
-          fileName={`Evalución_de_potencial_${anios}.pdf`}
+          fileName={`Evaluación_de_potencial_${anios}.pdf`}
         >
           <Button
             shrink="0"

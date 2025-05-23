@@ -90,7 +90,7 @@ const PDFdesempeno = ({ DATOS, anios, datosUsuario, etiquetas }) => {
                   marginBottom: "5",
                 }}
               >
-                {etiquetas} {anios}
+                {etiquetas} {anios-1}
               </Text>
               <Text
                 style={{
