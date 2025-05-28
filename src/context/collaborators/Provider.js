@@ -333,11 +333,11 @@ function getCollaboratorsDB(idJefe) {
       if(accion==="SetColaborators"){
         setCollaborators(datos);
         setCollaboratorsResp(datos);
-        setFutleader(datos?.filter(c => (c.CATEGORIA === "Alto Potencial" || c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
+        setFutleader(datos?.filter(c => (c.CATEGORIA === "Alto Potencial" || c.CATEGORIA === "Alto Potencial *" || c.CATEGORIA === "High potential" || c.CATEGORIA === "High potential *" || c.CATEGORIA === "Futuro líder *")));
         setRespfutleader(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
-        setPillbusiness(datos?.filter(c => (c.CATEGORIA === "Talento Promesa" || c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
+        setPillbusiness(datos?.filter(c => (c.CATEGORIA === "Talento Promesa" || c.CATEGORIA === "Talento Promesa *" || c.CATEGORIA === "Promising" || c.CATEGORIA === "Promising *" || c.CATEGORIA === "Pilar de negocio *")));
         setRespillbusiness(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
-        setBasebusiness(datos?.filter(c => (c.CATEGORIA === "Talento Esencial" || c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
+        setBasebusiness(datos?.filter(c => (c.CATEGORIA === "Talento Esencial" || c.CATEGORIA === "Talento Esencial * *" || c.CATEGORIA === "Essential Talent" || c.CATEGORIA === "Essential Talent *" || c.CATEGORIA === "Cimiento de negocio *")));
         setResbasebusiness(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
         setNoteval(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" )));
         setResnoteval(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial")));
@@ -345,11 +345,11 @@ function getCollaboratorsDB(idJefe) {
         setRespnotaply(datos?.filter(c => (c.CATEGORIA === "N/A" || c.CATEGORIA ===null)));
         }else if(accion==="SetSubColaborators"){
           setSubcollaborators(datos);
-          setFutleadersub(datos?.filter(c => (c.CATEGORIA === "Alto Potencial" || c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
+          setFutleadersub(datos?.filter(c => (c.CATEGORIA === "Alto Potencial" || c.CATEGORIA === "Alto Potencial *" || c.CATEGORIA === "High potential" || c.CATEGORIA === "High potential *" || c.CATEGORIA === "Futuro líder *")));
           setRespfutleadersub(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
-          setPillbusinesssub(datos?.filter(c => (c.CATEGORIA === "Talento Promesa" || c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
+          setPillbusinesssub(datos?.filter(c => (c.CATEGORIA === "Talento Promesa" || c.CATEGORIA === "Talento Promesa *" || c.CATEGORIA === "Promising" || c.CATEGORIA === "Promising *" || c.CATEGORIA === "Pilar de negocio *")));
           setRespillbusinesssub(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
-          setBasebusinesssub(datos?.filter(c => (c.CATEGORIA === "Talento Esencial" || c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
+          setBasebusinesssub(datos?.filter(c => (c.CATEGORIA === "Talento Esencial" || c.CATEGORIA === "Talento Esencial *" || c.CATEGORIA === "Essential Talent" || c.CATEGORIA === "Essential Talent *" || c.CATEGORIA === "Cimiento de negocio *")));
           setResbasebusinesssub(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
           setNotevalsub(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" )));
           setResnotevalsub(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" )));
