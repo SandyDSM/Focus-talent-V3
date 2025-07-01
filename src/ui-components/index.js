@@ -45,6 +45,7 @@ export { default as Page2Arrow } from "./Page2Arrow";
 export { default as PageArrow } from "./PageArrow";
 export { default as PerformanceTest } from "./PerformanceTest";
 export { default as Person } from "./Person";
+export { default as Piramide } from "./Piramide";
 export { default as Placeholder } from "./Placeholder";
 export { default as RatingStars } from "./RatingStars";
 export { default as RowsEtiquetas } from "./RowsEtiquetas";

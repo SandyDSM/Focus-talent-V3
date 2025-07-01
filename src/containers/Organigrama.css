@@ -1,0 +1,161 @@
+/* Estilos para el componente OrganizationChart */
+.organization-chart-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-scroll-container {
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.chart-scroll-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.chart-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chart-scroll-container::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
+
+.chart-scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+
+.org-chart-content {
+  position: relative;
+  background-color: transparent;
+  z-index: 15; /* Organigrama por encima de las cards laterales */
+}
+
+.main-collaborator {
+  position: relative;
+  z-index: 55;
+}
+
+.vertical-line, .horizontal-line {
+  position: relative;
+  z-index: 15;
+}
+
+.team-members-container {
+  position: relative;
+  z-index: 15;
+}
+
+/* Estilos para los botones de zoom */
+.controls button {
+  transition: background-color 0.2s ease;
+}
+
+.controls button:hover {
+  background-color: #f3f4f6;
+}
+
+.controls button:active {
+  background-color: #e5e7eb;
+}
+
+/* Indicador de nivel de zoom */
+.zoom-level-indicator {
+  background-color: white;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Asegurarse de que las tarjetas de colaborador sean visibles */
+.team-member-card, .main-collaborator .w-80 {
+  background-color: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Estilos para las cards laterales - ahora con z-index menor */
+.absolute {
+  position: absolute;
+}
+
+/* z-index para las cards laterales */
+.z-10 {
+  z-index: 10; /* Por debajo del organigrama cuando están expandidas */
+}
+
+.z-50 {
+  z-index: 50; /* Por encima del organigrama cuando están minimizadas */
+}
+
+/* Animación para la aparición de las tarjetas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Asegurar que las cards laterales tengan un fondo y sombra */
+.absolute > div {
+  background-color: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Estilos para mejorar la visibilidad del organigrama */
+.org-chart-content .flex {
+  position: relative;
+}
+
+/* Asegurar que el scroll funcione correctamente */
+.chart-scroll-container {
+  scroll-behavior: smooth;
+}
+
+/* Estilos para las líneas del organigrama */
+.vertical-line {
+  background-color: #d1d5db;
+}
+
+.horizontal-line {
+  background-color: #d1d5db;
+}
+
+.vertical-lines .vertical-line {
+  background-color: #d1d5db;
+}
+
+/* Estilos específicos para evitar problemas de texto en zoom pequeño */
+.org-chart-content {
+  min-width: 800px; /* Ancho mínimo para evitar problemas de texto */
+  min-height: 400px; /* Alto mínimo para evitar problemas de texto */
+}
+
+/* Asegurar que las cards de colaborador mantengan un tamaño mínimo legible */
+.team-member-card,
+.main-collaborator .w-64 {
+  min-width: 200px; /* Ancho mínimo para mantener legibilidad */
+  overflow: hidden; /* Evitar que el contenido se desborde */
+}
+
+/* Estilos para el texto dentro de las cards para mantener legibilidad */
+.team-member-card *,
+.main-collaborator .w-64 * {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+

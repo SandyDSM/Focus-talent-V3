@@ -51,7 +51,7 @@ setSubOne
     setOption(index);
   };
 
-  //console.log("de my team",usuarioActualDatos)
+  console.log("de my team",usuarioActualDatos)
 
   function getData() {
     const apiName = 'API Behaviors';

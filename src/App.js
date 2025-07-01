@@ -24,6 +24,7 @@ import Forbidden from "./containers/Forbidden";
 import { ProtectedRoutes } from "./context/ProtectRoutes";
 import Permissions from "./containers/Permissions";
 import ReportLogin from "./containers/ReportLogin";
+import Organigrama from "./containers/Organigrama";
 
 Amplify.configure(awsExports);
 
@@ -88,6 +89,7 @@ function App() {
               <Route exact path="/myteam" element={<MyTeam />} />
               <Route exact path="/myteam/:id" element={<TeamSub />} />
               <Route exact path="/test/:id" element={<TeamTestDetail />} />
+              <Route exact path="/org" element={<Organigrama />} />
             </Route>
             <Route exact path="/forgotpassword" element={<ForgotPss />} />
             <Route exact path="/forbidden" element={<Forbidden />} />

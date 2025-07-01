@@ -16,6 +16,9 @@ module.exports = {
         'clas5-orange':'#DD6F49',
         'hover':'#DAEFF3'
       },
+      scale: {
+        200: '2',
+      },
     }
   },
   plugins: [],

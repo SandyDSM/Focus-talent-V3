@@ -77,7 +77,7 @@ const BannersImg = ({ language, version}) => {
       //console.log("---->",language)
 
       //const selectedLanguage = (language === 'Spanish (Latin America)' || language === 'Spanish (Spain)') ? 'es' : 'other';
-      const selectedLanguage = languageMap[language] || 'en';
+      const selectedLanguage = languageMap[language] || 'eng';
       setImageUrl(resources[selectedLanguage][deviceType]);
       const pdfKey = version === 0 ? 'pdf1' : 'pdf2';
       setPdfUrl(resources[selectedLanguage][pdfKey]);

@@ -193,30 +193,6 @@ export default function TableEtiqueta(props) {
             children="ZHO"
             {...getOverrideProps(overrides, "Nombre35794398")}
           ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="14px"
-            fontWeight="500"
-            color="rgba(1,97,167,1)"
-            lineHeight="16px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            letterSpacing="0.14px"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            grow="1"
-            shrink="1"
-            basis="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="RUM"
-            {...getOverrideProps(overrides, "Nombre35794398")}
-          ></Text>
         </Flex>
         <Divider
           width="unset"
@@ -315,19 +291,6 @@ export default function TableEtiqueta(props) {
           width="unset"
           height="unset"
           placeholder="Chino"
-          grow="1"
-          shrink="1"
-          basis="0"
-          size="small"
-          isDisabled={false}
-          labelHidden={true}
-          variation="default"
-          {...getOverrideProps(overrides, "TextField35794406")}
-        ></TextField>
-        <TextField
-          width="unset"
-          height="unset"
-          placeholder="Rumano"
           grow="1"
           shrink="1"
           basis="0"

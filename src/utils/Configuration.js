@@ -25,6 +25,10 @@ Amplify.configure({
             {
                 name: "Usuarios",
                 endpoint: "https://pjtjx5g690.execute-api.us-east-1.amazonaws.com/prod"  
+            },
+            {
+                name: "ORGCHART",
+                endpoint: "https://exiermsu9h.execute-api.us-east-1.amazonaws.com/Production"  
             }
         ]
     }
