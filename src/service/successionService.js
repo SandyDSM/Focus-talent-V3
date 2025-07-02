@@ -1,4 +1,4 @@
-import ApiService from './apiService.js';
+import ApiService from './appiService';
 
 /**
  * Servicio para obtener datos de planes de sucesión

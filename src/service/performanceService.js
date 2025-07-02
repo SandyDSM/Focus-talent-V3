@@ -1,11 +1,11 @@
-import ApiService from './apiService.js';
+import ApiService from './appiService';
 
 /**
  * Servicio para obtener datos de desempeño y competencias
  */
 class PerformanceService extends ApiService {
   constructor() {
-    super('https://api.performance.com');
+    super('ORGCHART');
   }
 
   /**
@@ -13,8 +13,15 @@ class PerformanceService extends ApiService {
    * @param {string} organizationId - ID de la organización
    * @returns {Promise} Datos de categorías de desempeño
    */
-  async getPerformanceCategories(organizationId = 'bimbo-brasil') {
-    const endpoint = `/api/v1/organizations/${organizationId}/performance-categories`;
+  async getPerformanceCategories(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
+    const path = '/orgchartperformance';
+    const options = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        IDIOMA: `'${usuarioActualDatos}'`,
+        USER_ID: `'${collaboratorId}'`
+      }
+    };
     
     const mockData = [
       { 
@@ -61,7 +68,7 @@ class PerformanceService extends ApiService {
       }
     ];
 
-    return this.fetchData(endpoint, mockData);
+    return this.fetchData(path, options, mockData);
   }
 
   /**
@@ -70,6 +77,7 @@ class PerformanceService extends ApiService {
    * @param {string} period - Período de evaluación
    * @returns {Promise} Métricas de desempeño
    */
+  /*
   async getPerformanceMetrics(organizationId = 'bimbo-brasil', period = '2024-Q1') {
     const endpoint = `/api/v1/organizations/${organizationId}/performance-metrics`;
     
@@ -96,12 +104,13 @@ class PerformanceService extends ApiService {
 
     return this.fetchData(endpoint, mockData);
   }
-
+*/
   /**
    * Obtiene competencias específicas de un colaborador
    * @param {string} collaboratorId - ID del colaborador
    * @returns {Promise} Competencias del colaborador
    */
+  /*
   async getCollaboratorCompetencies(collaboratorId) {
     const endpoint = `/api/v1/collaborators/${collaboratorId}/competencies`;
     
@@ -145,12 +154,13 @@ class PerformanceService extends ApiService {
 
     return this.fetchData(endpoint, mockData);
   }
-
+*/
   /**
    * Obtiene los datos completos de desempeño
    * @param {string} organizationId - ID de la organización
    * @returns {Promise} Datos completos de desempeño
    */
+  /*
   async getPerformanceData(organizationId = 'bimbo-brasil') {
     const endpoint = `/api/v1/organizations/${organizationId}/performance-data`;
     
@@ -177,7 +187,7 @@ class PerformanceService extends ApiService {
       console.error('Error cargando datos de desempeño:', error);
       throw error;
     }
-  }
+  }*/
 }
 
 export default PerformanceService;

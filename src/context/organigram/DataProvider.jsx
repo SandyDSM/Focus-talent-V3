@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { loadOrganizationData } from '../services/index.js';
+import { loadOrganizationData } from '../../service/index.js';
 
 // Estados de carga
 const LOADING_STATES = {

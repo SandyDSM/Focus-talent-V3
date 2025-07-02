@@ -1,19 +1,19 @@
+import React from "react";
+
 /**
  * Archivo índice para exportar todos los servicios
  * Facilita la importación de servicios en los componentes
  */
 
-import ApiService from './apiService.js';
+import ApiService from './appiService.js';
 import OrganizationService from './organizationService.js';
 import TalentService from './talentService.js';
 import PerformanceService from './performanceService.js';
-import SuccessionService from './successionService.js';
 
 // Instancias de servicios para uso global
 export const organizationService = new OrganizationService();
 export const talentService = new TalentService();
 export const performanceService = new PerformanceService();
-export const successionService = new SuccessionService();
 
 // Exportar clases para instanciación personalizada
 export {
@@ -21,7 +21,6 @@ export {
   OrganizationService,
   TalentService,
   PerformanceService,
-  SuccessionService
 };
 
 /**
@@ -32,10 +31,11 @@ export {
  */
 export const loadOrganizationData = async (
   organizationId = 'bimbo-brasil', 
-  collaboratorId = '2786036'
+  collaboratorId = '1111111',
+  usuarioActualDatos = "Spanish (Latin America)"
 ) => {
   try {
-    console.log('🚀 Iniciando carga de datos del organigrama...');
+    console.log('Iniciando carga de datos del organigrama...');
     
     // Mostrar indicador de carga
     const startTime = Date.now();
@@ -45,29 +45,31 @@ export const loadOrganizationData = async (
       organizationData,
       talentData,
       performanceData,
-      successionData
     ] = await Promise.all([
-      organizationService.getOrganizationChart(organizationId),
-      talentService.getTalentMap(organizationId),
-      performanceService.getPerformanceData(organizationId),
-      successionService.getSuccessionData(collaboratorId)
+      organizationService.getOrganizationChart(collaboratorId, usuarioActualDatos),
+      talentService.getTalentLevels(collaboratorId, usuarioActualDatos),
+      performanceService.getPerformanceCategories(collaboratorId, usuarioActualDatos),
     ]);
 
     const loadTime = Date.now() - startTime;
     console.log(`✅ Datos cargados exitosamente en ${loadTime}ms`);
+    console.log('organizationData.data',organizationData.data);
 
     return {
       organization: organizationData.data,
       talent: talentData.data,
       performance: performanceData.data,
-      succession: successionData.data,
       loadTime: loadTime,
       timestamp: new Date().toISOString()
     };
+
+    
+
   } catch (error) {
-    console.error('❌ Error cargando datos del organigrama:', error);
+    console.error('Error cargando datos del organigrama:', error);
     throw new Error(`Error al cargar datos: ${error.message}`);
   }
+  
 };
 
 /**
@@ -98,4 +100,5 @@ export const useAsyncData = (loadFunction) => {
 
   return state;
 };
+
 

@@ -1,20 +1,22 @@
-import ApiService from './apiService.js';
+import ApiService from './appiService';
 
 /**
  * Servicio para obtener datos del organigrama
  */
 class OrganizationService extends ApiService {
   constructor() {
-    super('/orgchartmanagerdata');
+    super('ORGCHART'); // Usar el nombre de la API de Amplify
   }
 
   /**
    * Obtiene los datos del colaborador principal
    * @param {string} collaboratorId - ID del colaborador
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos del colaborador principal
    */
-  async getMainCollaborator(collaboratorId = '2786036', usuarioActualDatos = 'Spanish (Latin America)') {
-    const options = {
+  async getMainCollaborator(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+    const path = '/orgchartmanagerdata';
+     options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
         IDIOMA: `'${usuarioActualDatos}'`,
@@ -35,16 +37,28 @@ class OrganizationService extends ApiService {
       positionAntiquity: "15/03/2018"
     };
 
-    return this.fetchData(path, options, mockData);
+    // Combinar opciones del usuario con mockData para simulación
+    const fetchOptions = { ...options, mockData: mockData };
+
+    // Por defecto, usar Amplify. Si necesitas simular, pasa { useAmplify: false } en el config
+    return this.fetchData(path, fetchOptions, { useAmplify: true }); 
   }
 
   /**
    * Obtiene los miembros del equipo
    * @param {string} managerId - ID del manager
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Array de miembros del equipo
    */
-  async getTeamMembers(managerId = '2786036') {
-    const endpoint = `/api/v1/collaborators/${managerId}/team`;
+  async getTeamMembers(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+     const path = '/orgchartteamdata';
+     options = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        IDIOMA: `'${usuarioActualDatos}'`,
+        USER_ID: `'${collaboratorId}'`
+      }
+    };
     
     const mockData = [
       {
@@ -89,33 +103,46 @@ class OrganizationService extends ApiService {
       }
     ];
 
-    return this.fetchData(endpoint, mockData);
+    const fetchOptions = { ...options, mockData: mockData };
+    return this.fetchData(path, fetchOptions, { useAmplify: true });
   }
 
   /**
    * Obtiene los datos completos del organigrama
    * @param {string} organizationId - ID de la organización
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos del organigrama
    */
-  async getOrganizationChart(organizationId = 'bimbo-brasil') {
-    const endpoint = `/api/v1/organizations/${organizationId}/chart`;
+  async getOrganizationChart(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+    const path = '/orgchartteamdata';
+     options = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        IDIOMA: `'${usuarioActualDatos}'`,
+        USER_ID: `'${collaboratorId}'`
+      }
+    };
     
     try {
       // Cargar datos en paralelo
       const [mainCollaboratorResponse, teamMembersResponse] = await Promise.all([
-        this.getMainCollaborator(),
-        this.getTeamMembers()
+        this.getMainCollaborator(undefined, options),
+        this.getTeamMembers(undefined, options)
       ]);
 
       const organizationData = {
-        mainCollaborator: mainCollaboratorResponse.data,
+        mainCollaborator: mainCollaboratorResponse.data[0],
         teamMembers: teamMembersResponse.data,
         headerTitle: "Daniel Jones / Zurita Robles Kadir",
         bannerSearch: "Equipo de Trabajo",
         lastUpdated: new Date().toISOString()
       };
 
-      return this.fetchData(endpoint, organizationData, { delay: false });
+      const fetchOptions = { ...options, mockData: organizationData };
+
+      console.log("mainCollaboratorResponse.data",mainCollaboratorResponse.data[0])
+      console.log("TEAM",teamMembersResponse.data)
+      return this.fetchData(path, fetchOptions, { delay: false, useAmplify: false });
     } catch (error) {
       console.error('Error cargando datos del organigrama:', error);
       throw error;

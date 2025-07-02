@@ -13,28 +13,7 @@ import { createPortal } from 'react-dom';
  * @param {Object} props.modalData - Datos para el modal de colaborador
  * @returns {JSX.Element} Componente contenedor
  */
-const ModalContainer = ({ 
-  cardData = {
-    name: "Zurita Robles Kadir",
-    id: "2786036",
-    organization: "Organización Bimbo Brasil",
-    position: "Key Position",
-    positionClass: "ELDP Class 26",
-    role: "Supervisor production",
-    avatarUrl: null
-  },
-  modalData = {
-    mainCollaborator: {
-      name: "Zurita Robles Kadir",
-      id: "12345678",
-      organization: "Organización Bimbo Brasil",
-      role: "Supervisor Production",
-      age: "42 años",
-      avatarUrl: null
-    },
-    teamMembers: []
-  }
-}) => {
+const ModalContainer = ({ cardData,modalData }) => {
   // Estado para controlar la visibilidad del modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -85,13 +64,13 @@ const ModalContainer = ({
     <div className="modal-container">
       {/* Tarjeta de colaborador con función para abrir el modal al hacer clic en la flecha */}
       <EmployeeCard 
-        name={cardData.name}
-        id={cardData.id}
-        organization={cardData.organization}
-        position={cardData.position}
-        positionClass={cardData.positionClass}
-        role={cardData.role}
-        avatarUrl={cardData.avatarUrl}
+        name={`${cardData.NOMBRE} ${cardData.APELLIDOS}`}
+        id={cardData?.IDCOLABORADOR}
+        organization={cardData?.ORGANIZACION}
+        position={cardData?.KEY_POSITION}
+        ELDP={cardData?.ELDP}
+        role={cardData?.PUESTO}
+        avatarUrl={`data:image/jpg;base64,${cardData?.FOTO}`}
         onArrowClick={openModal}
       />
 

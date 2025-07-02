@@ -25,6 +25,8 @@ import { ProtectedRoutes } from "./context/ProtectRoutes";
 import Permissions from "./containers/Permissions";
 import ReportLogin from "./containers/ReportLogin";
 import Organigrama from "./containers/Organigrama";
+import ErrorBoundary from './components/ErrorBoundary';
+
 
 Amplify.configure(awsExports);
 
@@ -73,6 +75,7 @@ function App() {
 
   return (
     <>
+    <ErrorBoundary>
       <BrowserRouter>
         <ScrollToTop />
         <CollaboratorsProvider signOut={signOut}>
@@ -96,6 +99,7 @@ function App() {
           </Routes>
         </CollaboratorsProvider>
       </BrowserRouter>
+      </ErrorBoundary>
     </>
   );
 }

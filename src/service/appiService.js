@@ -39,7 +39,7 @@ class ApiService {
     const { 
       useAmplify = true, // Controla si se usa AWS Amplify API.get o la simulación
       delay = false, 
-      errorSimulation = true,
+      errorSimulation = false,
       minDelay = 500,
       maxDelay = 1500 
     } = config;

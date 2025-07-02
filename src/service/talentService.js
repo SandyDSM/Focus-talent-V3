@@ -1,11 +1,11 @@
-import ApiService from './apiService.js';
+import ApiService from './appiService';
 
 /**
  * Servicio para obtener datos del mapa de talento
  */
 class TalentService extends ApiService {
   constructor() {
-    super('/orgchartmapatalento');
+    super('ORGCHART');
   }
 
   /**
@@ -14,6 +14,7 @@ class TalentService extends ApiService {
    * @returns {Promise} Datos de niveles de talento
    */
   async getTalentLevels(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
+    const path = "/orgchartmapatalento";
      const options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
@@ -46,7 +47,7 @@ class TalentService extends ApiService {
       }
     ];
 
-    return this.fetchData(options, mockData);
+    return this.fetchData(path, options, mockData);
   }
 
   /**
@@ -54,6 +55,7 @@ class TalentService extends ApiService {
    * @param {string} organizationId - ID de la organización
    * @returns {Promise} Estadísticas detalladas
    */
+  /*
   async getTalentStatistics(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
     const options = {
       headers: {}, // OPTIONAL
@@ -81,12 +83,13 @@ class TalentService extends ApiService {
 
     return this.fetchData(options, mockData);
   }
-
+*/
   /**
    * Obtiene los datos completos del mapa de talento
    * @param {string} organizationId - ID de la organización
    * @returns {Promise} Datos completos del mapa de talento
-   */
+   */ 
+  /*
   async getTalentMap(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
     const options = {
       headers: {}, // OPTIONAL
@@ -119,7 +122,7 @@ class TalentService extends ApiService {
       console.error('Error cargando datos del mapa de talento:', error);
       throw error;
     }
-  }
+  }*/
 }
 
 export default TalentService;

@@ -1,4 +1,3 @@
-
 import BannerUser from "../components/BannerUser";
 import HeadTeam from "../components/HeadTeam";
 
@@ -11,33 +10,22 @@ import ModalContainer from '../components/ModalContainer';
 import './Organigrama.css'; // Importar los estilos específicos
 import { Move, Trophy, Triangle } from 'lucide-react';
 
+// Importar nuevos componentes y hooks
+import { DataProvider, useDataContext, useOrganizationContext, useTalentContext, usePerformanceContext, useSuccessionContext } from '../context/organigram/DataProvider';
+import { LoadingOverlay, SkeletonLoader } from '../components/LoadingSpinner';
+import { DataErrorWrapper } from '../components/ErrorBoundary';
+
 /**
- * Componente que muestra un organigrama con un colaborador principal y sus colaboradores secundarios
- * @param {Object} props - Propiedades del componente
- * @param {Object} props.mainCollaborator - Datos del colaborador principal
- * @param {Array} props.teamMembers - Array de colaboradores secundarios
- * @param {Array} props.talentLevels - Array de niveles de talento para el mapa de talento
- * @param {Array} props.performanceCategories - Array de categorías de desempeño
- * @param {string} props.headerTitle - Título del encabezado
- * @param {string} props.banerSearch - Título para el HeadTeam
- * @returns {JSX.Element} Componente de organigrama
+ * Componente interno del organigrama que usa los datos del contexto
  */
-const OrganizationChart = ({
-  mainCollaborator = {
-    name: "Zurita Robles Kadir",
-    id: "2786036",
-    organization: "Organización Bimbo Brasil",
-    position: "Key Position",
-    positionClass: "ELDP Class 26",
-    role: "Supervisor production",
-    avatarUrl: null
-  },
-  teamMembers = [],
-  talentLevels = [],
-  performanceCategories = [],
-  headerTitle = "Daniel Jones / Zurita Robles Kadir",
-  banerSearch = "Equipo de Trabajo"
-}) => {
+const OrganizationChartContent = () => {
+  // Hooks para obtener datos de diferentes contextos
+  const { isLoading, isError, error, reloadData, progress } = useDataContext();
+  const { mainCollaborator, teamMembers, headerTitle, bannerSearch } = useOrganizationContext();
+  const { levels: talentLevels } = useTalentContext();
+  const { categories: performanceCategories } = usePerformanceContext();
+  const { candidates: successionCandidates } = useSuccessionContext();
+
   // Estado para controlar el nivel de zoom
   const [zoomLevel, setZoomLevel] = useState(1);
   // Estados para controlar si las tarjetas están minimizadas
@@ -48,73 +36,8 @@ const OrganizationChart = ({
   // Referencia al contenedor de scroll
   const scrollContainerRef = useRef(null);
 
-  // Si no se proporcionan colaboradores secundarios, usar datos por defecto
-  const defaultTeamMembers = [
-    {
-      name: "Connor O'Malley",
-      id: "2786036",
-      organization: "Organización Bimbo Brasil",
-      position: "Key Position",
-      positionClass: "ELDP Class 26",
-      role: "Supervisor production",
-      avatarUrl: null,
-      borderColor: "#36B37E" // Verde
-    },
-    {
-      name: "Mateo Ríos",
-      id: "2786036",
-      organization: "Organización Bimbo Brasil",
-      position: "Key Position",
-      positionClass: "D Class 26",
-      role: "Supervisor production",
-      avatarUrl: null,
-      borderColor: "#FFAB00" // Amarillo
-    },
-    {
-      name: "Sofia Dimitrova",
-      id: "2786036",
-      organization: "Organización Bimbo Brasil",
-      position: "Key Position",
-      positionClass: "D Class 26",
-      role: "Supervisor production",
-      avatarUrl: null,
-      borderColor: "#00B8D9" // Azul claro
-    },
-    {
-      name: "Alejandro Guzmán",
-      id: "2786036",
-      organization: "Organización Bimbo Brasil",
-      position: "Key Position",
-      positionClass: "D Class 26",
-      role: "Supervisor production",
-      avatarUrl: null,
-      borderColor: "#FF5630" // Rojo
-    }
-  ];
-
-  // Si no se proporcionan niveles de talento, usar datos por defecto
-  const defaultTalentLevels = [
-    { name: 'Alto Potencial', percentage: 20, color: '#0052CC' },
-    { name: 'Talento promesa', percentage: 20, color: '#00B8D9' },
-    { name: 'Talento Esencial', percentage: 20, color: '#36B37E' },
-  ];
-
-  // Si no se proporcionan categorías de desempeño, usar datos por defecto
-  const defaultPerformanceCategories = [
-    { name: 'Sobresaliente', percentage: 20, color: '#0052CC' },
-    { name: 'Supera', percentage: 20, color: '#00B8D9' },
-    { name: 'Gran trabajo', percentage: 20, color: '#36B37E' },
-    { name: 'Necesita mejora', percentage: 20, color: '#FFAB00' },
-    { name: 'Por debajo de lo esperado', percentage: 20, color: '#FF8B00' },
-    { name: 'Salida', percentage: 0, color: '#FF5630' },
-  ];
-
-  const displayTeamMembers = teamMembers.length > 0 ? teamMembers : defaultTeamMembers;
-  const displayTalentLevels = talentLevels.length > 0 ? talentLevels : defaultTalentLevels;
-  const displayPerformanceCategories = performanceCategories.length > 0 ? performanceCategories : defaultPerformanceCategories;
-
-  // Datos para los colaboradores que aparecen en el modal (diferentes a los del organigrama)
-  const modalTeamMembers = [
+  // Datos para los colaboradores que aparecen en el modal (usar datos de sucesión si están disponibles)
+  const modalTeamMembers = successionCandidates.length > 0 ? successionCandidates : [
     {
       name: "Ricardo Fernández",
       id: "3456789",
@@ -130,9 +53,9 @@ const OrganizationChart = ({
       assessmentKF: "2023",
       profileMatch: "-",
       pid: "85%",
-      pidColor: "#36B37E", // Verde
+      pidColor: "#36B37E",
       avatarUrl: null,
-      borderColor: "#9254DE" // Púrpura
+      borderColor: "#9254DE"
     },
     {
       name: "Laura Mendoza",
@@ -149,9 +72,9 @@ const OrganizationChart = ({
       assessmentKF: "2024",
       profileMatch: "-",
       pid: "92%",
-      pidColor: "#36B37E", // Verde
+      pidColor: "#36B37E",
       avatarUrl: null,
-      borderColor: "#F759AB" // Rosa
+      borderColor: "#F759AB"
     },
     {
       name: "Carlos Vega",
@@ -168,36 +91,36 @@ const OrganizationChart = ({
       assessmentKF: "2023",
       profileMatch: "-",
       pid: "78%",
-      pidColor: "#36B37E", // Verde
+      pidColor: "#36B37E",
       avatarUrl: null,
-      borderColor: "#13C2C2" // Turquesa
+      borderColor: "#13C2C2"
     }
   ];
 
   // Crear datos para el modal del colaborador principal
-  const mainModalData = {
+  const mainModalData = mainCollaborator ? {
     mainCollaborator: {
-      name: mainCollaborator.name,
-      id: mainCollaborator.id,
-      organization: mainCollaborator.organization,
-      role: mainCollaborator.role,
-      age: "42 años", // Valor por defecto
-      avatarUrl: mainCollaborator.avatarUrl
+      name: `${mainCollaborator.NOMBRE} ${mainCollaborator.APELLIDOS}`,
+      id: mainCollaborator.IDCOLABORADOR,
+      organization: mainCollaborator.ORGANIZACION,
+      role: mainCollaborator.PUESTO,
+      age: mainCollaborator.EDAD,
+      avatarUrl: `data:image/jpg;base64,${mainCollaborator?.FOTO}`
     },
-    teamMembers: modalTeamMembers // Usar los colaboradores diferentes para el modal
-  };
+    teamMembers: modalTeamMembers
+  } : null;
 
   // Crear datos para los modales de los colaboradores secundarios
-  const teamMemberModals = displayTeamMembers.map(member => ({
+  const teamMemberModals = teamMembers.map(member => ({
     mainCollaborator: {
-      name: member.name,
-      id: member.id,
-      organization: member.organization,
-      role: member.role,
-      age: "38 años", // Valor por defecto
-      avatarUrl: member.avatarUrl
+      name: `${member.NOMBRE} ${member.APELLIDOS}`,
+      id: member.IDCOLABORADOR,
+      organization: member.ORGANIZACION,
+      role: member.PUESTO,
+      age: member.EDAD, // Valor por defecto
+      avatarUrl: `data:image/jpg;base64,${member?.FOTO}`
     },
-    teamMembers: modalTeamMembers // Usar los colaboradores diferentes para el modal
+    teamMembers: modalTeamMembers
   }));
 
   // Funciones para alternar el estado de las tarjetas
@@ -216,15 +139,10 @@ const OrganizationChart = ({
       const containerWidth = container.clientWidth;
       const scrollWidth = container.scrollWidth;
 
-      // Calcular la posición para el scroll horizontal
-      // Usar un valor fijo más pequeño para permitir ver el contenido izquierdo
-      const leftX = 100; // Valor fijo para permitir ver el contenido izquierdo
-      
-      // Posición vertical mejorada
+      const leftX = 100;
       const dynamicPaddingTop = 150 * zoomLevel;
       const topY = Math.max(0, dynamicPaddingTop - 100);
 
-      // Aplicar el scroll con animación suave
       container.scrollTo({
         left: leftX,
         top: topY,
@@ -235,50 +153,102 @@ const OrganizationChart = ({
 
   // useEffect para centrar el organigrama cada vez que cambie el zoom
   useEffect(() => {
-    // Usar setTimeout para asegurar que el DOM se haya actualizado después del cambio de zoom
     const timer = setTimeout(() => {
       centerOrganigram();
-    }, 150); // Aumentar el delay para permitir que termine completamente la transición
+    }, 150);
 
     return () => clearTimeout(timer);
-  }, [zoomLevel]); // Se ejecuta cada vez que cambia el zoomLevel
+  }, [zoomLevel]);
 
   // Función para aumentar el zoom
   const handleZoomIn = () => {
-    setZoomLevel(prevZoom => Math.min(prevZoom + 0.2, 2.5)); // Limitar el zoom máximo a 2.5
+    setZoomLevel(prevZoom => Math.min(prevZoom + 0.2, 2.5));
   };
 
   // Función para disminuir el zoom
   const handleZoomOut = () => {
-    setZoomLevel(prevZoom => Math.max(prevZoom - 0.2, 0.7)); // Cambiar el zoom mínimo a 0.7 para evitar problemas de texto
+    setZoomLevel(prevZoom => Math.max(prevZoom - 0.2, 0.7));
   };
 
   // Calcular el tamaño del contenedor del organigrama basado en el zoom
-  const chartWidth = 1400 * zoomLevel; // Ancho base del organigrama
-  const chartHeight = 800 * zoomLevel; // Aumentar el alto base del organigrama para más espacio vertical
+  const chartWidth = 1400 * zoomLevel;
+  const chartHeight = 800 * zoomLevel;
 
   // Calcular padding dinámico basado en el nivel de zoom
-  const dynamicPaddingTop = 150 * zoomLevel; // Padding superior que crece con el zoom
-  const dynamicPaddingBottom = 150 * zoomLevel; // Padding inferior que crece con el zoom
+  const dynamicPaddingTop = 150 * zoomLevel;
+  const dynamicPaddingBottom = 150 * zoomLevel;
 
   // Estilos para el contenedor del organigrama con zoom
   const orgChartStyle = {
     transform: `scale(${zoomLevel})`,
-    transformOrigin: 'center top', // Cambiar a 'center top' para mejor centrado
+    transformOrigin: 'center top',
     transition: 'transform 0.3s ease',
-    width: '1400px', // Ancho fijo del organigrama
-    height: '600px', // Alto fijo del organigrama
+    width: '5000px',
+    height: '600px',
   };
 
+  // Mostrar overlay de carga mientras se cargan los datos
+  if (isLoading) {
+    return (
+      <LoadingOverlay 
+        loading={true} 
+        progress={progress}
+        message="Cargando datos del organigrama..."
+      >
+        <div className="h-screen flex flex-col bg-gray-100">
+          <div className="z-40">
+            <SkeletonLoader className="h-16 bg-gray-200" />
+          </div>
+          <div className="z-20 bg-gray-100 flex justify-between items-center p-6">
+            <SkeletonLoader className="h-6 w-64" />
+            <SkeletonLoader className="h-10 w-20" />
+          </div>
+          <div className="flex-grow">
+            <SkeletonLoader className="h-full w-full" />
+          </div>
+        </div>
+      </LoadingOverlay>
+    );
+  }
+
+  // Mostrar error si hay problemas cargando los datos
+  if (isError) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gray-50">
+        <DataErrorWrapper 
+          loading={false}
+          error={error}
+          onRetry={reloadData}
+        />
+      </div>
+    );
+  }
+
+  // Verificar que tenemos los datos mínimos necesarios
+  if (!mainCollaborator) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gray-50">
+        <DataErrorWrapper 
+          loading={false}
+          error="No se pudieron cargar los datos del colaborador principal"
+          onRetry={reloadData}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="h-screen flex flex-col"> {/* Solo esta página sin scroll */}
+    <div className="h-screen flex flex-col">
       {/* Primer Header - BannerUser */}
-      <div className=" z-40">
+      <div className="z-40">
         <BannerUser />
       </div>
+      
       {/* Tercer Header - Header del Organigrama */}
       <div className="z-20 bg-gray-100 flex justify-between items-center p-6" style={{ top: '120px' }}>
-        <h1 className="text-xl font-semibold text-gray-800">{headerTitle}</h1>
+        <h1 className="text-xl font-semibold text-gray-800">
+          {headerTitle || `${mainCollaborator.NOMBRE} - Organigrama`}
+        </h1>
         <div className="controls flex space-x-2">
           <button 
             className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
@@ -307,16 +277,13 @@ const OrganizationChart = ({
       </div>
 
       {/* Contenedor principal del organigrama */}
-      <div className="organization-chart-wrapper  bg-gray-100 flex-grow" style={{ paddingTop: '10px' }}>
-        {/* Cards laterales con funcionalidad de minimizar/maximizar */}
-        
+      <div className="organization-chart-wrapper bg-gray-100 flex-grow" style={{ paddingTop: '10px' }}>
         {/* Mapa de talento - esquina superior izquierda */}
         <div 
-          className= "fixed left-6 transition-all duration-300 ease-in-out z-50" 
+          className="fixed left-6 transition-all duration-300 ease-in-out z-50" 
           style={{ top: '220px' }}
         >
           {isCardMapaMinimized ? (
-            // Versión minimizada - icono
             <div 
               className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow duration-200 cursor-pointer flex items-center justify-center"
               onClick={toggleCardMapa}
@@ -325,13 +292,11 @@ const OrganizationChart = ({
               <Triangle strokeWidth={3} className="w-6 h-6 text-blue-800" />
             </div>
           ) : (
-            // Versión expandida - tarjeta completa
             <div className={`relative ${!isCardMapaMinimized ? 'animate-fadeIn' : ''}`}>
               <CardMapa 
                 title="Mapa de talento" 
-                levels={displayTalentLevels} 
+                levels={talentLevels} 
               />
-              {/* Indicador de que se puede minimizar */}
               <div 
                 className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm hover:shadow transition-all duration-200"
                 onClick={toggleCardMapa}
@@ -351,7 +316,6 @@ const OrganizationChart = ({
           style={{ top: '220px' }}
         >
           {isPerformanceCardMinimized ? (
-            // Versión minimizada - icono
             <div 
               className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow duration-200 cursor-pointer flex items-center justify-center"
               onClick={togglePerformanceCard}
@@ -360,15 +324,13 @@ const OrganizationChart = ({
               <Trophy strokeWidth={3} className="w-6 h-6 text-blue-800" />
             </div>
           ) : (
-            // Versión expandida - tarjeta completa
             <div className={`relative ${!isPerformanceCardMinimized ? 'animate-fadeIn' : ''}`}>
               <CardCompetencias 
                 title="Calificación de desempeño" 
-                categories={displayPerformanceCategories} 
+                categories={performanceCategories} 
               />
-              {/* Indicador de que se puede minimizar */}
               <div 
-                className="absolute top-2 left-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm hover:shadow transition-all duration-200"
+                className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm hover:shadow transition-all duration-200"
                 onClick={togglePerformanceCard}
                 title="Minimizar calificación de desempeño"
               >
@@ -388,83 +350,81 @@ const OrganizationChart = ({
             paddingLeft: '20px',
             paddingRight: '20px',
             paddingBottom: '20px',
-            scrollBehavior: 'smooth' // Añadir scroll suave
+            scrollBehavior: 'smooth'
           }}
         >
-          {/* Contenedor que define el área scrolleable con padding dinámico */}
           <div 
             style={{
               width: `${chartWidth}px`,
-              height: `${chartHeight + dynamicPaddingTop + dynamicPaddingBottom}px`, // Altura total incluyendo padding dinámico
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'flex-center',
-              paddingTop: `${dynamicPaddingTop}px`, // Padding superior dinámico
-              paddingBottom: `${dynamicPaddingBottom}px` // Padding inferior dinámico
+              height: `${chartHeight + dynamicPaddingTop + dynamicPaddingBottom}px`,
+              paddingTop: `${dynamicPaddingTop}px`,
+              paddingBottom: `${dynamicPaddingBottom}px`,
             }}
           >
-            {/* Organigrama con zoom (solo esta parte se escala) */}
             <div 
               ref={chartContainerRef}
-              className="org-chart-content"
+              className="organization-chart-container relative"
               style={orgChartStyle}
             >
-              {/* Contenido del organigrama */}
-              <div className="flex flex-col items-center">
-                {/* Colaborador principal */}
-                <div className="main-collaborator mb-8">
-                  <div className="w-80">
+              {/* Colaborador principal */}
+              <div className="main-collaborator absolute" style={{ top: '-50px', left: '50%', transform: 'translateX(-50%)' }}>
+                {mainModalData && (
+                  <ModalContainer 
+                    cardData={mainCollaborator}
+                    modalData={mainModalData}
+                  />
+                )}
+              </div>
+
+              {/* Líneas de conexión */}
+              <svg className="connection-lines absolute inset-0 pointer-events-none" style={{ width: '100%', height: '100%' }}>
+                <line x1="50%" y1="200" x2="50%" y2="280" stroke="#E5E7EB" strokeWidth="2" />
+                <line x1="20%" y1="280" x2="80%" y2="280" stroke="#E5E7EB" strokeWidth="2" />
+                {teamMembers.map((_, index) => {
+                  const xPosition = 20 + (index * 20);
+                  return (
+                    <line key={index} x1={`${xPosition}%`} y1="280" x2={`${xPosition}%`} y2="320" stroke="#E5E7EB" strokeWidth="2" />
+                  );
+                })}
+              </svg>
+
+              {/* Colaboradores secundarios */}
+              <div className="team-members absolute flex justify-center space-x-8" style={{ top: '350px', left: '50%', transform: 'translateX(-50%)', width: '1200px' }}>
+                {teamMembers.map((member, index) => (
+                  <div key={member.id || index} className="team-member">
                     <ModalContainer 
-                      cardData={mainCollaborator}
-                      modalData={mainModalData}
+                      cardData={member}
+                      modalData={teamMemberModals[index]}
                     />
                   </div>
-                </div>
-
-                {/* Línea vertical desde el colaborador principal */}
-                <div className="vertical-line h-16 w-0.5 bg-gray-300 mb-0"></div>
-
-                {/* Línea horizontal para los colaboradores secundarios */}
-                 <div className="horizontal-line relative w-full max-w-7xl h-0.5 bg-gray-300 mb-8">
-                  {/* Líneas verticales para cada colaborador secundario */}
-                  <div className="vertical-lines flex justify-between absolute w-full">
-                    {displayTeamMembers.map((_, index) => (
-                      <div key={index} className="vertical-line h-16 w-0.5 bg-gray-300"></div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Colaboradores secundarios */}
-                <div className="team-members-container grid grid-cols-4 gap-4 w-full max-w-full">
-                  {displayTeamMembers.map((member, index) => (
-                    <div key={index} className="team-member-card w-80">
-                      <ModalContainer 
-                        cardData={member}
-                        modalData={teamMemberModals[index]}
-                      />
-                    </div>
-                  ))}
-                </div>
-
+                ))}
               </div>
             </div>
           </div>
         </div>
-
-        {/* Botón de navegación en la esquina inferior derecha (fijo) */}
-        <div className="navigation-button fixed bottom-6 right-6 z-30">
-          <button className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-100">
-            <Move/>
-          </button>
-        </div>
-
-        {/* Indicador de nivel de zoom */}
-        <div className="zoom-level-indicator fixed bottom-6 left-6 z-30">
-          <span className="text-sm font-medium">{Math.round(zoomLevel * 100)}%</span>
-        </div>
       </div>
     </div>
+  );
+};
+
+/**
+ * Componente principal del organigrama con proveedor de datos
+ * @param {Object} props - Propiedades del componente
+ * @param {string} props.organizationId - ID de la organización
+ * @param {string} props.collaboratorId - ID del colaborador principal
+ * @returns {JSX.Element} Componente de organigrama
+ */
+const OrganizationChart = ({
+  organizationId = 'bimbo-brasil',
+  collaboratorId = '2786036'
+}) => {
+  return (
+    <DataProvider 
+      organizationId={organizationId}
+      collaboratorId={collaboratorId}
+    >
+      <OrganizationChartContent />
+    </DataProvider>
   );
 };
 

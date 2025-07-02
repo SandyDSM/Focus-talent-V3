@@ -9,7 +9,7 @@ import { loadOrganizationData } from '../services/index.js';
  */
 export const useOrganizationData = (
   organizationId = 'bimbo-brasil', 
-  collaboratorId = '2786036'
+  collaboratorId = '1111111'
 ) => {
   const [state, setState] = useState({
     data: null,
