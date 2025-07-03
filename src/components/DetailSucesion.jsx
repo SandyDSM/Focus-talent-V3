@@ -21,7 +21,10 @@ const CollaboratorModal = ({
     age: "42 años",
     avatarUrl: null
   }, 
-  teamMembers = [] 
+  teamMembers = [] ,
+  borde,
+  propiedad,
+  PERF_ID
 }) => {
   // Si no se proporcionan colaboradores secundarios, usar datos por defecto
   const defaultTeamMembers = [
@@ -110,7 +113,7 @@ const CollaboratorModal = ({
       {/* Encabezado con información del colaborador principal */}
       <div className="flex justify-between items-center mb-8 pb-2">
         <div className="flex items-center">
-          <div className="avatar-container w-20 h-20 rounded-full bg-blue-500 border-4 border-blue-300 mr-4 overflow-hidden">
+          <div className={`avatar-container w-20 h-20 rounded-full bg-blue-500 border-4 mr-4 overflow-hidden ${borde[PERF_ID]}`}>
             {mainCollaborator.avatarUrl ? (
               <img src={mainCollaborator.avatarUrl} alt={mainCollaborator.name} className="w-full h-full object-cover" />
             ) : (
@@ -135,7 +138,7 @@ const CollaboratorModal = ({
             <div className="text-gray-800 font-bold">{mainCollaborator.role}</div>
           </div>
           <div className="scale-200 m-4">
-            <Piramide/>
+            <Piramide property1={propiedad}/>
           </div>
         </div>
       </div>
@@ -148,6 +151,7 @@ const CollaboratorModal = ({
               <EncabezadoSuccs
                 member = {member}
                 getInitials = {getInitials}
+                borde = {borde}
               />
           </div>
           ))}

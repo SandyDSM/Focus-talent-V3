@@ -8,7 +8,6 @@ import { loadOrganizationData } from '../services/index.js';
  * @returns {Object} Estado de carga con datos, loading, error y funciones de control
  */
 export const useOrganizationData = (
-  organizationId = 'bimbo-brasil', 
   collaboratorId = '1111111'
 ) => {
   const [state, setState] = useState({
@@ -31,7 +30,7 @@ export const useOrganizationData = (
       // Simular progreso de carga
       updateProgress(25);
       
-      const result = await loadOrganizationData(organizationId, collaboratorId);
+      const result = await loadOrganizationData(collaboratorId);
       
       updateProgress(100);
       
@@ -52,7 +51,7 @@ export const useOrganizationData = (
       });
       throw error;
     }
-  }, [organizationId, collaboratorId, updateProgress]);
+  }, [collaboratorId, updateProgress]);
 
   // Función para recargar datos
   const reload = useCallback(() => {

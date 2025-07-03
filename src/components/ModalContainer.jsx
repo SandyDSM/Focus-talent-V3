@@ -13,7 +13,7 @@ import { createPortal } from 'react-dom';
  * @param {Object} props.modalData - Datos para el modal de colaborador
  * @returns {JSX.Element} Componente contenedor
  */
-const ModalContainer = ({ cardData,modalData,jefe }) => {
+const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin America)'  }) => {
   // Estado para controlar la visibilidad del modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,6 +26,34 @@ const ModalContainer = ({ cardData,modalData,jefe }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+      const borde = {
+      '1': 'border-[#0561F4]',
+      '2': 'border-[#00CDFF]',
+      '3': 'border-[#99C570]',
+      '4': 'border-[#FFFE03]',
+      '5': 'border-[#FCBF04]',
+      '6': 'border-[#FE0003]'
+    };
+  
+    const variantes = {
+    es: {
+      1: 'S-AP',
+      2: 'S-TP',
+      3: 'S-TE',
+      4: 'S-0',
+      5: 'S-0'
+    },
+    en: {
+      1: 'E-HP',
+      2: 'E-PT',
+      3: 'E-ET',
+      4: 'E-0',
+      5: 'E-0'
+    }
+  };
+  const idioma = (language === 'Spanish (Latin America)' || language === 'Spanish (Spain)') ? 'es' : 'en';
+  const propiedad = variantes[idioma][cardData?.POT_MAP_ID];
 
   // Componente del modal que se renderizará en el portal
   const ModalContent = () => (
@@ -55,6 +83,10 @@ const ModalContainer = ({ cardData,modalData,jefe }) => {
         <DetailSucesion 
           mainCollaborator={modalData.mainCollaborator}
           teamMembers={modalData.teamMembers}
+          borde = {borde}
+          propiedad = {propiedad}
+          PERF_ID = {cardData?.PERF_ID}
+
         />
       </div>
     </div>
@@ -75,8 +107,8 @@ const ModalContainer = ({ cardData,modalData,jefe }) => {
         onArrowClick={openModal}
         jefe={jefe}
         PERF_ID = {cardData?.PERF_ID}
-        POT_MAP_ID = {cardData?.POT_MAP_ID}
-        language = {'Spanish (Latin America)'}
+        borde = {borde}
+        propiedad = {propiedad}
       />
 
       {/* Modal renderizado en un portal para que se expanda en toda la página */}

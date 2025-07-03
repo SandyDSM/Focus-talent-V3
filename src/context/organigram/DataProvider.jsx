@@ -237,10 +237,10 @@ export const usePerformanceContext = () => {
 export const useSuccessionContext = () => {
   const { successionData, isLoading, isError, error } = useDataContext();
   
+  //console.log("SCSD",successionData)
   return {
     mainCollaborator: successionData?.mainCollaborator || null,
-    candidates: successionData?.candidates || [],
-    riskMetrics: successionData?.riskMetrics || null,
+    candidates: successionData || [],
     isLoading,
     isError,
     error

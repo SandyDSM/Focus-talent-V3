@@ -1,20 +1,28 @@
-import ApiService from './appiService';
+import ApiService from './appiService.js';
 
 /**
  * Servicio para obtener datos de planes de sucesión
  */
 class SuccessionService extends ApiService {
   constructor() {
-    super('https://api.succession.com');
+    super('ORGCHART'); // Usar el nombre de la API de Amplify
   }
 
   /**
    * Obtiene los candidatos de sucesión para un colaborador
    * @param {string} collaboratorId - ID del colaborador
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Candidatos de sucesión
    */
-  async getSuccessionCandidates(collaboratorId = '2786036') {
-    const endpoint = `/api/v1/collaborators/${collaboratorId}/succession-candidates`;
+
+  async getSuccessionCandidates(collaboratorId = '1111111', options = {}) {
+    const path = "/successiondata";
+    options = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        USER_ID: `'${collaboratorId}'`
+      }
+    };
     
     const mockData = [
       {
@@ -35,9 +43,7 @@ class SuccessionService extends ApiService {
         pidColor: "#36B37E",
         avatarUrl: null,
         borderColor: "#9254DE",
-        statusColor: "#36B37E",
-        readiness: "short-term",
-        riskLevel: "low"
+        statusColor: "#36B37E"
       },
       {
         name: "Laura Mendoza",
@@ -57,9 +63,7 @@ class SuccessionService extends ApiService {
         pidColor: "#36B37E",
         avatarUrl: null,
         borderColor: "#F759AB",
-        statusColor: "#FFAB00",
-        readiness: "medium-term",
-        riskLevel: "medium"
+        statusColor: "#FFAB00"
       },
       {
         name: "Carlos Vega",
@@ -79,22 +83,23 @@ class SuccessionService extends ApiService {
         pidColor: "#36B37E",
         avatarUrl: null,
         borderColor: "#13C2C2",
-        statusColor: "#FF5630",
-        readiness: "long-term",
-        riskLevel: "high"
+        statusColor: "#FF5630"
       }
     ];
 
-    return this.fetchData(endpoint, mockData);
+    const fetchOptions = { ...options, mockData: mockData };
+    return this.fetchData(path, fetchOptions, { useAmplify: true });
   }
 
   /**
    * Obtiene el plan de desarrollo para un candidato
    * @param {string} candidateId - ID del candidato
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Plan de desarrollo
    */
-  async getDevelopmentPlan(candidateId) {
-    const endpoint = `/api/v1/candidates/${candidateId}/development-plan`;
+  /*
+  async getDevelopmentPlan(candidateId, options = {}) {
+    const path = `/api/v1/candidates/${candidateId}/development-plan`;
     
     const mockData = {
       candidateId: candidateId,
@@ -128,16 +133,19 @@ class SuccessionService extends ApiService {
       lastReview: "2024-03-01"
     };
 
-    return this.fetchData(endpoint, mockData);
+    const fetchOptions = { ...options, mockData: mockData };
+    return this.fetchData(path, fetchOptions, { useAmplify: false });
   }
-
+*/
   /**
    * Obtiene métricas de riesgo de sucesión
    * @param {string} organizationId - ID de la organización
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Métricas de riesgo
    */
-  async getSuccessionRisk(organizationId = 'bimbo-brasil') {
-    const endpoint = `/api/v1/organizations/${organizationId}/succession-risk`;
+  /*
+  async getSuccessionRisk(organizationId = 'bimbo-brasil', options = {}) {
+    const path = `/api/v1/organizations/${organizationId}/succession-risk`;
     
     const mockData = {
       organizationId: organizationId,
@@ -158,31 +166,38 @@ class SuccessionService extends ApiService {
       lastAssessment: "2024-03-01"
     };
 
-    return this.fetchData(endpoint, mockData);
+    const fetchOptions = { ...options, mockData: mockData };
+    return this.fetchData(path, fetchOptions, { useAmplify: false });
   }
-
+*/
   /**
    * Obtiene los datos completos de sucesión para un colaborador
    * @param {string} collaboratorId - ID del colaborador
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos de sucesión
    */
-  async getSuccessionData(collaboratorId = '2786036') {
-    const endpoint = `/api/v1/collaborators/${collaboratorId}/succession-data`;
+  async getSuccessionData(collaboratorId = '1111111', options = {}) {
+    const path = "/successiondata";
+    options = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        USER_ID: `'${collaboratorId}'`
+      }
+    };
     
     try {
       // Cargar datos en paralelo
-      const [candidatesResponse, riskResponse] = await Promise.all([
-        this.getSuccessionCandidates(collaboratorId),
-        this.getSuccessionRisk()
+      const [candidatesResponse] = await Promise.all([
+        this.getSuccessionCandidates(collaboratorId, options),
       ]);
 
-      // Obtener planes de desarrollo para cada candidato
+      /* Obtener planes de desarrollo para cada candidato
       const developmentPlans = await Promise.all(
         candidatesResponse.data.map(candidate => 
-          this.getDevelopmentPlan(candidate.id)
+          this.getDevelopmentPlan(candidate.id, options)
         )
       );
-
+*/
       const successionData = {
         mainCollaborator: {
           id: collaboratorId,
@@ -192,13 +207,14 @@ class SuccessionService extends ApiService {
         },
         candidates: candidatesResponse.data.map((candidate, index) => ({
           ...candidate,
-          developmentPlan: developmentPlans[index].data
+ //         developmentPlan: developmentPlans[index].data
         })),
-        riskMetrics: riskResponse.data,
         lastUpdated: new Date().toISOString()
       };
 
-      return this.fetchData(endpoint, successionData, { delay: false });
+      const fetchOptions = { ...options, mockData: successionData };
+      console.log("SUCCESSION",successionData)
+      return this.fetchData(path, fetchOptions, { delay: false, useAmplify: true });
     } catch (error) {
       console.error('Error cargando datos de sucesión:', error);
       throw error;

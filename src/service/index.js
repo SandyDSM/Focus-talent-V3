@@ -9,11 +9,14 @@ import ApiService from './appiService.js';
 import OrganizationService from './organizationService.js';
 import TalentService from './talentService.js';
 import PerformanceService from './performanceService.js';
+import SuccessionService from './successionService.js';
+
 
 // Instancias de servicios para uso global
 export const organizationService = new OrganizationService();
 export const talentService = new TalentService();
 export const performanceService = new PerformanceService();
+export const successionService = new SuccessionService();
 
 // Exportar clases para instanciación personalizada
 export {
@@ -21,6 +24,7 @@ export {
   OrganizationService,
   TalentService,
   PerformanceService,
+  SuccessionService
 };
 
 /**
@@ -44,10 +48,13 @@ export const loadOrganizationData = async (
       organizationData,
       talentData,
       performanceData,
+      successionData
     ] = await Promise.all([
       organizationService.getOrganizationChart(collaboratorId, usuarioActualDatos),
       talentService.getTalentMap(collaboratorId, usuarioActualDatos),
       performanceService.getPerformanceData(collaboratorId, usuarioActualDatos),
+      successionService.getSuccessionData(collaboratorId)
+
     ]);
 
     const loadTime = Date.now() - startTime;
@@ -57,6 +64,7 @@ export const loadOrganizationData = async (
       organization: organizationData.data,
       talent: talentData.data,
       performance: performanceData.data,
+      succession: successionData.data,
       loadTime: loadTime,
       timestamp: new Date().toISOString()
     };

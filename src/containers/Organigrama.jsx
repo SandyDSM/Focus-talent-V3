@@ -25,6 +25,7 @@ const OrganizationChartContent = () => {
   const { levels: talentLevels } = useTalentContext();
   const { categories: performanceCategories } = usePerformanceContext();
   const { candidates: successionCandidates } = useSuccessionContext();
+  const {usuarioActualDatos} = useContext(CollaboratorsContext);
 
   //console.log("LEVELS", talentLevels)
 
@@ -38,7 +39,7 @@ const OrganizationChartContent = () => {
   // Referencia al contenedor de scroll
   const scrollContainerRef = useRef(null);
 
-  //console.log("AQUI",categories)
+  //console.log("AQUI",successionCandidates)
 
   // Datos para los colaboradores que aparecen en el modal (usar datos de sucesión si están disponibles)
   const modalTeamMembers = successionCandidates.length > 0 ? successionCandidates : [
