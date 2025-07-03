@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useTalentContext } from '../context/organigram/DataProvider';
+import { SkeletonLoader } from './LoadingSpinner';
 
 const Tooltip = ({ x, y, label, visible }) => {
   if (!visible) return null;
@@ -15,6 +17,7 @@ const Tooltip = ({ x, y, label, visible }) => {
           borderRadius: "6px",
           fontSize: "12px",
           textAlign: "center",
+          boxSizing: "border-box",
           boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
           whiteSpace: "nowrap",
           minWidth: "max-content",
@@ -26,14 +29,35 @@ const Tooltip = ({ x, y, label, visible }) => {
   );
 };
 
-const TriangularChart = ({ altoPotencial, talentoPromesa, talentoEsencial }) => {
-  const total = altoPotencial + talentoPromesa + talentoEsencial;
+const TriangularChart = ({ sections, isLoading = false }) => {
   const width = 280;
   const height = 180;
 
-  const heightAltoPotencial = (altoPotencial / total) * height;
-  const heightTalentoPromesa = (talentoPromesa / total) * height;
-  const heightTalentoEsencial = (talentoEsencial / total) * height;
+  // Declaración del estado tooltip
+  const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, label: "" });
+
+  // Si está cargando, mostrar valores por defecto
+  if (isLoading || !sections || sections.length === 0) {
+    return (
+      <div className="flex items-center gap-4">
+        <div className="relative">
+          <SkeletonLoader className="w-48 h-32 rounded" />
+        </div>
+        <div className="content-start space-y-6">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <div className="flex justify-between gap-3 w-full">
+                <SkeletonLoader className="h-4 w-24" />
+                <SkeletonLoader className="h-4 w-8" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  let currentY = 0;
 
   const getTriangleWidthAtY = (y) => {
     const halfBase = (width / 2) * (y / height);
@@ -46,32 +70,6 @@ const TriangularChart = ({ altoPotencial, talentoPromesa, talentoEsencial }) => 
     return `${x1Left},${y1} ${x1Right},${y1} ${x2Right},${y2} ${x2Left},${y2}`;
   };
 
-  let currentY = 0;
-
-  // Colores que coinciden con la imagen de referencia
-  const secciones = [
-    { 
-      label: "Alto Potencial", 
-      color: "#0A5DEE", // Azul oscuro
-      height: heightAltoPotencial, 
-      value: altoPotencial 
-    },
-    { 
-      label: "Talento Promesa", 
-      color: "#3EC4FA", // Turquesa/Cyan
-      height: heightTalentoPromesa, 
-      value: talentoPromesa 
-    },
-    { 
-      label: "Talento Esencial", 
-      color: "#81DE8D", // Verde
-      height: heightTalentoEsencial, 
-      value: talentoEsencial 
-    },
-  ];
-
-  const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, label: "" });
-
   return (
     <div className="flex items-center gap-4">
       {/* Gráfico triangular */}
@@ -81,7 +79,7 @@ const TriangularChart = ({ altoPotencial, talentoPromesa, talentoEsencial }) => 
           aria-label="Gráfico triangular de evaluación de talento"
           viewBox={`0 0 ${width} ${height}`}
           className="w-48 h-auto drop-shadow-sm"
-          onMouseLeave={() => setTooltip({ ...tooltip, visible: false })}
+          onMouseLeave={() => setTooltip({ visible: false, x: 0, y: 0, label: "" })}
         >
           <title>Mapa de talento</title>
 
@@ -101,7 +99,7 @@ const TriangularChart = ({ altoPotencial, talentoPromesa, talentoEsencial }) => 
           />
 
           {/* Secciones animadas */}
-          {secciones.map((s, i) => {
+          {sections.map((s, i) => {
             const y1 = currentY;
             const y2 = y1 + s.height;
             const polygon = buildPolygon(y1, y2);
@@ -142,7 +140,7 @@ const TriangularChart = ({ altoPotencial, talentoPromesa, talentoEsencial }) => 
 
       {/* Leyenda a la derecha */}
       <div className="content-start space-y-6">
-        {secciones.map((s, i) => (
+        {sections.map((s, i) => (
           <motion.div 
             key={i} 
             className="flex items-center gap-2"
@@ -161,19 +159,88 @@ const TriangularChart = ({ altoPotencial, talentoPromesa, talentoEsencial }) => 
   );
 };
 
-export default function App() {
-  const [data, setData] = useState({ 
-    altoPotencial: 20, 
-    talentoPromesa: 30, 
-    talentoEsencial: 50 
-  });
+/**
+ * Componente principal del mapa de talento
+ * Ahora obtiene los datos desde el contexto de talent
+ * @param {Object} props - Propiedades del componente
+ * @param {Array} props.levels - Niveles de talento (opcional, usa contexto por defecto)
+ * @returns {JSX.Element} Componente del mapa de talento
+ */
+export default function CardMapa({ levels = null }) {
+  // Obtener datos del contexto si no se proporcionan levels
+  const { levels: contextLevels, isLoading, isError } = useTalentContext();
+  
+  // Usar levels proporcionados o del contexto
+  const displayLevels = levels || contextLevels;
+
+  // Datos por defecto como fallback
+  const defaultSections = [
+    { label: 'Alto Potencial', percentage: 20, color: '#0A5DEE' },
+    { label: 'Talento Promesa', percentage: 30, color: '#3EC4FA' },
+    { label: 'Talento Esencial', percentage: 50, color: '#81DE8D' },
+  ];
+
+  const color = {
+    '1' : '#0A5DEE',
+    '2': '#3EC4FA',
+    '3': '#81DE8D',
+  };
+  // Convertir datos de levels a formato del gráfico
+  const getChartSections = (levelsData) => {
+    if (!levelsData || levelsData.length === 0) {
+      return defaultSections;
+    }
+
+    const total = 100;
+    const height = 180; // Altura total del triángulo
+
+
+    let sections = [];
+    levelsData.forEach(level => {
+      const sectionHeight = (level.PORCENTAJE / total) * height;
+      sections.push({
+        label: level.CLASIFICACION, // Usar CLASIFICACION si existe, sino name
+        color: color[level.ID_CLASIF],
+        height: sectionHeight,
+        value: level.PORCENTAJE
+      });
+    });
+
+    return sections;
+  };
+
+  const chartSections = getChartSections(displayLevels);
+
+  // Mostrar skeleton mientras carga
+  if (isLoading && !levels) {
+    return (
+      <div className="bg-white rounded-lg shadow-lg p-4 w-md mx-auto border border-gray-100">
+        <div className="mb-6">
+          <SkeletonLoader className="h-6 w-32" />
+        </div>
+        <TriangularChart sections={defaultSections} isLoading={true} />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 w-md mx-auto border border-gray-100">
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-gray-800">Mapa de talento</h2>
+        {isError && !levels && (
+          <p className="text-xs text-red-600 mt-1">Error al cargar datos - Mostrando valores por defecto</p>
+        )}
       </div>
-      <TriangularChart {...data}/>
+      <TriangularChart sections={chartSections} isLoading={isLoading && !levels} />
+      
+      {/* Indicador de fuente de datos */}
+      {!levels && (
+        <div className="mt-4 pt-2 border-t border-gray-100">
+          <p className="text-xs text-gray-400 text-center">
+            {isLoading ? 'Actualizando datos...' : 'Datos actualizados'}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

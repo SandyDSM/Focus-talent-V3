@@ -26,6 +26,11 @@ const EmployeeCard = ({
   ELDP,
   role,
   avatarUrl,
+  equipo,
+  jefe,
+  PERF_ID,
+  language,
+  POT_MAP_ID,
   onArrowClick = null,
 }) => {
   // Manejador para el clic en el botón de flecha
@@ -38,8 +43,37 @@ const EmployeeCard = ({
     }
   };
 
+    const borde = {
+    '1': 'border-[#0561F4]',
+    '2': 'border-[#00CDFF]',
+    '3': 'border-[#99C570]',
+    '4': 'border-[#FFFE03]',
+    '5': 'border-[#FCBF04]',
+    '6': 'border-[#FE0003]'
+  };
+
+  const variantes = {
+  es: {
+    1: 'S-AP',
+    2: 'S-TP',
+    3: 'S-TE',
+    4: 'S-0',
+    5: 'S-0'
+  },
+  en: {
+    1: 'E-HP',
+    2: 'E-PT',
+    3: 'E-ET',
+    4: 'E-0',
+    5: 'E-0'
+  }
+};
+const idioma = (language === 'Spanish (Latin America)' || language === 'Spanish (Spain)') ? 'es' : 'en';
+const propiedad = variantes[idioma][POT_MAP_ID];
+
+
   return (
-    <div className="collaborator-card bg-white rounded-lg shadow-md p-4 w-80 relative">
+    <div className="collaborator-card bg-white rounded-lg shadow-md p-4 w-80 relative h-[17rem]">
       {/* Rol en la parte superior */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center text-sm font-semibold">
@@ -57,7 +91,7 @@ const EmployeeCard = ({
 
       {/* Avatar y nombre */}
       <div className="flex flex-col items-center mb-4">
-        <div className="avatar-container w-16 h-16 rounded-full bg-cyan-500 border-4 border-cyan-300 mb-2 overflow-hidden">
+        <div className={`avatar-container w-16 h-16 rounded-full bg-cyan-500 border-4 mb-2 overflow-hidden ${borde[PERF_ID]}`}>
           {avatarUrl ? (
             <img
               src={avatarUrl}
@@ -92,11 +126,15 @@ const EmployeeCard = ({
 
       {/* Etiquetas de posición */}
       <div className="flex flex-center items-center justify-between gap-2">
-        <Link to={`#`}>
-          <div className="cursor-pointer">
-            <Iconteam state="Active" />
-          </div>
-        </Link>
+       {(equipo == "1"  & (jefe === false)) ? (
+          <Link to={`#`}>
+            <div className={equipo == "1" && "cursor-pointer"}>
+              <Iconteam state="Active" />
+            </div>
+          </Link>
+        ) : (
+          <Iconteam state="Disabled" />
+        )}
         <div className="flex gap-2 justify-center">
           <div className="bg-yellow-400 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
             {position}
@@ -106,7 +144,7 @@ const EmployeeCard = ({
           </div>
         </div>
         <div>
-          <Piramide />
+          <Piramide property1={propiedad}/>
         </div>
       </div>
     </div>

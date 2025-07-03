@@ -13,7 +13,7 @@ import { createPortal } from 'react-dom';
  * @param {Object} props.modalData - Datos para el modal de colaborador
  * @returns {JSX.Element} Componente contenedor
  */
-const ModalContainer = ({ cardData,modalData }) => {
+const ModalContainer = ({ cardData,modalData,jefe }) => {
   // Estado para controlar la visibilidad del modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -71,7 +71,12 @@ const ModalContainer = ({ cardData,modalData }) => {
         ELDP={cardData?.ELDP}
         role={cardData?.PUESTO}
         avatarUrl={`data:image/jpg;base64,${cardData?.FOTO}`}
+        equipo={cardData?.EQUIPO}
         onArrowClick={openModal}
+        jefe={jefe}
+        PERF_ID = {cardData?.PERF_ID}
+        POT_MAP_ID = {cardData?.POT_MAP_ID}
+        language = {'Spanish (Latin America)'}
       />
 
       {/* Modal renderizado en un portal para que se expanda en toda la página */}

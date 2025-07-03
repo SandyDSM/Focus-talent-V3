@@ -30,7 +30,6 @@ export {
  * @returns {Promise} Objeto con todos los datos cargados
  */
 export const loadOrganizationData = async (
-  organizationId = 'bimbo-brasil', 
   collaboratorId = '1111111',
   usuarioActualDatos = "Spanish (Latin America)"
 ) => {
@@ -47,13 +46,12 @@ export const loadOrganizationData = async (
       performanceData,
     ] = await Promise.all([
       organizationService.getOrganizationChart(collaboratorId, usuarioActualDatos),
-      talentService.getTalentLevels(collaboratorId, usuarioActualDatos),
-      performanceService.getPerformanceCategories(collaboratorId, usuarioActualDatos),
+      talentService.getTalentMap(collaboratorId, usuarioActualDatos),
+      performanceService.getPerformanceData(collaboratorId, usuarioActualDatos),
     ]);
 
     const loadTime = Date.now() - startTime;
-    console.log(`✅ Datos cargados exitosamente en ${loadTime}ms`);
-    console.log('organizationData.data',organizationData.data);
+    console.log(`Datos cargados exitosamente en ${loadTime}ms`);
 
     return {
       organization: organizationData.data,

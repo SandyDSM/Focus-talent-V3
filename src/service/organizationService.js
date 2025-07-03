@@ -141,7 +141,7 @@ class OrganizationService extends ApiService {
       const fetchOptions = { ...options, mockData: organizationData };
 
       console.log("mainCollaboratorResponse.data",mainCollaboratorResponse.data[0])
-      console.log("TEAM",teamMembersResponse.data)
+      console.log("TEAM",organizationData.teamMembers)
       return this.fetchData(path, fetchOptions, { delay: false, useAmplify: false });
     } catch (error) {
       console.error('Error cargando datos del organigrama:', error);

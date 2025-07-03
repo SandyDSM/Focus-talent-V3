@@ -18,6 +18,17 @@ const CardCompetencias = ({ title = "Calificación de desempeño", categories = 
     { name: 'Salida', percentage: 0, color: '#FF5630' },
   ];
 
+ // console.log("AQUI",categories)
+
+  const colorMap = {
+    '1' : '#0561F4',
+    '2': '#00CDFF',
+    '3': '#99C570',
+    '4': '#FFFE03',
+    '5': '#FCBF04',
+    '6': '#FE0003'
+  };
+
   const displayCategories = categories.length > 0 ? categories : defaultCategories;
 
   return (
@@ -25,16 +36,16 @@ const CardCompetencias = ({ title = "Calificación de desempeño", categories = 
       <h3 className="text-lg font-semibold mb-3 text-gray-800">{title}</h3>
       
       <div className="space-y-2">
-        {displayCategories.map((category, index) => (
+        {displayCategories?.map((category, index) => (
           <div key={index} className="flex items-center justify-between">
             <div className="flex items-center">
               <div 
                 className="w-4 h-4 rounded-full mr-2" 
-                style={{ backgroundColor: category.color }}
+                style={{ backgroundColor: colorMap[category.ID_CLASIF] || category.color }}
               ></div>
-              <span className="text-sm text-gray-700">{category.name}</span>
+              <span className="text-sm text-gray-700">{category.CLASIFICACION || category.name}</span>
             </div>
-            <span className="text-sm font-medium text-gray-900">{category.percentage}%</span>
+            <span className="text-sm font-medium text-gray-900">{category.PORCENTAJE || category.percentage}%</span>
           </div>
         ))}
       </div>

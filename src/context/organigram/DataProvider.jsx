@@ -82,8 +82,7 @@ const DataContext = createContext();
  * @returns {JSX.Element} Proveedor de contexto
  */
 export const DataProvider = ({ 
-  organizationId = 'bimbo-brasil',
-  collaboratorId = '2786036',
+  collaboratorId = '1111111',
   children 
 }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
@@ -101,7 +100,7 @@ export const DataProvider = ({
         });
       }, 200);
 
-      const result = await loadOrganizationData(organizationId, collaboratorId);
+      const result = await loadOrganizationData(collaboratorId);
       
       clearInterval(progressInterval);
       dispatch({ 
@@ -132,7 +131,7 @@ export const DataProvider = ({
   // Cargar datos al montar el componente
   useEffect(() => {
     loadData();
-  }, [organizationId, collaboratorId]);
+  }, [collaboratorId]);
 
   // Valor del contexto
   const contextValue = {
@@ -157,7 +156,6 @@ export const DataProvider = ({
     resetData,
     
     // Configuración
-    organizationId,
     collaboratorId
   };
 
@@ -206,15 +204,15 @@ export const useOrganizationContext = () => {
  */
 export const useTalentContext = () => {
   const { talentData, isLoading, isError, error } = useDataContext();
-  
+  //console.log("h",talentData)
   return {
-    levels: talentData?.levels || [],
-    statistics: talentData?.statistics || null,
+    levels: talentData || [],
     chartConfig: talentData?.chartConfig || {},
     isLoading,
     isError,
     error
   };
+  
 };
 
 /**
@@ -225,9 +223,7 @@ export const usePerformanceContext = () => {
   const { performanceData, isLoading, isError, error } = useDataContext();
   
   return {
-    categories: performanceData?.categories || [],
-    metrics: performanceData?.metrics || null,
-    chartConfig: performanceData?.chartConfig || {},
+    categories: performanceData || [],
     isLoading,
     isError,
     error

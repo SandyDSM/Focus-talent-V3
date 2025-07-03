@@ -1,16 +1,17 @@
-import ApiService from './appiService';
+import ApiService from './appiService.js';
 
 /**
  * Servicio para obtener datos de desempeño y competencias
  */
 class PerformanceService extends ApiService {
   constructor() {
-    super('ORGCHART');
+    super('ORGCHART'); // Usar el nombre de la API de Amplify
   }
 
   /**
    * Obtiene las categorías de desempeño
    * @param {string} organizationId - ID de la organización
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos de categorías de desempeño
    */
   async getPerformanceCategories(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
@@ -22,6 +23,7 @@ class PerformanceService extends ApiService {
         USER_ID: `'${collaboratorId}'`
       }
     };
+
     
     const mockData = [
       { 
@@ -68,18 +70,28 @@ class PerformanceService extends ApiService {
       }
     ];
 
-    return this.fetchData(path, options, mockData);
+    const fetchOptions = { ...options, mockData: mockData };
+    return this.fetchData(path, fetchOptions, { useAmplify: true });
   }
 
   /**
    * Obtiene métricas de desempeño por período
    * @param {string} organizationId - ID de la organización
    * @param {string} period - Período de evaluación
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Métricas de desempeño
    */
   /*
-  async getPerformanceMetrics(organizationId = 'bimbo-brasil', period = '2024-Q1') {
-    const endpoint = `/api/v1/organizations/${organizationId}/performance-metrics`;
+  async getPerformanceMetrics(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+    const path = '/orgchartperformance';
+    options = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        IDIOMA: `'${usuarioActualDatos}'`,
+        USER_ID: `'${collaboratorId}'`
+      }
+    };
+
     
     const mockData = {
       period: period,
@@ -102,17 +114,26 @@ class PerformanceService extends ApiService {
       nextEvaluation: "2024-06-30"
     };
 
-    return this.fetchData(endpoint, mockData);
+    const fetchOptions = { ...options, mockData: mockData };
+    return this.fetchData(path, fetchOptions, { useAmplify: false });
   }
 */
   /**
    * Obtiene competencias específicas de un colaborador
    * @param {string} collaboratorId - ID del colaborador
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Competencias del colaborador
    */
   /*
-  async getCollaboratorCompetencies(collaboratorId) {
-    const endpoint = `/api/v1/collaborators/${collaboratorId}/competencies`;
+  async getCollaboratorCompetencies(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+    const path = '/orgchartperformance';
+    options = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        IDIOMA: `'${usuarioActualDatos}'`,
+        USER_ID: `'${collaboratorId}'`
+      }
+    };
     
     const mockData = {
       collaboratorId: collaboratorId,
@@ -152,28 +173,34 @@ class PerformanceService extends ApiService {
       lastAssessment: "2024-03-15"
     };
 
-    return this.fetchData(endpoint, mockData);
+    const fetchOptions = { ...options, mockData: mockData };
+    return this.fetchData(path, fetchOptions, { useAmplify: true });
   }
 */
   /**
    * Obtiene los datos completos de desempeño
    * @param {string} organizationId - ID de la organización
+   * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos de desempeño
    */
-  /*
-  async getPerformanceData(organizationId = 'bimbo-brasil') {
-    const endpoint = `/api/v1/organizations/${organizationId}/performance-data`;
+  async getPerformanceData(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+    const path = '/orgchartperformance';
+    options = {
+      headers: {}, // OPTIONAL
+      queryStringParameters: {
+        IDIOMA: `'${usuarioActualDatos}'`,
+        USER_ID: `'${collaboratorId}'`
+      }
+    };
     
     try {
       // Cargar datos en paralelo
-      const [categoriesResponse, metricsResponse] = await Promise.all([
-        this.getPerformanceCategories(organizationId),
-        this.getPerformanceMetrics(organizationId)
+      const [categoriesResponse] = await Promise.all([
+        this.getPerformanceCategories(collaboratorId, usuarioActualDatos, options)
       ]);
 
       const performanceData = {
         categories: categoriesResponse.data,
-        metrics: metricsResponse.data,
         chartConfig: {
           type: 'vertical-bar',
           showPercentages: true,
@@ -182,12 +209,14 @@ class PerformanceService extends ApiService {
         lastUpdated: new Date().toISOString()
       };
 
-      return this.fetchData(endpoint, performanceData, { delay: false });
+      const fetchOptions = { ...options, mockData: performanceData };
+      console.log('PERFO', performanceData.categories)
+      return this.fetchData(path, fetchOptions, { delay: false, useAmplify: true });
     } catch (error) {
       console.error('Error cargando datos de desempeño:', error);
       throw error;
     }
-  }*/
+  }
 }
 
 export default PerformanceService;

@@ -97,7 +97,7 @@ export default function Piramide(props) {
         Group45102688: {},
         Piramide: {},
       },
-      variantValues: { property1: "Variant8" },
+      variantValues: { property1: "E-ET" },
     },
     {
       overrides: {

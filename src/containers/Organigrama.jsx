@@ -26,6 +26,8 @@ const OrganizationChartContent = () => {
   const { categories: performanceCategories } = usePerformanceContext();
   const { candidates: successionCandidates } = useSuccessionContext();
 
+  //console.log("LEVELS", talentLevels)
+
   // Estado para controlar el nivel de zoom
   const [zoomLevel, setZoomLevel] = useState(1);
   // Estados para controlar si las tarjetas están minimizadas
@@ -35,6 +37,8 @@ const OrganizationChartContent = () => {
   const chartContainerRef = useRef(null);
   // Referencia al contenedor de scroll
   const scrollContainerRef = useRef(null);
+
+  //console.log("AQUI",categories)
 
   // Datos para los colaboradores que aparecen en el modal (usar datos de sucesión si están disponibles)
   const modalTeamMembers = successionCandidates.length > 0 ? successionCandidates : [
@@ -372,6 +376,7 @@ const OrganizationChartContent = () => {
                   <ModalContainer 
                     cardData={mainCollaborator}
                     modalData={mainModalData}
+                    jefe={true}
                   />
                 )}
               </div>
@@ -395,12 +400,24 @@ const OrganizationChartContent = () => {
                     <ModalContainer 
                       cardData={member}
                       modalData={teamMemberModals[index]}
+                      jefe={false}
                     />
                   </div>
                 ))}
               </div>
             </div>
           </div>
+        </div>
+         {/* Botón de navegación en la esquina inferior derecha (fijo) */}
+        <div className="navigation-button fixed bottom-6 right-6 z-30">
+          <button className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-100">
+            <Move/>
+          </button>
+        </div>
+
+        {/* Indicador de nivel de zoom */}
+        <div className="zoom-level-indicator fixed bottom-6 left-6 z-30">
+          <span className="text-sm font-medium">{Math.round(zoomLevel * 100)}%</span>
         </div>
       </div>
     </div>
@@ -416,7 +433,7 @@ const OrganizationChartContent = () => {
  */
 const OrganizationChart = ({
   organizationId = 'bimbo-brasil',
-  collaboratorId = '2786036'
+  collaboratorId = '1111111'
 }) => {
   return (
     <DataProvider 

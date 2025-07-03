@@ -34,7 +34,7 @@ export declare type PiramideOverridesProps = {
     Vector45192376?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type PiramideProps = React.PropsWithChildren<Partial<ViewProps> & {
-    property1?: "E-0" | "E-HP" | "E-PT" | "S-0" | "S-AP" | "S-TE" | "S-TP" | "Variant8";
+    property1?: "E-0" | "E-ET" | "E-HP" | "E-PT" | "S-0" | "S-AP" | "S-TE" | "S-TP";
 } & {
     overrides?: PiramideOverridesProps | undefined | null;
 }>;
