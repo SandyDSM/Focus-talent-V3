@@ -118,7 +118,7 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
                 style={{ backgroundColor: pid_color[member.PID_ID] || "#f0f0f0" }}
               ></div>
               <span className="text-xs text-gray-500 mr-2">PID</span>
-              <span className="font-medium">{member.pid_num || "0"}</span>
+              <span className="font-medium">{`${member.pid_num}%` || "0%"}</span>
             </div>
           </div>
         </div>
