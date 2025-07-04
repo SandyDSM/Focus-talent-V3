@@ -2,6 +2,7 @@ import { IconProfile, Piramide } from '../ui-components';
 
 import React from 'react';
 import EncabezadoSuccs from './EncabezadoSuccs';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Componente que muestra un modal con información detallada de un colaborador principal
@@ -41,6 +42,9 @@ const CollaboratorModal = ({
     if (numericValue >= 45) return "#FFAB00"; // Amarillo
     return "#FF5630"; // Rojo
   };
+
+  //Para realizar traducciones
+  const { t } = useTranslation();
 
   return (
     <div className="collaborator-modal bg-white rounded-lg shadow-lg p-6 max-w-9/10 mx-auto">
@@ -103,30 +107,30 @@ const CollaboratorModal = ({
           <span className="text-sm font-medium mr-2">Readiness:</span>
           <span className="inline-flex items-center mr-3">
             <span className="w-2 h-3 bg-green-500 mr-1 rounded-l-sm"></span>
-            <span className="text-xs">Listo ahora/ Corto plazo</span>
+            <span className="text-xs">{t('Listo_ahora')}</span>
           </span>
           <span className="inline-flex items-center mr-3">
             <span className="w-2 h-3 bg-yellow-400 mr-1 rounded-l-sm"></span>
-            <span className="text-xs">Mediano plazo 1 a 3 años</span>
+            <span className="text-xs">{t('Mediano_Plazo')}</span>
           </span>
           <span className="inline-flex items-center">
             <span className="w-2 h-3 bg-orange-500 mr-1 rounded-l-sm"></span>
-            <span className="text-xs">Largo plazo 3 o + años</span>
+            <span className="text-xs">{t('Largo_Plazo')}</span>
           </span>
         </div>
         <div className="pid">
           <span className="text-sm font-medium mr-2">PID:</span>
           <span className="inline-flex items-center mr-3">
             <span className="w-3 h-3 bg-green-500 rounded-full mr-1"></span>
-            <span className="text-xs">Plan Avanzado (70% - 100%)</span>
+            <span className="text-xs">{t('Plan_Avanzado')}</span>
           </span>
           <span className="inline-flex items-center mr-3">
             <span className="w-3 h-3 bg-yellow-400 rounded-full mr-1"></span>
-            <span className="text-xs">Plan creado, sin avances significativos (&lt;69%)</span>
+            <span className="text-xs">{t('Plan_Creado')}</span>
           </span>
           <span className="inline-flex items-center">
             <span className="w-3 h-3 bg-red-500 rounded-full mr-1"></span>
-            <span className="text-xs">Plan no creado o sin avances (&lt;45%)</span>
+            <span className="text-xs">{t('Plan_No_Creado')}</span>
           </span>
         </div>
       </div>

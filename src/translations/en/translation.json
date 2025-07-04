@@ -1,0 +1,22 @@
+{
+"años":"years",
+"antiguedad_emp":"Tenure in the Company",
+"antiguedad_puesto":"Time in Current Role",
+"Potencial_2025":"Potential 2025",
+"Conclusi_Desemp":"Performance Summary 2024",
+"Compet_Lid" : "Leadership Competencies 2024",
+"Contrib_Plan_Neg":"Business Plan Contribution 2024",
+"Listo_ahora": " Ready Now / Short-Term",
+"Mediano_Plazo":"Ready in Medium Term (1–3 years)",
+"Largo_Plazo":"Ready in Long Term (3+ years)",
+"Plan_Avanzado":"Plan Advanced (70%–100% Complete)",
+"Plan_Creado":"Plan Created, Limited Progress (<69%)",
+"Plan_No_Creado":"No Development Plan or No Progress (<45%)",
+"Mapa_Talento": "Talent Map",
+"Clasif_Desempeno":"Performance Rating",
+"Match_prof":"Match With Profile (target 3)",
+"Expandir_Mapa_Talento":"Expand Talent Map",
+"Mimimizar_Mapa_Talento":"Collapse Talent Map",
+"Expandir_Calif_Desemp":"Expand Performance Rating",
+"Minimizar_Calif_Desemp":"Collapse Performance Rating"
+}

@@ -1,7 +1,11 @@
 import React from "react";
 import { IconProfile } from "../ui-components";
+import { useTranslation } from 'react-i18next';
+
 
 const EncabezadoSuccs = ({ member, getInitials, borde }) => {
+
+  const { t } = useTranslation();
 
   const read_color = {
     "1":"#46B75F",
@@ -48,7 +52,7 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             </div>
             <div className="flex justify-between items-center w-full">
               <div className="font-semibold text-gray-800">{`${member.NOMBRES} ${member.APELLIDOS}`}</div>
-              <div className="text-xs font-medium text-right">{`${member.EDAD} años`}</div>
+              <div className="text-xs font-medium text-right">{`${member.EDAD} ${t('años')}`}</div>
             </div>
           </div>
 
@@ -72,28 +76,28 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
         {/* Detalles de desempeño - Formato de líneas con separadores */}
         <div className="space-y-0 text-sm">
           <div className="border-b py-1">
-            <div className="text-xs text-gray-500">Antigüedad en la empresa</div>
+            <div className="text-xs text-gray-500">{t('antiguedad_emp')}</div>
             <div className="font-medium">{member.ANT_EN_EMPRESA || "-"}</div>
           </div>
           <div className="border-b py-1">
-            <div className="text-xs text-gray-500">Antigüedad en el puesto</div>
+            <div className="text-xs text-gray-500">{t('antiguedad_puesto')}</div>
             <div className="font-medium">{member.ANT_EN_PUESTO || "-"}</div>
           </div>
           <div className="border-b py-1">
-            <div className="text-xs text-gray-500">Potencial 2025</div>
+            <div className="text-xs text-gray-500">{t('Potencial_2025')}</div>
             <div className="font-medium">{member.POTENCIAL || "-"}</div>
           </div>
           <div className="border-b py-1">
-            <div className="text-xs text-gray-500">Conclusión Desempeño 2024</div>
+            <div className="text-xs text-gray-500">{t('Conclusi_Desemp')}</div>
             <div className="font-medium">{member.CONCLUSION_DESEMPENO || "-"}</div>
           </div>
           <div className="border-b py-1">
-            <div className="text-xs text-gray-500">Competencias de Liderazgo 2024</div>
+            <div className="text-xs text-gray-500">{t('Compet_Lid')}</div>
             <div className="font-medium">{member.COMPET_LIDERAZGO || "-"}</div>
           </div>
           <div className="border-b py-1">
             <div className="text-xs text-gray-500">
-              Contribución Plan de negocio 2024
+              {t('Contrib_Plan_Neg')}
             </div>
             <div className="font-medium">{member.CONTRIB_PLAN_NEGOCIO || "-"}</div>
           </div>
@@ -103,7 +107,7 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
           </div>
           <div className="border-b py-1">
             <div className="text-xs text-gray-500">
-              Match con profile (target 3)
+              {t('Match_prof')}
             </div>
             <div className="font-medium">{member.MATCH_CON_PROFILE || "-"}</div>
           </div>

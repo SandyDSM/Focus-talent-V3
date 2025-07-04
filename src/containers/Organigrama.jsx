@@ -15,6 +15,9 @@ import { DataProvider, useDataContext, useOrganizationContext, useTalentContext,
 import { LoadingOverlay, SkeletonLoader } from '../components/LoadingSpinner';
 import { DataErrorWrapper } from '../components/ErrorBoundary';
 
+//Componente para traducción
+import { useTranslation } from 'react-i18next';
+
 /**
  * Componente interno del organigrama que usa los datos del contexto
  */
@@ -194,6 +197,9 @@ const OrganizationChartContent = () => {
     height: '600px',
   };
 
+  //Para realizar traducciones
+  const { t } = useTranslation();
+  
   // Mostrar overlay de carga mientras se cargan los datos
   if (isLoading) {
     return (
@@ -294,7 +300,7 @@ const OrganizationChartContent = () => {
             <div 
               className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow duration-200 cursor-pointer flex items-center justify-center"
               onClick={toggleCardMapa}
-              title="Expandir mapa de talento"
+              title={t('Expandir_Mapa_Talento')}
             >
               <Triangle strokeWidth={3} className="w-6 h-6 text-blue-800" />
             </div>
@@ -307,7 +313,7 @@ const OrganizationChartContent = () => {
               <div 
                 className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm hover:shadow transition-all duration-200"
                 onClick={toggleCardMapa}
-                title="Minimizar mapa de talento"
+                title={t('Minimizar_Mapa_Talento')}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -326,20 +332,20 @@ const OrganizationChartContent = () => {
             <div 
               className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow duration-200 cursor-pointer flex items-center justify-center"
               onClick={togglePerformanceCard}
-              title="Expandir calificación de desempeño"
+              title={t('Expandir_Calif_Desemp')}
             >
               <Trophy strokeWidth={3} className="w-6 h-6 text-blue-800" />
             </div>
           ) : (
             <div className={`relative ${!isPerformanceCardMinimized ? 'animate-fadeIn' : ''}`}>
               <CardCompetencias 
-                title="Calificación de desempeño" 
+                title={t('Clasif_Desempeno')} 
                 categories={performanceCategories} 
               />
               <div 
                 className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm hover:shadow transition-all duration-200"
                 onClick={togglePerformanceCard}
-                title="Minimizar calificación de desempeño"
+                title={t('Minimizar_Calif_Desemp')}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600">
                   <line x1="5" y1="12" x2="19" y2="12"></line>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useTalentContext } from '../context/organigram/DataProvider';
 import { SkeletonLoader } from './LoadingSpinner';
+import { useTranslation } from 'react-i18next';
 
 const Tooltip = ({ x, y, label, visible }) => {
   if (!visible) return null;
@@ -180,6 +181,9 @@ export default function CardMapa({ levels = null }) {
     { label: 'Talento Esencial', percentage: 50, color: '#81DE8D' },
   ];
 
+  //Para realizar traducciones
+  const { t } = useTranslation();
+
   const color = {
     '1' : '#0A5DEE',
     '2': '#3EC4FA',
@@ -226,7 +230,7 @@ export default function CardMapa({ levels = null }) {
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 w-md mx-auto border border-gray-100">
       <div className="mb-6">
-        <h2 className="text-lg font-semibold text-gray-800">Mapa de talento</h2>
+        <h2 className="text-lg font-semibold text-gray-800 text-center">{t('Mapa_Talento')}</h2>
         {isError && !levels && (
           <p className="text-xs text-red-600 mt-1">Error al cargar datos - Mostrando valores por defecto</p>
         )}

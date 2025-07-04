@@ -1,0 +1,22 @@
+{
+"años":"años",
+"antiguedad_emp":"Antigüedad en la empresa",
+"antiguedad_puesto":"Antigüedad en el puesto",
+"Potencial_2025":"Potencial 2025",
+"Conclusi_Desemp":"Conclusión Desempeño 2024",
+"Compet_Lid" : "Competencias de Liderazgo 2024",
+"Contrib_Plan_Neg":"Contribución Plan de negocio 2024",
+"Listo_ahora": "Listo ahora/ Corto plazo",
+"Mediano_Plazo":"Mediano plazo 1 a 3 años",
+"Largo_Plazo":"Largo plazo 3 o + años",
+"Plan_Avanzado":"Plan Avanzado (70% - 100%)",
+"Plan_Creado":"Plan creado, sin avances significativos (<69%)",
+"Plan_No_Creado":"Plan no creado o sin avances (<45%)",
+"Mapa_Talento": "Mapa de talento",
+"Clasif_Desempeno":"Calificación de desempeño",
+"Match_prof":"Match Con Profile (target 3)",
+"Expandir_Mapa_Talento":"Expandir mapa de talento",
+"Minimizar_Mapa_Talento":"Minimizar mapa de talento",
+"Expandir_Calif_Desemp":"Expandir calificación de desempeño",
+"Minimizar_Calif_Desemp":"Minimizar calificación de desempeño"
+}
