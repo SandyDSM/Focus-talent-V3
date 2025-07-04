@@ -50,7 +50,7 @@ const EmployeeCard = ({
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center text-sm font-semibold">
           <IconProfile type="Job" />
-          <span className="px-2 py-0.5">{role}</span>
+          <span className="px-2 py-0.5 text-xs">{role}</span>
         </div>
         {expandir === 1 && (
         <button
