@@ -148,6 +148,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin 
         PERF_ID = {cardData?.PERF_ID}
         borde = {borde}
         propiedad = {propiedad}
+        expandir= {cardData?.DATOS_SUCESION}
       />
 
       {/* Modal renderizado en un portal para que se expanda en toda la página */}

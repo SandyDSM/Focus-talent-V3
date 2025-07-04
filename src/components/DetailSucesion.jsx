@@ -48,8 +48,13 @@ const CollaboratorModal = ({
       <div className="flex justify-between items-center mb-8 pb-2">
         <div className="flex items-center">
           <div className={`avatar-container w-20 h-20 rounded-full bg-blue-500 border-4 mr-4 overflow-hidden ${borde[PERF_ID]}`}>
-            {mainCollaborator.avatarUrl ? (
-              <img src={mainCollaborator.avatarUrl} alt={mainCollaborator.name} className="w-full h-full object-cover" />
+            {mainCollaborator.avatarUrl || (mainCollaborator.avatarUrl != "") ? (
+              <img src={mainCollaborator.avatarUrl} alt={mainCollaborator.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")
+                .substring(0, 2)
+                .toUpperCase()} className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
                 {getInitials(mainCollaborator.name)}

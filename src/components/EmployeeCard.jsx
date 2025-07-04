@@ -31,6 +31,7 @@ const EmployeeCard = ({
   PERF_ID,
   borde,
   propiedad,
+  expandir,
   onArrowClick = null,
 }) => {
   // Manejador para el clic en el botón de flecha
@@ -51,13 +52,14 @@ const EmployeeCard = ({
           <IconProfile type="Job" />
           <span className="px-2 py-0.5">{role}</span>
         </div>
+        {expandir === 1 && (
         <button
           className="text-blue-600 hover:bg-blue-50 p-1 rounded-full transition-colors font-bold"
           onClick={handleArrowClick}
           aria-label="Ver detalles"
         >
           <Maximize2 size={16} strokeWidth={3} />
-        </button>
+        </button>)}
       </div>
 
       {/* Avatar y nombre */}
@@ -66,7 +68,12 @@ const EmployeeCard = ({
           {avatarUrl ? (
             <img
               src={avatarUrl}
-              alt={name}
+              alt={name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")
+                .substring(0, 2)
+                .toUpperCase()}
               className="w-full h-full object-cover"
             />
           ) : (
