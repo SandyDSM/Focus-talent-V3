@@ -8,7 +8,7 @@ import { loadOrganizationData } from '../services/index.js';
  * @returns {Object} Estado de carga con datos, loading, error y funciones de control
  */
 export const useOrganizationData = (
-  collaboratorId = '1111111'
+  collaboratorId
 ) => {
   const [state, setState] = useState({
     data: null,

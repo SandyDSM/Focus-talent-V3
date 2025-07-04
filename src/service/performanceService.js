@@ -14,12 +14,12 @@ class PerformanceService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos de categorías de desempeño
    */
-  async getPerformanceCategories(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
+  async getPerformanceCategories(collaboratorId, idioma) {
     const path = '/orgchartperformance';
     const options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -82,12 +82,12 @@ class PerformanceService extends ApiService {
    * @returns {Promise} Métricas de desempeño
    */
   /*
-  async getPerformanceMetrics(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+  async getPerformanceMetrics(collaboratorId = '1111111', idioma = 'Spanish (Latin America)', options = {}) {
     const path = '/orgchartperformance';
     options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -125,12 +125,12 @@ class PerformanceService extends ApiService {
    * @returns {Promise} Competencias del colaborador
    */
   /*
-  async getCollaboratorCompetencies(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+  async getCollaboratorCompetencies(collaboratorId = '1111111', idioma = 'Spanish (Latin America)', options = {}) {
     const path = '/orgchartperformance';
     options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -183,12 +183,12 @@ class PerformanceService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos de desempeño
    */
-  async getPerformanceData(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+  async getPerformanceData(collaboratorId, idioma, options = {}) {
     const path = '/orgchartperformance';
     options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -196,7 +196,7 @@ class PerformanceService extends ApiService {
     try {
       // Cargar datos en paralelo
       const [categoriesResponse] = await Promise.all([
-        this.getPerformanceCategories(collaboratorId, usuarioActualDatos, options)
+        this.getPerformanceCategories(collaboratorId, idioma, options)
       ]);
 
       const performanceData = {

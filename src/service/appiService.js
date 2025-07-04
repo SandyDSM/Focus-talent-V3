@@ -63,8 +63,8 @@ class ApiService {
         // Aquí deberías proporcionar datos mock para la simulación si no usas Amplify
         // Por simplicidad, retornamos un objeto vacío o puedes pasar 'data' como un parámetro en config
         const mockData = options.mockData || {}; 
-        console.log(`📡 Llamada simulada a: ${this.apiName}${path}`);
-        console.log(`📦 Datos retornados (simulados):`, mockData);
+        console.log(`Llamada simulada a: ${this.apiName}${path}`);
+        console.log(`Datos retornados (simulados):`, mockData);
         return { success: true, data: mockData, timestamp: new Date().toISOString(), path: path };
       }
     } catch (error) {

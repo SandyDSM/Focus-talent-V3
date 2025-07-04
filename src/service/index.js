@@ -34,12 +34,12 @@ export {
  * @returns {Promise} Objeto con todos los datos cargados
  */
 export const loadOrganizationData = async (
-  collaboratorId = '1111111',
-  usuarioActualDatos = "Spanish (Latin America)"
+  collaboratorId,
+  idioma
 ) => {
   try {
     console.log('Iniciando carga de datos del organigrama...');
-    
+
     // Mostrar indicador de carga
     const startTime = Date.now();
     
@@ -48,12 +48,10 @@ export const loadOrganizationData = async (
       organizationData,
       talentData,
       performanceData,
-      successionData
     ] = await Promise.all([
-      organizationService.getOrganizationChart(collaboratorId, usuarioActualDatos),
-      talentService.getTalentMap(collaboratorId, usuarioActualDatos),
-      performanceService.getPerformanceData(collaboratorId, usuarioActualDatos),
-      successionService.getSuccessionData(collaboratorId)
+      organizationService.getOrganizationChart(collaboratorId, idioma),
+      talentService.getTalentMap(collaboratorId, idioma),
+      performanceService.getPerformanceData(collaboratorId, idioma),
 
     ]);
 
@@ -64,7 +62,6 @@ export const loadOrganizationData = async (
       organization: organizationData.data,
       talent: talentData.data,
       performance: performanceData.data,
-      succession: successionData.data,
       loadTime: loadTime,
       timestamp: new Date().toISOString()
     };

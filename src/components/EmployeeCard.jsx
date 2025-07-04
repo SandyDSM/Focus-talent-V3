@@ -107,12 +107,16 @@ const EmployeeCard = ({
           <Iconteam state="Disabled" />
         )}
         <div className="flex gap-2 justify-center">
+          {position && (
           <div className="bg-yellow-400 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
             {position}
           </div>
+          )}
+          {ELDP && (
           <div className="bg-violet-800 text-white px-2 py-1 rounded-full text-xs font-medium">
             {ELDP}
           </div>
+          )}
         </div>
         <div>
           <Piramide property1={propiedad}/>

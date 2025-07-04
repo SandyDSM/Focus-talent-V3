@@ -25,7 +25,6 @@ const OrganizationChartContent = () => {
   const { levels: talentLevels } = useTalentContext();
   const { categories: performanceCategories } = usePerformanceContext();
   const { candidates: successionCandidates } = useSuccessionContext();
-  const {usuarioActualDatos} = useContext(CollaboratorsContext);
 
   //console.log("LEVELS", talentLevels)
 
@@ -157,6 +156,7 @@ const OrganizationChartContent = () => {
   };
 
   // useEffect para centrar el organigrama cada vez que cambie el zoom
+  /*
   useEffect(() => {
     const timer = setTimeout(() => {
       centerOrganigram();
@@ -164,6 +164,8 @@ const OrganizationChartContent = () => {
 
     return () => clearTimeout(timer);
   }, [zoomLevel]);
+
+  */
 
   // Función para aumentar el zoom
   const handleZoomIn = () => {
@@ -252,7 +254,7 @@ const OrganizationChartContent = () => {
       {/* Tercer Header - Header del Organigrama */}
       <div className="z-20 bg-gray-100 flex justify-between items-center p-6" style={{ top: '120px' }}>
         <h1 className="text-xl font-semibold text-gray-800">
-          {headerTitle || `${mainCollaborator.NOMBRE} - Organigrama`}
+          {`${mainCollaborator.NOMBRE} ${mainCollaborator.APELLIDOS}/`}
         </h1>
         <div className="controls flex space-x-2">
           <button 
@@ -432,13 +434,16 @@ const OrganizationChartContent = () => {
  * @param {string} props.collaboratorId - ID del colaborador principal
  * @returns {JSX.Element} Componente de organigrama
  */
-const OrganizationChart = ({
-  organizationId = 'bimbo-brasil',
-  collaboratorId = '1111111'
-}) => {
+const OrganizationChart = () => {
+  const { usuarioActualDatos } = useContext(CollaboratorsContext);
+
+  const idioma = usuarioActualDatos?.IDIOMA;
+  const collaboratorId = usuarioActualDatos?.ID_COLABORADOR;
+
+  console.log("USUARIO",usuarioActualDatos)
   return (
     <DataProvider 
-      organizationId={organizationId}
+      idioma={idioma}
       collaboratorId={collaboratorId}
     >
       <OrganizationChartContent />

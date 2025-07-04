@@ -15,7 +15,7 @@ class SuccessionService extends ApiService {
    * @returns {Promise} Candidatos de sucesión
    */
 
-  async getSuccessionCandidates(collaboratorId = '1111111', options = {}) {
+  async getSuccessionCandidates(collaboratorId, options = {}) {
     const path = "/successiondata";
     options = {
       headers: {}, // OPTIONAL
@@ -176,7 +176,7 @@ class SuccessionService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos de sucesión
    */
-  async getSuccessionData(collaboratorId = '1111111', options = {}) {
+  async getSuccessionData(collaboratorId, options = {}) {
     const path = "/successiondata";
     options = {
       headers: {}, // OPTIONAL

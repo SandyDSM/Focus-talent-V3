@@ -14,12 +14,12 @@ class TalentService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos de niveles de talento
    */
-  async getTalentLevels(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
+  async getTalentLevels(collaboratorId, idioma) {
      const path = "/orgchartmapatalento";
      const options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -60,12 +60,12 @@ class TalentService extends ApiService {
    */
 
   /*
-  async getTalentStatistics(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
+  async getTalentStatistics(collaboratorId = '1111111', idioma = 'Spanish (Latin America)') {
      const path = "/orgchartmapatalento";
      const options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -96,12 +96,12 @@ class TalentService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos del mapa de talento
    */
- async getTalentMap(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)') {
+ async getTalentMap(collaboratorId, idioma) {
      const path = "/orgchartmapatalento";
      const options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -109,7 +109,7 @@ class TalentService extends ApiService {
     try {
       // Cargar datos en paralelo
       const [levelsResponse] = await Promise.all([
-        this.getTalentLevels(collaboratorId, usuarioActualDatos, options)
+        this.getTalentLevels(collaboratorId, idioma, options)
       ]);
 
       const talentMapData = {

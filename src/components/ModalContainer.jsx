@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import EmployeeCard from '../components/EmployeeCard';
 import DetailSucesion from '../components/DetailSucesion';
+import SuccessionService from '../service/successionService';
+import { Loader } from "@aws-amplify/ui-react";
 
 
 import { X } from 'lucide-react';
@@ -14,18 +16,31 @@ import { createPortal } from 'react-dom';
  * @returns {JSX.Element} Componente contenedor
  */
 const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin America)'  }) => {
-  // Estado para controlar la visibilidad del modal
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [successionData, setSuccessionData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Función para abrir el modal
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openModal = async () => {
+    setIsModalOpen(true); 
+    setIsLoading(true); // Iniciar estado de carga
+    try {
+      const service = new SuccessionService();
+      const data = await service.getSuccessionData(cardData?.IDCOLABORADOR);
+      setSuccessionData(data);
+    } catch (error) {
+      console.error("Error al obtener datos de sucesión:", error);
+      setIsModalOpen(false); 
+    } finally {
+      setIsLoading(false); // Finalizar estado de carga
+    }
   };
 
-  // Función para cerrar el modal
   const closeModal = () => {
     setIsModalOpen(false);
+    setSuccessionData(null); // Limpiar los datos al cerrar el modal
   };
+
+  //console.log("DATA---",successionData)
 
       const borde = {
       '1': 'border-[#0561F4]',
@@ -56,41 +71,65 @@ const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin 
   const propiedad = variantes[idioma][cardData?.POT_MAP_ID];
 
   // Componente del modal que se renderizará en el portal
-  const ModalContent = () => (
-    <div 
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50 overflow-y-auto"
-      style={{ 
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: '100vw',
-        height: '100vh'
-      }}
-    >
-      <div className="relative w-full max-w-6xl animate-fade-in">
-        {/* Botón para cerrar el modal */}
-        <button 
-          onClick={closeModal}
-          className="absolute top-4 right-4 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
-          aria-label="Cerrar"
-        >
-          <X size={24} className="text-gray-600" />
-        </button>
-        
-        {/* Contenido del modal */}
-        <DetailSucesion 
-          mainCollaborator={modalData.mainCollaborator}
-          teamMembers={modalData.teamMembers}
-          borde = {borde}
-          propiedad = {propiedad}
-          PERF_ID = {cardData?.PERF_ID}
+  const ModalContent = () => {
+    if (isLoading) {
+      return (
+        <div 
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50 overflow-y-auto"
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh'
+        }}
+      >
+            <Loader size="large" />
+        </div>
+      );
+    }
 
-        />
+    if (!successionData) {
+      return null; // O mostrar un mensaje de error si no hay datos después de la carga
+    }
+
+    return (
+      <div 
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50 overflow-y-auto"
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh'
+        }}
+      >
+        <div className="relative w-full max-w-6xl animate-fade-in">
+          {/* Botón para cerrar el modal */}
+          <button 
+            onClick={closeModal}
+            className="absolute top-4 right-4 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
+            aria-label="Cerrar"
+          >
+            <X size={24} className="text-gray-600" />
+          </button>
+          
+          {/* Contenido del modal */}
+          <DetailSucesion 
+            mainCollaborator={successionData?.mainCollaborator || modalData.mainCollaborator}
+            teamMembers={successionData?.data || modalData.teamMembers}
+            borde = {borde}
+            propiedad = {propiedad}
+            PERF_ID = {cardData?.PERF_ID}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="modal-container">

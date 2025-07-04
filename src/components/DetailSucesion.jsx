@@ -26,74 +26,8 @@ const CollaboratorModal = ({
   propiedad,
   PERF_ID
 }) => {
-  // Si no se proporcionan colaboradores secundarios, usar datos por defecto
-  const defaultTeamMembers = [
-    {
-      name: "Noah Smith",
-      id: "2786036",
-      organization: "Delivery Presale",
-      location: "LAS",
-      age: "38 años",
-      companyAntiquity: "6/12/2021",
-      positionAntiquity: "6/12/2021",
-      potential: "Alto potencial",
-      performanceConclusion: "Sobresaliente",
-      leadershipSkills: "Por encima de lo esperado",
-      businessContribution: "Sobresaliente",
-      assessmentKF: "2024",
-      profileMatch: "-",
-      pid: "69%",
-      pidColor: "#FFAB00", // Amarillo
-      avatarUrl: null,
-      borderColor: "#36B37E", // Verde
-      statusColor: "#36B37E" // Verde - Semáforo
-    },
-    {
-      name: "Sarah Smith",
-      id: "2786036",
-      organization: "Delivery Presale",
-      location: "LAS",
-      age: "38 años",
-      companyAntiquity: "6/12/2021",
-      positionAntiquity: "6/12/2021",
-      potential: "Alto potencial",
-      performanceConclusion: "Sobresaliente",
-      leadershipSkills: "Por encima de lo esperado",
-      businessContribution: "Sobresaliente",
-      assessmentKF: "2024",
-      profileMatch: "-",
-      pid: "69%",
-      pidColor: "#36B37E", // Verde
-      avatarUrl: null,
-      borderColor: "#36B37E", // Verde
-      statusColor: "#FFAB00" // Amarillo - Semáforo
-    },
-    {
-      name: "Jonathan Sanchéz",
-      id: "2786036",
-      organization: "Delivery Presale",
-      location: "LAS",
-      age: "38 años",
-      companyAntiquity: "6/12/2021",
-      positionAntiquity: "6/12/2021",
-      potential: "Alto potencial",
-      performanceConclusion: "Sobresaliente",
-      leadershipSkills: "Por encima de lo esperado",
-      businessContribution: "Sobresaliente",
-      assessmentKF: "2024",
-      profileMatch: "-",
-      pid: "69%",
-      pidColor: "#FF5630", // Rojo
-      avatarUrl: null,
-      borderColor: "#36B37E", // Verde
-      statusColor: "#FF5630" // Rojo - Semáforo
-    }
-  ];
-
   // Limitar a mostrar solo 3 colaboradores
-  const displayTeamMembers = teamMembers.length > 0 
-    ? teamMembers.slice(0, 3) 
-    : defaultTeamMembers.slice(0, 3);
+  const displayTeamMembers = Array.isArray(teamMembers) ? teamMembers.slice(0, 3) : [];
 
   // Función para generar iniciales a partir del nombre
   const getInitials = (name) => {

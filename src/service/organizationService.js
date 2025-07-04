@@ -14,16 +14,18 @@ class OrganizationService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos del colaborador principal
    */
-  async getMainCollaborator(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+  async getMainCollaborator(collaboratorId, idioma, options = {}) {
     const path = '/orgchartmanagerdata';
+    
      options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
-    
+          console.log("COLABORADOR----",collaboratorId, idioma)
+
     const mockData = {
       name: "Zurita Robles Kadir",
       id: "2786036",
@@ -50,12 +52,12 @@ class OrganizationService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Array de miembros del equipo
    */
-  async getTeamMembers(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+  async getTeamMembers(collaboratorId, idioma, options = {}) {
      const path = '/orgchartteamdata';
      options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -113,12 +115,13 @@ class OrganizationService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos del organigrama
    */
-  async getOrganizationChart(collaboratorId = '1111111', usuarioActualDatos = 'Spanish (Latin America)', options = {}) {
+  async getOrganizationChart(collaboratorId, idioma, options = {}) {
     const path = '/orgchartteamdata';
+    
      options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${usuarioActualDatos}'`,
+        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`
       }
     };
@@ -126,8 +129,8 @@ class OrganizationService extends ApiService {
     try {
       // Cargar datos en paralelo
       const [mainCollaboratorResponse, teamMembersResponse] = await Promise.all([
-        this.getMainCollaborator(undefined, options),
-        this.getTeamMembers(undefined, options)
+        this.getMainCollaborator(collaboratorId, idioma, options),
+        this.getTeamMembers(collaboratorId, idioma, options)
       ]);
 
       const organizationData = {
