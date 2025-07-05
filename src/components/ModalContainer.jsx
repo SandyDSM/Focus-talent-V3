@@ -72,6 +72,12 @@ const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin 
 
   // Componente del modal que se renderizará en el portal
   const ModalContent = () => {
+    const handleOverlayClick = (e) => {
+      // Cierra el modal solo si se hace clic directamente en el overlay
+      if (e.target === e.currentTarget) {
+        closeModal();
+      }
+    };
     if (isLoading) {
       return (
         <div 
@@ -85,7 +91,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin 
           width: '100vw',
           height: '100vh'
         }}
-      >
+      onClick={handleOverlayClick}>
             <Loader size="large" />
         </div>
       );
@@ -107,8 +113,9 @@ const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin 
           width: '100vw',
           height: '100vh'
         }}
+        onClick={handleOverlayClick}
       >
-        <div className="relative w-full max-w-6xl animate-fade-in">
+        <div className="relative w-full max-w-6xl animate-fade-in"onClick={(e) => e.stopPropagation()}>
           {/* Botón para cerrar el modal */}
           <button 
             onClick={closeModal}

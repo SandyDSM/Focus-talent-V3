@@ -36,6 +36,11 @@ const OrganizationChartContent = () => {
   // Estados para controlar si las tarjetas están minimizadas
   const [isCardMapaMinimized, setIsCardMapaMinimized] = useState(false);
   const [isPerformanceCardMinimized, setIsPerformanceCardMinimized] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [startY, setStartY] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [scrollTop, setScrollTop] = useState(0);
   // Referencia al contenedor del organigrama
   const chartContainerRef = useRef(null);
   // Referencia al contenedor de scroll
@@ -137,6 +142,34 @@ const OrganizationChartContent = () => {
 
   const togglePerformanceCard = () => {
     setIsPerformanceCardMinimized(!isPerformanceCardMinimized);
+  };
+
+    // Manejadores de eventos para el arrastre del mouse
+  const handleMouseDown = (e) => {
+    // Evitar arrastrar si el clic se originó en el modal
+    if (e.target.closest(".fixed.inset-0.z-\\[9999\\]")) {
+      return;
+    }
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setStartY(e.pageY - scrollContainerRef.current.offsetTop);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+    setScrollTop(scrollContainerRef.current.scrollTop);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const y = e.pageY - scrollContainerRef.current.offsetTop;
+    const walkX = (x - startX); // Ajusta la velocidad de arrastre si es necesario
+    const walkY = (y - startY); // Ajusta la velocidad de arrastre si es necesario
+    scrollContainerRef.current.scrollLeft = scrollLeft - walkX;
+    scrollContainerRef.current.scrollTop = scrollTop - walkY;
   };
 
   // Función para centrar el organigrama después del zoom
@@ -359,11 +392,15 @@ const OrganizationChartContent = () => {
         <div 
           ref={scrollContainerRef}
           className="chart-scroll-container overflow-auto h-full w-full"
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseUp} // Stop dragging if mouse leaves the container
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
           style={{ 
             paddingLeft: '20px',
             paddingRight: '20px',
             paddingBottom: '20px',
-            scrollBehavior: 'smooth'
+            scrollBehavior: 'auto'
           }}
         >
           <div 
