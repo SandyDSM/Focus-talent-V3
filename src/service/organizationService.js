@@ -24,7 +24,6 @@ class OrganizationService extends ApiService {
         USER_ID: `'${collaboratorId}'`
       }
     };
-          console.log("COLABORADOR----",collaboratorId, idioma)
 
     const mockData = {
       name: "Zurita Robles Kadir",
@@ -136,14 +135,12 @@ class OrganizationService extends ApiService {
       const organizationData = {
         mainCollaborator: mainCollaboratorResponse.data[0],
         teamMembers: teamMembersResponse.data,
-        headerTitle: "Daniel Jones / Zurita Robles Kadir",
-        bannerSearch: "Equipo de Trabajo",
         lastUpdated: new Date().toISOString()
       };
 
       const fetchOptions = { ...options, mockData: organizationData };
 
-      console.log("mainCollaboratorResponse.data",mainCollaboratorResponse.data[0])
+      console.log("HERE_____Col",mainCollaboratorResponse.data[0])
       console.log("TEAM",organizationData.teamMembers)
       return this.fetchData(path, fetchOptions, { delay: false, useAmplify: false });
     } catch (error) {

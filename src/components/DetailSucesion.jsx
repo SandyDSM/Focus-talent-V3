@@ -14,18 +14,12 @@ import { useTranslation } from 'react-i18next';
  * @returns {JSX.Element} Componente de modal de colaborador
  */
 const CollaboratorModal = ({ 
-  mainCollaborator = {
-    name: "Zurita Robles Kadir",
-    id: "12345678",
-    organization: "Organización Bimbo Brasil",
-    role: "Supervisor Production",
-    age: "42 años",
-    avatarUrl: null
-  }, 
+  mainCollaborator ,
   teamMembers = [] ,
   borde,
   propiedad,
-  PERF_ID
+  PERF_ID,
+  perf_text,
 }) => {
   // Limitar a mostrar solo 3 colaboradores
   const displayTeamMembers = Array.isArray(teamMembers) ? teamMembers.slice(0, 3) : [];
@@ -46,6 +40,7 @@ const CollaboratorModal = ({
   //Para realizar traducciones
   const { t } = useTranslation();
 
+  console.log("HERE!!!", mainCollaborator)
   return (
     <div className="collaborator-modal bg-white rounded-lg shadow-lg p-6 max-w-9/10 mx-auto">
       {/* Encabezado con información del colaborador principal */}
@@ -73,6 +68,7 @@ const CollaboratorModal = ({
               <IconProfile type='Organitation'/>
               <span>{mainCollaborator.organization}</span>
             </div>
+            <p className={`text-sm rounded-full border-4 px-2 text-center ${borde[PERF_ID]}`}>{`Performance: ${perf_text}`}</p>
           </div>
         </div>
         <div className="text-right flex gap-4 mr-10 items-center">

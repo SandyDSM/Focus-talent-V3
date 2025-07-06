@@ -1,10 +1,10 @@
 import BannerUser from "../components/BannerUser";
-import HeadTeam from "../components/HeadTeam";
 
 import { useContext, useEffect, useState, useRef } from "react";
 import CardCompetencias from '../components/CardCompetencias';
 import CollaboratorsContext from "../context/collaborators";
 import CardMapa from '../components/CardMapa';
+import { useParams, useNavigate } from "react-router-dom";
 
 import ModalContainer from '../components/ModalContainer';
 import './Organigrama.css'; // Importar los estilos específicos
@@ -15,6 +15,10 @@ import { DataProvider, useDataContext, useOrganizationContext, useTalentContext,
 import { LoadingOverlay, SkeletonLoader } from '../components/LoadingSpinner';
 import { DataErrorWrapper } from '../components/ErrorBoundary';
 
+// Importar componentes de breadcrumbs
+import BreadcrumbOrg from '../components/BreadcrumbOrg';
+import useBreadcrumbs from '../hooks/useBreadcrumbs';
+
 //Componente para traducción
 import { useTranslation } from 'react-i18next';
 
@@ -24,12 +28,18 @@ import { useTranslation } from 'react-i18next';
 const OrganizationChartContent = () => {
   // Hooks para obtener datos de diferentes contextos
   const { isLoading, isError, error, reloadData, progress } = useDataContext();
-  const { mainCollaborator, teamMembers, headerTitle, bannerSearch } = useOrganizationContext();
+  const { mainCollaborator, teamMembers } = useOrganizationContext();
   const { levels: talentLevels } = useTalentContext();
   const { categories: performanceCategories } = usePerformanceContext();
   const { candidates: successionCandidates } = useSuccessionContext();
 
-  //console.log("LEVELS", talentLevels)
+  // Hook para manejar breadcrumbs
+  const { breadcrumbs, addBreadcrumb, navigateToBreadcrumb } = useBreadcrumbs();
+
+  // Hook para navegación
+  const navigate = useNavigate();
+
+  console.log("PARAMA", mainCollaborator)
 
   // Estado para controlar el nivel de zoom
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -45,6 +55,34 @@ const OrganizationChartContent = () => {
   const chartContainerRef = useRef(null);
   // Referencia al contenedor de scroll
   const scrollContainerRef = useRef(null);
+
+  // useEffect para agregar el colaborador actual a los breadcrumbs
+  useEffect(() => {
+    if (mainCollaborator && mainCollaborator.IDCOLABORADOR) {
+      addBreadcrumb({
+        id: mainCollaborator.IDCOLABORADOR,
+        name: `${mainCollaborator.NOMBRE} ${mainCollaborator.APELLIDOS}`,
+        position: mainCollaborator.PUESTO
+      });
+    }
+  }, [mainCollaborator?.IDCOLABORADOR, addBreadcrumb]); // Solo depender del ID del colaborador
+
+  // Función para manejar la navegación del equipo con breadcrumbs
+  const handleTeamNavigation = (collaboratorData) => {
+    console.log('handleTeamNavigation called with:', collaboratorData);
+    
+    // Agregar el colaborador a los breadcrumbs
+    addBreadcrumb({
+      id: collaboratorData.id,
+      name: collaboratorData.name,
+      position: collaboratorData.position
+    });
+    
+    console.log('Navigating to:', `/org/${collaboratorData.id}`);
+    
+    // Navegar a la vista del organigrama con el nuevo colaborador
+    navigate(`/org/${collaboratorData.id}`);
+  };
 
   //console.log("AQUI",successionCandidates)
 
@@ -117,7 +155,8 @@ const OrganizationChartContent = () => {
       organization: mainCollaborator.ORGANIZACION,
       role: mainCollaborator.PUESTO,
       age: mainCollaborator.EDAD,
-      avatarUrl: `data:image/jpg;base64,${mainCollaborator?.FOTO}`
+      avatarUrl: `data:image/jpg;base64,${mainCollaborator?.FOTO}`,
+      perf_text: mainCollaborator.PERFORMANCE,
     },
     teamMembers: modalTeamMembers
   } : null;
@@ -191,17 +230,59 @@ const OrganizationChartContent = () => {
     }
   };
 
-  // useEffect para centrar el organigrama cada vez que cambie el zoom
-  /*
+  // Calcular el tamaño del contenedor del organigrama basado en el zoom
+  const chartWidth = 1400 * zoomLevel;
+  const chartHeight = 800 * zoomLevel;
+
+  // Calcular padding dinámico basado en el nivel de zoom
+  const dynamicPaddingTop = 150 * zoomLevel;
+  const dynamicPaddingBottom = 150 * zoomLevel;
+
+  const cardWidth = 320; // Ancho aproximado de cada tarjeta EmployeeCard (w-80 = 320px)
+  const cardSpacing = 32; // Espacio entre tarjetas (space-x-8 = 32px)
+  const minChartWidth = 1200; // Ancho mínimo para el organigrama
+  const extraPadding = 400; // Padding extra para asegurar scroll completo
+  
+  // Calcular el ancho necesario para todas las tarjetas
+  const calculatedChartWidth = teamMembers.length > 0 
+    ? (teamMembers.length * cardWidth) + ((teamMembers.length - 1) * cardSpacing) + extraPadding
+    : minChartWidth;
+  
+  // El ancho del organigrama debe considerar el zoom
+  const orgChartWidth = Math.max(minChartWidth, calculatedChartWidth);
+  
+  // El ancho del contenedor debe ser el ancho del organigrama multiplicado por el zoom
+  const containerWidth = orgChartWidth * zoomLevel;
+
+  // useEffect para ajustar el scroll cada vez que cambie el zoom
   useEffect(() => {
-    const timer = setTimeout(() => {
-      centerOrganigram();
-    }, 150);
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const currentScrollLeft = container.scrollLeft;
+      const currentScrollTop = container.scrollTop;
+      const oldZoomLevel = parseFloat(container.dataset.prevZoom || 1);
 
-    return () => clearTimeout(timer);
-  }, [zoomLevel]);
+      const zoomRatio = zoomLevel / oldZoomLevel;
 
-  */
+      // Calcular el punto central actual de la vista
+      const centerX = currentScrollLeft + container.clientWidth / 2;
+      const centerY = currentScrollTop + container.clientHeight / 2;
+
+      // Calcular la nueva posición del centro después del zoom
+      const newCenterX = centerX * zoomRatio;
+      const newCenterY = centerY * zoomRatio;
+
+      // Calcular la nueva posición de scroll para mantener el centro
+      const newScrollLeft = newCenterX - container.clientWidth / 2;
+      const newScrollTop = newCenterY - container.clientHeight / 2;
+
+      // Aplicar los nuevos valores de scroll con límites apropiados
+      container.scrollLeft = Math.max(0, Math.min(newScrollLeft, container.scrollWidth - container.clientWidth));
+      container.scrollTop = Math.max(0, Math.min(newScrollTop, container.scrollHeight - container.clientHeight));
+
+      container.dataset.prevZoom = zoomLevel.toString();
+    }
+  }, [zoomLevel, orgChartWidth]);
 
   // Función para aumentar el zoom
   const handleZoomIn = () => {
@@ -213,20 +294,12 @@ const OrganizationChartContent = () => {
     setZoomLevel(prevZoom => Math.max(prevZoom - 0.2, 0.7));
   };
 
-  // Calcular el tamaño del contenedor del organigrama basado en el zoom
-  const chartWidth = 1400 * zoomLevel;
-  const chartHeight = 800 * zoomLevel;
-
-  // Calcular padding dinámico basado en el nivel de zoom
-  const dynamicPaddingTop = 150 * zoomLevel;
-  const dynamicPaddingBottom = 150 * zoomLevel;
-
   // Estilos para el contenedor del organigrama con zoom
   const orgChartStyle = {
     transform: `scale(${zoomLevel})`,
     transformOrigin: 'center top',
     transition: 'transform 0.3s ease',
-    width: '5000px',
+    width: `${orgChartWidth}px`,
     height: '600px',
   };
 
@@ -292,9 +365,12 @@ const OrganizationChartContent = () => {
       
       {/* Tercer Header - Header del Organigrama */}
       <div className="z-20 bg-gray-100 flex justify-between items-center p-6" style={{ top: '120px' }}>
-        <h1 className="text-xl font-semibold text-gray-800">
-          {`${mainCollaborator.NOMBRE} ${mainCollaborator.APELLIDOS}/`}
-        </h1>
+        <BreadcrumbOrg 
+          breadcrumbs={breadcrumbs}
+          onBreadcrumbClick={(breadcrumb, index) => {
+            navigateToBreadcrumb(index);
+          }}
+        />
         <div className="controls flex space-x-2">
           <button 
             className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
@@ -405,7 +481,7 @@ const OrganizationChartContent = () => {
         >
           <div 
             style={{
-              width: `${chartWidth}px`,
+              width: `${containerWidth}px`,
               height: `${chartHeight + dynamicPaddingTop + dynamicPaddingBottom}px`,
               paddingTop: `${dynamicPaddingTop}px`,
               paddingBottom: `${dynamicPaddingBottom}px`,
@@ -423,30 +499,61 @@ const OrganizationChartContent = () => {
                     cardData={mainCollaborator}
                     modalData={mainModalData}
                     jefe={true}
+                    onTeamNavigation={handleTeamNavigation}
                   />
                 )}
               </div>
 
               {/* Líneas de conexión */}
               <svg className="connection-lines absolute inset-0 pointer-events-none" style={{ width: '100%', height: '100%' }}>
-                <line x1="50%" y1="200" x2="50%" y2="280" stroke="#E5E7EB" strokeWidth="2" />
-                <line x1="20%" y1="280" x2="80%" y2="280" stroke="#E5E7EB" strokeWidth="2" />
-                {teamMembers.map((_, index) => {
-                  const xPosition = 20 + (index * 20);
-                  return (
-                    <line key={index} x1={`${xPosition}%`} y1="280" x2={`${xPosition}%`} y2="320" stroke="#E5E7EB" strokeWidth="2" />
-                  );
-                })}
+                {mainCollaborator && teamMembers.length > 0 && (
+                  <>
+                    {/* Línea vertical desde el colaborador principal */}
+                    <line 
+                      x1="50%" 
+                      y1="150" 
+                      x2="50%" 
+                      y2="280" 
+                      stroke="#E5E7EB" 
+                      strokeWidth="2" 
+                    />
+                    {/* Línea horizontal que conecta a los teamMembers */}
+                    <line 
+                      x1={`${50 - (teamMembers.length - 1) * 10}%`} 
+                      y1="280" 
+                      x2={`${50 + (teamMembers.length - 1) * 10}%`} 
+                      y2="280" 
+                      stroke="#E5E7EB" 
+                      strokeWidth="2" 
+                    />
+                    {/* Líneas verticales a cada teamMember */}
+                    {teamMembers.map((_, index) => {
+                      const xPosition = 50 - (teamMembers.length - 1) * 10 + (index * 20);
+                      return (
+                        <line 
+                          key={index} 
+                          x1={`${xPosition}%`} 
+                          y1="280" 
+                          x2={`${xPosition}%`} 
+                          y2="350" 
+                          stroke="#E5E7EB" 
+                          strokeWidth="2" 
+                        />
+                      );
+                    })}
+                  </>
+                )}
               </svg>
 
               {/* Colaboradores secundarios */}
-              <div className="team-members absolute flex justify-center space-x-8" style={{ top: '350px', left: '50%', transform: 'translateX(-50%)', width: '1200px' }}>
+              <div className="team-members absolute flex justify-center space-x-8" style={{ top: '350px', left: '50%', transform: 'translateX(-50%)', width: `${orgChartWidth}px` }}>
                 {teamMembers.map((member, index) => (
                   <div key={member.id || index} className="team-member">
                     <ModalContainer 
                       cardData={member}
                       modalData={teamMemberModals[index]}
                       jefe={false}
+                      onTeamNavigation={handleTeamNavigation}
                     />
                   </div>
                 ))}
@@ -483,11 +590,17 @@ const OrganizationChart = () => {
   const idioma = usuarioActualDatos?.IDIOMA;
   const collaboratorId = usuarioActualDatos?.ID_COLABORADOR;
 
-  console.log("USUARIO",usuarioActualDatos)
+  const { idteam } = useParams();
+
+  const collaboratorIdToUse = idteam !== undefined ? idteam : collaboratorId;
+
+  console.log('OrganizationChart - Params:', { idteam, collaboratorId, collaboratorIdToUse });
+  console.log('OrganizationChart - usuarioActualDatos:', usuarioActualDatos);
+
   return (
     <DataProvider 
       idioma={idioma}
-      collaboratorId={collaboratorId}
+      collaboratorId={collaboratorIdToUse}
     >
       <OrganizationChartContent />
     </DataProvider>

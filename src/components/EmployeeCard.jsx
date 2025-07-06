@@ -2,7 +2,7 @@ import React from "react";
 import { Maximize2, Shield } from "lucide-react";
 import Iconteam from "../ui-components/Iconteam";
 import { IconProfile } from "../ui-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Piramide } from "../ui-components";
 
 /**
@@ -16,6 +16,7 @@ import { Piramide } from "../ui-components";
  * @param {string} props.role - Rol del colaborador (ej: "Supervisor production")
  * @param {string} props.avatarUrl - URL de la imagen de perfil
  * @param {Function} props.onArrowClick - Función que se ejecuta al hacer clic en el botón de flecha
+ * @param {Function} props.onTeamNavigation - Función que se ejecuta al hacer clic en el icono de equipo para navegar
  * @returns {JSX.Element} Componente de tarjeta de colaborador
  */
 const EmployeeCard = ({
@@ -33,6 +34,7 @@ const EmployeeCard = ({
   propiedad,
   expandir,
   onArrowClick = null,
+  onTeamNavigation = null,
 }) => {
   // Manejador para el clic en el botón de flecha
   const handleArrowClick = (e) => {
@@ -41,6 +43,25 @@ const EmployeeCard = ({
     // Si se proporcionó una función onArrowClick, ejecutarla
     if (onArrowClick && typeof onArrowClick === "function") {
       onArrowClick();
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const handleIconteamClick = (e) => {
+    if (equipo == "1" && jefe === false) {
+      if (onTeamNavigation && typeof onTeamNavigation === "function") {
+        // Prevenir la navegación del Link si usamos la función personalizada
+        e.preventDefault();
+        // Usar la función de navegación personalizada si está disponible
+        onTeamNavigation({
+          id,
+          name,
+          position,
+          organization
+        });
+      }
+      // Si no hay onTeamNavigation, el Link manejará la navegación por defecto
     }
   };
 
@@ -105,7 +126,7 @@ const EmployeeCard = ({
       {/* Etiquetas de posición */}
       <div className="flex flex-center items-center justify-between gap-2">
        {(equipo == "1"  & (jefe === false)) ? (
-          <Link to={`#`}>
+          <Link to={`/org/${id}`} onClick={handleIconteamClick}>
             <div className={equipo == "1" && "cursor-pointer"}>
               <Iconteam state="Active" />
             </div>

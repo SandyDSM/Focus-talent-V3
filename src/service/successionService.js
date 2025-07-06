@@ -203,7 +203,8 @@ class SuccessionService extends ApiService {
           id: collaboratorId,
           name: "Zurita Robles Kadir",
           position: "Supervisor Production",
-          riskLevel: "medium"
+          riskLevel: "medium",
+          perf_text:"X"
         },
         candidates: candidatesResponse.data.map((candidate, index) => ({
           ...candidate,

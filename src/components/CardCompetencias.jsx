@@ -10,11 +10,11 @@ import React from 'react';
 const CardCompetencias = ({ title = "Calificación de desempeño", categories = [] }) => {
   // Si no se proporcionan categorías, usar datos por defecto basados en la imagen
   const defaultCategories = [
-    { name: 'Sobresaliente', percentage: 20, color: '#0052CC' },
-    { name: 'Supera', percentage: 20, color: '#00B8D9' },
-    { name: 'Gran trabajo', percentage: 20, color: '#36B37E' },
-    { name: 'Necesita mejora', percentage: 20, color: '#FFAB00' },
-    { name: 'Por debajo de lo esperado', percentage: 20, color: '#FF8B00' },
+    { name: 'Sobresaliente', percentage: 0, color: '#0052CC' },
+    { name: 'Supera', percentage: 0, color: '#00B8D9' },
+    { name: 'Gran trabajo', percentage: 0, color: '#36B37E' },
+    { name: 'Necesita mejora', percentage: 0, color: '#FFAB00' },
+    { name: 'Por debajo de lo esperado', percentage: 0, color: '#FF8B00' },
     { name: 'Salida', percentage: 0, color: '#FF5630' },
   ];
 
@@ -37,7 +37,7 @@ const CardCompetencias = ({ title = "Calificación de desempeño", categories = 
       
       <div className="space-y-2">
         {displayCategories?.map((category, index) => (
-          <div key={index} className="flex items-center justify-between">
+          <div key={index} className="flex items-center justify-between gap-4">
             <div className="flex items-center">
               <div 
                 className="w-4 h-4 rounded-full mr-2" 

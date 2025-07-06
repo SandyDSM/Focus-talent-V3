@@ -13,9 +13,10 @@ import { createPortal } from 'react-dom';
  * @param {Object} props - Propiedades del componente
  * @param {Object} props.cardData - Datos para la tarjeta de colaborador
  * @param {Object} props.modalData - Datos para el modal de colaborador
+ * @param {Function} props.onTeamNavigation - Función para manejar la navegación del equipo
  * @returns {JSX.Element} Componente contenedor
  */
-const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin America)'  }) => {
+const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [successionData, setSuccessionData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +41,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin 
     setSuccessionData(null); // Limpiar los datos al cerrar el modal
   };
 
-  //console.log("DATA---",successionData)
+  console.log("DATA---",cardData)
 
       const borde = {
       '1': 'border-[#0561F4]',
@@ -132,6 +133,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin 
             borde = {borde}
             propiedad = {propiedad}
             PERF_ID = {cardData?.PERF_ID}
+            perf_text ={cardData?.PERFORMANCE}
           />
         </div>
       </div>
@@ -151,6 +153,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language = 'Spanish (Latin 
         avatarUrl={`data:image/jpg;base64,${cardData?.FOTO}`}
         equipo={cardData?.EQUIPO}
         onArrowClick={openModal}
+        onTeamNavigation={onTeamNavigation}
         jefe={jefe}
         PERF_ID = {cardData?.PERF_ID}
         borde = {borde}
