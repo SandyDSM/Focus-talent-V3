@@ -68,7 +68,9 @@ const CollaboratorModal = ({
               <IconProfile type='Organitation'/>
               <span>{mainCollaborator.organization}</span>
             </div>
-            <p className={`text-sm rounded-full border-4 px-2 text-center ${borde[PERF_ID]}`}>{`Performance: ${perf_text}`}</p>
+            <div className={`text-sm rounded-full border-4 px-2 size-fit ${borde[PERF_ID]}`}>
+            <p>{`Performance: ${perf_text}`}</p>
+            </div>
           </div>
         </div>
         <div className="text-right flex gap-4 mr-10 items-center">
