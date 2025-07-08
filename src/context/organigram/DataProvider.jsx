@@ -20,11 +20,10 @@ const DATA_ACTIONS = {
 
 // Estado inicial
 const initialState = {
-  status: LOADING_STATES.IDLE,
+  status: LOADING_STATES.LOADING,
   data: null,
   error: null,
   progress: 0,
-  lastUpdated: null
 };
 
 // Reducer para manejar el estado de los datos
@@ -134,7 +133,9 @@ export const DataProvider = ({
   // Cargar datos al montar el componente
   useEffect(() => {
     console.log('DataProvider - useEffect triggered, collaboratorId changed to:', collaboratorId);
-    loadData();
+    if (collaboratorId) {
+      loadData();
+    }
   }, [collaboratorId]);
 
   // Valor del contexto

@@ -67,9 +67,9 @@ const LoadingSpinner = ({
       </div>
       
       {/* Mensaje de carga */}
-      <p className="mt-4 text-sm text-gray-600 text-center">{message}</p>
+      {/*<p className="mt-4 text-sm text-gray-600 text-center">{message}</p>*/}
       
-      {/* Barra de progreso si se proporciona */}
+      {/* Barra de progreso si se proporciona 
       {progress > 0 && (
         <div className="mt-2 w-32 bg-gray-200 rounded-full h-2">
           <div 
@@ -78,11 +78,11 @@ const LoadingSpinner = ({
           ></div>
         </div>
       )}
-      
-      {/* Porcentaje de progreso */}
+      */}
+      {/* Porcentaje de progreso 
       {progress > 0 && (
         <span className="mt-1 text-xs text-gray-500">{Math.round(progress)}%</span>
-      )}
+      )}*/}
     </div>
   );
 };

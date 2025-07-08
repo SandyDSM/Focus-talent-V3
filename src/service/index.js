@@ -9,14 +9,12 @@ import ApiService from './appiService.js';
 import OrganizationService from './organizationService.js';
 import TalentService from './talentService.js';
 import PerformanceService from './performanceService.js';
-import SuccessionService from './successionService.js';
 
 
 // Instancias de servicios para uso global
 export const organizationService = new OrganizationService();
 export const talentService = new TalentService();
 export const performanceService = new PerformanceService();
-export const successionService = new SuccessionService();
 
 // Exportar clases para instanciación personalizada
 export {
@@ -24,7 +22,6 @@ export {
   OrganizationService,
   TalentService,
   PerformanceService,
-  SuccessionService
 };
 
 /**
@@ -52,7 +49,6 @@ export const loadOrganizationData = async (
       organizationService.getOrganizationChart(collaboratorId, idioma),
       talentService.getTalentMap(collaboratorId, idioma),
       performanceService.getPerformanceData(collaboratorId, idioma),
-
     ]);
 
     const loadTime = Date.now() - startTime;
