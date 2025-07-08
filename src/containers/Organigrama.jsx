@@ -1,26 +1,33 @@
 import BannerUser from "../components/BannerUser";
 
 import { useContext, useEffect, useState, useRef } from "react";
-import CardCompetencias from '../components/CardCompetencias';
+import CardCompetencias from "../components/CardCompetencias";
 import CollaboratorsContext from "../context/collaborators";
-import CardMapa from '../components/CardMapa';
+import CardMapa from "../components/CardMapa";
 import { useParams, useNavigate } from "react-router-dom";
 
-import ModalContainer from '../components/ModalContainer';
-import './Organigrama.css'; // Importar los estilos específicos
-import { Move, Trophy, Triangle } from 'lucide-react';
+import ModalContainer from "../components/ModalContainer";
+import "./Organigrama.css"; // Importar los estilos específicos
+import { Move, Trophy, Triangle, Crosshair } from "lucide-react";
 
 // Importar nuevos componentes y hooks
-import { DataProvider, useDataContext, useOrganizationContext, useTalentContext, usePerformanceContext, useSuccessionContext } from '../context/organigram/DataProvider';
-import { LoadingOverlay, SkeletonLoader } from '../components/LoadingSpinner';
-import { DataErrorWrapper } from '../components/ErrorBoundary';
+import {
+  DataProvider,
+  useDataContext,
+  useOrganizationContext,
+  useTalentContext,
+  usePerformanceContext,
+  useSuccessionContext,
+} from "../context/organigram/DataProvider";
+import { LoadingOverlay, SkeletonLoader } from "../components/LoadingSpinner";
+import { DataErrorWrapper } from "../components/ErrorBoundary";
 
 // Importar componentes de breadcrumbs
-import BreadcrumbOrg from '../components/BreadcrumbOrg';
-import useBreadcrumbs from '../hooks/useBreadcrumbs';
+import BreadcrumbOrg from "../components/BreadcrumbOrg";
+import useBreadcrumbs from "../hooks/useBreadcrumbs";
 
-//Componente para traducción
-import { useTranslation } from 'react-i18next';
+// Componente para traducción
+import { useTranslation } from "react-i18next";
 
 /**
  * Componente interno del organigrama que usa los datos del contexto
@@ -39,21 +46,19 @@ const OrganizationChartContent = () => {
   // Hook para navegación
   const navigate = useNavigate();
 
-  console.log("PARAMA", mainCollaborator)
-
-  // Estado para controlar el nivel de zoom
+  // Estado de zoom y drag
   const [zoomLevel, setZoomLevel] = useState(1);
-  // Estados para controlar si las tarjetas están minimizadas
   const [isCardMapaMinimized, setIsCardMapaMinimized] = useState(false);
-  const [isPerformanceCardMinimized, setIsPerformanceCardMinimized] = useState(false);
+  const [isPerformanceCardMinimized, setIsPerformanceCardMinimized] =
+    useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [scrollTop, setScrollTop] = useState(0);
-  // Referencia al contenedor del organigrama
+
+  // Refs
   const chartContainerRef = useRef(null);
-  // Referencia al contenedor de scroll
   const scrollContainerRef = useRef(null);
 
   // useEffect para agregar el colaborador actual a los breadcrumbs
@@ -62,251 +67,167 @@ const OrganizationChartContent = () => {
       addBreadcrumb({
         id: mainCollaborator.IDCOLABORADOR,
         name: `${mainCollaborator.NOMBRE} ${mainCollaborator.APELLIDOS}`,
-        position: mainCollaborator.PUESTO
+        position: mainCollaborator.PUESTO,
       });
     }
-  }, [mainCollaborator?.IDCOLABORADOR, addBreadcrumb]); // Solo depender del ID del colaborador
+  }, [mainCollaborator?.IDCOLABORADOR, addBreadcrumb]);
 
-  // Función para manejar la navegación del equipo con breadcrumbs
+  // Función para la navegación del equipo
   const handleTeamNavigation = (collaboratorData) => {
-    console.log('handleTeamNavigation called with:', collaboratorData);
-    
-    // Agregar el colaborador a los breadcrumbs
     addBreadcrumb({
       id: collaboratorData.id,
       name: collaboratorData.name,
-      position: collaboratorData.position
+      position: collaboratorData.position,
     });
-    
-    console.log('Navigating to:', `/org/${collaboratorData.id}`);
-    
-    // Navegar a la vista del organigrama con el nuevo colaborador
     navigate(`/org/${collaboratorData.id}`);
   };
 
-  //console.log("AQUI",successionCandidates)
+  // Datos para modales
+  const modalTeamMembers =
+    successionCandidates.length > 0
+      ? successionCandidates
+      : [
+          /* ... mismos datos de prueba que tenías ... */
+        ];
 
-  // Datos para los colaboradores que aparecen en el modal (usar datos de sucesión si están disponibles)
-  const modalTeamMembers = successionCandidates.length > 0 ? successionCandidates : [
-    {
-      name: "Ricardo Fernández",
-      id: "3456789",
-      organization: "Marketing Digital",
-      location: "MEX",
-      age: "35 años",
-      companyAntiquity: "8/10/2019",
-      positionAntiquity: "8/10/2019",
-      potential: "Talento promesa",
-      performanceConclusion: "Supera",
-      leadershipSkills: "Gran trabajo",
-      businessContribution: "Sobresaliente",
-      assessmentKF: "2023",
-      profileMatch: "-",
-      pid: "85%",
-      pidColor: "#36B37E",
-      avatarUrl: null,
-      borderColor: "#9254DE"
-    },
-    {
-      name: "Laura Mendoza",
-      id: "4567890",
-      organization: "Finanzas Corporativas",
-      location: "COL",
-      age: "42 años",
-      companyAntiquity: "3/5/2018",
-      positionAntiquity: "3/5/2018",
-      potential: "Alto potencial",
-      performanceConclusion: "Sobresaliente",
-      leadershipSkills: "Sobresaliente",
-      businessContribution: "Por encima de lo esperado",
-      assessmentKF: "2024",
-      profileMatch: "-",
-      pid: "92%",
-      pidColor: "#36B37E",
-      avatarUrl: null,
-      borderColor: "#F759AB"
-    },
-    {
-      name: "Carlos Vega",
-      id: "5678901",
-      organization: "Operaciones Logísticas",
-      location: "ARG",
-      age: "39 años",
-      companyAntiquity: "12/7/2020",
-      positionAntiquity: "12/7/2020",
-      potential: "Talento Esencial",
-      performanceConclusion: "Gran trabajo",
-      leadershipSkills: "Supera",
-      businessContribution: "Gran trabajo",
-      assessmentKF: "2023",
-      profileMatch: "-",
-      pid: "78%",
-      pidColor: "#36B37E",
-      avatarUrl: null,
-      borderColor: "#13C2C2"
-    }
-  ];
+  const mainModalData = mainCollaborator
+    ? {
+        mainCollaborator: {
+          name: `${mainCollaborator.NOMBRE} ${mainCollaborator.APELLIDOS}`,
+          id: mainCollaborator.IDCOLABORADOR,
+          organization: mainCollaborator.ORGANIZACION,
+          role: mainCollaborator.PUESTO,
+          age: mainCollaborator.EDAD,
+          avatarUrl: `data:image/jpg;base64,${mainCollaborator?.FOTO}`,
+          perf_text: mainCollaborator.PERFORMANCE,
+        },
+        teamMembers: modalTeamMembers,
+      }
+    : null;
 
-  // Crear datos para el modal del colaborador principal
-  const mainModalData = mainCollaborator ? {
-    mainCollaborator: {
-      name: `${mainCollaborator.NOMBRE} ${mainCollaborator.APELLIDOS}`,
-      id: mainCollaborator.IDCOLABORADOR,
-      organization: mainCollaborator.ORGANIZACION,
-      role: mainCollaborator.PUESTO,
-      age: mainCollaborator.EDAD,
-      avatarUrl: `data:image/jpg;base64,${mainCollaborator?.FOTO}`,
-      perf_text: mainCollaborator.PERFORMANCE,
-    },
-    teamMembers: modalTeamMembers
-  } : null;
-
-  // Crear datos para los modales de los colaboradores secundarios
-  const teamMemberModals = teamMembers.map(member => ({
+  const teamMemberModals = teamMembers.map((member) => ({
     mainCollaborator: {
       name: `${member.NOMBRE} ${member.APELLIDOS}`,
       id: member.IDCOLABORADOR,
       organization: member.ORGANIZACION,
       role: member.PUESTO,
-      age: member.EDAD, // Valor por defecto
-      avatarUrl: `data:image/jpg;base64,${member?.FOTO}`
+      age: member.EDAD,
+      avatarUrl: `data:image/jpg;base64,${member?.FOTO}`,
     },
-    teamMembers: modalTeamMembers
+    teamMembers: modalTeamMembers,
   }));
 
-  // Funciones para alternar el estado de las tarjetas
-  const toggleCardMapa = () => {
-    setIsCardMapaMinimized(!isCardMapaMinimized);
-  };
-
-  const togglePerformanceCard = () => {
+  // Toggle de tarjetas
+  const toggleCardMapa = () => setIsCardMapaMinimized(!isCardMapaMinimized);
+  const togglePerformanceCard = () =>
     setIsPerformanceCardMinimized(!isPerformanceCardMinimized);
-  };
 
-    // Manejadores de eventos para el arrastre del mouse
+  // Drag handlers
   const handleMouseDown = (e) => {
-    // Evitar arrastrar si el clic se originó en el modal
-    if (e.target.closest(".fixed.inset-0.z-\\[9999\\]")) {
-      return;
-    }
+    if (e.target.closest(".fixed.inset-0.z-\\[9999\\]")) return;
     setIsDragging(true);
     setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
     setStartY(e.pageY - scrollContainerRef.current.offsetTop);
     setScrollLeft(scrollContainerRef.current.scrollLeft);
     setScrollTop(scrollContainerRef.current.scrollTop);
   };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
+  const handleMouseUp = () => setIsDragging(false);
   const handleMouseMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - scrollContainerRef.current.offsetLeft;
     const y = e.pageY - scrollContainerRef.current.offsetTop;
-    const walkX = (x - startX); // Ajusta la velocidad de arrastre si es necesario
-    const walkY = (y - startY); // Ajusta la velocidad de arrastre si es necesario
-    scrollContainerRef.current.scrollLeft = scrollLeft - walkX;
-    scrollContainerRef.current.scrollTop = scrollTop - walkY;
+    scrollContainerRef.current.scrollLeft = scrollLeft - (x - startX);
+    scrollContainerRef.current.scrollTop = scrollTop - (y - startY);
   };
 
-  // Función para centrar el organigrama después del zoom
-  const centerOrganigram = () => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const containerWidth = container.clientWidth;
-      const scrollWidth = container.scrollWidth;
+  // Función para centrar manualmente (botón y efectos)
+const centerOrganigram = () => {
+  setZoomLevel(1); // Restaurar zoom al 100%
 
-      const leftX = 100;
-      const dynamicPaddingTop = 150 * zoomLevel;
-      const topY = Math.max(0, dynamicPaddingTop - 100);
+  // Esperar a que el zoom se actualice antes de centrar
+  setTimeout(() => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const contentWidth = container.scrollWidth;
+    const containerWidth = container.clientWidth;
 
-      container.scrollTo({
-        left: leftX,
-        top: topY,
-        behavior: 'smooth'
-      });
-    }
-  };
+    container.scrollTo({
+      left: (contentWidth - containerWidth) / 2,
+      top: Math.max(0, 150 * 1 - 100), // Top con zoom 1
+      behavior: "smooth",
+    });
+  }, 300); // Esperar a que la transición de zoom termine
+};
 
-  // Calcular el tamaño del contenedor del organigrama basado en el zoom
-  const chartWidth = 1400 * zoomLevel;
+
+  // Cálculos de tamaño
+  const cardWidth = 320;
+  const cardSpacing = 32;
+  const minChartWidth = 1200;
+  const extraPadding = 400;
+
+  const calculatedChartWidth =
+    teamMembers.length > 0
+      ? teamMembers.length * cardWidth +
+        (teamMembers.length - 1) * cardSpacing +
+        extraPadding
+      : minChartWidth;
+
+  // ⬅️ Se agrega +400 extra para evitar “cortes” al hacer zoom
+  const orgChartWidth = Math.max(minChartWidth, calculatedChartWidth + 400);
+  const containerWidth = orgChartWidth * zoomLevel;
   const chartHeight = 800 * zoomLevel;
-
-  // Calcular padding dinámico basado en el nivel de zoom
   const dynamicPaddingTop = 150 * zoomLevel;
   const dynamicPaddingBottom = 150 * zoomLevel;
 
-  const cardWidth = 320; // Ancho aproximado de cada tarjeta EmployeeCard (w-80 = 320px)
-  const cardSpacing = 32; // Espacio entre tarjetas (space-x-8 = 32px)
-  const minChartWidth = 1200; // Ancho mínimo para el organigrama
-  const extraPadding = 400; // Padding extra para asegurar scroll completo
-  
-  // Calcular el ancho necesario para todas las tarjetas
-  const calculatedChartWidth = teamMembers.length > 0 
-    ? (teamMembers.length * cardWidth) + ((teamMembers.length - 1) * cardSpacing) + extraPadding
-    : minChartWidth;
-  
-  // El ancho del organigrama debe considerar el zoom
-  const orgChartWidth = Math.max(minChartWidth, calculatedChartWidth);
-  
-  // El ancho del contenedor debe ser el ancho del organigrama multiplicado por el zoom
-  const containerWidth = orgChartWidth * zoomLevel;
-
-  // useEffect para ajustar el scroll cada vez que cambie el zoom
-  useEffect(() => {
-    if (scrollContainerRef.current) {
+// Centrar solo una vez al cargar colaborador (no al cambiar zoom)
+useEffect(() => {
+  if (mainCollaborator) {
+    setTimeout(() => {
+      if (!scrollContainerRef.current) return;
       const container = scrollContainerRef.current;
-      const currentScrollLeft = container.scrollLeft;
-      const currentScrollTop = container.scrollTop;
-      const oldZoomLevel = parseFloat(container.dataset.prevZoom || 1);
+      const contentWidth = container.scrollWidth;
+      const containerWidth = container.clientWidth;
 
-      const zoomRatio = zoomLevel / oldZoomLevel;
+      container.scrollLeft = (contentWidth - containerWidth) / 2;
+      container.scrollTop = Math.max(0, 150 * zoomLevel - 100);
+    }, 300);
+  }
+}, [mainCollaborator]);
 
-      // Calcular el punto central actual de la vista
-      const centerX = currentScrollLeft + container.clientWidth / 2;
-      const centerY = currentScrollTop + container.clientHeight / 2;
+// Solo mantener el centro relativo al hacer zoom (sin centrar todo)
+useEffect(() => {
+  if (!scrollContainerRef.current) return;
+  const container = scrollContainerRef.current;
+  const oldZoom = parseFloat(container.dataset.prevZoom || 1);
+  const ratio = zoomLevel / oldZoom;
 
-      // Calcular la nueva posición del centro después del zoom
-      const newCenterX = centerX * zoomRatio;
-      const newCenterY = centerY * zoomRatio;
+  const centerX = container.scrollLeft + container.clientWidth / 2;
+  const centerY = container.scrollTop + container.clientHeight / 2;
 
-      // Calcular la nueva posición de scroll para mantener el centro
-      const newScrollLeft = newCenterX - container.clientWidth / 2;
-      const newScrollTop = newCenterY - container.clientHeight / 2;
+  container.scrollLeft = centerX * ratio - container.clientWidth / 2;
+  container.scrollTop = centerY * ratio - container.clientHeight / 2;
 
-      // Aplicar los nuevos valores de scroll con límites apropiados
-      container.scrollLeft = Math.max(0, Math.min(newScrollLeft, container.scrollWidth - container.clientWidth));
-      container.scrollTop = Math.max(0, Math.min(newScrollTop, container.scrollHeight - container.clientHeight));
+  container.dataset.prevZoom = zoomLevel.toString();
+}, [zoomLevel]);
 
-      container.dataset.prevZoom = zoomLevel.toString();
-    }
-  }, [zoomLevel, orgChartWidth]);
 
-  // Función para aumentar el zoom
-  const handleZoomIn = () => {
-    setZoomLevel(prevZoom => Math.min(prevZoom + 0.2, 2.5));
-  };
-
-  // Función para disminuir el zoom
-  const handleZoomOut = () => {
-    setZoomLevel(prevZoom => Math.max(prevZoom - 0.2, 0.7));
-  };
-
-  // Estilos para el contenedor del organigrama con zoom
+  // Estilos del organigrama
   const orgChartStyle = {
     transform: `scale(${zoomLevel})`,
-    transformOrigin: 'center top',
-    transition: 'transform 0.3s ease',
+    transformOrigin: "top center", // cambiado
+    transition: "transform 0.3s ease",
     width: `${orgChartWidth}px`,
-    height: '600px',
+    height: "600px",
   };
 
-  //Para realizar traducciones
+  // Traducción
   const { t } = useTranslation();
-  
-  // Mostrar overlay de carga mientras se cargan los datos
+
+  /* ---------- Estados de carga / error ---------- */
+
+ // Mostrar overlay de carga mientras se cargan los datos
   if (isLoading) {
     return (
       <LoadingOverlay 
@@ -330,11 +251,10 @@ const OrganizationChartContent = () => {
     );
   }
 
-  // Mostrar error si hay problemas cargando los datos
   if (isError) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-50">
-        <DataErrorWrapper 
+        <DataErrorWrapper
           loading={false}
           error={error}
           onRetry={reloadData}
@@ -343,11 +263,10 @@ const OrganizationChartContent = () => {
     );
   }
 
-  // Verificar que tenemos los datos mínimos necesarios
   if (!mainCollaborator) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-50">
-        <DataErrorWrapper 
+        <DataErrorWrapper
           loading={false}
           error="No se pudieron cargar los datos del colaborador principal"
           onRetry={reloadData}
@@ -356,39 +275,85 @@ const OrganizationChartContent = () => {
     );
   }
 
+  /* ---------- Render principal ---------- */
+
   return (
     <div className="h-screen flex flex-col">
-      {/* Primer Header - BannerUser */}
+      {/* Header 1 */}
       <div className="z-40">
         <BannerUser />
       </div>
-      
-      {/* Tercer Header - Header del Organigrama */}
-      <div className="z-20 bg-gray-100 flex justify-between items-center p-6" style={{ top: '120px' }}>
-        <BreadcrumbOrg 
+
+      {/* Header 3 (zoom + centrar) */}
+      <div
+        className="z-20 bg-gray-100 flex justify-between items-center p-6"
+        style={{ top: "120px" }}
+      >
+        <BreadcrumbOrg
           breadcrumbs={breadcrumbs}
-          onBreadcrumbClick={(breadcrumb, index) => {
-            navigateToBreadcrumb(index);
-          }}
+          onBreadcrumbClick={(breadcrumb, index) =>
+            navigateToBreadcrumb(index)
+          }
         />
+
+        {/* Controles */}
         <div className="controls flex space-x-2">
-          <button 
+          {/* Botón Centrar */}
+          <button
             className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
-            onClick={handleZoomOut}
+            onClick={centerOrganigram}
+            aria-label="Centrar"
+            title={t("Centrar")}
+          >
+            <Crosshair className="w-5 h-5 text-gray-600" />
+          </button>
+
+          {/* Zoom - */}
+          <button
+            className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
+            onClick={() =>
+              setZoomLevel((prev) => Math.max(prev - 0.2, 0.7))
+            }
             aria-label="Zoom Out"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-gray-600"
+            >
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               <line x1="8" y1="11" x2="14" y2="11"></line>
             </svg>
           </button>
-          <button 
+
+          {/* Zoom + */}
+          <button
             className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
-            onClick={handleZoomIn}
+            onClick={() =>
+              setZoomLevel((prev) => Math.min(prev + 0.2, 1.5))
+            }
             aria-label="Zoom In"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-gray-600"
+            >
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               <line x1="11" y1="8" x2="11" y2="14"></line>
@@ -398,33 +363,44 @@ const OrganizationChartContent = () => {
         </div>
       </div>
 
-      {/* Contenedor principal del organigrama */}
-      <div className="organization-chart-wrapper bg-gray-100 flex-grow" style={{ paddingTop: '10px' }}>
-        {/* Mapa de talento - esquina superior izquierda */}
-        <div 
-          className="fixed left-6 transition-all duration-300 ease-in-out z-50" 
-          style={{ top: '220px' }}
+      {/* Contenedor principal */}
+      <div
+        className="organization-chart-wrapper bg-gray-100 flex-grow"
+        style={{ paddingTop: "10px" }}
+      >
+        {/* --- MAPA DE TALENTO (ESQ. SUP. IZQ.) --- */}
+        <div
+          className="fixed left-6 transition-all duration-300 ease-in-out z-50"
+          style={{ top: "220px" }}
         >
           {isCardMapaMinimized ? (
-            <div 
-              className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow duration-200 cursor-pointer flex items-center justify-center"
+            <div
+              className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer flex items-center justify-center"
               onClick={toggleCardMapa}
-              title={t('Expandir_Mapa_Talento')}
+              title={t("Expandir_Mapa_Talento")}
             >
               <Triangle strokeWidth={3} className="w-6 h-6 text-blue-800" />
             </div>
           ) : (
-            <div className={`relative ${!isCardMapaMinimized ? 'animate-fadeIn' : ''}`}>
-              <CardMapa 
-                title="Mapa de talento" 
-                levels={talentLevels} 
-              />
-              <div 
-                className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm hover:shadow transition-all duration-200"
+            <div className="relative animate-fadeIn">
+              <CardMapa title="Mapa de talento" levels={talentLevels} />
+              <div
+                className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm"
                 onClick={toggleCardMapa}
-                title={t('Minimizar_Mapa_Talento')}
+                title={t("Minimizar_Mapa_Talento")}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-gray-600"
+                >
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
               </div>
@@ -432,31 +408,42 @@ const OrganizationChartContent = () => {
           )}
         </div>
 
-        {/* Tarjeta de desempeño - esquina superior derecha */}
-        <div 
-          className="fixed right-6 transition-all duration-300 ease-in-out z-50" 
-          style={{ top: '220px' }}
+        {/* --- TARJETA DE DESEMPEÑO (ESQ. SUP. DER.) --- */}
+        <div
+          className="fixed right-6 transition-all duration-300 ease-in-out z-50"
+          style={{ top: "220px" }}
         >
           {isPerformanceCardMinimized ? (
-            <div 
-              className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow duration-200 cursor-pointer flex items-center justify-center"
+            <div
+              className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer flex items-center justify-center"
               onClick={togglePerformanceCard}
-              title={t('Expandir_Calif_Desemp')}
+              title={t("Expandir_Calif_Desemp")}
             >
               <Trophy strokeWidth={3} className="w-6 h-6 text-blue-800" />
             </div>
           ) : (
-            <div className={`relative ${!isPerformanceCardMinimized ? 'animate-fadeIn' : ''}`}>
-              <CardCompetencias 
-                title={t('Clasif_Desempeno')} 
-                categories={performanceCategories} 
+            <div className="relative animate-fadeIn">
+              <CardCompetencias
+                title={t("Clasif_Desempeno")}
+                categories={performanceCategories}
               />
-              <div 
-                className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm hover:shadow transition-all duration-200"
+              <div
+                className="absolute top-2 right-2 bg-gray-200 hover:bg-gray-300 rounded-full p-1.5 cursor-pointer shadow-sm"
                 onClick={togglePerformanceCard}
-                title={t('Minimizar_Calif_Desemp')}
+                title={t("Minimizar_Calif_Desemp")}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-gray-600"
+                >
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
               </div>
@@ -464,22 +451,22 @@ const OrganizationChartContent = () => {
           )}
         </div>
 
-        {/* Contenedor con scroll para el organigrama */}
-        <div 
+        {/* --- CONTENEDOR CON SCROLL --- */}
+        <div
           ref={scrollContainerRef}
           className="chart-scroll-container overflow-auto h-full w-full"
           onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseUp} // Stop dragging if mouse leaves the container
+          onMouseLeave={handleMouseUp}
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
-          style={{ 
-            paddingLeft: '20px',
-            paddingRight: '20px',
-            paddingBottom: '20px',
-            scrollBehavior: 'auto'
+          style={{
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            paddingBottom: "20px",
+            scrollBehavior: "auto",
           }}
         >
-          <div 
+          <div
             style={{
               width: `${containerWidth}px`,
               height: `${chartHeight + dynamicPaddingTop + dynamicPaddingBottom}px`,
@@ -487,15 +474,23 @@ const OrganizationChartContent = () => {
               paddingBottom: `${dynamicPaddingBottom}px`,
             }}
           >
-            <div 
+            {/* -------- ORGANIGRAMA EN SÍ -------- */}
+            <div
               ref={chartContainerRef}
               className="organization-chart-container relative"
               style={orgChartStyle}
             >
               {/* Colaborador principal */}
-              <div className="main-collaborator absolute" style={{ top: '-50px', left: '50%', transform: 'translateX(-50%)' }}>
+              <div
+                className="main-collaborator absolute"
+                style={{
+                  top: "-50px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                }}
+              >
                 {mainModalData && (
-                  <ModalContainer 
+                  <ModalContainer
                     cardData={mainCollaborator}
                     modalData={mainModalData}
                     jefe={true}
@@ -505,39 +500,43 @@ const OrganizationChartContent = () => {
               </div>
 
               {/* Líneas de conexión */}
-              <svg className="connection-lines absolute inset-0 pointer-events-none" style={{ width: '100%', height: '100%' }}>
+              <svg
+                className="connection-lines absolute inset-0 pointer-events-none"
+                style={{ width: "100%", height: "100%" }}
+              >
                 {mainCollaborator && teamMembers.length > 0 && (
                   <>
-                    {/* Línea vertical desde el colaborador principal */}
-                    <line 
-                      x1="50%" 
-                      y1="150" 
-                      x2="50%" 
-                      y2="280" 
-                      stroke="#E5E7EB" 
-                      strokeWidth="2" 
+                    {/* Línea vertical */}
+                    <line
+                      x1="50%"
+                      y1="150"
+                      x2="50%"
+                      y2="280"
+                      stroke="#E5E7EB"
+                      strokeWidth="2"
                     />
-                    {/* Línea horizontal que conecta a los teamMembers */}
-                    <line 
-                      x1={`${50 - (teamMembers.length - 1) * 10}%`} 
-                      y1="280" 
-                      x2={`${50 + (teamMembers.length - 1) * 10}%`} 
-                      y2="280" 
-                      stroke="#E5E7EB" 
-                      strokeWidth="2" 
+                    {/* Línea horizontal */}
+                    <line
+                      x1={`${50 - (teamMembers.length - 1) * 10}%`}
+                      y1="280"
+                      x2={`${50 + (teamMembers.length - 1) * 10}%`}
+                      y2="280"
+                      stroke="#E5E7EB"
+                      strokeWidth="2"
                     />
-                    {/* Líneas verticales a cada teamMember */}
+                    {/* Líneas a cada miembro */}
                     {teamMembers.map((_, index) => {
-                      const xPosition = 50 - (teamMembers.length - 1) * 10 + (index * 20);
+                      const xPos =
+                        50 - (teamMembers.length - 1) * 10 + index * 20;
                       return (
-                        <line 
-                          key={index} 
-                          x1={`${xPosition}%`} 
-                          y1="280" 
-                          x2={`${xPosition}%`} 
-                          y2="350" 
-                          stroke="#E5E7EB" 
-                          strokeWidth="2" 
+                        <line
+                          key={index}
+                          x1={`${xPos}%`}
+                          y1="280"
+                          x2={`${xPos}%`}
+                          y2="350"
+                          stroke="#E5E7EB"
+                          strokeWidth="2"
                         />
                       );
                     })}
@@ -546,12 +545,20 @@ const OrganizationChartContent = () => {
               </svg>
 
               {/* Colaboradores secundarios */}
-              <div className="team-members absolute flex justify-center space-x-8" style={{ top: '350px', left: '50%', transform: 'translateX(-50%)', width: `${orgChartWidth}px` }}>
-                {teamMembers.map((member, index) => (
-                  <div key={member.id || index} className="team-member">
-                    <ModalContainer 
+              <div
+                className="team-members absolute flex justify-center space-x-8 px-40"
+                style={{
+                  top: "350px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: `${orgChartWidth}px`,
+                }}
+              >
+                {teamMembers.map((member, idx) => (
+                  <div key={member.id || idx} className="team-member">
+                    <ModalContainer
                       cardData={member}
-                      modalData={teamMemberModals[index]}
+                      modalData={teamMemberModals[idx]}
                       jefe={false}
                       onTeamNavigation={handleTeamNavigation}
                     />
@@ -561,29 +568,28 @@ const OrganizationChartContent = () => {
             </div>
           </div>
         </div>
-         {/* Botón de navegación en la esquina inferior derecha (fijo) */}
+
+        {/* Botón navegación (puedes usarlo para otra acción) */}
         <div className="navigation-button fixed bottom-6 right-6 z-30">
           <button className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-100">
-            <Move/>
+            <Move />
           </button>
         </div>
 
-        {/* Indicador de nivel de zoom */}
+        {/* Indicador de zoom */}
         <div className="zoom-level-indicator fixed bottom-6 left-6 z-30">
-          <span className="text-sm font-medium">{Math.round(zoomLevel * 100)}%</span>
+          <span className="text-sm font-medium">
+            {Math.round(zoomLevel * 100)}%
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-/**
- * Componente principal del organigrama con proveedor de datos
- * @param {Object} props - Propiedades del componente
- * @param {string} props.organizationId - ID de la organización
- * @param {string} props.collaboratorId - ID del colaborador principal
- * @returns {JSX.Element} Componente de organigrama
- */
+/* ---------------------------------------- */
+/* Componente principal con DataProvider    */
+/* ---------------------------------------- */
 const OrganizationChart = () => {
   const { usuarioActualDatos } = useContext(CollaboratorsContext);
 
@@ -591,11 +597,8 @@ const OrganizationChart = () => {
   const collaboratorId = usuarioActualDatos?.ID_COLABORADOR;
 
   const { idteam } = useParams();
-
-  const collaboratorIdToUse = idteam !== undefined ? idteam : collaboratorId;
-
-  console.log('OrganizationChart - Params:', { idteam, collaboratorId, collaboratorIdToUse });
-  console.log('OrganizationChart - usuarioActualDatos:', usuarioActualDatos);
+  const collaboratorIdToUse =
+    idteam !== undefined ? idteam : collaboratorId;
 
   if (!collaboratorIdToUse) {
     return (
@@ -607,16 +610,12 @@ const OrganizationChart = () => {
       </div>
     );
   }
-  
+
   return (
-    <DataProvider 
-      idioma={idioma}
-      collaboratorId={collaboratorIdToUse}
-    >
+    <DataProvider idioma={idioma} collaboratorId={collaboratorIdToUse}>
       <OrganizationChartContent />
     </DataProvider>
   );
 };
 
 export default OrganizationChart;
-
