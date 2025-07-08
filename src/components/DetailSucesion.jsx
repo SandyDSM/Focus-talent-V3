@@ -69,7 +69,7 @@ const CollaboratorModal = ({
               <span>{mainCollaborator.organization}</span>
             </div>
             <div className={`text-sm rounded-full border-4 px-2 size-fit ${borde[PERF_ID]}`}>
-            <p>{`Performance: ${perf_text}`}</p>
+            <p>{`${t('Desempeno')} ${perf_text}`}</p>
             </div>
           </div>
         </div>
