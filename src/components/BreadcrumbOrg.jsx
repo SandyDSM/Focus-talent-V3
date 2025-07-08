@@ -21,6 +21,8 @@ const BreadcrumbOrg = ({ breadcrumbs = [], onBreadcrumbClick }) => {
     // Navegar a la vista del organigrama con el ID del colaborador seleccionado
     if (breadcrumb.id) {
       navigate(`/org/${breadcrumb.id}`);
+    }else{
+      navigate(`/org`);
     }
     // Para el inicio, solo ejecutar onBreadcrumbClick que limpiará los breadcrumbs
     // No navegar a ninguna ruta específica
