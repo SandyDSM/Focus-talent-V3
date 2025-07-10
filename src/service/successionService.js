@@ -214,7 +214,7 @@ class SuccessionService extends ApiService {
       };
 
       const fetchOptions = { ...options, mockData: successionData };
-      console.log("SUCCESSION",successionData)
+      //console.log("SUCCESSION",successionData)
       return this.fetchData(path, fetchOptions, { delay: false, useAmplify: true });
     } catch (error) {
       console.error('Error cargando datos de sucesión:', error);

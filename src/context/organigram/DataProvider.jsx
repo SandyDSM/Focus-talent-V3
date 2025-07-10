@@ -88,7 +88,7 @@ export const DataProvider = ({
   // Función para cargar datos
   const loadData = async () => {
     try {
-      console.log('DataProvider - loadData called with collaboratorId:', collaboratorId, 'idioma:', idioma);
+      //console.log('DataProvider - loadData called with collaboratorId:', collaboratorId, 'idioma:', idioma);
       dispatch({ type: DATA_ACTIONS.START_LOADING });
       
       // Simular progreso de carga
@@ -99,9 +99,9 @@ export const DataProvider = ({
         });
       }, 200);
 
-      console.log('DataProvider - Calling loadOrganizationData with:', collaboratorId, idioma);
+      //console.log('DataProvider - Calling loadOrganizationData with:', collaboratorId, idioma);
       const result = await loadOrganizationData(collaboratorId, idioma);
-      console.log('DataProvider - loadOrganizationData result:', result);
+      //console.log('DataProvider - loadOrganizationData result:', result);
       
       clearInterval(progressInterval);
       dispatch({ 
@@ -132,7 +132,7 @@ export const DataProvider = ({
 
   // Cargar datos al montar el componente
   useEffect(() => {
-    console.log('DataProvider - useEffect triggered, collaboratorId changed to:', collaboratorId);
+    //console.log('DataProvider - useEffect triggered, collaboratorId changed to:', collaboratorId);
     if (collaboratorId) {
       loadData();
     }

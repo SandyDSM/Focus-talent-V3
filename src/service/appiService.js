@@ -47,9 +47,9 @@ class ApiService {
     try {
       if (useAmplify) {
         // Usar AWS Amplify API.get
-        console.log(`Llamada real a AWS Amplify: ${this.apiName}${path}`);
+        //console.log(`Llamada real a AWS Amplify: ${this.apiName}${path}`);
         const response = await API.get(this.apiName, path, options);
-        console.log(`Datos recibidos de Amplify:`, response);
+        //console.log(`Datos recibidos de Amplify:`, response);
         return { success: true, data: response, timestamp: new Date().toISOString(), path: path };
       } else {
         // Simular llamada (para desarrollo o si no se usa Amplify)
@@ -63,8 +63,8 @@ class ApiService {
         // Aquí deberías proporcionar datos mock para la simulación si no usas Amplify
         // Por simplicidad, retornamos un objeto vacío o puedes pasar 'data' como un parámetro en config
         const mockData = options.mockData || {}; 
-        console.log(`Llamada simulada a: ${this.apiName}${path}`);
-        console.log(`Datos retornados (simulados):`, mockData);
+        //console.log(`Llamada simulada a: ${this.apiName}${path}`);
+        //console.log(`Datos retornados (simulados):`, mockData);
         return { success: true, data: mockData, timestamp: new Date().toISOString(), path: path };
       }
     } catch (error) {

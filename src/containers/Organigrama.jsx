@@ -5,6 +5,7 @@ import CardCompetencias from "../components/CardCompetencias";
 import CollaboratorsContext from "../context/collaborators";
 import CardMapa from "../components/CardMapa";
 import { useParams, useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom'
 
 import ModalContainer from "../components/ModalContainer";
 import "./Organigrama.css"; // Importar los estilos específicos
@@ -19,7 +20,6 @@ import {
   usePerformanceContext,
   useSuccessionContext,
 } from "../context/organigram/DataProvider";
-import { LoadingOverlay, SkeletonLoader } from "../components/LoadingSpinner";
 import { DataErrorWrapper } from "../components/ErrorBoundary";
 
 // Importar componentes de breadcrumbs
@@ -595,11 +595,14 @@ useEffect(() => {
 /* ---------------------------------------- */
 const OrganizationChart = () => {
   const { usuarioActualDatos } = useContext(CollaboratorsContext);
+  //const { state } = useLocation()
 
   const idioma = usuarioActualDatos?.IDIOMA;
   const collaboratorId = usuarioActualDatos?.ID_COLABORADOR;
 
   const { idteam } = useParams();
+  //const idteam = state?.idteam
+  //console.log("ID____",idteam)
   const collaboratorIdToUse =
     idteam !== undefined ? idteam : collaboratorId;
 

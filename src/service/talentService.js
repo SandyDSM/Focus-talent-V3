@@ -123,7 +123,7 @@ class TalentService extends ApiService {
       };
 
       const fetchOptions = { ...options, mockData: talentMapData };
-      console.log("MAP",talentMapData)
+      //console.log("MAP",talentMapData)
       return this.fetchData(path, fetchOptions, { delay: false, useAmplify: true });
     } catch (error) {
       console.error('Error cargando datos del mapa de talento:', error);

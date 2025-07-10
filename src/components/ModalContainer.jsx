@@ -41,7 +41,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
     setSuccessionData(null); // Limpiar los datos al cerrar el modal
   };
 
-  console.log("DATA---",cardData)
+  //console.log("DATA---",cardData)
 
       const borde = {
       '1': 'border-[#0561F4]',

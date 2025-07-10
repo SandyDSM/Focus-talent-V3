@@ -210,7 +210,7 @@ class PerformanceService extends ApiService {
       };
 
       const fetchOptions = { ...options, mockData: performanceData };
-      console.log('PERFO', performanceData.categories)
+      //console.log('PERFO', performanceData.categories)
       return this.fetchData(path, fetchOptions, { delay: false, useAmplify: true });
     } catch (error) {
       console.error('Error cargando datos de desempeño:', error);
