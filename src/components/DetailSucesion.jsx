@@ -75,7 +75,7 @@ const CollaboratorModal = ({
         </div>
         <div className="text-right flex gap-4 mr-10 items-center">
           <div>
-            <div className="text-lg font-medium text-gray-800">{mainCollaborator.age}</div>
+            <div className="text-lg font-medium text-gray-800">{`${t('Edad')} ${mainCollaborator.age}  ${t('años')}`}</div>
             <div className="text-gray-800 font-bold">{mainCollaborator.role}</div>
           </div>
           <div className="scale-200 m-4">
