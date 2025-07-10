@@ -81,7 +81,7 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
           </div>
           <div className="border-b py-1">
             <div className="text-xs text-gray-500">{t('antiguedad_puesto')}</div>
-            <div className="font-medium">{member.ANT_EN_PUESTO || "-"}</div>
+            <div className="font-medium">{"-"}</div>
           </div>
           <div className="border-b py-1">
             <div className="text-xs text-gray-500">{t('Potencial_2025')}</div>
