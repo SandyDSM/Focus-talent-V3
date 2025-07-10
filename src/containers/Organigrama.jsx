@@ -302,7 +302,7 @@ useEffect(() => {
           <button
             className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
             onClick={() =>
-              setZoomLevel((prev) => Math.max(prev - 0.2, 0.7))
+              setZoomLevel((prev) => Math.max(prev - 0.2, 0.6))
             }
             aria-label="Zoom Out"
           >
@@ -328,7 +328,7 @@ useEffect(() => {
           <button
             className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
             onClick={() =>
-              setZoomLevel((prev) => Math.min(prev + 0.2, 1.5))
+              setZoomLevel((prev) => Math.min(prev + 0.2, 1.6))
             }
             aria-label="Zoom In"
           >
@@ -492,48 +492,60 @@ useEffect(() => {
 
               {/* Líneas de conexión */}
               <svg
-                className="connection-lines absolute inset-0 pointer-events-none"
-                style={{ width: "100%", height: "100%" }}
+                className="connection-lines absolute pointer-events-none"
+                style={{
+                  top: 0,
+                  left: "160px",                            // como antes, para recortar padding
+                  width: `calc(100% - ${160 * 2}px)`,
+                  height: "100%",
+                }}
               >
-                {mainCollaborator && teamMembers.length > 0 && (
-                  <>
-                    {/* Línea vertical */}
-                    <line
-                      x1="50%"
-                      y1="150"
-                      x2="50%"
-                      y2="280"
-                      stroke="#E5E7EB"
-                      strokeWidth="2"
+                {(() => {
+                  const n = teamMembers.length;
+                  const margin = 10;                        // 10% de “padding” interno
+                  const span = 100 - 2 * margin;            // espacio real para repartir
+                  const step = n > 1 ? span / (n - 1) : 0;  // distancia entre cards
+
+                  // 1) Línea horizontal de “margen%” a “100−margen%”
+                  return (
+                    <>
+                    <line 
+                      x1="50%" 
+                      y1="150" 
+                      x2="50%" 
+                      y2="280" 
+                      stroke="#E5E7EB" 
+                      strokeWidth="2" 
                     />
-                    {/* Línea horizontal */}
-                    <line
-                      x1={`${50 - (teamMembers.length - 1) * 4}%`}
-                      y1="280"
-                      x2={`${50 + (teamMembers.length - 1) * 4}%`}
-                      y2="280"
-                      stroke="#E5E7EB"
-                      strokeWidth="2"
-                    />
-                    {/* Líneas a cada miembro */}
-                    {teamMembers.map((_, index) => {
-                      const xPos =
-                        50 - (teamMembers.length - 1) * 10 + index * 20;
-                      return (
-                        <line
-                          key={index}
-                          x1={`${xPos}%`}
-                          y1="280"
-                          x2={`${xPos}%`}
-                          y2="350"
-                          stroke="#E5E7EB"
-                          strokeWidth="2"
-                        />
-                      );
-                    })}
-                  </>
-                )}
+                      <line
+                        x1={`${margin}%`}
+                        y1="280"
+                        x2={`${100 - margin}%`}
+                        y2="280"
+                        stroke="#E5E7EB"
+                        strokeWidth="2"
+                      />
+
+                      {/* 2) Ramal vertical para cada colaborador */}
+                      {teamMembers.map((_, i) => {
+                        const xPos = margin + i * step;
+                        return (
+                          <line
+                            key={i}
+                            x1={`${xPos}%`}
+                            y1="280"
+                            x2={`${xPos}%`}
+                            y2="350"
+                            stroke="#E5E7EB"
+                            strokeWidth="2"
+                          />
+                        );
+                      })}
+                    </>
+                  );
+                })()}
               </svg>
+
 
               {/* Colaboradores secundarios */}
               <div
