@@ -216,7 +216,9 @@ useEffect(() => {
   // Estilos del organigrama
   const orgChartStyle = {
     transform: `scale(${zoomLevel})`,
-    transformOrigin: "top center", // cambiado
+   // transformOrigin: "top center", // cambiado
+   // anclamos el zoom en la esquina superior izquierda
+    transformOrigin: "top left",
     transition: "transform 0.3s ease",
     width: `${orgChartWidth}px`,
     height: "600px",
@@ -448,10 +450,11 @@ useEffect(() => {
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
           style={{
-            paddingLeft: "20px",
-            paddingRight: "20px",
-            paddingBottom: "20px",
-            scrollBehavior: "auto",
+            // hacemos que el padding escale con zoom para mantener siempre espacio
+          paddingLeft: `${20 * zoomLevel}px`,
+          paddingRight: `${20 * zoomLevel}px`,
+          paddingBottom: `${20 * zoomLevel}px`,
+          scrollBehavior: "auto",
           }}
         >
           <div
