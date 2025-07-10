@@ -505,9 +505,9 @@ useEffect(() => {
                     />
                     {/* Línea horizontal */}
                     <line
-                      x1={`${50 - (teamMembers.length - 1) * 10}%`}
+                      x1={`${50 - (teamMembers.length - 1) * 4}%`}
                       y1="280"
-                      x2={`${50 + (teamMembers.length - 1) * 10}%`}
+                      x2={`${50 + (teamMembers.length - 1) * 4}%`}
                       y2="280"
                       stroke="#E5E7EB"
                       strokeWidth="2"

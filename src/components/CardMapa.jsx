@@ -151,7 +151,7 @@ const TriangularChart = ({ sections, isLoading = false }) => {
           >
             <div className="flex justify-between gap-3 w-full">
               <span className="text-sm text-gray-700">{s.label}</span>
-              <span className="text-sm font-medium text-gray-900">{s.value}%</span>
+              <span className="text-sm font-medium text-gray-900">{s.value || "0"}%</span>
             </div>
           </motion.div>
         ))}
@@ -176,9 +176,9 @@ export default function CardMapa({ levels = null }) {
 
   // Datos por defecto como fallback
   const defaultSections = [
-    { label: 'Alto Potencial', percentage: 20, color: '#0A5DEE' },
-    { label: 'Talento Promesa', percentage: 30, color: '#3EC4FA' },
-    { label: 'Talento Esencial', percentage: 50, color: '#81DE8D' },
+    { label: 'Alto Potencial', percentage: 0, color: '#0A5DEE' },
+    { label: 'Talento Promesa', percentage: 0, color: '#3EC4FA' },
+    { label: 'Talento Esencial', percentage: 0, color: '#81DE8D' },
   ];
 
   //Para realizar traducciones
