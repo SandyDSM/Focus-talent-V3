@@ -230,24 +230,12 @@ useEffect(() => {
  // Mostrar overlay de carga mientras se cargan los datos
   if (isLoading) {
     return (
-      <LoadingOverlay 
-        loading={true} 
-        progress={progress}
-        message="Cargando datos del organigrama..."
-      >
-        <div className="h-screen flex flex-col bg-gray-100">
-          <div className="z-40">
-            <SkeletonLoader className="h-16 bg-gray-200" />
-          </div>
-          <div className="z-20 bg-gray-100 flex justify-between items-center p-6">
-            <SkeletonLoader className="h-6 w-64" />
-            <SkeletonLoader className="h-10 w-20" />
-          </div>
-          <div className="flex-grow">
-            <SkeletonLoader className="h-full w-full" />
-          </div>
+      <div className="h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Cargando usuarios...</p>
         </div>
-      </LoadingOverlay>
+      </div>
     );
   }
 
