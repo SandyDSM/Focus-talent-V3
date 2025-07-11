@@ -493,59 +493,80 @@ useEffect(() => {
 
               {/* Líneas de conexión */}
               <svg
-                className="connection-lines absolute pointer-events-none"
-                style={{
-                  top: 0,
-                  left: "160px",                            // como antes, para recortar padding
-                  width: `calc(100% - ${160 * 2}px)`,
-                  height: "100%",
-                }}
-              >
-                {(() => {
-                  const n = teamMembers.length;
-                  const margin = 10;                        // 10% de “padding” interno
-                  const span = 100 - 2 * margin;            // espacio real para repartir
-                  const step = n > 1 ? span / (n - 1) : 0;  // distancia entre cards
+  className="connection-lines absolute pointer-events-none"
+  style={{
+    top: 0,
+    left: "160px",
+    width: `calc(100% - ${160 * 2}px)`,
+    height: "100%",
+  }}
+>
+  {(() => {
+    const n = teamMembers.length;
+    // dimensiones que ya tienes definidas arriba en el componente
+    const paddingX = 160;           // px de padding a cada lado
+    const contentWidth = orgChartWidth - 2 * paddingX; 
+    const itemsTotalWidth = n * cardWidth + (n - 1) * cardSpacing;
+    const offsetFirst = (contentWidth - itemsTotalWidth) / 2;
+    const step = cardWidth + cardSpacing;
 
-                  // 1) Línea horizontal de “margen%” a “100−margen%”
-                  return (
-                    <>
-                    <line 
-                      x1="50%" 
-                      y1="150" 
-                      x2="50%" 
-                      y2="280" 
-                      stroke="#E5E7EB" 
-                      strokeWidth="2" 
-                    />
-                      <line
-                        x1={`${margin}%`}
-                        y1="280"
-                        x2={`${100 - margin}%`}
-                        y2="280"
-                        stroke="#E5E7EB"
-                        strokeWidth="2"
-                      />
+    // posición X central (en px) de cada tarjeta
+    const xPositions = teamMembers.map((_, i) =>
+      offsetFirst + i * step + cardWidth / 2
+    );
 
-                      {/* 2) Ramal vertical para cada colaborador */}
-                      {teamMembers.map((_, i) => {
-                        const xPos = margin + i * step;
-                        return (
-                          <line
-                            key={i}
-                            x1={`${xPos}%`}
-                            y1="280"
-                            x2={`${xPos}%`}
-                            y2="350"
-                            stroke="#E5E7EB"
-                            strokeWidth="2"
-                          />
-                        );
-                      })}
-                    </>
-                  );
-                })()}
-              </svg>
+    if (n === 1) {
+      // sólo un colaborador: dibuja una única línea vertical en el centro
+      return (
+        <line
+          x1={xPositions[0]}
+          y1={150}
+          x2={xPositions[0]}
+          y2={350}
+          stroke="#E5E7EB"
+          strokeWidth="2"
+        />
+      );
+    } else if (n > 1) {
+      return (
+        <>
+          {/* vertical del jefe hasta la rama horizontal */}
+          <line
+            x1={contentWidth / 2}
+            y1={150}
+            x2={contentWidth / 2}
+            y2={280}
+            stroke="#E5E7EB"
+            strokeWidth="2"
+          />
+          {/* rama horizontal entre primer y último colaborador */}
+          <line
+            x1={xPositions[0]}
+            y1={280}
+            x2={xPositions[n - 1]}
+            y2={280}
+            stroke="#E5E7EB"
+            strokeWidth="2"
+          />
+          {/* ramificaciones verticales hasta cada colaborador */}
+          {xPositions.map((x, i) => (
+            <line
+              key={i}
+              x1={x}
+              y1={280}
+              x2={x}
+              y2={350}
+              stroke="#E5E7EB"
+              strokeWidth="2"
+            />
+          ))}
+        </>
+      );
+    }
+    return null;
+  })()}
+</svg>
+
 
 
               {/* Colaboradores secundarios */}
