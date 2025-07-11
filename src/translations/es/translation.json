@@ -20,5 +20,17 @@
 "Expandir_Calif_Desemp":"Expandir calificación de desempeño",
 "Minimizar_Calif_Desemp":"Minimizar calificación de desempeño",
 "Desempeno":"Desempeño:",
-"Edad":"Edad: "
+"Edad":"Edad: ",
+"Alto_Potencial":"Alto Potencial",
+"Talento_Promesa":"Talento Promesa",
+"Talento_Esencial":"Talento Esencial",
+"Sobresaliente":"Sobresaliente",
+"Supera":"Supera",
+"Gran_Trabajo":"Gran Trabajo",
+"Necesita_Mejora":"Necesita Mejora",
+"Por_Debajo":"Por debajo de lo esperado",
+"Salida":"Salida",
+"Cargando_Datos":"Cargando datos...",
+"Cargando_Organigrama":"Cargando organigrama...",
+"Inicializar_Organigrama":"Inicializando organigrama..."
 }

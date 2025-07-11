@@ -1,5 +1,4 @@
 import BannerUser from "../components/BannerUser";
-import i18n from '../i18n';
 
 import { useContext, useEffect, useState, useRef } from "react";
 import CardCompetencias from "../components/CardCompetencias";
@@ -597,16 +596,13 @@ useEffect(() => {
 const OrganizationChart = () => {
   const { usuarioActualDatos } = useContext(CollaboratorsContext);
   //const { state } = useLocation()
-  
+
   const idioma = usuarioActualDatos?.IDIOMA;
-  const traducc = (idioma === 'Spanish (Latin America)' || idioma === 'Spanish (Spain)') ? 'es' : 'en';
-  
-  i18n.changeLanguage(traducc);
   const collaboratorId = usuarioActualDatos?.ID_COLABORADOR;
 
   const { idteam } = useParams();
   //const idteam = state?.idteam
-  console.log("idioma____",traducc)
+  //console.log("ID____",idteam)
   const collaboratorIdToUse =
     idteam !== undefined ? idteam : collaboratorId;
 

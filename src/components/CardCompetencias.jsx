@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Componente que muestra una tarjeta de clasificación de desempeño en formato vertical
@@ -7,15 +8,20 @@ import React from 'react';
  * @param {Array} props.categories - Array de categorías con sus datos
  * @returns {JSX.Element} Componente de tarjeta de desempeño vertical
  */
+
 const CardCompetencias = ({ title = "Calificación de desempeño", categories = [] }) => {
   // Si no se proporcionan categorías, usar datos por defecto basados en la imagen
+  
+    //Para realizar traducciones
+    const { t } = useTranslation();
+  
   const defaultCategories = [
-    { name: 'Sobresaliente', percentage: 0, color: '#0052CC' },
-    { name: 'Supera', percentage: 0, color: '#00B8D9' },
-    { name: 'Gran trabajo', percentage: 0, color: '#36B37E' },
-    { name: 'Necesita mejora', percentage: 0, color: '#FFAB00' },
-    { name: 'Por debajo de lo esperado', percentage: 0, color: '#FF8B00' },
-    { name: 'Salida', percentage: 0, color: '#FF5630' },
+    { name: t("Sobresaliente"), percentage: 0, color: '#0052CC' },
+    { name: t("Supera"), percentage: 0, color: '#00B8D9' },
+    { name: t("Gran_Trabajo"), percentage: 0, color: '#36B37E' },
+    { name: t("Necesita_Mejora"), percentage: 0, color: '#FFAB00' },
+    { name: t("Por_Debajo"), percentage: 0, color: '#FF8B00' },
+    { name: t("Salida"), percentage: 0, color: '#FF5630' },
   ];
 
  // console.log("AQUI",categories)

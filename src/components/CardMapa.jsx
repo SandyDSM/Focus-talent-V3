@@ -4,6 +4,7 @@ import { useTalentContext } from '../context/organigram/DataProvider';
 import { SkeletonLoader } from './LoadingSpinner';
 import { useTranslation } from 'react-i18next';
 
+
 const Tooltip = ({ x, y, label, visible }) => {
   if (!visible) return null;
   return (
@@ -174,15 +175,15 @@ export default function CardMapa({ levels = null }) {
   // Usar levels proporcionados o del contexto
   const displayLevels = levels || contextLevels;
 
-  // Datos por defecto como fallback
-  const defaultSections = [
-    { label: 'Alto Potencial', percentage: 0, color: '#0A5DEE' },
-    { label: 'Talento Promesa', percentage: 0, color: '#3EC4FA' },
-    { label: 'Talento Esencial', percentage: 0, color: '#81DE8D' },
-  ];
-
   //Para realizar traducciones
   const { t } = useTranslation();
+
+  // Datos por defecto como fallback
+  const defaultSections = [
+    { label: t("Alto_Potencial"), percentage: 0, color: '#0A5DEE' },
+    { label: t("Talento_Promesa"), percentage: 0, color: '#3EC4FA' },
+    { label: t("Talento_Esencial"), percentage: 0, color: '#81DE8D' },
+  ];
 
   const color = {
     '1' : '#0A5DEE',

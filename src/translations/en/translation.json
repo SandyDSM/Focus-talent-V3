@@ -20,5 +20,17 @@
 "Expandir_Calif_Desemp":"Expand Performance Rating",
 "Minimizar_Calif_Desemp":"Collapse Performance Rating",
 "Desempeno":"Performance:",
-"Edad":"Age: "
+"Edad":"Age: ",
+"Alto_Potencial":"High Potential",
+"Talento_Promesa":"Promising",
+"Talento_Esencial":"Essential Talent",
+"Sobresaliente":"Outstanding",
+"Supera":"Surpasses",
+"Gran_Trabajo":"Great work",
+"Necesita_Mejora":"Needs Improvement",
+"Por_Debajo":"Below Expectations",
+"Salida":"Exit",
+"Cargando_Datos":"Loading Data...",
+"Cargando_Organigrama":"Loading Organigram...",
+"Inicializar_Organigrama":"Initializing Organigram..."
 }
