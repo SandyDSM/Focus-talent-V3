@@ -175,7 +175,7 @@ const centerOrganigram = () => {
         extraPadding
       : minChartWidth;
 
-  // ⬅️ Se agrega +400 extra para evitar “cortes” al hacer zoom
+  // Se agrega +400 extra para evitar “cortes” al hacer zoom
   const orgChartWidth = Math.max(minChartWidth, calculatedChartWidth + 400);
   const containerWidth = orgChartWidth * zoomLevel;
   const chartHeight = 800 * zoomLevel;
@@ -296,7 +296,7 @@ useEffect(() => {
             aria-label="Centrar"
             title={t("Centrar")}
           >
-            <Crosshair className="w-5 h-5 text-gray-600" />
+            <Crosshair className="w-5 h-5 text-blue-800" />
           </button>
 
           {/* Zoom - */}
@@ -317,7 +317,7 @@ useEffect(() => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-gray-600"
+              className="text-blue-800"
             >
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -343,7 +343,7 @@ useEffect(() => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-gray-600"
+              className="text-blue-800"
             >
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -596,9 +596,9 @@ useEffect(() => {
 
         {/* Botón navegación (puedes usarlo para otra acción) */}
         <div className="navigation-button fixed bottom-6 right-6 z-30">
-          <button className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-100">
-            <Move />
-          </button>
+          <div className="p-3 bg-white rounded-full shadow-lg">
+            <Move  className="text-gray-600"/>
+          </div>
         </div>
 
         {/* Indicador de zoom */}
