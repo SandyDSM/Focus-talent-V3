@@ -107,7 +107,7 @@ const getcalib = async (id) => {
         : (
           <div className="flex gap-2">
             {calibracion?.[0]?.KEY_POSITION && 
-              <div className='text-sm text-blue-700 font-medium px-3 py-1 mb-1 rounded-xl w-fit bg-yellow-300'>
+              <div className='text-sm text-blue-700 font-medium px-3 py-1 mb-1 rounded-xl w-fit bg-yellow-200'>
                 {calibracion?.[0]?.KEY_POSITION}
               </div>
             }

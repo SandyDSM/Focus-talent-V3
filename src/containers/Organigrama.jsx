@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom'
 
 import ModalContainer from "../components/ModalContainer";
 import "./Organigrama.css"; // Importar los estilos específicos
-import { Move, Trophy, Triangle, Crosshair } from "lucide-react";
+import { Move, Trophy, Triangle, Crosshair, LayoutGrid } from "lucide-react";
 
 // Importar nuevos componentes y hooks
 import {
@@ -594,8 +594,14 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* Botón navegación (puedes usarlo para otra acción) */}
+        {/* Botón regresar a inicio */}
         <div className="navigation-button fixed bottom-6 right-6 z-30">
+          <button onClick={() => navigate('/myteam')} className="p-3 bg-blue-800 rounded-full shadow-lg">
+            <LayoutGrid  className="text-white"/>
+          </button>
+        </div>
+        {/* Botón navegación (puedes usarlo para otra acción) */}
+        <div className="navigation-button fixed bottom-20 right-6 z-30">
           <div className="p-3 bg-white rounded-full shadow-lg">
             <Move  className="text-gray-600"/>
           </div>
