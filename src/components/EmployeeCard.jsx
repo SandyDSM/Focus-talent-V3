@@ -136,7 +136,7 @@ const EmployeeCard = ({
         )}
         <div className="flex gap-2 justify-center">
           {position && (
-          <div className="bg-yellow-200 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
+          <div className="bg-black text-white px-2 py-1 rounded-full text-xs font-medium">
             {position}
           </div>
           )}
