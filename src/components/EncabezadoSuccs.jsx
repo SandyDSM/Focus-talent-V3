@@ -102,6 +102,16 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             <div className="font-medium">{member.CONTRIB_PLAN_NEGOCIO || "-"}</div>
           </div>
           <div className="border-b py-1">
+            <div className="flex items-center">
+              <div
+                className="w-3 h-3 rounded-full mr-2"
+                style={{ backgroundColor: pid_color[member.PID_ID] || "#f0f0f0" }}
+              ></div>
+              <span className="text-xs text-gray-500 mr-2">PID</span>
+              <span className="font-medium">{`${member?.PID_NUM}%` || "0%"}</span>
+            </div>
+          </div>
+          <div className="border-b py-1">
             <div className="text-xs text-gray-500">Assessment KF</div>
             <div className="font-medium">{member.ASSESSMENT_KF || "-"}</div>
           </div>
@@ -111,19 +121,9 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             </div>
             <div className="font-medium">{member.MATCH_CON_PROFILE || "-"}</div>
           </div>
-          <div className="border-b py-1">
+          <div className="py-1">
             <div className="text-xs text-gray-500">Korn Ferry Evaluation</div>
             <div className="font-medium text-blue-600 underline cursor-pointer">Download Evaluation</div>
-          </div>
-          <div className="py-1">
-            <div className="flex items-center">
-              <div
-                className="w-3 h-3 rounded-full mr-2"
-                style={{ backgroundColor: pid_color[member.PID_ID] || "#f0f0f0" }}
-              ></div>
-              <span className="text-xs text-gray-500 mr-2">PID</span>
-              <span className="font-medium">{`${member?.PID_NUM}%` || "0%"}</span>
-            </div>
           </div>
         </div>
       
