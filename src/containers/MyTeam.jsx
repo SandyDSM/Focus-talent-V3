@@ -94,6 +94,7 @@ const MyTeam = () => {
     //console.log(collaborators);//x
   }
 
+  console.log("usuario", usuarioActualDatos)
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
@@ -117,6 +118,16 @@ const MyTeam = () => {
     4: "border-clas4-purple",
     5: "border-clas5-orange",
   };
+
+  const allowedIds = [
+  3000024,
+  3000006,
+  3000007,
+  3000000,
+  3000038,
+  28342,
+  27033,
+];
 
   return (
     <>
@@ -235,16 +246,17 @@ const MyTeam = () => {
       )}
       {/* Botón regresar a inicio */}
       <div className="navigation-button fixed bottom-6 right-6 z-30">
+        {allowedIds.includes(Number(usuarioActualDatos.INTERNAL_ID)) && (
         <button
           onClick={() => navigate("/org")}
           className="p-3 bg-blue-800 rounded-full shadow-lg"
         >
           <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 128 128"
-  fill="white"
-  className="w-6 h-6"
->
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 128 128"
+            fill="white"
+            className="w-6 h-6"
+          >
   <g transform="translate(0, 0) scale(1.4)"> 
     <rect x="40" y="4" width="16" height="16" rx="2" />
 
@@ -263,6 +275,7 @@ const MyTeam = () => {
 </svg>
 
         </button>
+        )}
       </div>
     </>
   );
