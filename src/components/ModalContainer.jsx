@@ -116,7 +116,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
         }}
         onClick={handleOverlayClick}
       >
-        <div className="relative w-full max-w-6xl animate-fade-in"onClick={(e) => e.stopPropagation()}>
+        <div className="relative w-full max-w-6xl animate-fade-in top-10 scroll-smooth"onClick={(e) => e.stopPropagation()}>
           {/* Botón para cerrar el modal */}
           <button 
             onClick={closeModal}

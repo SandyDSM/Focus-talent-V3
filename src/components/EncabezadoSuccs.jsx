@@ -111,6 +111,10 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             </div>
             <div className="font-medium">{member.MATCH_CON_PROFILE || "-"}</div>
           </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">Korn Ferry Evaluation</div>
+            <div className="font-medium text-blue-600 underline cursor-pointer">Download Evaluation</div>
+          </div>
           <div className="py-1">
             <div className="flex items-center">
               <div

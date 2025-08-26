@@ -1,12 +1,12 @@
 import BannerUser from "../components/BannerUser";
-import i18n from '../i18n';
+import i18n from "../i18n";
 
 import { useContext, useEffect, useState, useRef } from "react";
 import CardCompetencias from "../components/CardCompetencias";
 import CollaboratorsContext from "../context/collaborators";
 import CardMapa from "../components/CardMapa";
 import { useParams, useNavigate } from "react-router-dom";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 
 import ModalContainer from "../components/ModalContainer";
 import "./Organigrama.css"; // Importar los estilos específicos
@@ -143,24 +143,23 @@ const OrganizationChartContent = () => {
   };
 
   // Función para centrar manualmente (botón y efectos)
-const centerOrganigram = () => {
-  setZoomLevel(1); // Restaurar zoom al 100%
+  const centerOrganigram = () => {
+    setZoomLevel(1); // Restaurar zoom al 100%
 
-  // Esperar a que el zoom se actualice antes de centrar
-  setTimeout(() => {
-    if (!scrollContainerRef.current) return;
-    const container = scrollContainerRef.current;
-    const contentWidth = container.scrollWidth;
-    const containerWidth = container.clientWidth;
+    // Esperar a que el zoom se actualice antes de centrar
+    setTimeout(() => {
+      if (!scrollContainerRef.current) return;
+      const container = scrollContainerRef.current;
+      const contentWidth = container.scrollWidth;
+      const containerWidth = container.clientWidth;
 
-    container.scrollTo({
-      left: (contentWidth - containerWidth) / 2,
-      top: Math.max(0, 150 * 1 - 100), // Top con zoom 1
-      behavior: "smooth",
-    });
-  }, 300); // Esperar a que la transición de zoom termine
-};
-
+      container.scrollTo({
+        left: (contentWidth - containerWidth) / 2,
+        top: Math.max(0, 150 * 1 - 100), // Top con zoom 1
+        behavior: "smooth",
+      });
+    }, 300); // Esperar a que la transición de zoom termine
+  };
 
   // Cálculos de tamaño
   const cardWidth = 320;
@@ -182,43 +181,42 @@ const centerOrganigram = () => {
   const dynamicPaddingTop = 150 * zoomLevel;
   const dynamicPaddingBottom = 150 * zoomLevel;
 
-// Centrar solo una vez al cargar colaborador (no al cambiar zoom)
-useEffect(() => {
-  if (mainCollaborator) {
-    setTimeout(() => {
-      if (!scrollContainerRef.current) return;
-      const container = scrollContainerRef.current;
-      const contentWidth = container.scrollWidth;
-      const containerWidth = container.clientWidth;
+  // Centrar solo una vez al cargar colaborador (no al cambiar zoom)
+  useEffect(() => {
+    if (mainCollaborator) {
+      setTimeout(() => {
+        if (!scrollContainerRef.current) return;
+        const container = scrollContainerRef.current;
+        const contentWidth = container.scrollWidth;
+        const containerWidth = container.clientWidth;
 
-      container.scrollLeft = (contentWidth - containerWidth) / 2;
-      container.scrollTop = Math.max(0, 150 * zoomLevel - 100);
-    }, 300);
-  }
-}, [mainCollaborator]);
+        container.scrollLeft = (contentWidth - containerWidth) / 2;
+        container.scrollTop = Math.max(0, 150 * zoomLevel - 100);
+      }, 300);
+    }
+  }, [mainCollaborator]);
 
-// Solo mantener el centro relativo al hacer zoom (sin centrar todo)
-useEffect(() => {
-  if (!scrollContainerRef.current) return;
-  const container = scrollContainerRef.current;
-  const oldZoom = parseFloat(container.dataset.prevZoom || 1);
-  const ratio = zoomLevel / oldZoom;
+  // Solo mantener el centro relativo al hacer zoom (sin centrar todo)
+  useEffect(() => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const oldZoom = parseFloat(container.dataset.prevZoom || 1);
+    const ratio = zoomLevel / oldZoom;
 
-  const centerX = container.scrollLeft + container.clientWidth / 2;
-  const centerY = container.scrollTop + container.clientHeight / 2;
+    const centerX = container.scrollLeft + container.clientWidth / 2;
+    const centerY = container.scrollTop + container.clientHeight / 2;
 
-  container.scrollLeft = centerX * ratio - container.clientWidth / 2;
-  container.scrollTop = centerY * ratio - container.clientHeight / 2;
+    container.scrollLeft = centerX * ratio - container.clientWidth / 2;
+    container.scrollTop = centerY * ratio - container.clientHeight / 2;
 
-  container.dataset.prevZoom = zoomLevel.toString();
-}, [zoomLevel]);
-
+    container.dataset.prevZoom = zoomLevel.toString();
+  }, [zoomLevel]);
 
   // Estilos del organigrama
   const orgChartStyle = {
     transform: `scale(${zoomLevel})`,
-   // transformOrigin: "top center", // cambiado
-   // anclamos el zoom en la esquina superior izquierda
+    // transformOrigin: "top center", // cambiado
+    // anclamos el zoom en la esquina superior izquierda
     transformOrigin: "top left",
     transition: "transform 0.3s ease",
     width: `${orgChartWidth}px`,
@@ -230,7 +228,7 @@ useEffect(() => {
 
   /* ---------- Estados de carga / error ---------- */
 
- // Mostrar overlay de carga mientras se cargan los datos
+  // Mostrar overlay de carga mientras se cargan los datos
   if (isLoading) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-50">
@@ -245,11 +243,7 @@ useEffect(() => {
   if (isError) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-50">
-        <DataErrorWrapper
-          loading={false}
-          error={error}
-          onRetry={reloadData}
-        />
+        <DataErrorWrapper loading={false} error={error} onRetry={reloadData} />
       </div>
     );
   }
@@ -282,9 +276,7 @@ useEffect(() => {
       >
         <BreadcrumbOrg
           breadcrumbs={breadcrumbs}
-          onBreadcrumbClick={(breadcrumb, index) =>
-            navigateToBreadcrumb(index)
-          }
+          onBreadcrumbClick={(breadcrumb, index) => navigateToBreadcrumb(index)}
         />
 
         {/* Controles */}
@@ -302,9 +294,7 @@ useEffect(() => {
           {/* Zoom - */}
           <button
             className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
-            onClick={() =>
-              setZoomLevel((prev) => Math.max(prev - 0.2, 0.6))
-            }
+            onClick={() => setZoomLevel((prev) => Math.max(prev - 0.2, 0.6))}
             aria-label="Zoom Out"
           >
             <svg
@@ -328,9 +318,7 @@ useEffect(() => {
           {/* Zoom + */}
           <button
             className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
-            onClick={() =>
-              setZoomLevel((prev) => Math.min(prev + 0.2, 1.6))
-            }
+            onClick={() => setZoomLevel((prev) => Math.min(prev + 0.2, 1.6))}
             aria-label="Zoom In"
           >
             <svg
@@ -452,16 +440,18 @@ useEffect(() => {
           onMouseMove={handleMouseMove}
           style={{
             // hacemos que el padding escale con zoom para mantener siempre espacio
-          paddingLeft: `${20 * zoomLevel}px`,
-          paddingRight: `${20 * zoomLevel}px`,
-          paddingBottom: `${20 * zoomLevel}px`,
-          scrollBehavior: "auto",
+            paddingLeft: `${20 * zoomLevel}px`,
+            paddingRight: `${20 * zoomLevel}px`,
+            paddingBottom: `${20 * zoomLevel}px`,
+            scrollBehavior: "auto",
           }}
         >
           <div
             style={{
               width: `${containerWidth}px`,
-              height: `${chartHeight + dynamicPaddingTop + dynamicPaddingBottom}px`,
+              height: `${
+                chartHeight + dynamicPaddingTop + dynamicPaddingBottom
+              }px`,
               paddingTop: `${dynamicPaddingTop}px`,
               paddingBottom: `${dynamicPaddingBottom}px`,
             }}
@@ -493,81 +483,79 @@ useEffect(() => {
 
               {/* Líneas de conexión */}
               <svg
-  className="connection-lines absolute pointer-events-none"
-  style={{
-    top: 0,
-    left: "160px",
-    width: `calc(100% - ${160 * 2}px)`,
-    height: "100%",
-  }}
->
-  {(() => {
-    const n = teamMembers.length;
-    // dimensiones que ya tienes definidas arriba en el componente
-    const paddingX = 160;           // px de padding a cada lado
-    const contentWidth = orgChartWidth - 2 * paddingX; 
-    const itemsTotalWidth = n * cardWidth + (n - 1) * cardSpacing;
-    const offsetFirst = (contentWidth - itemsTotalWidth) / 2;
-    const step = cardWidth + cardSpacing;
+                className="connection-lines absolute pointer-events-none"
+                style={{
+                  top: 0,
+                  left: "160px",
+                  width: `calc(100% - ${160 * 2}px)`,
+                  height: "100%",
+                }}
+              >
+                {(() => {
+                  const n = teamMembers.length;
+                  // dimensiones que ya tienes definidas arriba en el componente
+                  const paddingX = 160; // px de padding a cada lado
+                  const contentWidth = orgChartWidth - 2 * paddingX;
+                  const itemsTotalWidth = n * cardWidth + (n - 1) * cardSpacing;
+                  const offsetFirst = (contentWidth - itemsTotalWidth) / 2;
+                  const step = cardWidth + cardSpacing;
 
-    // posición X central (en px) de cada tarjeta
-    const xPositions = teamMembers.map((_, i) =>
-      offsetFirst + i * step + cardWidth / 2
-    );
+                  // posición X central (en px) de cada tarjeta
+                  const xPositions = teamMembers.map(
+                    (_, i) => offsetFirst + i * step + cardWidth / 2
+                  );
 
-    if (n === 1) {
-      // sólo un colaborador: dibuja una única línea vertical en el centro
-      return (
-        <line
-          x1={xPositions[0]}
-          y1={150}
-          x2={xPositions[0]}
-          y2={350}
-          stroke="#E5E7EB"
-          strokeWidth="2"
-        />
-      );
-    } else if (n > 1) {
-      return (
-        <>
-          {/* vertical del jefe hasta la rama horizontal */}
-          <line
-            x1={contentWidth / 2}
-            y1={150}
-            x2={contentWidth / 2}
-            y2={280}
-            stroke="#E5E7EB"
-            strokeWidth="2"
-          />
-          {/* rama horizontal entre primer y último colaborador */}
-          <line
-            x1={xPositions[0]}
-            y1={280}
-            x2={xPositions[n - 1]}
-            y2={280}
-            stroke="#E5E7EB"
-            strokeWidth="2"
-          />
-          {/* ramificaciones verticales hasta cada colaborador */}
-          {xPositions.map((x, i) => (
-            <line
-              key={i}
-              x1={x}
-              y1={280}
-              x2={x}
-              y2={350}
-              stroke="#E5E7EB"
-              strokeWidth="2"
-            />
-          ))}
-        </>
-      );
-    }
-    return null;
-  })()}
-</svg>
-
-
+                  if (n === 1) {
+                    // sólo un colaborador: dibuja una única línea vertical en el centro
+                    return (
+                      <line
+                        x1={xPositions[0]}
+                        y1={150}
+                        x2={xPositions[0]}
+                        y2={350}
+                        stroke="#E5E7EB"
+                        strokeWidth="2"
+                      />
+                    );
+                  } else if (n > 1) {
+                    return (
+                      <>
+                        {/* vertical del jefe hasta la rama horizontal */}
+                        <line
+                          x1={contentWidth / 2}
+                          y1={150}
+                          x2={contentWidth / 2}
+                          y2={280}
+                          stroke="#E5E7EB"
+                          strokeWidth="2"
+                        />
+                        {/* rama horizontal entre primer y último colaborador */}
+                        <line
+                          x1={xPositions[0]}
+                          y1={280}
+                          x2={xPositions[n - 1]}
+                          y2={280}
+                          stroke="#E5E7EB"
+                          strokeWidth="2"
+                        />
+                        {/* ramificaciones verticales hasta cada colaborador */}
+                        {xPositions.map((x, i) => (
+                          <line
+                            key={i}
+                            x1={x}
+                            y1={280}
+                            x2={x}
+                            y2={350}
+                            stroke="#E5E7EB"
+                            strokeWidth="2"
+                          />
+                        ))}
+                      </>
+                    );
+                  }
+                  return null;
+                })()}
+              </svg>
 
               {/* Colaboradores secundarios */}
               <div
@@ -596,14 +584,17 @@ useEffect(() => {
 
         {/* Botón regresar a inicio */}
         <div className="navigation-button fixed bottom-6 right-6 z-30">
-          <button onClick={() => navigate('/myteam')} className="p-3 bg-blue-800 rounded-full shadow-lg">
-            <LayoutGrid  className="text-white"/>
+          <button
+            onClick={() => navigate("/myteam")}
+            className="p-3 bg-blue-800 rounded-full shadow-lg"
+          >
+            <LayoutGrid className="text-white" />
           </button>
         </div>
         {/* Botón navegación (puedes usarlo para otra acción) */}
         <div className="navigation-button fixed bottom-20 right-6 z-30">
           <div className="p-3 bg-white rounded-full shadow-lg">
-            <Move  className="text-gray-600"/>
+            <Move className="text-gray-600" />
           </div>
         </div>
 
@@ -624,18 +615,20 @@ useEffect(() => {
 const OrganizationChart = () => {
   const { usuarioActualDatos } = useContext(CollaboratorsContext);
   //const { state } = useLocation()
-  
+
   const idioma = usuarioActualDatos?.IDIOMA;
-  const traducc = (idioma === 'Spanish (Latin America)' || idioma === 'Spanish (Spain)') ? 'es' : 'en';
-  
+  const traducc =
+    idioma === "Spanish (Latin America)" || idioma === "Spanish (Spain)"
+      ? "es"
+      : "en";
+
   i18n.changeLanguage(traducc);
   const collaboratorId = usuarioActualDatos?.ID_COLABORADOR;
 
   const { idteam } = useParams();
   //const idteam = state?.idteam
-  console.log("idioma____",traducc)
-  const collaboratorIdToUse =
-    idteam !== undefined ? idteam : collaboratorId;
+  console.log("idioma____", traducc);
+  const collaboratorIdToUse = idteam !== undefined ? idteam : collaboratorId;
 
   if (!collaboratorIdToUse) {
     return (
