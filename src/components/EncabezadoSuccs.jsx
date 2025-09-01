@@ -22,6 +22,7 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
   return (
     <div>
       {/* Barra vertical de semáforo */}
+      
       <div className="flex">
       <div
         className="w-2 rounded-l-lg"

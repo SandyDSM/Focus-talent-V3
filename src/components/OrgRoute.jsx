@@ -17,6 +17,12 @@ const allowedIds = [
   3000038,
   28342,
   27033,
+  255978,
+  30005634,
+  10010552,
+  1111111,
+  10400893,
+  10004745,
 ];
 
   if (!allowedIds.includes(Number(usuarioActualDatos.INTERNAL_ID))) {
