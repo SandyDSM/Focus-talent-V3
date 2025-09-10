@@ -27,6 +27,7 @@ import ReportLogin from "./containers/ReportLogin";
 import Organigrama from "./containers/Organigrama";
 import ErrorBoundary from './components/ErrorBoundary';
 import OrgRoute from "./components/OrgRoute";
+import SearchOrg from "./containers/SearchOrg";
 
 
 Amplify.configure(awsExports);
@@ -95,6 +96,7 @@ function App() {
               <Route exact path="/test/:id" element={<TeamTestDetail />} />
               <Route exact path="/org" element={<OrgRoute />} />
               <Route exact path="/org/:idteam" element={<OrgRoute />} />
+              <Route exact path="/searchorg" element={<SearchOrg />} />
             </Route>
             <Route exact path="/forgotpassword" element={<ForgotPss />} />
             <Route exact path="/forbidden" element={<Forbidden />} />

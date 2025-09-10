@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import EmployeeCard from '../components/EmployeeCard';
-import DetailSucesion from '../components/DetailSucesion';
-import SuccessionService from '../service/successionService';
 import { Loader } from "@aws-amplify/ui-react";
 
 
@@ -16,7 +13,7 @@ import { createPortal } from 'react-dom';
  * @param {Function} props.onTeamNavigation - Función para manejar la navegación del equipo
  * @returns {JSX.Element} Componente contenedor
  */
-const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation }) => {
+const ModalSearch = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [successionData, setSuccessionData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,9 +22,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
     setIsModalOpen(true); 
     setIsLoading(true); // Iniciar estado de carga
     try {
-      const service = new SuccessionService();
-      const data = await service.getSuccessionData(cardData?.IDCOLABORADOR);
-      setSuccessionData(data);
+      
     } catch (error) {
       console.error("Error al obtener datos de sucesión:", error);
       setIsModalOpen(false); 
@@ -43,33 +38,9 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
 
   //console.log("DATA---",cardData)
 
-      const borde = {
-      '1': 'border-[#0561F4]',
-      '2': 'border-[#00CDFF]',
-      '3': 'border-[#99C570]',
-      '4': 'border-[#FFFE03]',
-      '5': 'border-[#FCBF04]',
-      '6': 'border-[#FE0003]'
-    };
   
-    const variantes = {
-    es: {
-      1: 'S-AP',
-      2: 'S-TP',
-      3: 'S-TE',
-      4: 'S-0',
-      5: 'S-0'
-    },
-    en: {
-      1: 'E-HP',
-      2: 'E-PT',
-      3: 'E-ET',
-      4: 'E-0',
-      5: 'E-0'
-    }
-  };
-  const idioma = (language === 'Spanish (Latin America)' || language === 'Spanish (Spain)') ? 'es' : 'en';
-  const propiedad = variantes[idioma][cardData?.POT_MAP_ID];
+    
+  //const idioma = (language === 'Spanish (Latin America)' || language === 'Spanish (Spain)') ? 'es' : 'en';
 
   // Componente del modal que se renderizará en el portal
   const ModalContent = () => {
@@ -127,14 +98,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
           </button>
           
           {/* Contenido del modal */}
-          <DetailSucesion 
-            mainCollaborator={successionData?.mainCollaborator || modalData.mainCollaborator}
-            teamMembers={successionData?.data || modalData.teamMembers}
-            borde = {borde}
-            propiedad = {propiedad}
-            PERF_ID = {cardData?.PERF_ID}
-            perf_text ={cardData?.PERFORMANCE}
-          />
+          
         </div>
       </div>
     );
@@ -143,23 +107,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
   return (
     <div className="modal-container">
       {/* Tarjeta de colaborador con función para abrir el modal al hacer clic en la flecha */}
-      <EmployeeCard 
-        name={`${cardData.NOMBRE} ${cardData.APELLIDOS}`}
-        id={cardData?.IDCOLABORADOR}
-        organization={cardData?.ORGANIZACION}
-        position={cardData?.KEY_POSITION}
-        ELDP={cardData?.ELDP}
-        role={cardData?.PUESTO}
-        avatarUrl={`data:image/jpg;base64,${cardData?.FOTO}`}
-        equipo={cardData?.EQUIPO}
-        onArrowClick={openModal}
-        onTeamNavigation={onTeamNavigation}
-        jefe={jefe}
-        PERF_ID = {cardData?.PERF_ID}
-        borde = {borde}
-        propiedad = {propiedad}
-        expandir= {cardData?.DATOS_SUCESION}
-      />
+      
 
       {/* Modal renderizado en un portal para que se expanda en toda la página */}
       {isModalOpen && createPortal(
@@ -170,7 +118,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
   );
 };
 
-export default ModalContainer;
+export default ModalSearch;
 
 // Añadir animación de fade-in al CSS global
 const style = document.createElement('style');

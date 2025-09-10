@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 
 import ModalContainer from "../components/ModalContainer";
 import "./Organigrama.css"; // Importar los estilos específicos
-import { Move, Trophy, Triangle, Crosshair, LayoutGrid } from "lucide-react";
+import { Move, Trophy, Triangle, Crosshair, LayoutGrid, Search } from "lucide-react";
 
 // Importar nuevos componentes y hooks
 import {
@@ -29,6 +29,7 @@ import useBreadcrumbs from "../hooks/useBreadcrumbs";
 
 // Componente para traducción
 import { useTranslation } from "react-i18next";
+
 
 /**
  * Componente interno del organigrama que usa los datos del contexto
@@ -280,20 +281,29 @@ const OrganizationChartContent = () => {
         />
 
         {/* Controles */}
-        <div className="controls flex space-x-2">
+        <div className="flex space-x-2">
+          {/* Botón Buscar */}
+          <button
+            className="p-2 bg-blue-800 rounded-full shadow-lg hover:bg-blue-950"
+            onClick=""
+            aria-label="Buscar"
+            title={t("Centrar")}
+          >
+            <Search className="w-6 h-5 text-white" />
+          </button>
           {/* Botón Centrar */}
           <button
-            className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
+            className="controls p-2 bg-white rounded-full shadow-lg hover:bg-gray-100"
             onClick={centerOrganigram}
             aria-label="Centrar"
             title={t("Centrar")}
           >
-            <Crosshair className="w-5 h-5 text-blue-800" />
+            <Crosshair className="w-6 h-5 text-blue-800" />
           </button>
 
           {/* Zoom - */}
           <button
-            className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
+            className="controls p-2 bg-white rounded-full shadow-lg hover:bg-gray-100"
             onClick={() => setZoomLevel((prev) => Math.max(prev - 0.2, 0.6))}
             aria-label="Zoom Out"
           >
@@ -317,7 +327,7 @@ const OrganizationChartContent = () => {
 
           {/* Zoom + */}
           <button
-            className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-100"
+            className="controls p-2 bg-white rounded-full shadow-lg hover:bg-gray-100"
             onClick={() => setZoomLevel((prev) => Math.min(prev + 0.2, 1.6))}
             aria-label="Zoom In"
           >
@@ -354,7 +364,7 @@ const OrganizationChartContent = () => {
         >
           {isCardMapaMinimized ? (
             <div
-              className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer flex items-center justify-center"
+              className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer flex items-center justify-center hover:bg-gray-100"
               onClick={toggleCardMapa}
               title={t("Expandir_Mapa_Talento")}
             >
@@ -394,7 +404,7 @@ const OrganizationChartContent = () => {
         >
           {isPerformanceCardMinimized ? (
             <div
-              className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer flex items-center justify-center"
+              className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl cursor-pointer flex items-center justify-center hover:bg-gray-100"
               onClick={togglePerformanceCard}
               title={t("Expandir_Calif_Desemp")}
             >
@@ -591,6 +601,7 @@ const OrganizationChartContent = () => {
             <LayoutGrid className="text-white" />
           </button>
         </div>
+        
         {/* Botón navegación (puedes usarlo para otra acción) */}
         <div className="navigation-button fixed bottom-20 right-6 z-30">
           <div className="p-3 bg-white rounded-full shadow-lg">
@@ -599,7 +610,7 @@ const OrganizationChartContent = () => {
         </div>
 
         {/* Indicador de zoom */}
-        <div className="zoom-level-indicator fixed bottom-6 left-6 z-30">
+        <div className="zoom-level-indicator fixed bottom-6 left-6 z-30 shadow-lg">
           <span className="text-sm font-medium">
             {Math.round(zoomLevel * 100)}%
           </span>
