@@ -188,7 +188,7 @@ export default function IconProfile(props) {
           ],
         },
       },
-      variantValues: {},
+      variantValues: { type: "world" },
     },
   ];
   const overrides = mergeVariantsAndOverrides(

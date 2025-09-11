@@ -162,6 +162,10 @@ const OrganizationChartContent = () => {
     }, 300); // Esperar a que la transición de zoom termine
   };
 
+  const goSearch = () => {
+    navigate(`/searchorg`);
+  }
+
   // Cálculos de tamaño
   const cardWidth = 320;
   const cardSpacing = 32;
@@ -285,7 +289,7 @@ const OrganizationChartContent = () => {
           {/* Botón Buscar */}
           <button
             className="p-2 bg-blue-800 rounded-full shadow-lg hover:bg-blue-950"
-            onClick=""
+            onClick={goSearch}
             aria-label="Buscar"
             title={t("Centrar")}
           >

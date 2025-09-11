@@ -63,7 +63,7 @@ export default function Users(props) {
         justifyContent="unset"
         shrink="0"
         position="relative"
-        borderRadius="8px"
+        borderRadius="46px"
         padding="0px 0px 0px 0px"
         objectFit="cover"
         {...getOverrideProps(overrides, "image 4")}
