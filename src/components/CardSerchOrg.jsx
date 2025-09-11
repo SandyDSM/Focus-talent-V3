@@ -13,6 +13,7 @@ function CardSerchOrg({
   avatar = null,
   onClick = null,
   equipo = "0",
+  id_jefe = null
 }) {
   // Usar datos del objeto user si está disponible, sino usar props individuales
   const userData = {
@@ -24,6 +25,7 @@ function CardSerchOrg({
     country: user.country || country,
     avatar: user.avatar || avatar,
     equipo: user.equipo || equipo,
+    id_jefe: user.id_jefe || id_jefe
   };
 
   // Función para generar iniciales del nombre
@@ -158,60 +160,64 @@ function CardSerchOrg({
 
           {/* Icono de organigrama */}
           <div className="flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 128 128"
-              fill="#0000B3"
-              className="w-6 h-6"
-              title="Ver organigrama"
-            >
-              <g transform="translate(0, 0) scale(1.4)">
-                <rect x="40" y="4" width="16" height="16" rx="2" />
-                <line
-                  x1="48"
-                  y1="20"
-                  x2="48"
-                  y2="40"
-                  stroke="#0000B3"
-                  strokeWidth="4"
-                />
-                <line
-                  x1="16"
-                  y1="40"
-                  x2="80"
-                  y2="40"
-                  stroke="#0000B3"
-                  strokeWidth="4"
-                />
-                <line
-                  x1="24"
-                  y1="40"
-                  x2="24"
-                  y2="60"
-                  stroke="#0000B3"
-                  strokeWidth="4"
-                />
-                <line
-                  x1="48"
-                  y1="40"
-                  x2="48"
-                  y2="60"
-                  stroke="#0000B3"
-                  strokeWidth="4"
-                />
-                <line
-                  x1="72"
-                  y1="40"
-                  x2="72"
-                  y2="60"
-                  stroke="#0000B3"
-                  strokeWidth="4"
-                />
-                <rect x="16" y="60" width="16" height="16" rx="2" />
-                <rect x="40" y="60" width="16" height="16" rx="2" />
-                <rect x="64" y="60" width="16" height="16" rx="2" />
-              </g>
-            </svg>
+            <Link to={`/org/${userData.id_jefe}`} >
+              <div className="cursor-pointer">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 128 128"
+                  fill="#0000B3"
+                  className="w-6 h-6"
+                  title="Ver organigrama"
+                >
+                  <g transform="translate(0, 0) scale(1.4)">
+                    <rect x="40" y="4" width="16" height="16" rx="2" />
+                    <line
+                      x1="48"
+                      y1="20"
+                      x2="48"
+                      y2="40"
+                      stroke="#0000B3"
+                      strokeWidth="4"
+                    />
+                    <line
+                      x1="16"
+                      y1="40"
+                      x2="80"
+                      y2="40"
+                      stroke="#0000B3"
+                      strokeWidth="4"
+                    />
+                    <line
+                      x1="24"
+                      y1="40"
+                      x2="24"
+                      y2="60"
+                      stroke="#0000B3"
+                      strokeWidth="4"
+                    />
+                    <line
+                      x1="48"
+                      y1="40"
+                      x2="48"
+                      y2="60"
+                      stroke="#0000B3"
+                      strokeWidth="4"
+                    />
+                    <line
+                      x1="72"
+                      y1="40"
+                      x2="72"
+                      y2="60"
+                      stroke="#0000B3"
+                      strokeWidth="4"
+                    />
+                    <rect x="16" y="60" width="16" height="16" rx="2" />
+                    <rect x="40" y="60" width="16" height="16" rx="2" />
+                    <rect x="64" y="60" width="16" height="16" rx="2" />
+                  </g>
+                </svg>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
