@@ -34,6 +34,7 @@ function SearchOrg() {
   }
 
     const navigate = useNavigate();
+     
 
   // Función para manejar el cambio en el campo de búsqueda
   const handleChange = useCallback((event) => {
@@ -63,6 +64,7 @@ function SearchOrg() {
     }
   }, [handleSearch]);
 
+ 
   // Función para seleccionar un elemento del historial
   const handleSelectHistory = useCallback((term) => {
     updateSearchTerm(term);

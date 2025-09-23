@@ -293,7 +293,7 @@ const OrganizationChartContent = () => {
             aria-label="Buscar"
             title={t("Centrar")}
           >
-            <Search className="w-6 h-5 text-white" />
+            <Search className="w-6 h-5 text-white"/>
           </button>
           {/* Botón Centrar */}
           <button

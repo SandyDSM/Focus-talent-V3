@@ -1,11 +1,14 @@
 // Hook personalizado para manejar la lógica de búsqueda de usuarios
 
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, useContext } from 'react';
 import { searchUsers } from '../search/searchService'; // MODIFICADO: Apunta al nuevo servicio
 import { DEFAULT_PARAMS } from '../search/apiConfig';
+import CollaboratorsContext from "../context/collaborators";
+
+
 
 // Hook principal para la búsqueda
-export const useSearch = (initialUserId = null) => {
+export const useSearch = (initialUserId) => {
   // Estados
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -16,6 +19,7 @@ export const useSearch = (initialUserId = null) => {
   // Referencias para manejar debounce y cancelación
   const debounceTimeoutRef = useRef(null);
   const abortControllerRef = useRef(null); // Aunque el ApiService no lo use, lo mantenemos por si se quiere implementar
+  const {usuarioActualDatos} = useContext(CollaboratorsContext);
   
   // Función para limpiar timeouts
   const cleanup = useCallback(() => {
@@ -26,7 +30,7 @@ export const useSearch = (initialUserId = null) => {
   }, []);
   
   // Función principal de búsqueda
-  const performSearch = useCallback(async (term, userId = null) => {
+  const performSearch = useCallback(async (term, userId = usuarioActualDatos.INTERNAL_ID) => {
     cleanup();
     
     if (!term || !term.trim()) {
@@ -39,7 +43,7 @@ export const useSearch = (initialUserId = null) => {
     setHasSearched(true);
     
     try {
-      const finalUserId = userId || initialUserId || DEFAULT_PARAMS.DEFAULT_USER_ID;
+      const finalUserId = userId || DEFAULT_PARAMS.DEFAULT_USER_ID;
       // LLAMADA AL NUEVO SERVICIO
       const results = await searchUsers(term.trim(), finalUserId);
       setSearchResults(results);
@@ -53,7 +57,7 @@ export const useSearch = (initialUserId = null) => {
   }, [initialUserId, cleanup]);
   
   // Función de búsqueda con debounce
-  const debouncedSearch = useCallback((term, userId = null) => {
+  const debouncedSearch = useCallback((term, userId = usuarioActualDatos.INTERNAL_ID) => {
     cleanup();
     
     debounceTimeoutRef.current = setTimeout(() => {
@@ -62,7 +66,7 @@ export const useSearch = (initialUserId = null) => {
   }, [performSearch, cleanup]);
   
   // Función para búsqueda inmediata (sin debounce)
-  const searchNow = useCallback((term = searchTerm, userId = null) => {
+  const searchNow = useCallback((term = searchTerm, userId) => {
     performSearch(term, userId);
   }, [performSearch, searchTerm]);
   

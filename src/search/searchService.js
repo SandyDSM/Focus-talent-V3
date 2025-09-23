@@ -11,7 +11,7 @@ const apiService = createApiServiceInstance();
  * @param {string} userId - El ID del usuario que realiza la búsqueda.
  * @returns {Promise<Array>} - Una promesa que resuelve a un array de usuarios transformados.
  */
-export const searchUsers = async (searchTerm, userId = null) => {
+export const searchUsers = async (searchTerm, userId) => {
   // Validar el término de búsqueda
   if (!searchTerm || typeof searchTerm !== 'string' || !searchTerm.trim()) {
     throw new Error("El término de búsqueda es requerido y no puede estar vacío.");
