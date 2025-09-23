@@ -116,7 +116,7 @@ const CollaboratorModal = ({
             <span className="text-xs">{t('Largo_Plazo')}</span>
           </span>
         </div>
-        <div className="pid">
+       {/* <div className="pid">
           <span className="text-sm font-medium mr-2">PID:</span>
           <span className="inline-flex items-center mr-3">
             <span className="w-3 h-3 bg-green-500 rounded-full mr-1"></span>
@@ -130,7 +130,7 @@ const CollaboratorModal = ({
             <span className="w-3 h-3 bg-red-500 rounded-full mr-1"></span>
             <span className="text-xs">{t('Plan_No_Creado')}</span>
           </span>
-        </div>
+        </div>*/}
       </div>
     </div>
   );

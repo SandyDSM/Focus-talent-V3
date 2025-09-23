@@ -1,6 +1,7 @@
 import React from "react";
 import { IconProfile } from "../ui-components";
 import { useTranslation } from 'react-i18next';
+import ProgressBar from "./ProgressBar";
 
 
 const EncabezadoSuccs = ({ member, getInitials, borde }) => {
@@ -80,10 +81,10 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             <div className="text-xs text-gray-500">{t('antiguedad_emp')}</div>
             <div className="font-medium">{member.ANT_EN_EMPRESA || "-"}</div>
           </div>
-          <div className="border-b py-1">
+         {/* <div className="border-b py-1">
             <div className="text-xs text-gray-500">{t('antiguedad_puesto')}</div>
             <div className="font-medium">{"-"}</div>
-          </div>
+          </div>*/}
           <div className="border-b py-1">
             <div className="text-xs text-gray-500">{t('Potencial_2025')}</div>
             <div className="font-medium">{member.POTENCIAL || "-"}</div>
@@ -103,13 +104,15 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             <div className="font-medium">{member.CONTRIB_PLAN_NEGOCIO || "-"}</div>
           </div>
           <div className="border-b py-1">
-            <div className="flex items-center">
-              <div
+            <span className="text-xs text-gray-500">PID</span>
+            <div className="flex items-center gap-2">
+              {/*<div
                 className="w-3 h-3 rounded-full mr-2"
                 style={{ backgroundColor: pid_color[member.PID_ID] || "#f0f0f0" }}
-              ></div>
-              <span className="text-xs text-gray-500 mr-2">PID</span>
-              <span className="font-medium">{`${member?.PID_NUM}%` || "0%"}</span>
+              ></div>*/}
+              
+              <span className="font-medium">{`${member?.PID_NUM}% ` || "0%"}</span>
+              <ProgressBar porcentaje={`${member?.PID_NUM}%` || "0%"} id_pib ={member.PID_ID} />
             </div>
           </div>
           <div className="border-b py-1">
