@@ -116,7 +116,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
         }}
         onClick={handleOverlayClick}
       >
-        <div className="relative w-full max-w-6xl animate-fade-in top-10 scroll-smooth"onClick={(e) => e.stopPropagation()}>
+        <div className="relative w-full max-w-6xl animate-fade-in top-20 scroll-smooth"onClick={(e) => e.stopPropagation()}>
           {/* Botón para cerrar el modal */}
           <button 
             onClick={closeModal}
@@ -152,6 +152,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
         role={cardData?.PUESTO}
         avatarUrl={`data:image/jpg;base64,${cardData?.FOTO}`}
         equipo={cardData?.EQUIPO}
+        pais={cardData?.PAIS}
         onArrowClick={openModal}
         onTeamNavigation={onTeamNavigation}
         jefe={jefe}

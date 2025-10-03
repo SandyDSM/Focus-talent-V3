@@ -37,7 +37,7 @@ const getcalib = async (id) => {
   }
 };
 
-//console.log(sub)
+console.log(colaborator)
 
   useEffect(() => {
     getcalib(colaborator.INTERNAL_ID);
@@ -55,7 +55,7 @@ const getcalib = async (id) => {
   return (
     <div className="card flex flex-col gap-4 justify-between">
       <div className="flex flex-col gap-4">
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center p-2">
           <img
             className="w-14 h-14 rounded-full"
             src={
@@ -64,18 +64,22 @@ const getcalib = async (id) => {
                 : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png"
             }
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <p className="font-bold">{`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}</p>
-            <div className="flex gap-2">
-              <div className="flex gap-1">
+            <div className="flex gap-[5px] flex-wrap">
+              <div className="flex">
               <IconProfile type="id"/>
               <p className="text-xs	text-zinc-600 pt-0.5">{colaborator.ID_COLABORADOR}</p></div>
-              <div className="flex gap-1">
+              <div className="flex">
               <div className="w-5"><IconProfile type="Job"/></div>
               <p className="text-xs	text-zinc-600 pt-0.5">{colaborator.PUESTO}</p></div>
-              <div className="flex gap-1">
+              <div className="flex">
               <IconProfile type="Organitation"/>
               <p className="text-xs	text-zinc-600 pt-0.5">{colaborator.ORGANIZACION_ID}</p>
+              </div>
+              <div className="flex">
+              <IconProfile type="world"/>
+              <p className="text-xs	text-zinc-600 pt-0.5">{colaborator?.PAIS || "NA"}</p>
               </div>
             </div>
           </div>

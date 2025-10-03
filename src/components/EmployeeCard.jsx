@@ -32,7 +32,7 @@ const EmployeeCard = ({
   PERF_ID,
   borde,
   propiedad,
-  expandir,
+  expandir, pais,
   onArrowClick = null,
   onTeamNavigation = null,
 }) => {
@@ -112,7 +112,7 @@ const EmployeeCard = ({
       </div>
 
       {/* Información del colaborador */}
-      <div className="flex gap-2 justify-center mb-4 ">
+      <div className="flex gap-2 justify-center mb-4 flex-wrap ">
         <div className="flex items-center text-gray-600 text-xs">
           <IconProfile type="id" />
           <span>{id}</span>
@@ -120,6 +120,10 @@ const EmployeeCard = ({
         <div className="flex items-center text-gray-600 text-xs">
           <IconProfile type="Organitation" />
           <span>{organization}</span>
+        </div>
+        <div className="flex items-center text-gray-600 text-xs">
+          <IconProfile type="world" />
+          <span>{pais || "NA"}</span>
         </div>
       </div>
 

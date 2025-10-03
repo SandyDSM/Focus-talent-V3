@@ -20,6 +20,8 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
     "3": "#FE0003"
   }
 
+  console.log(member)
+
   return (
     <div>
       {/* Barra vertical de semáforo */}
@@ -124,6 +126,18 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
               {t('Match_prof')}
             </div>
             <div className="font-medium">{member.MATCH_CON_PROFILE || "-"}</div>
+          </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">Availability</div>
+            <div className="font-medium">{member.RELOCATE || "-"}</div>
+          </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">Wich locations</div>
+            <div className="font-medium">{member.WHICH_LOCATIONS || "-"}</div>
+          </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">World place</div>
+            <div className="font-medium">{member.WORKPLACE || "-"}</div>
           </div>
           <div className="py-1">
             <div className="text-xs text-gray-500">Korn Ferry Evaluation</div>

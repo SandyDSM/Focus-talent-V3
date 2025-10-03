@@ -102,7 +102,7 @@ const transformUserData = (userData) => {
     equipo: userData.EQUIPO || null,
     contratacion: userData.FECHA_CONTRATACION || null,
     internal_id: userData.INTERNAL_ID || null,
-    id_jefe: userData.ID_JEFE || null,
+    id_jefe: userData.NOMBRE_JEFE || null,
   };
 };
 

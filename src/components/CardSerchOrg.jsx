@@ -143,6 +143,11 @@ function CardSerchOrg({
               <IconProfile type="world" />
               <span className="ml-1 truncate">{userData.country}</span>
             </div>
+            {/* Jefe */}
+            <div className="flex items-center text-gray-600 text-xs">
+              <IconProfile type="Name" />
+              <span className="ml-1 truncate">{userData.id_jefe}</span>
+            </div>
           </div>
         </div>
 
