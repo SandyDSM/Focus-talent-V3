@@ -115,7 +115,7 @@ function SearchOrg() {
             hasSearchButton={false}
             id="busqueda"
             onFocus={() => setShowHistory(searchTerm.trim() === '')} // Mostrar historial al enfocar si el campo está vacío
-            onBlur={() => setTimeout(() => setShowHistory(false), 100)} // Ocultar historial al desenfocar (con delay para permitir clics)
+            onBlur={() => setShowHistory(false)} // Ocultar historial al desenfocar (con delay para permitir clics)
           />
           
           <button
@@ -190,4 +190,3 @@ function SearchOrg() {
 }
 
 export default SearchOrg;
-

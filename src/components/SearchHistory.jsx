@@ -33,7 +33,7 @@ function SearchHistory({
   };
 
   return (
-    <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-md shadow-lg z-50 mt-1">
+    <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-md shadow-lg z-50 mt-1" onMouseDown={(e) => e.preventDefault()}>
       {/* Encabezado */}
       <div className="flex items-center justify-between p-3 border-b border-gray-100">
         <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
@@ -74,7 +74,7 @@ function SearchHistory({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                onRemoveItem && onRemoveItem(index);
+                if (onRemoveItem) onRemoveItem(index);
               }}
               className="opacity-0 group-hover:opacity-100 p-1 text-gray-400 hover:text-red-600 transition-all"
               title="Eliminar del historial"
@@ -94,4 +94,3 @@ function SearchHistory({
 }
 
 export default SearchHistory;
-
