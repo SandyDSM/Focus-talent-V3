@@ -337,7 +337,7 @@ function getCollaboratorsDB(idJefe) {
         setRespfutleader(datos?.filter(c => (c.CATEGORIA === "Future leader" || c.CATEGORIA === "Future leader *" || c.CATEGORIA === "Futuro líder" || c.CATEGORIA === "Futuro líder *")));
         setPillbusiness(datos?.filter(c => (c.CATEGORIA === "Talento Promesa" || c.CATEGORIA === "Talento Promesa *" || c.CATEGORIA === "Promising" || c.CATEGORIA === "Promising *" || c.CATEGORIA === "Pilar de negocio *")));
         setRespillbusiness(datos?.filter(c => (c.CATEGORIA === "Business pillar" || c.CATEGORIA === "Business pillar *" || c.CATEGORIA === "Pilar de negocio" || c.CATEGORIA === "Pilar de negocio *")));
-        setBasebusiness(datos?.filter(c => (c.CATEGORIA === "Talento Esencial" || c.CATEGORIA === "Talento Esencial * *" || c.CATEGORIA === "Essential Talent" || c.CATEGORIA === "Essential Talent *" || c.CATEGORIA === "Cimiento de negocio *")));
+        setBasebusiness(datos?.filter(c => (c.CATEGORIA === "Talento Esencial" || c.CATEGORIA === "Talento Esencial *" || c.CATEGORIA === "Essential Talent" || c.CATEGORIA === "Essential Talent *" || c.CATEGORIA === "Cimiento de negocio *")));
         setResbasebusiness(datos?.filter(c => (c.CATEGORIA === "Business foundation *" || c.CATEGORIA === "Business foundation" || c.CATEGORIA === "Cimiento de negocio" || c.CATEGORIA === "Cimiento de negocio *")));
         setNoteval(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial" )));
         setResnoteval(datos?.filter(c => (c.CATEGORIA === "No evaluados en potencial")));
