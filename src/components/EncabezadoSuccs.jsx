@@ -106,7 +106,7 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             <div className="font-medium">{member.CONTRIB_PLAN_NEGOCIO || "-"}</div>
           </div>
           <div className="border-b py-1">
-            <span className="text-xs text-gray-500">PID</span>
+            <span className="text-xs text-gray-500">{t('IDP')}</span>
             <div className="flex items-center gap-2">
               {/*<div
                 className="w-3 h-3 rounded-full mr-2"
@@ -127,21 +127,21 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             </div>
             <div className="font-medium">{member.MATCH_CON_PROFILE || "-"}</div>
           </div>
-          <div className="border-b py-1">
-            <div className="text-xs text-gray-500">Availability</div>
-            <div className="font-medium">{member.RELOCATE || "-"}</div>
-          </div>
-          <div className="border-b py-1">
-            <div className="text-xs text-gray-500">Wich locations</div>
-            <div className="font-medium">{member.WHICH_LOCATIONS || "-"}</div>
-          </div>
-          <div className="border-b py-1">
-            <div className="text-xs text-gray-500">World place</div>
-            <div className="font-medium">{member.WORKPLACE || "-"}</div>
-          </div>
           <div className="py-1">
             <div className="text-xs text-gray-500">Korn Ferry Evaluation</div>
             <div className="font-medium text-blue-600 underline cursor-pointer">Download Evaluation</div>
+          </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">{t('Availability')}</div>
+            <div className="font-medium">{member.RELOCATE || "-"}</div>
+          </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">{t('Which locations')}</div>
+            <div className="font-medium">{member.WHICH_LOCATIONS || "-"}</div>
+          </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">{t('Work place')}</div>
+            <div className="font-medium">{member.WORKPLACE || "-"}</div>
           </div>
         </div>
       

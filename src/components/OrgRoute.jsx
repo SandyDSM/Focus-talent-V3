@@ -15,14 +15,14 @@ const allowedIds = [
   3000007,
   3000000,
   3000038,
-  28342,
-  27033,
-  255978,
-  30005634,
-  10010552,
+  28342, //MERI
+  27033, //MECHI
+  //255978, //RAFA PAMIAS
+  2655237, //LALI
+  //10010552,
   1111111,
-  10400893,
-  10004745,
+  332188, //LUCIANA
+  //23570, DANIEL S
 ];
 
   if (!allowedIds.includes(Number(usuarioActualDatos.INTERNAL_ID))) {

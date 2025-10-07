@@ -32,5 +32,9 @@
 "Salida":"Salida",
 "Cargando_Datos":"Cargando datos...",
 "Cargando_Organigrama":"Cargando organigrama...",
-"Inicializar_Organigrama":"Inicializando organigrama..."
+"Inicializar_Organigrama":"Inicializando organigrama...",
+"IDP" : "PID",
+"Availability":"Disponibilidad para radicar fuera del país",
+"Which locations":"¿A qué país?",
+"Work place":"Lugar de trabajo"
 }
