@@ -13,7 +13,8 @@ function CardSerchOrg({
   avatar = null,
   onClick = null,
   equipo = "0",
-  id_jefe = null
+  id_jefe = null,
+   nombre_jefe = null
 }) {
   // Usar datos del objeto user si está disponible, sino usar props individuales
   const userData = {
@@ -25,7 +26,8 @@ function CardSerchOrg({
     country: user.country || country,
     avatar: user.avatar || avatar,
     equipo: user.equipo || equipo,
-    id_jefe: user.id_jefe || id_jefe
+    id_jefe: user.id_jefe || id_jefe,
+    nombre_jefe: user.nombre_jefe || nombre_jefe
   };
 
   // Función para generar iniciales del nombre
@@ -146,7 +148,7 @@ function CardSerchOrg({
             {/* Jefe */}
             <div className="flex items-center text-gray-600 text-xs">
               <IconProfile type="Name" />
-              <span className="ml-1 truncate">{userData.id_jefe}</span>
+              <span className="ml-1 truncate">{userData.nombre_jefe}</span>
             </div>
           </div>
         </div>
