@@ -118,20 +118,6 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
             </div>
           </div>
           <div className="border-b py-1">
-            <div className="text-xs text-gray-500">Assessment KF</div>
-            <div className="font-medium">{member.ASSESSMENT_KF || "-"}</div>
-          </div>
-          <div className="border-b py-1">
-            <div className="text-xs text-gray-500">
-              {t('Match_prof')}
-            </div>
-            <div className="font-medium">{member.MATCH_CON_PROFILE || "-"}</div>
-          </div>
-          <div className="py-1">
-            <div className="text-xs text-gray-500">Korn Ferry Evaluation</div>
-            <div className="font-medium text-blue-600 underline cursor-pointer">Download Evaluation</div>
-          </div>
-          <div className="border-b py-1">
             <div className="text-xs text-gray-500">{t('Availability')}</div>
             <div className="font-medium">{member.RELOCATE || "-"}</div>
           </div>
@@ -142,6 +128,19 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
           <div className="border-b py-1">
             <div className="text-xs text-gray-500">{t('Work place')}</div>
             <div className="font-medium">{member.WORKPLACE || "-"}</div>
+          </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">Assessment KF</div>
+            <div className="font-medium">{member.ASSESSMENT_KF || "-"}</div>
+          </div>
+          <div className="border-b py-1">
+            <div className="text-xs text-gray-500">{t('Match_prof')}
+            </div>
+            <div className="font-medium">{member.MATCH_CON_PROFILE || "-"}</div>
+          </div>
+          <div className="py-1">
+            <div className="text-xs text-gray-500">Korn Ferry Evaluation</div>
+            <div className="font-medium text-blue-600 underline cursor-pointer">Download Evaluation</div>
           </div>
         </div>
       
