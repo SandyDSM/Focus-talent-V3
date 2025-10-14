@@ -51,13 +51,14 @@ class OrganizationService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Array de miembros del equipo
    */
-  async getTeamMembers(collaboratorId, idioma, options = {}) {
+  async getTeamMembers(collaboratorId, coll_log, idioma, options = {}) {
      const path = '/orgchartteamdata';
      options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
         IDIOMA: `'${idioma}'`,
-        USER_ID: `'${collaboratorId}'`
+        USER_ID: `'${collaboratorId}'`,
+        USER_LOG: `'${coll_log}'`
       }
     };
     
@@ -114,14 +115,15 @@ class OrganizationService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos del organigrama
    */
-  async getOrganizationChart(collaboratorId, idioma, options = {}) {
+  async getOrganizationChart(collaboratorId, coll_log, idioma, options = {}) {
     const path = '/orgchartteamdata';
     
      options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
         IDIOMA: `'${idioma}'`,
-        USER_ID: `'${collaboratorId}'`
+        USER_ID: `'${collaboratorId}'`,
+        USER_LOG: `'${coll_log}'`
       }
     };
     

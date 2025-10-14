@@ -81,7 +81,7 @@ const DataContext = createContext();
  * @returns {JSX.Element} Proveedor de contexto
  */
 export const DataProvider = ({ 
-  collaboratorId, idioma,
+  collaboratorId, idioma, coll_log,
   children 
 }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
@@ -100,7 +100,7 @@ export const DataProvider = ({
       }, 200);
 
       //console.log('DataProvider - Calling loadOrganizationData with:', collaboratorId, idioma);
-      const result = await loadOrganizationData(collaboratorId, idioma);
+      const result = await loadOrganizationData(collaboratorId, coll_log, idioma);
       //console.log('DataProvider - loadOrganizationData result:', result);
       
       clearInterval(progressInterval);

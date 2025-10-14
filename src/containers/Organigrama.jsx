@@ -12,6 +12,7 @@ import ModalContainer from "../components/ModalContainer";
 import "./Organigrama.css"; // Importar los estilos específicos
 import { Move, Trophy, Triangle, Crosshair, LayoutGrid, Search } from "lucide-react";
 
+
 // Importar nuevos componentes y hooks
 import {
   DataProvider,
@@ -44,6 +45,7 @@ const OrganizationChartContent = () => {
 
   // Hook para manejar breadcrumbs
   const { breadcrumbs, addBreadcrumb, navigateToBreadcrumb } = useBreadcrumbs();
+   const {usuarioActualDatos} = useContext(CollaboratorsContext);
 
   // Hook para navegación
   const navigate = useNavigate();
@@ -657,10 +659,10 @@ const OrganizationChart = () => {
   }
 
   return (
-    <DataProvider idioma={idioma} collaboratorId={collaboratorIdToUse}>
+    <DataProvider idioma={idioma} collaboratorId={collaboratorIdToUse} coll_log={usuarioActualDatos.INTERNAL_ID}>
       <OrganizationChartContent />
     </DataProvider>
   );
-};
+}; 
 
 export default OrganizationChart;

@@ -26,12 +26,12 @@ export {
 
 /**
  * Función utilitaria para cargar todos los datos necesarios para el organigrama
- * @param {string} organizationId - ID de la organización
+ * @param {string} coll_log - ID del usuario logeado
  * @param {string} collaboratorId - ID del colaborador principal
  * @returns {Promise} Objeto con todos los datos cargados
  */
 export const loadOrganizationData = async (
-  collaboratorId,
+  collaboratorId, coll_log,
   idioma
 ) => {
   try {
@@ -46,7 +46,7 @@ export const loadOrganizationData = async (
       talentData,
       performanceData,
     ] = await Promise.all([
-      organizationService.getOrganizationChart(collaboratorId, idioma),
+      organizationService.getOrganizationChart(collaboratorId, idioma, coll_log),
       talentService.getTalentMap(collaboratorId, idioma),
       performanceService.getPerformanceData(collaboratorId, idioma),
     ]);
