@@ -51,7 +51,7 @@ class OrganizationService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Array de miembros del equipo
    */
-  async getTeamMembers(collaboratorId, coll_log, idioma, options = {}) {
+  async getTeamMembers(collaboratorId, idioma, coll_log, options = {}) {
      const path = '/orgchartteamdata';
      options = {
       headers: {}, // OPTIONAL
@@ -115,14 +115,14 @@ class OrganizationService extends ApiService {
    * @param {Object} options - Opciones para la llamada (headers, queryStringParameters, etc.)
    * @returns {Promise} Datos completos del organigrama
    */
-  async getOrganizationChart(collaboratorId, coll_log, idioma, options = {}) {
+  async getOrganizationChart(collaboratorId, idioma, coll_log, options = {}) {
     const path = '/orgchartteamdata';
     
      options = {
       headers: {}, // OPTIONAL
       queryStringParameters: {
-        IDIOMA: `'${idioma}'`,
         USER_ID: `'${collaboratorId}'`,
+        IDIOMA: `'${idioma}'`,
         USER_LOG: `'${coll_log}'`
       }
     };
@@ -130,8 +130,8 @@ class OrganizationService extends ApiService {
     try {
       // Cargar datos en paralelo
       const [mainCollaboratorResponse, teamMembersResponse] = await Promise.all([
-        this.getMainCollaborator(collaboratorId, idioma, options),
-        this.getTeamMembers(collaboratorId, idioma, options)
+        this.getMainCollaborator(collaboratorId, idioma, coll_log, options),
+        this.getTeamMembers(collaboratorId, idioma, coll_log, options)
       ]);
 
       const organizationData = {

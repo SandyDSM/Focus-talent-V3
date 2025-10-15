@@ -644,7 +644,7 @@ const OrganizationChart = () => {
 
   const { idteam } = useParams();
   //const idteam = state?.idteam
-  console.log("idioma____", traducc);
+  //console.log("idioma____", traducc);
   const collaboratorIdToUse = idteam !== undefined ? idteam : collaboratorId;
 
   if (!collaboratorIdToUse) {

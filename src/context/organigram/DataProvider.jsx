@@ -75,7 +75,7 @@ const DataContext = createContext();
 /**
  * Proveedor de datos para el organigrama
  * @param {Object} props - Propiedades del componente
- * @param {string} props.organizationId - ID de la organización
+ * @param {string} props.coll_log - ID del usuario logeado
  * @param {string} props.collaboratorId - ID del colaborador principal
  * @param {ReactNode} props.children - Componentes hijos
  * @returns {JSX.Element} Proveedor de contexto
@@ -100,7 +100,7 @@ export const DataProvider = ({
       }, 200);
 
       //console.log('DataProvider - Calling loadOrganizationData with:', collaboratorId, idioma);
-      const result = await loadOrganizationData(collaboratorId, coll_log, idioma);
+      const result = await loadOrganizationData(collaboratorId, idioma, coll_log,);
       //console.log('DataProvider - loadOrganizationData result:', result);
       
       clearInterval(progressInterval);

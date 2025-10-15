@@ -31,8 +31,9 @@ export {
  * @returns {Promise} Objeto con todos los datos cargados
  */
 export const loadOrganizationData = async (
-  collaboratorId, coll_log,
-  idioma
+  collaboratorId, 
+  idioma,
+  coll_log
 ) => {
   try {
     console.log('Iniciando carga de datos del organigrama...');
