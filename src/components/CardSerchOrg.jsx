@@ -2,6 +2,7 @@ import React from "react";
 import { IconProfile } from "../ui-components";
 import Iconteam from "../ui-components/Iconteam";
 import { Link, useNavigate } from "react-router-dom";
+import useBreadcrumbs from "../hooks/useBreadcrumbs";
 
 function CardSerchOrg({
   user = {},
@@ -43,9 +44,11 @@ function CardSerchOrg({
   };
 
   const navigate = useNavigate();
+    const { clearBreadcrumbs } = useBreadcrumbs();
 
   const handleIconteamClick = (e) => {
     if (equipo == "1") {
+      clearBreadcrumbs();
       e.preventDefault();
       // Si no hay onTeamNavigation, el Link manejará la navegación por defecto
     }
@@ -167,7 +170,7 @@ function CardSerchOrg({
 
           {/* Icono de organigrama */}
           <div className="flex items-center justify-center">
-            <Link to={`/org/${userData.id_jefe}`} >
+            <Link to={`/org/${userData.id_jefe}`} onClick={clearBreadcrumbs} >
               <div className="cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
