@@ -53,8 +53,7 @@ const OrganizationChartContent = () => {
   // Estado de zoom y drag
   const [zoomLevel, setZoomLevel] = useState(1);
   const [isCardMapaMinimized, setIsCardMapaMinimized] = useState(false);
-  const [isPerformanceCardMinimized, setIsPerformanceCardMinimized] =
-    useState(false);
+  const [isPerformanceCardMinimized, setIsPerformanceCardMinimized] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);

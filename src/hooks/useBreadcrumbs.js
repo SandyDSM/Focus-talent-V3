@@ -75,9 +75,22 @@ const useBreadcrumbs = () => {
   /**
    * Limpiar todos los breadcrumbs
    */
-  const clearBreadcrumbs = () => {
-    setBreadcrumbs([]);
-  };
+ const STORAGE_KEY = 'orgBreadcrumbs';
+
+const clearBreadcrumbs = useCallback(() => {
+  try {
+    // Opción A: eliminar la clave completamente
+    localStorage.removeItem(STORAGE_KEY, JSON.stringify(breadcrumbs));
+    console.log("borrando")
+    // Opción B: dejarla como arreglo vacío (elige una y sé consistente)
+    // localStorage.setItem(STORAGE_KEY, JSON.stringify({ v: 1, data: [] }));
+  } catch (e) {
+    console.error('No se pudo limpiar localStorage:', e);
+  }
+  // Actualiza el estado para la UI
+  setBreadcrumbs([]);
+}, []);
+
 
   /**
    * Obtener el colaborador actual (último breadcrumb)
@@ -102,8 +115,7 @@ const useBreadcrumbs = () => {
     navigateToBreadcrumb,
     clearBreadcrumbs,
     getCurrentCollaborator,
-    isInBreadcrumbs,
-    setBreadcrumbs
+    isInBreadcrumbs
   };
 };
 

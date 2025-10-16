@@ -44,11 +44,10 @@ function CardSerchOrg({
   };
 
   const navigate = useNavigate();
-    const { clearBreadcrumbs, setBreadcrumbs } = useBreadcrumbs();
+    const { clearBreadcrumbs } = useBreadcrumbs();
 
   const handleIconteamClick = (e) => {
-    setBreadcrumbs([]);
-    console.log("borrado")
+    clearBreadcrumbs();
     if (equipo == "1") {
       e.preventDefault();
       // Si no hay onTeamNavigation, el Link manejará la navegación por defecto
@@ -56,7 +55,7 @@ function CardSerchOrg({
   };
 
   const clean = (e) =>{
-    setBreadcrumbs([]);
+    clearBreadcrumbs();
   }
 
   // Función para generar color de avatar basado en el nombre
