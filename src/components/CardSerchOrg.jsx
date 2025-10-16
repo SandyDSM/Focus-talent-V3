@@ -44,15 +44,20 @@ function CardSerchOrg({
   };
 
   const navigate = useNavigate();
-    const { clearBreadcrumbs } = useBreadcrumbs();
+    const { clearBreadcrumbs, setBreadcrumbs } = useBreadcrumbs();
 
   const handleIconteamClick = (e) => {
+    setBreadcrumbs([]);
+    console.log("borrado")
     if (equipo == "1") {
-      clearBreadcrumbs();
       e.preventDefault();
       // Si no hay onTeamNavigation, el Link manejará la navegación por defecto
     }
   };
+
+  const clean = (e) =>{
+    setBreadcrumbs([]);
+  }
 
   // Función para generar color de avatar basado en el nombre
   const getAvatarColor = (fullName) => {
@@ -170,7 +175,7 @@ function CardSerchOrg({
 
           {/* Icono de organigrama */}
           <div className="flex items-center justify-center">
-            <Link to={`/org/${userData.id_jefe}`} onClick={clearBreadcrumbs} >
+            <Link to={`/org/${userData.id_jefe}`} onClick={clean} >
               <div className="cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

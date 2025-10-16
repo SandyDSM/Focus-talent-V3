@@ -102,7 +102,8 @@ const useBreadcrumbs = () => {
     navigateToBreadcrumb,
     clearBreadcrumbs,
     getCurrentCollaborator,
-    isInBreadcrumbs
+    isInBreadcrumbs,
+    setBreadcrumbs
   };
 };
 
