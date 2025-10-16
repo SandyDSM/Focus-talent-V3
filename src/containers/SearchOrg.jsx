@@ -6,6 +6,7 @@ import GridSearch from '../components/GridSearch';
 import { useSearch, useSearchHistory } from '../hooks/useSearch'; // Importar useSearch y useSearchHistory
 import SearchHistory from '../components/SearchHistory'; // Importar el componente SearchHistory
 import { useNavigate } from "react-router-dom";
+import useBreadcrumbs from "../hooks/useBreadcrumbs";
 
 
 function SearchOrg() {
@@ -28,8 +29,10 @@ function SearchOrg() {
   } = useSearchHistory();
 
   const [showHistory, setShowHistory] = useState(false);
+  const { clearBreadcrumbs } = useBreadcrumbs();
 
   const closeModal = () => {
+    clearBreadcrumbs();
     navigate(`/org`);
   }
 
