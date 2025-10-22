@@ -1,5 +1,5 @@
 import React from "react";
-import { Maximize2, Shield } from "lucide-react";
+import { Maximize2, CornerRightUp, Shield } from "lucide-react";
 import Iconteam from "../ui-components/Iconteam";
 import { IconProfile } from "../ui-components";
 import { Link, useNavigate } from "react-router-dom";
@@ -29,6 +29,7 @@ const EmployeeCard = ({
   avatarUrl,
   equipo,
   jefe,
+  idjefe,
   PERF_ID,
   borde,
   propiedad,
@@ -69,10 +70,17 @@ const EmployeeCard = ({
     <div className="collaborator-card bg-white rounded-lg shadow-md p-4 w-80 relative h-[17rem]">
       {/* Rol en la parte superior */}
       <div className="flex justify-between items-center mb-4">
+       
         <div className="flex items-center text-sm font-semibold">
           <IconProfile type="Job" />
           <span className="px-2 py-0.5 text-xs">{role}</span>
         </div>
+         {jefe && idjefe != null && (
+        <Link to={`/org/${idjefe}`} >
+         <div className="text-blue-600 hover:bg-blue-50 p-1 rounded-full transition-colors font-bold">
+          <CornerRightUp size={18} strokeWidth={3} />
+          </div>
+        </Link>)}
         {expandir === 1 && (
         <button
           className="text-blue-600 hover:bg-blue-50 p-1 rounded-full transition-colors font-bold"

@@ -156,6 +156,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
         onArrowClick={openModal}
         onTeamNavigation={onTeamNavigation}
         jefe={jefe}
+        idjefe={cardData?.IDJEFE}
         PERF_ID = {cardData?.PERF_ID}
         borde = {borde}
         propiedad = {propiedad}
