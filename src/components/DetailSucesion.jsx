@@ -40,7 +40,7 @@ const CollaboratorModal = ({
   //Para realizar traducciones
   const { t } = useTranslation();
 
-  console.log("HERE!!!", mainCollaborator)
+ // console.log("HERE!!!", mainCollaborator)
   return (
     <div className="collaborator-modal bg-white rounded-lg shadow-lg p-6 max-w-9/10 mx-auto">
       {/* Encabezado con información del colaborador principal */}

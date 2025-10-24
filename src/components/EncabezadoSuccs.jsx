@@ -1,10 +1,35 @@
 import React from "react";
 import { IconProfile } from "../ui-components";
 import { useTranslation } from 'react-i18next';
+import { orgchartService } from '../korn/appiServices';
 import ProgressBar from "./ProgressBar";
 
 
 const EncabezadoSuccs = ({ member, getInitials, borde }) => {
+
+  const handleDownload = async () => {
+    try {
+      // Mostrar un indicador de carga si es necesario
+      const url = await orgchartService.getPDFUrl(member.ID_USUARIO);
+      
+      // 1. Crear un elemento <a> oculto
+      const link = document.createElement('a');
+      link.href = url;
+      
+      // 2. Establecer el atributo 'download' para forzar la descarga
+      // Se recomienda usar un nombre de archivo, aunque el servidor puede anularlo
+      link.setAttribute('download', `Evaluacion_Korn_Ferry_${member.ID_USUARIO}.pdf`); 
+      
+      // 3. Añadir el enlace al DOM, simular el clic y removerlo
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error al descargar la evaluación:", error);
+      // Manejar el error, por ejemplo, mostrando una notificación al usuario
+      alert("No se pudo descargar la evaluación. Por favor, inténtelo de nuevo más tarde.");
+    }
+  };
 
   const { t } = useTranslation();
 
@@ -20,7 +45,7 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
     "3": "#FE0003"
   }
 
-  console.log(member)
+  console.log("-------",member)
 
   return (
     <div>
@@ -140,7 +165,10 @@ const EncabezadoSuccs = ({ member, getInitials, borde }) => {
           </div>
           <div className="py-1">
             <div className="text-xs text-gray-500">Korn Ferry Evaluation</div>
-            <div className="font-medium text-blue-600 underline cursor-pointer">Download Evaluation</div>
+            {member?.KF_EVAL === "1" 
+              ? (<div className="font-medium text-blue-600 underline cursor-pointer" onClick={handleDownload}>Download Evaluation</div>)
+              : (<div className="font-medium ">-</div>)
+            }
           </div>
         </div>
       

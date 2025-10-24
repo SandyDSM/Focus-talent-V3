@@ -21,6 +21,7 @@ const allowedIds = [
   2655237, //LALI
   //10010552,
   1111111,
+  361170, //araceli
   332188, //LUCIANA
   //23570, DANIEL S
 ];
