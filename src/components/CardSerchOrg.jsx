@@ -3,6 +3,7 @@ import { IconProfile } from "../ui-components";
 import Iconteam from "../ui-components/Iconteam";
 import { Link, useNavigate } from "react-router-dom";
 import useBreadcrumbs from "../hooks/useBreadcrumbs";
+import { useTranslation } from "react-i18next";
 
 function CardSerchOrg({
   user = {},
@@ -10,7 +11,7 @@ function CardSerchOrg({
   id = "N/A",
   organization = "Organización no especificada",
   position = "Posición no especificada",
-  country = "País no especificado",
+  country,
   avatar = null,
   onClick = null,
   equipo = "0",
@@ -45,6 +46,7 @@ function CardSerchOrg({
 
   const navigate = useNavigate();
     const { clearBreadcrumbs } = useBreadcrumbs();
+    const { t } = useTranslation();
 
   const handleIconteamClick = (e) => {
     clearBreadcrumbs();

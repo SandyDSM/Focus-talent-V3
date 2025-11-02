@@ -36,5 +36,22 @@
 "IDP" : "PID",
 "Availability":"Disponibilidad para radicar fuera del país",
 "Which locations":"¿A qué país?",
-"Work place":"Lugar de trabajo"
+"Work place":"Lugar de trabajo",
+"Search_Associate": "Buscador de Colaboradores",
+"Search": "Buscar",
+"Search_txt":"Ingresa un término de búsqueda para encontrar colaboradores",
+"No_search_txt":"No se encontraron colaboradores que coincidan con",
+"Results_serach":"resultado(s) para",
+"Find_results":"Se encontraron",
+"Find_results2":"Resultados de búsqueda",
+"Find":"Buscando...",
+"Loading_users":"Cargando usuarios",
+"no_country":"País no especificado",
+"close":"Cerrar",
+"Centrar": "Centrar",
+"Zoom_in":"Acercar",
+"Zoom_out": "Alejar",
+"Associates":"Associates",
+"Associates_team":"Equipo de trabajo",
+"No_results":"No hay resultados para mostrar."
 }

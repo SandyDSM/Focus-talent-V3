@@ -7,6 +7,7 @@ import { useSearch, useSearchHistory } from '../hooks/useSearch'; // Importar us
 import SearchHistory from '../components/SearchHistory'; // Importar el componente SearchHistory
 import { useNavigate } from "react-router-dom";
 import useBreadcrumbs from "../hooks/useBreadcrumbs";
+import { useTranslation } from "react-i18next";
 
 
 function SearchOrg() {
@@ -37,6 +38,7 @@ function SearchOrg() {
   }
 
     const navigate = useNavigate();
+    const { t } = useTranslation();
      
 
   // Función para manejar el cambio en el campo de búsqueda
@@ -88,7 +90,7 @@ function SearchOrg() {
         <div className='flex justify-between items-center'>
           <div className='flex gap-2'>
             <Search />
-            <h3 className='font-bold text-lg'>Buscador de Colaboradores</h3>
+            <h3 className='font-bold text-lg'>{t('Search_Associate')}</h3>
           </div>
           
           {/* Botón para cerrar el modal */}
@@ -96,6 +98,7 @@ function SearchOrg() {
             onClick={closeModal}
             className="right-4 z-10 p-2 bg-blue-800 rounded-full shadow-md hover:bg-blue-900 transition-colors"
             aria-label="Cerrar"
+            title={t("close")}
           >
             <X size={24} className="text-white" />
           </button>
@@ -104,14 +107,14 @@ function SearchOrg() {
         {/* Campo de búsqueda con botón y historial */}
         <div className="relative flex gap-4 items-center">
           <SearchField
-            placeholder="Buscar Colaborador"
+            placeholder={t('Search_Associate')}
             width="50%"
             shrink="0"
             size="default"
             isDisabled={isLoading}
             labelHidden={true}
             variation="default"
-            label="search"
+            label={t('Search')}
             value={searchTerm}
             onChange={handleChange}
             onClear={onClear}
@@ -129,12 +132,12 @@ function SearchOrg() {
             {isLoading ? (
               <>
                 <Loader2 size={16} className="animate-spin" />
-                Buscando...
+                {t('Find')}
               </>
             ) : (
               <>
                 <Search size={16} />
-                Buscar
+                {t('Search')}
               </>
             )}
           </button>
@@ -159,7 +162,7 @@ function SearchOrg() {
         {isLoading && (
           <div className="flex justify-center items-center py-8">
             <Loader2 size={32} className="animate-spin text-blue-600" />
-            <span className="ml-2 text-gray-600">Buscando colaboradores...</span>
+            <span className="ml-2 text-gray-600">{t('Find')}</span>
           </div>
         )}
 
@@ -169,13 +172,13 @@ function SearchOrg() {
             {searchResults.length > 0 ? (
               <>
                 <div className="text-sm text-gray-600">
-                  Se encontraron {searchResults.length} resultado(s) para "{searchTerm}"
+                  {t('Find_results')} {searchResults.length} {t('Results_serach')} "{searchTerm}"
                 </div>
                 <GridSearch users={searchResults} />
               </>
             ) : (
               <div className="text-center py-8 text-gray-500">
-                No se encontraron colaboradores que coincidan con "{searchTerm}"
+                {t('No_search_txt')} "{searchTerm}"
               </div>
             )}
           </>
@@ -184,7 +187,7 @@ function SearchOrg() {
         {/* Mensaje inicial */}
         {!hasSearched && !isLoading && (
           <div className="text-center py-8 text-gray-500">
-            Ingresa un término de búsqueda para encontrar colaboradores
+            {t('Search_txt')}
           </div>
         )}
       </div>

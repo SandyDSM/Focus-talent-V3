@@ -240,7 +240,7 @@ const OrganizationChartContent = () => {
       <div className="h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Cargando usuarios...</p>
+          <p className="text-gray-600">{t('Loading_users')}</p>
         </div>
       </div>
     );
@@ -292,7 +292,7 @@ const OrganizationChartContent = () => {
             className="p-2 bg-blue-800 rounded-full shadow-lg hover:bg-blue-950"
             onClick={goSearch}
             aria-label="Buscar"
-            title={t("Centrar")}
+            title={t("Search")}
           >
             <Search className="w-6 h-5 text-white"/>
           </button>
@@ -311,6 +311,7 @@ const OrganizationChartContent = () => {
             className="controls p-2 bg-white rounded-full shadow-lg hover:bg-gray-100"
             onClick={() => setZoomLevel((prev) => Math.max(prev - 0.2, 0.6))}
             aria-label="Zoom Out"
+            title={t("Zoom_out")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -335,6 +336,7 @@ const OrganizationChartContent = () => {
             className="controls p-2 bg-white rounded-full shadow-lg hover:bg-gray-100"
             onClick={() => setZoomLevel((prev) => Math.min(prev + 0.2, 1.6))}
             aria-label="Zoom In"
+            title={t("Zoom_in")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

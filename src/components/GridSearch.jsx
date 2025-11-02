@@ -1,21 +1,25 @@
 import React from 'react';
 import CardSerchOrg from './CardSerchOrg';
+import { useTranslation } from "react-i18next";
 
 function GridSearch({ users = [] }) {
+  const { t } = useTranslation();
+
   if (!users || users.length === 0) {
     return (
       <div className="text-center py-8 text-gray-500">
-        No hay resultados para mostrar
+        {t("No_results")}
       </div>
     );
   }
 
+  console.log(users)
   return (
     <div className="w-full">
       {/* Encabezado de resultados */}
       <div className="mb-4">
         <h4 className="text-lg font-semibold text-gray-800">
-          Resultados de búsqueda ({users.length})
+          {t("Find_results2")} ({users.length})
         </h4>
       </div>
 

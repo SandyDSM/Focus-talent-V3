@@ -36,5 +36,22 @@
 "IDP":"IDP",
 "Availability":"Are you willing to relocate outside your country?",
 "Which locations":"To which locations would you be willing to relocate?",
-"Work place":"Work Place"
+"Work place":"Work Place",
+"Search_Associate": "Search Associate",
+"Search": "Search",
+"Search_txt":"Enter a search term to find collaborators",
+"No_search_txt":"No collaborators were found matching:",
+"Results_serach":"Results for",
+"Find_results":"",
+"Find_results2":"Search results",
+"Find":"Searching...",
+"Loading_users":"Loading users",
+"no_country":"Country not specified",
+"close":"Close",
+"Centrar":"Center",
+"Zoom_in":"Zoom in",
+"Zoom_out": "Zoom out",
+"Associates":"Colaboradores",
+"Associates_team":"associate’s team",
+"No_results":"No results to show"
 }

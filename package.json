@@ -13,6 +13,7 @@
     "aws-sdk": "^2.1386.0",
     "framer-motion": "^12.18.1",
     "html2canvas": "^1.4.1",
+    "i18next": "^25.6.0",
     "jspdf": "^2.5.2",
     "lucide-react": "^0.513.0",
     "moment": "^2.29.4",
