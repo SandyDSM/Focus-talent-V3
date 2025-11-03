@@ -9,8 +9,8 @@ function CardSerchOrg({
   user = {},
   name = "Usuario Desconocido",
   id = "N/A",
-  organization = "Organización no especificada",
-  position = "Posición no especificada",
+  organization,
+  position,
   country,
   avatar = null,
   onClick = null,
@@ -25,7 +25,7 @@ function CardSerchOrg({
     id: user.id || id,
     organization: user.organization || organization,
     position: user.position || position,
-    country: user.country || country,
+    country: user.country ,
     avatar: user.avatar || avatar,
     equipo: user.equipo || equipo,
     id_jefe: user.id_jefe || id_jefe,
@@ -137,22 +137,22 @@ function CardSerchOrg({
             <div className="flex items-center text-gray-600 text-xs">
               <IconProfile type="Organitation" />
               <span className="ml-1 truncate" title={userData.organization}>
-                {userData.organization}
+                {userData.organization || t("Not_specified")}
               </span>
             </div>
 
             {/* Posición */}
             <div className="flex items-center text-gray-600 text-xs">
               <IconProfile type="Job" />
-              <span className="ml-1 truncate" title={userData.position}>
-                {userData.position}
+              <span className="ml-1 truncate" title={userData.position }>
+                {userData.position || t("Not_specified")}
               </span>
             </div>
 
             {/* País */}
             <div className="flex items-center text-gray-600 text-xs">
               <IconProfile type="world" />
-              <span className="ml-1 truncate">{userData.country}</span>
+              <span className="ml-1 truncate">{userData.country || t("Not_specified")}</span>
             </div>
             {/* Jefe */}
             <div className="flex items-center text-gray-600 text-xs">
