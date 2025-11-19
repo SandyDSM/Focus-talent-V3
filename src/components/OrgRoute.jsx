@@ -15,15 +15,28 @@ const allowedIds = [
   3000007,
   3000000,
   3000038,
+  361170, //araceli
   28342, //MERI
   27033, //MECHI
-  //255978, //RAFA PAMIAS
+  255978, //RAFA PAMIAS
   2655237, //LALI
   //10010552,
   1111111,
-  361170, //araceli
   332188, //LUCIANA
-  //23570, DANIEL S
+  23570, //DANIEL
+  26370, //jorge zarate Lupercio
+  25144, //raul ignacio obregon
+  220467, //diego graxiola
+  26627, //jose manuel
+  27317, //fernando lerdo
+  118254, //anthony gavin
+  720818, //mark bendix
+  24746, //muldoon
+  1883259, //alejandro rodriguez
+  120173, //topboss
+  25730, //urrutia ruiz
+  25732, //angeles pozo
+  27342, // UGARTECHEA GALLARDO
 ];
 
   if (!allowedIds.includes(Number(usuarioActualDatos.INTERNAL_ID))) {
