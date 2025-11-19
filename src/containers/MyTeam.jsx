@@ -3,6 +3,8 @@ import React from "react";
 import HeadTeam from "../components/HeadTeam";
 import { Loader } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
+import i18n from "../i18n";
+
 //import Configuration from '../utils/Configuration'
 
 import { useNavigate } from "react-router-dom";
@@ -13,6 +15,7 @@ import SearchTeam from "./SearchTeam";
 import BannersImg from "../components/BannersImg";
 import BannerUser from "../components/BannerUser";
 import { Workflow } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const MyTeam = () => {
   const {
@@ -53,6 +56,8 @@ const MyTeam = () => {
   };
 
   console.log("de my team", usuarioActualDatos);
+    const { t } = useTranslation();
+
 
   function getData() {
     const apiName = "API Behaviors";
@@ -94,7 +99,7 @@ const MyTeam = () => {
     //console.log(collaborators);//x
   }
 
-  console.log("usuario", usuarioActualDatos)
+  console.log("usuario", usuarioActualDatos);
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
@@ -120,34 +125,34 @@ const MyTeam = () => {
   };
 
   const allowedIds = [
-  3000024,
-  3000006,
-  3000007,
-  3000000,
-  3000038,
-  361170, //araceli
-  28342, //MERI
-  27033, //MECHI
-  255978, //RAFA PAMIAS
-  2655237, //LALI
-  //10010552,
-  1111111,
-  332188, //LUCIANA
-  23570, //DANIEL
-  26370, //jorge zarate Lupercio
-  25144, //raul ignacio obregon
-  220467, //diego graxiola
-  26627, //jose manuel
-  27317, //fernando lerdo
-  118254, //anthony gavin
-  720818, //mark bendix
-  24746, //muldoon
-  1883259, //alejandro rodriguez
-  120173, //topboss
-  25730, //urrutia ruiz
-  25732, //angeles pozo
-  27342, // UGARTECHEA GALLARDO
-];
+    3000024,
+    3000006,
+    3000007,
+    3000000,
+    3000038,
+    361170, //araceli
+    28342, //MERI
+    27033, //MECHI
+    255978, //RAFA PAMIAS
+    2655237, //LALI
+    //10010552,
+    1111111,
+    332188, //LUCIANA
+    23570, //DANIEL
+    26370, //jorge zarate Lupercio
+    25144, //raul ignacio obregon
+    220467, //diego graxiola
+    26627, //jose manuel
+    27317, //fernando lerdo
+    118254, //anthony gavin
+    720818, //mark bendix
+    24746, //muldoon
+    1883259, //alejandro rodriguez
+    120173, //topboss
+    25730, //urrutia ruiz
+    25732, //angeles pozo
+    27342, // UGARTECHEA GALLARDO
+  ];
 
   return (
     <>
@@ -265,36 +270,92 @@ const MyTeam = () => {
         </>
       )}
       {/* Botón regresar a inicio */}
-      <div className="navigation-button fixed bottom-6 right-6 z-30">
+      <div className="navigation-button fixed bottom-6 right-6 z-30 ">
         {allowedIds.includes(Number(usuarioActualDatos.INTERNAL_ID)) && (
-        <button
-          onClick={() => navigate("/org")}
-          className="p-3 bg-blue-800 rounded-full shadow-lg"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 128 128"
-            fill="white"
-            className="w-6 h-6"
+          <button
+            onClick={() => navigate("/org")}
+            className="
+        group
+        flex items-center gap-3 
+        bg-blue-800 text-white 
+        rounded-full shadow-lg
+        h-14 w-14   /* 56px */
+        overflow-hidden
+        transition-all duration-300
+        hover:w-56   /* Se expande hacia la izquierda */
+        hover:pr-6   /* Da espacio al texto */
+      "
+            style={{ borderRadius: "9999px"}}
           >
-  <g transform="translate(0, 0) scale(1.4)"> 
-    <rect x="40" y="4" width="16" height="16" rx="2" />
+            {/* ICONO */}
+            <div className="flex justify-center items-center w-14 h-14 shrink-0">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 128 128"
+                fill="white"
+                className="w-7 h-7"
+              >
+                <g transform="translate(0, 0) scale(1.4)">
+                  <rect x="40" y="4" width="16" height="16" rx="2" />
+                  <line
+                    x1="48"
+                    y1="20"
+                    x2="48"
+                    y2="40"
+                    stroke="white"
+                    strokeWidth="4"
+                  />
+                  <line
+                    x1="16"
+                    y1="40"
+                    x2="80"
+                    y2="40"
+                    stroke="white"
+                    strokeWidth="4"
+                  />
+                  <line
+                    x1="24"
+                    y1="40"
+                    x2="24"
+                    y2="60"
+                    stroke="white"
+                    strokeWidth="4"
+                  />
+                  <line
+                    x1="48"
+                    y1="40"
+                    x2="48"
+                    y2="60"
+                    stroke="white"
+                    strokeWidth="4"
+                  />
+                  <line
+                    x1="72"
+                    y1="40"
+                    x2="72"
+                    y2="60"
+                    stroke="white"
+                    strokeWidth="4"
+                  />
+                  <rect x="16" y="60" width="16" height="16" rx="2" />
+                  <rect x="40" y="60" width="16" height="16" rx="2" />
+                  <rect x="64" y="60" width="16" height="16" rx="2" />
+                </g>
+              </svg>
+            </div>
 
-    <line x1="48" y1="20" x2="48" y2="40" stroke="white" strokeWidth="4" />
-
-    <line x1="16" y1="40" x2="80" y2="40" stroke="white" strokeWidth="4" />
-
-    <line x1="24" y1="40" x2="24" y2="60" stroke="white" strokeWidth="4" />
-    <line x1="48" y1="40" x2="48" y2="60" stroke="white" strokeWidth="4" />
-    <line x1="72" y1="40" x2="72" y2="60" stroke="white" strokeWidth="4" />
-
-    <rect x="16" y="60" width="16" height="16" rx="2" />
-    <rect x="40" y="60" width="16" height="16" rx="2" />
-    <rect x="64" y="60" width="16" height="16" rx="2" />
-  </g>
-</svg>
-
-        </button>
+            {/* TEXTO — aparece SOLO en hover */}
+            <span
+              className="
+        whitespace-nowrap 
+        opacity-0 group-hover:opacity-100 
+        transition-opacity duration-200
+        font-semibold text-sm
+      "
+            >
+              {t('Organigram').toUpperCase()}
+            </span>
+          </button>
         )}
       </div>
     </>
