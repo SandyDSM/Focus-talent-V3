@@ -311,7 +311,7 @@ const MyTeam = () => {
 
       {/* TEXTO */}
       <span className="font-semibold text-sm whitespace-nowrap">
-        {t('Organigram').toUpperCase()}
+        {t('Organigrama').toUpperCase()}
       </span>
     </button>
   )}
