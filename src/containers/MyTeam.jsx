@@ -270,94 +270,53 @@ const MyTeam = () => {
         </>
       )}
       {/* Botón regresar a inicio */}
-      <div className="navigation-button fixed bottom-6 right-6 z-30 ">
-        {allowedIds.includes(Number(usuarioActualDatos.INTERNAL_ID)) && (
-          <button
-            onClick={() => navigate("/org")}
-            className="
+      <div className="navigation-button fixed bottom-6 right-6 z-30">
+  {allowedIds.includes(Number(usuarioActualDatos.INTERNAL_ID)) && (
+    <button
+      onClick={() => navigate("/org")}
+      className="
         group
         flex items-center gap-3 
         bg-blue-800 text-white 
-        rounded-full shadow-lg
-        h-14 w-14   /* 56px */
-        overflow-hidden
-        transition-all duration-300
-        hover:w-56   /* Se expande hacia la izquierda */
-        hover:pr-6   /* Da espacio al texto */
+        rounded-full shadow-xl
+        h-14         /* 56px de alto */
+        w-56        /* Ancho extendido por defecto */
+        pr-6 pl-4
+        transition-all duration-200
+        hover:bg-blue-700   /* Resaltado */
+        hover:shadow-2xl
       "
-            style={{ borderRadius: "9999px"}}
-          >
-            {/* ICONO */}
-            <div className="flex justify-center items-center w-14 h-14 shrink-0">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 128 128"
-                fill="white"
-                className="w-7 h-7"
-              >
-                <g transform="translate(0, 0) scale(1.4)">
-                  <rect x="40" y="4" width="16" height="16" rx="2" />
-                  <line
-                    x1="48"
-                    y1="20"
-                    x2="48"
-                    y2="40"
-                    stroke="white"
-                    strokeWidth="4"
-                  />
-                  <line
-                    x1="16"
-                    y1="40"
-                    x2="80"
-                    y2="40"
-                    stroke="white"
-                    strokeWidth="4"
-                  />
-                  <line
-                    x1="24"
-                    y1="40"
-                    x2="24"
-                    y2="60"
-                    stroke="white"
-                    strokeWidth="4"
-                  />
-                  <line
-                    x1="48"
-                    y1="40"
-                    x2="48"
-                    y2="60"
-                    stroke="white"
-                    strokeWidth="4"
-                  />
-                  <line
-                    x1="72"
-                    y1="40"
-                    x2="72"
-                    y2="60"
-                    stroke="white"
-                    strokeWidth="4"
-                  />
-                  <rect x="16" y="60" width="16" height="16" rx="2" />
-                  <rect x="40" y="60" width="16" height="16" rx="2" />
-                  <rect x="64" y="60" width="16" height="16" rx="2" />
-                </g>
-              </svg>
-            </div>
-
-            {/* TEXTO — aparece SOLO en hover */}
-            <span
-              className="
-        whitespace-nowrap 
-        opacity-0 group-hover:opacity-100 
-        transition-opacity duration-200
-        font-semibold text-sm
-      "
-            >
-              {t('Organigram').toUpperCase()}
-            </span>
-          </button>
-        )}
+    >
+      {/* ICONO */}
+      <div className="flex justify-center items-center w-14 h-14 shrink-0">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 128 128"
+          fill="white"
+          className="w-7 h-7"
+        >
+          <g transform="translate(0, 0) scale(1.4)">
+            <rect x="40" y="4" width="16" height="16" rx="2" />
+            <line x1="48" y1="20" x2="48" y2="40" stroke="white" strokeWidth="4" />
+            <line x1="16" y1="40" x2="80" y2="40" stroke="white" strokeWidth="4" />
+            <line x1="24" y1="40" x2="24" y2="60" stroke="white" strokeWidth="4" />
+            <line x1="48" y1="40" x2="48" y2="60" stroke="white" strokeWidth="4" />
+            <line x1="72" y1="40" x2="72" y2="60" stroke="white" strokeWidth="4" />
+            <rect x="16" y="60" width="16" height="16" rx="2" />
+            <rect x="40" y="60" width="16" height="16" rx="2" />
+            <rect x="64" y="60" width="16" height="16" rx="2" />
+          </g>
+        </svg>
       </div>
+
+      {/* TEXTO */}
+      <span className="font-semibold text-sm whitespace-nowrap">
+        {t('Organigram').toUpperCase()}
+      </span>
+    </button>
+  )}
+</div>
+
     </>
   );
 };
