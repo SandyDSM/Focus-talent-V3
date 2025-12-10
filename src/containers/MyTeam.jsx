@@ -152,6 +152,9 @@ const MyTeam = () => {
     25730, //urrutia ruiz
     25732, //angeles pozo
     27342, // UGARTECHEA GALLARDO
+    355623, // ALEJANDRO JUAN PINTADO LOPEZ
+    1238448, // ALFONSO argudin
+    3276, //Gregory P
   ];
 
   return (
