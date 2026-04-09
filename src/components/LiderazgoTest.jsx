@@ -82,7 +82,7 @@ dataLiderazgo.forEach((item) => {
 });
 
   const thisYear = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
-  //console.log("L",titleCompLid)
+  console.log("YEAR",thisYear)
 
   const variants = [
     {
@@ -545,8 +545,9 @@ dataLiderazgo.forEach((item) => {
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider39504658")}
         ></Divider>
+      
       </Flex>
-
+      {thisYear.length > 0 ? (
         <div className="w-full">
           <div>
                 <div>
@@ -628,6 +629,11 @@ dataLiderazgo.forEach((item) => {
                 </div>
           </div>
         </div>
+        ) : (
+          <div className="w-full">
+          <p>{noData}</p>
+        </div>
+      )}
     </Flex>
   );
 }
