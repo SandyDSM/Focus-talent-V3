@@ -3,10 +3,7 @@ import { Document, Page, Text, View, Image } from "@react-pdf/renderer";
 import { StyleSheet, Font } from "@react-pdf/renderer";
 //import ReactPdfTable from
 
-import { useContext} from "react";
-
-
-
+import { useContext } from "react";
 
 Font.register({
   family: "Open Sans",
@@ -22,7 +19,6 @@ Font.register({
 });
 
 const styles = StyleSheet.create({
-  
   txtInfoBe: {
     fontSize: "6px",
     marginRight: "10",
@@ -117,19 +113,50 @@ const styles = StyleSheet.create({
     marginBottom: "5",
     marginRight: "5",
   },
-  titleContainer: { flexDirection: "row", alignItems: "baseline", marginBottom: 10 },
-  title: {fontFamily: "Open Sans", fontSize: 14, fontWeight: "600" },
-  rating: {fontFamily: "Open Sans", fontSize: 18, fontWeight: "600", marginLeft: 8 },
-  table: { display: "table", width: "100%", borderStyle: "solid", borderWidth: 1, marginVertical: 10 },
-  row: { flexDirection: "row", borderBottomWidth: 1, borderBottomStyle: "solid" },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "baseline",
+    marginBottom: 10,
+  },
+  title: { fontFamily: "Open Sans", fontSize: 14, fontWeight: "600" },
+  rating: {
+    fontFamily: "Open Sans",
+    fontSize: 18,
+    fontWeight: "600",
+    marginLeft: 8,
+  },
+  table: {
+    display: "table",
+    width: "100%",
+    borderStyle: "solid",
+    borderWidth: 1,
+    marginVertical: 10,
+  },
+  row: {
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderBottomStyle: "solid",
+  },
   header: { backgroundColor: "#E5E7EB", fontWeight: "bold" },
-  cell: { flex: 1, padding: 5, fontSize: 10, wordWrap: "break-word",  width: "25%"},
-  boldCell: {fontFamily: "Open Sans", fontWeight: "600", padding: 5, fontSize: 8, wordWrap: "break-word", width: "25%"},
+  cell: {
+    flex: 1,
+    padding: 5,
+    fontSize: 10,
+    wordWrap: "break-word",
+    width: "25%",
+  },
+  boldCell: {
+    fontFamily: "Open Sans",
+    fontWeight: "600",
+    padding: 5,
+    fontSize: 8,
+    wordWrap: "break-word",
+    width: "25%",
+  },
   feedbackContainer: { marginTop: 20, marginBottom: 10 },
-  feedbackTitle: {fontFamily: "Open Sans", fontSize: 12, fontWeight: "600" },
-  feedbackText: {fontSize: 10, marginTop: 8 },
-  feedbackTextMin: {fontSize: 8, marginTop: 4 },
-
+  feedbackTitle: { fontFamily: "Open Sans", fontSize: 12, fontWeight: "600" },
+  feedbackText: { fontSize: 10, marginTop: 8 },
+  feedbackTextMin: { fontSize: 8, marginTop: 4 },
 });
 
 const stars1 =
@@ -143,461 +170,506 @@ const stars4 =
 const stars5 =
   "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";
 
-
-const PDFConjunto = ({ DATOS, anios, datosUsuario, comportamientos, etiquetas, dataLiderazgo, cmtLiderazgo }) => {
+const PDFConjunto = ({
+  DATOS,
+  anios,
+  datosUsuario,
+  comportamientos,
+  etiquetas,
+  dataLiderazgo,
+  cmtLiderazgo,
+}) => {
   const testPreguntas = DATOS;
-  const datComportaminetos=comportamientos;
-  
+  const datComportaminetos = comportamientos;
+
   const encabezados = [
     etiquetas.evalCompCol,
     etiquetas.evalCompJef,
     etiquetas.evalCompPar,
   ];
-  
-  const filas = [
-    etiquetas.titleCompLid,
-    etiquetas.culturaGB,  
-  ];
+
+  const filas = [etiquetas.titleCompLid, etiquetas.culturaGB];
 
   const tabla = Array(filas.length)
-  .fill(null)
-  .map(() => Array(encabezados.length).fill("-"));
+    .fill(null)
+    .map(() => Array(encabezados.length).fill("-"));
 
-// Llenar la tabla con los datos
-dataLiderazgo.forEach((item) => {
-  const filaIndex = item.SECTION_TYPE_ID_ - 1; // Ajuste a índice de array
-  const colIndex = item.RESPONSIBLE_ID_ - 1; // Ajuste a índice de array
-  
-  if (tabla[filaIndex] && tabla[filaIndex][colIndex] !== undefined) {
-    tabla[filaIndex][colIndex] = item.RATING_;
-  }
-});
+  // Llenar la tabla con los datos
+  dataLiderazgo.forEach((item) => {
+    const filaIndex = item.SECTION_TYPE_ID_ - 1; // Ajuste a índice de array
+    const colIndex = item.RESPONSIBLE_ID_ - 1; // Ajuste a índice de array
+
+    if (tabla[filaIndex] && tabla[filaIndex][colIndex] !== undefined) {
+      tabla[filaIndex][colIndex] = item.RATING_;
+    }
+  });
 
   return (
     <Document>
       {anios.map((anio) => (
-       <>
-       {anio < 2025 ?
-        <Page size="A4" style={{marginBottom: 25, paddingBottom: 25}} wrap>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            padding: "24px 24px 24px 24px",
-          }}
-        >
-          <View style={styles.rowsBe}>
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "flex-end",
-                marginRight: "20px",
-              }}
+        <>
+          {anio < 2025 ? (
+            <Page
+              size="A4"
+              style={{ marginBottom: 25, paddingBottom: 25 }}
+              wrap
             >
-              <Image
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  display: "block",
-                  borderRadius: "8px",
-                }}
-                src={datosUsuario.src}
-              ></Image>
-            </View>
-            <View style={styles.columsBe}>
-              <Text
-                style={{
-                  fontSize: "18px",
-                  marginBottom: "5px",
-                }}
-              >
-                {etiquetas.behaReview} {anio-1}
-              </Text>
-              <Text
-                style={{
-                  fontSize: "12px",
-                  marginBottom: "5px",
-                }}
-              >
-                {datosUsuario.nombre}
-              </Text>
-              <View style={styles.rowsBe}>
-                <image src='<svg class="amplify-icon" viewBox="0 0 20 20" type="id" style="width: 20px; height: 20px; display: block; gap: unset; align-items: unset; justify-content: unset; overflow: hidden; position: relative; padding: 0px; flex-shrink: 0;"><path d="M13.75 1.66667L10 1.66667L10 4.16667L5 4.16667L5 1.66667L1.25 1.66667C0.559896 1.66667 0 2.22656 0 2.91667L0 12.0833C0 12.7734 0.559896 13.3333 1.25 13.3333L13.75 13.3333C14.4401 13.3333 15 12.7734 15 12.0833L15 2.91667C15 2.22656 14.4401 1.66667 13.75 1.66667ZM7.5 5.83333C8.41927 5.83333 9.16667 6.58073 9.16667 7.5C9.16667 8.41927 8.41927 9.16667 7.5 9.16667C6.58073 9.16667 5.83333 8.41927 5.83333 7.5C5.83333 6.58073 6.58073 5.83333 7.5 5.83333ZM9.92969 11.6667L5.07031 11.6667C4.79948 11.6667 4.58073 11.4062 4.66406 11.151C4.88021 10.4844 5.50781 10 6.25 10L6.46354 10C6.78385 10.1328 7.13281 10.2083 7.5 10.2083C7.86719 10.2083 8.21875 10.1328 8.53646 10L8.75 10C9.48958 10 10.1172 10.4818 10.3359 11.151C10.4193 11.4062 10.2005 11.6667 9.92969 11.6667ZM9.16667 0.833333C9.16667 0.372396 8.79427 0 8.33333 0L6.66667 0C6.20573 0 5.83333 0.372396 5.83333 0.833333L5.83333 3.33333L9.16667 3.33333L9.16667 0.833333Z" fill="rgba(100,145,237,1)" fill-rule="nonzero" style="transform: translate(12.5%, 16.67%);"></path></svg>' />
-                <Text style={styles.txtInfoBe}>{datosUsuario.Id}</Text>
-                <Text style={styles.txtInfoBe}>{datosUsuario.Job}</Text>
-                <Text style={styles.txtInfoBe}>{datosUsuario.Organitation}</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.dividerBe}></View>
-          {datComportaminetos?.filter(
-            (c) => c.ANIO == anio && c.MANAGER_OR_SUBORD == "true"
-          ).map((pre) => (
-            <View>
-            <View style={styles.columsBe}>
-              <Text
-                style={{
-                  fontSize: "16px",
-                  marginBottom: "5px",
-                }}
-              >
-                {etiquetas.managerReview}
-              </Text>
-              <View style={styles.columsBe}>
-                <View style={styles.rowsGreyBe}>
-                  <Text
-                    style={{
-                      fontFamily: "Open Sans",
-                      width: "45%",
-                      fontSize: "12px",
-                      fontWeight: "600",
-                      margin: "5px",
-                    }}
-                  >
-                    {etiquetas.reviewer}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: "Open Sans",
-                      width: "50%",
-                      fontSize: "12px",
-                      fontWeight: "600",
-                      margin: "5px",
-                    }}
-                  >
-                    {etiquetas.rating}
-                  </Text>
-                </View>
-                <View style={styles.rowsbetweenBe}>
-                  <Text style={styles.txtBodyBe}>
-                    {pre.NOMBRE} {pre.APELLIDOS}
-                  </Text>
-                  <View style={{ marginLeft: "120px" }}>
-                    <Image
-                      style={{
-                        width: "60px",
-                        height: "10px",
-                        display: "block",
-                        borderRadius: "8px",
-                        marginRight: "210px",
-                      }}
-                      src={
-                        pre.QUEST_RESP_RATING_SCORE == "1"
-                          ? "data:image/jpg;base64," + stars1
-                          : pre.QUEST_RESP_RATING_SCORE == "2"
-                          ? "data:image/jpg;base64," + stars2
-                          : pre.QUEST_RESP_RATING_SCORE == "3"
-                          ? "data:image/jpg;base64," + stars3
-                          : pre.QUEST_RESP_RATING_SCORE == "4"
-                          ? "data:image/jpg;base64," + stars4
-                          : pre.QUEST_RESP_RATING_SCORE == "5"
-                          ? "data:image/jpg;base64," + stars5
-                          : ""
-                      }
-                    ></Image>
-                    <Text
-                      style={{
-                        fontFamily: "Open Sans",
-                        fontSize: "6px",
-                        marginRight: "5px",
-                        marginTop: "2px",
-                        color: "#5e615c",
-                        marginBottom: "5px",
-                      }}
-                    >
-                      {pre.QUEST_RESP_RATING_TITLE}
-                    </Text>
-                  </View>
-                </View>
-
-                <View style={styles.columsBe}>
-                  <Text style={styles.txtTitleBe}>{etiquetas.comments}</Text>
-                  <View>
-                    <Text style={styles.txtBodyBe}>
-                      {pre.QUESTION_RESP_COMMENT}
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          <View
-            style={{
-              marginTop: "15px",
-              marginBottom: "15px",
-            }}
-          >
-            <View style={styles.dividerBe}></View>
-          </View>
-          </View>
-          ))}
-          {datComportaminetos?.filter(
-            (c) => c.ANIO == anio && c.MANAGER_OR_SUBORD == "false"
-          ) != 0 && (
-            <View style={styles.columsBe}>
-              <View style={styles.columsBe}>
-                <Text
-                  style={{
-                    fontSize: "16px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  {etiquetas.subReview}
-                </Text>
-              </View>
-              <View style={styles.rowsGreyBe}>
-                <Text style={styles.txtTitleBe}>{etiquetas.reviewer}</Text>
-                <Text style={styles.txtTitleBe}>{etiquetas.rating}</Text>
-              </View>
-
-              {datComportaminetos?.filter(
-                (c) => c.ANIO == anio && c.MANAGER_OR_SUBORD == "false"
-              ).map((pre) => (
-                <View style={styles.rowsbetweenBe}>
-                  <Text style={styles.txtBodyBe}>
-                    {pre.NOMBRE} {pre.APELLIDOS}
-                  </Text>
-                  <View>
-                    <Image
-                      style={{
-                        width: "60px",
-                        height: "10px",
-                        display: "block",
-                        borderRadius: "8px",
-                        marginRight: "210px",
-                      }}
-                      src={
-                        pre.QUEST_RESP_RATING_SCORE == "1"
-                          ? "data:image/jpg;base64," + stars1
-                          : pre.QUEST_RESP_RATING_SCORE == "2"
-                          ? "data:image/jpg;base64," + stars2
-                          : pre.QUEST_RESP_RATING_SCORE == "3"
-                          ? "data:image/jpg;base64," + stars3
-                          : pre.QUEST_RESP_RATING_SCORE == "4"
-                          ? "data:image/jpg;base64," + stars4
-                          : pre.QUEST_RESP_RATING_SCORE == "5"
-                          ? "data:image/jpg;base64," + stars5
-                          : ""
-                      }
-                    ></Image>
-                    <Text
-                      style={{
-                        fontFamily: "Open Sans",
-                        fontSize: "6px",
-                        marginRight: "5px",
-                        marginTop: "2px",
-                        color: "#5e615c",
-                        marginBottom: "5px",
-                      }}
-                    >
-                      {pre.QUEST_RESP_RATING_TITLE}
-                    </Text>
-                  </View>
-                </View>
-              ))}
-              <View style={styles.columsBe}>
-                <View style={styles.rowsGreyBe}>
-                  <Text style={styles.txtTitleBe}>{etiquetas.comments}</Text>
-                </View>
-                {datComportaminetos?.filter(
-                  (c) => c.ANIO == anio && c.MANAGER_OR_SUBORD == "false"
-                ).map((pre) => (
-                  <View>
-                    <Text style={styles.txtTitleBe}>
-                      {pre.NOMBRE} {pre.APELLIDOS}
-                    </Text>
-                    <Text style={styles.txtBodyBe}>
-                      {pre.QUESTION_RESP_COMMENT}
-                    </Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          )}
-        </View>
-      </Page>
-      :
-      <Page size="A4">
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            padding: "24px 24px 24px 24px",
-          }}
-        >
-          <View style={styles.rows}>
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "flex-end",
-                marginRight: "20px",
-              }}
-            >
-              <Image
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  display: "block",
-                  borderRadius: "8px",
-                }}
-                src={datosUsuario.src}
-              ></Image>
-            </View>
-            <View style={styles.colums}>
-              <Text
-                style={{
-                  fontSize: "18px",
-                  marginBottom: "5px",
-                }}
-              >
-                {etiquetas.titleCompLid} {anio-1}
-              </Text>
-              <Text
-                style={{
-                  fontSize: "12px",
-                  marginBottom: "5px",
-                }}
-              >
-                {datosUsuario.nombre}
-              </Text>
-              <View style={styles.rows}>
-                <image src='<svg class="amplify-icon" viewBox="0 0 20 20" type="id" style="width: 20px; height: 20px; display: block; gap: unset; align-items: unset; justify-content: unset; overflow: hidden; position: relative; padding: 0px; flex-shrink: 0;"><path d="M13.75 1.66667L10 1.66667L10 4.16667L5 4.16667L5 1.66667L1.25 1.66667C0.559896 1.66667 0 2.22656 0 2.91667L0 12.0833C0 12.7734 0.559896 13.3333 1.25 13.3333L13.75 13.3333C14.4401 13.3333 15 12.7734 15 12.0833L15 2.91667C15 2.22656 14.4401 1.66667 13.75 1.66667ZM7.5 5.83333C8.41927 5.83333 9.16667 6.58073 9.16667 7.5C9.16667 8.41927 8.41927 9.16667 7.5 9.16667C6.58073 9.16667 5.83333 8.41927 5.83333 7.5C5.83333 6.58073 6.58073 5.83333 7.5 5.83333ZM9.92969 11.6667L5.07031 11.6667C4.79948 11.6667 4.58073 11.4062 4.66406 11.151C4.88021 10.4844 5.50781 10 6.25 10L6.46354 10C6.78385 10.1328 7.13281 10.2083 7.5 10.2083C7.86719 10.2083 8.21875 10.1328 8.53646 10L8.75 10C9.48958 10 10.1172 10.4818 10.3359 11.151C10.4193 11.4062 10.2005 11.6667 9.92969 11.6667ZM9.16667 0.833333C9.16667 0.372396 8.79427 0 8.33333 0L6.66667 0C6.20573 0 5.83333 0.372396 5.83333 0.833333L5.83333 3.33333L9.16667 3.33333L9.16667 0.833333Z" fill="rgba(100,145,237,1)" fill-rule="nonzero" style="transform: translate(12.5%, 16.67%);"></path></svg>' />
-                <Text style={styles.txtInfo}>{datosUsuario.Id}</Text>
-                <Text style={styles.txtInfo}>{datosUsuario.Job}</Text>
-                <Text style={styles.txtInfo}>{datosUsuario.Organitation}</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.divider}></View>
-          <View style={styles.titleContainer}>
-          <Text style={styles.title}>{etiquetas.califGeneral}</Text>
-          <Text style={styles.rating}>{dataLiderazgo[0]?.RATING_ ?? "-"}</Text>
-        </View>
-
-        {/* Tabla */}
-        <View style={styles.table}>
-          {/* Encabezado */}
-          <View style={[styles.row, styles.header]}>
-            <Text style={styles.boldCell}></Text>
-            {encabezados.map((encabezado, i) => (
-              <Text key={i} style={styles.boldCell}>{encabezado}</Text>
-            ))}
-          </View>
-
-          {/* Filas de datos */}
-          <View style={styles.table}>
-            {tabla.map((fila, i) => (
-              <View key={i} style={styles.row}>
-                <Text style={styles.boldCell}>{filas[i]}</Text>
-                {fila.map((valor, j) => (
-                  <Text key={j} style={styles.cell}>
-                    {valor}
-                  </Text>
-                ))}
-              </View>
-            ))}
-          </View>
-        </View>
-
-        {/* Retroalimentación */}
-        <View style={styles.feedbackContainer}>
-          <Text style={styles.feedbackTitle}>{etiquetas.retroAlimentacion}</Text>
-          {cmtLiderazgo?.map((dato, i) => (
-              <View key={i}>
-                <Text style={styles.feedbackText}>{dato.ANSWER_ ?? "Sin respuesta"}</Text>
-                {dato.SHOW_COMMENT === 1 && <Text style={[styles.feedbackText, { fontSize: 8 }]}>{dato.RESPONDER ?? "-"}</Text>}
-                <Text style={styles.feedbackTextMin}>{dato.RESPONSIBLE_ ?? "-"}</Text>
-               
-              </View>
-            ))}
-        </View>
-        </View>
-      </Page>
-      }
-        
-       
-        {anio !== "2026" &&
-          <Page size="A4">
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                padding: "24px 24px 24px 24px",
-              }}
-            >
-              <View style={styles.rows}>
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-end",
-                    marginRight: "20",
-                  }}
-                >
-                  <Image
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      display: "block",
-                      borderRadius: "8px",
-                    }}
-                    src={datosUsuario.src}
-                  ></Image>
-                </View>
-                <View style={styles.colums}>
-                  <Text
-                    style={{
-                      fontSize: "18px",
-                      marginBottom: "5",
-                    }}
-                  >
-                    {etiquetas.perReview} {anio-1}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: "12px",
-                      marginBottom: "5",
-                    }}
-                  >
-                    {datosUsuario.nombre}
-                  </Text>
-                  <View style={styles.rows}>
-                    <Text style={styles.txtInfo}>{datosUsuario.Id}</Text>
-                    <Text style={styles.txtInfo}>{datosUsuario.Job}</Text>
-                    <Text style={styles.txtInfo}>
-                      {datosUsuario.Organitation}
-                    </Text>
-                  </View>
-                </View>
-              </View>
               <View
                 style={{
                   display: "flex",
-                  flexBasis: "auto",
-                  borderBottom: "1px",
-                  borderBottomColor: "grey",
-                  marginVertical: "5",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  padding: "24px 24px 24px 24px",
                 }}
-              ></View>
-
-              {DATOS?.filter(
-                (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anio
-              ).map((pre) => (
-                <View style={styles.colums}>
-                  <Text style={styles.txtTitle}>{pre.TITULO}</Text>
-                  <Text style={styles.txtBody}>{pre.VALORES}</Text>
+              >
+                <View style={styles.rowsBe}>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-end",
+                      marginRight: "20px",
+                    }}
+                  >
+                    <Image
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        display: "block",
+                        borderRadius: "8px",
+                      }}
+                      src={datosUsuario.src}
+                    ></Image>
+                  </View>
+                  <View style={styles.columsBe}>
+                    <Text
+                      style={{
+                        fontSize: "18px",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {etiquetas.behaReview} {anio - 1}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: "12px",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {datosUsuario.nombre}
+                    </Text>
+                    <View style={styles.rowsBe}>
+                      <image src='<svg class="amplify-icon" viewBox="0 0 20 20" type="id" style="width: 20px; height: 20px; display: block; gap: unset; align-items: unset; justify-content: unset; overflow: hidden; position: relative; padding: 0px; flex-shrink: 0;"><path d="M13.75 1.66667L10 1.66667L10 4.16667L5 4.16667L5 1.66667L1.25 1.66667C0.559896 1.66667 0 2.22656 0 2.91667L0 12.0833C0 12.7734 0.559896 13.3333 1.25 13.3333L13.75 13.3333C14.4401 13.3333 15 12.7734 15 12.0833L15 2.91667C15 2.22656 14.4401 1.66667 13.75 1.66667ZM7.5 5.83333C8.41927 5.83333 9.16667 6.58073 9.16667 7.5C9.16667 8.41927 8.41927 9.16667 7.5 9.16667C6.58073 9.16667 5.83333 8.41927 5.83333 7.5C5.83333 6.58073 6.58073 5.83333 7.5 5.83333ZM9.92969 11.6667L5.07031 11.6667C4.79948 11.6667 4.58073 11.4062 4.66406 11.151C4.88021 10.4844 5.50781 10 6.25 10L6.46354 10C6.78385 10.1328 7.13281 10.2083 7.5 10.2083C7.86719 10.2083 8.21875 10.1328 8.53646 10L8.75 10C9.48958 10 10.1172 10.4818 10.3359 11.151C10.4193 11.4062 10.2005 11.6667 9.92969 11.6667ZM9.16667 0.833333C9.16667 0.372396 8.79427 0 8.33333 0L6.66667 0C6.20573 0 5.83333 0.372396 5.83333 0.833333L5.83333 3.33333L9.16667 3.33333L9.16667 0.833333Z" fill="rgba(100,145,237,1)" fill-rule="nonzero" style="transform: translate(12.5%, 16.67%);"></path></svg>' />
+                      <Text style={styles.txtInfoBe}>{datosUsuario.Id}</Text>
+                      <Text style={styles.txtInfoBe}>{datosUsuario.Job}</Text>
+                      <Text style={styles.txtInfoBe}>
+                        {datosUsuario.Organitation}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
-              ))}
-            </View>
-          </Page>
-          }
+                <View style={styles.dividerBe}></View>
+                {datComportaminetos
+                  ?.filter(
+                    (c) => c.ANIO == anio && c.MANAGER_OR_SUBORD == "true",
+                  )
+                  .map((pre) => (
+                    <View>
+                      <View style={styles.columsBe}>
+                        <Text
+                          style={{
+                            fontSize: "16px",
+                            marginBottom: "5px",
+                          }}
+                        >
+                          {etiquetas.managerReview}
+                        </Text>
+                        <View style={styles.columsBe}>
+                          <View style={styles.rowsGreyBe}>
+                            <Text
+                              style={{
+                                fontFamily: "Open Sans",
+                                width: "45%",
+                                fontSize: "12px",
+                                fontWeight: "600",
+                                margin: "5px",
+                              }}
+                            >
+                              {etiquetas.reviewer}
+                            </Text>
+                            <Text
+                              style={{
+                                fontFamily: "Open Sans",
+                                width: "50%",
+                                fontSize: "12px",
+                                fontWeight: "600",
+                                margin: "5px",
+                              }}
+                            >
+                              {etiquetas.rating}
+                            </Text>
+                          </View>
+                          <View style={styles.rowsbetweenBe}>
+                            <Text style={styles.txtBodyBe}>
+                              {pre.NOMBRE} {pre.APELLIDOS}
+                            </Text>
+                            <View style={{ marginLeft: "120px" }}>
+                              <Image
+                                style={{
+                                  width: "60px",
+                                  height: "10px",
+                                  display: "block",
+                                  borderRadius: "8px",
+                                  marginRight: "210px",
+                                }}
+                                src={
+                                  pre.QUEST_RESP_RATING_SCORE == "1"
+                                    ? "data:image/jpg;base64," + stars1
+                                    : pre.QUEST_RESP_RATING_SCORE == "2"
+                                      ? "data:image/jpg;base64," + stars2
+                                      : pre.QUEST_RESP_RATING_SCORE == "3"
+                                        ? "data:image/jpg;base64," + stars3
+                                        : pre.QUEST_RESP_RATING_SCORE == "4"
+                                          ? "data:image/jpg;base64," + stars4
+                                          : pre.QUEST_RESP_RATING_SCORE == "5"
+                                            ? "data:image/jpg;base64," + stars5
+                                            : ""
+                                }
+                              ></Image>
+                              <Text
+                                style={{
+                                  fontFamily: "Open Sans",
+                                  fontSize: "6px",
+                                  marginRight: "5px",
+                                  marginTop: "2px",
+                                  color: "#5e615c",
+                                  marginBottom: "5px",
+                                }}
+                              >
+                                {pre.QUEST_RESP_RATING_TITLE}
+                              </Text>
+                            </View>
+                          </View>
+
+                          <View style={styles.columsBe}>
+                            <Text style={styles.txtTitleBe}>
+                              {etiquetas.comments}
+                            </Text>
+                            <View>
+                              <Text style={styles.txtBodyBe}>
+                                {pre.QUESTION_RESP_COMMENT}
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
+                      </View>
+                      <View
+                        style={{
+                          marginTop: "15px",
+                          marginBottom: "15px",
+                        }}
+                      >
+                        <View style={styles.dividerBe}></View>
+                      </View>
+                    </View>
+                  ))}
+                {datComportaminetos?.filter(
+                  (c) => c.ANIO == anio && c.MANAGER_OR_SUBORD == "false",
+                ) != 0 && (
+                  <View style={styles.columsBe}>
+                    <View style={styles.columsBe}>
+                      <Text
+                        style={{
+                          fontSize: "16px",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        {etiquetas.subReview}
+                      </Text>
+                    </View>
+                    <View style={styles.rowsGreyBe}>
+                      <Text style={styles.txtTitleBe}>
+                        {etiquetas.reviewer}
+                      </Text>
+                      <Text style={styles.txtTitleBe}>{etiquetas.rating}</Text>
+                    </View>
+
+                    {datComportaminetos
+                      ?.filter(
+                        (c) => c.ANIO == anio && c.MANAGER_OR_SUBORD == "false",
+                      )
+                      .map((pre) => (
+                        <View style={styles.rowsbetweenBe}>
+                          <Text style={styles.txtBodyBe}>
+                            {pre.NOMBRE} {pre.APELLIDOS}
+                          </Text>
+                          <View>
+                            <Image
+                              style={{
+                                width: "60px",
+                                height: "10px",
+                                display: "block",
+                                borderRadius: "8px",
+                                marginRight: "210px",
+                              }}
+                              src={
+                                pre.QUEST_RESP_RATING_SCORE == "1"
+                                  ? "data:image/jpg;base64," + stars1
+                                  : pre.QUEST_RESP_RATING_SCORE == "2"
+                                    ? "data:image/jpg;base64," + stars2
+                                    : pre.QUEST_RESP_RATING_SCORE == "3"
+                                      ? "data:image/jpg;base64," + stars3
+                                      : pre.QUEST_RESP_RATING_SCORE == "4"
+                                        ? "data:image/jpg;base64," + stars4
+                                        : pre.QUEST_RESP_RATING_SCORE == "5"
+                                          ? "data:image/jpg;base64," + stars5
+                                          : ""
+                              }
+                            ></Image>
+                            <Text
+                              style={{
+                                fontFamily: "Open Sans",
+                                fontSize: "6px",
+                                marginRight: "5px",
+                                marginTop: "2px",
+                                color: "#5e615c",
+                                marginBottom: "5px",
+                              }}
+                            >
+                              {pre.QUEST_RESP_RATING_TITLE}
+                            </Text>
+                          </View>
+                        </View>
+                      ))}
+                    <View style={styles.columsBe}>
+                      <View style={styles.rowsGreyBe}>
+                        <Text style={styles.txtTitleBe}>
+                          {etiquetas.comments}
+                        </Text>
+                      </View>
+                      {datComportaminetos
+                        ?.filter(
+                          (c) =>
+                            c.ANIO == anio && c.MANAGER_OR_SUBORD == "false",
+                        )
+                        .map((pre) => (
+                          <View>
+                            <Text style={styles.txtTitleBe}>
+                              {pre.NOMBRE} {pre.APELLIDOS}
+                            </Text>
+                            <Text style={styles.txtBodyBe}>
+                              {pre.QUESTION_RESP_COMMENT}
+                            </Text>
+                          </View>
+                        ))}
+                    </View>
+                  </View>
+                )}
+              </View>
+            </Page>
+          ) : (
+            <Page size="A4">
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  padding: "24px 24px 24px 24px",
+                }}
+              >
+                <View style={styles.rows}>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-end",
+                      marginRight: "20px",
+                    }}
+                  >
+                    <Image
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        display: "block",
+                        borderRadius: "8px",
+                      }}
+                      src={datosUsuario.src}
+                    ></Image>
+                  </View>
+                  <View style={styles.colums}>
+                    <Text
+                      style={{
+                        fontSize: "18px",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {etiquetas.titleCompLid} {anio - 1}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: "12px",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {datosUsuario.nombre}
+                    </Text>
+                    <View style={styles.rows}>
+                      <image src='<svg class="amplify-icon" viewBox="0 0 20 20" type="id" style="width: 20px; height: 20px; display: block; gap: unset; align-items: unset; justify-content: unset; overflow: hidden; position: relative; padding: 0px; flex-shrink: 0;"><path d="M13.75 1.66667L10 1.66667L10 4.16667L5 4.16667L5 1.66667L1.25 1.66667C0.559896 1.66667 0 2.22656 0 2.91667L0 12.0833C0 12.7734 0.559896 13.3333 1.25 13.3333L13.75 13.3333C14.4401 13.3333 15 12.7734 15 12.0833L15 2.91667C15 2.22656 14.4401 1.66667 13.75 1.66667ZM7.5 5.83333C8.41927 5.83333 9.16667 6.58073 9.16667 7.5C9.16667 8.41927 8.41927 9.16667 7.5 9.16667C6.58073 9.16667 5.83333 8.41927 5.83333 7.5C5.83333 6.58073 6.58073 5.83333 7.5 5.83333ZM9.92969 11.6667L5.07031 11.6667C4.79948 11.6667 4.58073 11.4062 4.66406 11.151C4.88021 10.4844 5.50781 10 6.25 10L6.46354 10C6.78385 10.1328 7.13281 10.2083 7.5 10.2083C7.86719 10.2083 8.21875 10.1328 8.53646 10L8.75 10C9.48958 10 10.1172 10.4818 10.3359 11.151C10.4193 11.4062 10.2005 11.6667 9.92969 11.6667ZM9.16667 0.833333C9.16667 0.372396 8.79427 0 8.33333 0L6.66667 0C6.20573 0 5.83333 0.372396 5.83333 0.833333L5.83333 3.33333L9.16667 3.33333L9.16667 0.833333Z" fill="rgba(100,145,237,1)" fill-rule="nonzero" style="transform: translate(12.5%, 16.67%);"></path></svg>' />
+                      <Text style={styles.txtInfo}>{datosUsuario.Id}</Text>
+                      <Text style={styles.txtInfo}>{datosUsuario.Job}</Text>
+                      <Text style={styles.txtInfo}>
+                        {datosUsuario.Organitation}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View style={styles.divider}></View>
+                {dataLiderazgo.filter(d => d.ANIO == anio).length > 0 ? (
+                <>
+                <View style={styles.titleContainer}>
+                  <Text style={styles.title}>{etiquetas.califGeneral}</Text>
+                  <Text style={styles.rating}>
+                    {dataLiderazgo[0]?.RATING_ ?? "-"}
+                  </Text>
+                </View>
+
+                {/* Tabla */}
+                <View style={styles.table}>
+                  {/* Encabezado */}
+                  <View style={[styles.row, styles.header]}>
+                    <Text style={styles.boldCell}></Text>
+                    {encabezados.map((encabezado, i) => (
+                      <Text key={i} style={styles.boldCell}>
+                        {encabezado}
+                      </Text>
+                    ))}
+                  </View>
+
+                  {/* Filas de datos */}
+                  <View style={styles.table}>
+                    {tabla.map((fila, i) => (
+                      <View key={i} style={styles.row}>
+                        <Text style={styles.boldCell}>{filas[i]}</Text>
+                        {fila.map((valor, j) => (
+                          <Text key={j} style={styles.cell}>
+                            {valor}
+                          </Text>
+                        ))}
+                      </View>
+                    ))}
+                  </View>
+                </View>
+
+                {/* Retroalimentación */}
+                <View style={styles.feedbackContainer}>
+                  <Text style={styles.feedbackTitle}>
+                    {etiquetas.retroAlimentacion}
+                  </Text>
+                  {cmtLiderazgo?.map((dato, i) => (
+                    <View key={i}>
+                      <Text style={styles.feedbackText}>
+                        {dato.ANSWER_ ?? "Sin respuesta"}
+                      </Text>
+                      {dato.SHOW_COMMENT === 1 && (
+                        <Text style={[styles.feedbackText, { fontSize: 8 }]}>
+                          {dato.RESPONDER ?? "-"}
+                        </Text>
+                      )}
+                      <Text style={styles.feedbackTextMin}>
+                        {dato.RESPONSIBLE_ ?? "-"}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+                  </>
+) : (
+  <Text style={{ fontSize: 12, textAlign: "center", marginTop: 20 }}>
+    N/A
+  </Text>
+)}
+              </View>
+            </Page>
+          )}
+
+          {anio !== "2027" && (
+            <Page size="A4">
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  padding: "24px 24px 24px 24px",
+                }}
+              >
+                <View style={styles.rows}>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-end",
+                      marginRight: "20",
+                    }}
+                  >
+                    <Image
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        display: "block",
+                        borderRadius: "8px",
+                      }}
+                      src={datosUsuario.src}
+                    ></Image>
+                  </View>
+                  <View style={styles.colums}>
+                    <Text
+                      style={{
+                        fontSize: "18px",
+                        marginBottom: "5",
+                      }}
+                    >
+                      {etiquetas.perReview} {anio - 1}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: "12px",
+                        marginBottom: "5",
+                      }}
+                    >
+                      {datosUsuario.nombre}
+                    </Text>
+                    <View style={styles.rows}>
+                      <Text style={styles.txtInfo}>{datosUsuario.Id}</Text>
+                      <Text style={styles.txtInfo}>{datosUsuario.Job}</Text>
+                      <Text style={styles.txtInfo}>
+                        {datosUsuario.Organitation}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexBasis: "auto",
+                    borderBottom: "1px",
+                    borderBottomColor: "grey",
+                    marginVertical: "5",
+                  }}
+                ></View>
+
+                {DATOS?.filter(
+                  (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anio,
+                ).map((pre) => (
+                  <View style={styles.colums}>
+                    <Text style={styles.txtTitle}>{pre.TITULO}</Text>
+                    <Text style={styles.txtBody}>{pre.VALORES}</Text>
+                  </View>
+                ))}
+              </View>
+            </Page>
+          )}
           <Page size="A4">
             <View
               style={{
@@ -662,84 +734,84 @@ dataLiderazgo.forEach((item) => {
                   marginVertical: "5",
                 }}
               ></View>
-                <View style={styles.colums}>
-                  {testPreguntas
-                    ?.filter(
-                      (c) =>
-                        c.CATEGORIA === "Potencial" &&
-                        c.ANO_EVAL === anio &&
-                        c.AGRUPACION === "Agilidad mental"
-                    )
-                    .map((pre) => (
-                      <View style={styles.rows}>
-                        <>
-                          <Text style={styles.txtTitle}>{pre.TITULO}</Text>
-                          <Text style={styles.txtBody}>{pre.VALORES}</Text>
-                        </>
-                      </View>
-                    ))}
-                  {testPreguntas
-                    ?.filter(
-                      (c) =>
-                        c.CATEGORIA === "Potencial" &&
-                        c.ANO_EVAL === anio &&
-                        c.AGRUPACION === "Agilidad de personas"
-                    )
-                    .map((pre) => (
-                      <View style={styles.rows}>
-                        <>
-                          <Text style={styles.txtTitle}>{pre.TITULO}</Text>
-                          <Text style={styles.txtBody}>{pre.VALORES}</Text>
-                        </>
-                      </View>
-                    ))}
+              <View style={styles.colums}>
+                {testPreguntas
+                  ?.filter(
+                    (c) =>
+                      c.CATEGORIA === "Potencial" &&
+                      c.ANO_EVAL === anio &&
+                      c.AGRUPACION === "Agilidad mental",
+                  )
+                  .map((pre) => (
+                    <View style={styles.rows}>
+                      <>
+                        <Text style={styles.txtTitle}>{pre.TITULO}</Text>
+                        <Text style={styles.txtBody}>{pre.VALORES}</Text>
+                      </>
+                    </View>
+                  ))}
+                {testPreguntas
+                  ?.filter(
+                    (c) =>
+                      c.CATEGORIA === "Potencial" &&
+                      c.ANO_EVAL === anio &&
+                      c.AGRUPACION === "Agilidad de personas",
+                  )
+                  .map((pre) => (
+                    <View style={styles.rows}>
+                      <>
+                        <Text style={styles.txtTitle}>{pre.TITULO}</Text>
+                        <Text style={styles.txtBody}>{pre.VALORES}</Text>
+                      </>
+                    </View>
+                  ))}
 
-                  {testPreguntas
-                    ?.filter(
-                      (c) =>
-                        c.CATEGORIA === "Potencial" &&
-                        c.ANO_EVAL === anio &&
-                        c.AGRUPACION === "Consciencia de sí mismo"
-                    )
-                    .map((pre) => (
-                      <View style={styles.rows}>
-                        <>
-                          <Text style={styles.txtTitle}>{pre.TITULO}</Text>
-                          <Text style={styles.txtBody}>{pre.VALORES}</Text>
-                        </>
-                      </View>
-                    ))}
-                  {testPreguntas
-                    ?.filter(
-                      (c) =>
-                        c.CATEGORIA === "Potencial" &&
-                        c.ANO_EVAL === anio &&
-                        c.AGRUPACION === "Agilidad de cambio"
-                    )
-                    .map((pre) => (
-                      <View style={styles.rows}>
-                        <>
-                          <Text style={styles.txtTitle}>{pre.TITULO}</Text>
-                          <Text style={styles.txtBody}>{pre.VALORES}</Text>
-                        </>
-                      </View>
-                    ))}
-                  {testPreguntas
-                    ?.filter(
-                      (c) =>
-                        c.CATEGORIA === "Potencial" &&
-                        c.ANO_EVAL === anio &&
-                        c.AGRUPACION === "Agilidad de resultados"
-                    )
-                    .map((pre) => (
-                      <View style={styles.rows}>
-                        <>
-                          <Text style={styles.txtTitle}>{pre.TITULO}</Text>
-                          <Text style={styles.txtBody}>{pre.VALORES}</Text>
-                        </>
-                      </View>
-                    ))}
-                </View>
+                {testPreguntas
+                  ?.filter(
+                    (c) =>
+                      c.CATEGORIA === "Potencial" &&
+                      c.ANO_EVAL === anio &&
+                      c.AGRUPACION === "Consciencia de sí mismo",
+                  )
+                  .map((pre) => (
+                    <View style={styles.rows}>
+                      <>
+                        <Text style={styles.txtTitle}>{pre.TITULO}</Text>
+                        <Text style={styles.txtBody}>{pre.VALORES}</Text>
+                      </>
+                    </View>
+                  ))}
+                {testPreguntas
+                  ?.filter(
+                    (c) =>
+                      c.CATEGORIA === "Potencial" &&
+                      c.ANO_EVAL === anio &&
+                      c.AGRUPACION === "Agilidad de cambio",
+                  )
+                  .map((pre) => (
+                    <View style={styles.rows}>
+                      <>
+                        <Text style={styles.txtTitle}>{pre.TITULO}</Text>
+                        <Text style={styles.txtBody}>{pre.VALORES}</Text>
+                      </>
+                    </View>
+                  ))}
+                {testPreguntas
+                  ?.filter(
+                    (c) =>
+                      c.CATEGORIA === "Potencial" &&
+                      c.ANO_EVAL === anio &&
+                      c.AGRUPACION === "Agilidad de resultados",
+                  )
+                  .map((pre) => (
+                    <View style={styles.rows}>
+                      <>
+                        <Text style={styles.txtTitle}>{pre.TITULO}</Text>
+                        <Text style={styles.txtBody}>{pre.VALORES}</Text>
+                      </>
+                    </View>
+                  ))}
+              </View>
 
               {testPreguntas
                 ?.filter(
@@ -747,7 +819,7 @@ dataLiderazgo.forEach((item) => {
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
                     c.AGRUPACION ===
-                      "PREDICTOR DE LIDERAZGO: Maneja con eficacia la incertidumbre"
+                      "PREDICTOR DE LIDERAZGO: Maneja con eficacia la incertidumbre",
                 )
                 .map((pre) => (
                   <View style={styles.colums}>
@@ -763,7 +835,7 @@ dataLiderazgo.forEach((item) => {
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
                     c.AGRUPACION ===
-                      "PREDICTOR DE LIDERAZGO: Se siente cómodo guiando y dirigiendo a otros"
+                      "PREDICTOR DE LIDERAZGO: Se siente cómodo guiando y dirigiendo a otros",
                 )
                 .map((pre) => (
                   <View style={styles.colums}>
@@ -779,7 +851,7 @@ dataLiderazgo.forEach((item) => {
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
                     c.AGRUPACION ===
-                      "PREDICTOR DE LIDERAZGO: Se enfoca en hacer crecer el negocio a través de otros"
+                      "PREDICTOR DE LIDERAZGO: Se enfoca en hacer crecer el negocio a través de otros",
                 )
                 .map((pre) => (
                   <View style={styles.colums}>
@@ -795,7 +867,7 @@ dataLiderazgo.forEach((item) => {
                     (c) =>
                       c.CATEGORIA === "Potencial" &&
                       c.ANO_EVAL === anio &&
-                      c.AGRUPACION === "DESCARRILADOR: Cerrado"
+                      c.AGRUPACION === "DESCARRILADOR: Cerrado",
                   )
                   .map((pre) => (
                     <View style={styles.colums}>
@@ -810,7 +882,7 @@ dataLiderazgo.forEach((item) => {
                     (c) =>
                       c.CATEGORIA === "Potencial" &&
                       c.ANO_EVAL === anio &&
-                      c.AGRUPACION === "DESCARRILADOR: Volátil"
+                      c.AGRUPACION === "DESCARRILADOR: Volátil",
                   )
                   .map((pre) => (
                     <View style={styles.colums}>
@@ -825,7 +897,7 @@ dataLiderazgo.forEach((item) => {
                     (c) =>
                       c.CATEGORIA === "Potencial" &&
                       c.ANO_EVAL === anio &&
-                      c.AGRUPACION === "DESCARRILADOR: Micro-gestión"
+                      c.AGRUPACION === "DESCARRILADOR: Micro-gestión",
                   )
                   .map((pre) => (
                     <View style={styles.colums}>
@@ -841,7 +913,7 @@ dataLiderazgo.forEach((item) => {
                   (c) =>
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
-                    c.AGRUPACION === "Promovible"
+                    c.AGRUPACION === "Promovible",
                 )
                 .map((pre) => (
                   <View style={styles.rows}>
@@ -856,7 +928,7 @@ dataLiderazgo.forEach((item) => {
                   (c) =>
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
-                    c.AGRUPACION === "Escenario Futuro"
+                    c.AGRUPACION === "Escenario Futuro",
                 )
                 .map((pre) => (
                   <View style={styles.rows}>
@@ -871,7 +943,7 @@ dataLiderazgo.forEach((item) => {
                   (c) =>
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
-                    c.AGRUPACION === "Riesgo de pérdida"
+                    c.AGRUPACION === "Riesgo de pérdida",
                 )
                 .map((pre) => (
                   <View style={styles.rows}>
@@ -886,7 +958,7 @@ dataLiderazgo.forEach((item) => {
                   (c) =>
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
-                    c.AGRUPACION === "Mapa de potencial"
+                    c.AGRUPACION === "Mapa de potencial",
                 )
                 .map((pre) => (
                   <View style={styles.rows}>
@@ -901,7 +973,7 @@ dataLiderazgo.forEach((item) => {
                   (c) =>
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
-                    c.AGRUPACION === "Fortalezas"
+                    c.AGRUPACION === "Fortalezas",
                 )
                 .map((pre) => (
                   <View style={styles.colums}>
@@ -916,7 +988,7 @@ dataLiderazgo.forEach((item) => {
                   (c) =>
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
-                    c.AGRUPACION === "Áreas de oportunidad"
+                    c.AGRUPACION === "Áreas de oportunidad",
                 )
                 .map((pre) => (
                   <View style={styles.colums}>
@@ -931,7 +1003,7 @@ dataLiderazgo.forEach((item) => {
                   (c) =>
                     c.CATEGORIA === "Potencial" &&
                     c.ANO_EVAL === anio &&
-                    c.AGRUPACION === "Acciones de desarrollo"
+                    c.AGRUPACION === "Acciones de desarrollo",
                 )
                 .map((pre) => (
                   <View style={styles.colums}>
