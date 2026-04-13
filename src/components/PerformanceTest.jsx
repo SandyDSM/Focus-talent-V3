@@ -45,7 +45,7 @@ const {perReview, noData, downloadPDF}=useContext(CollaboratorsContext);
 
   const testPreguntas = arrayPreguntas;
   const thisYear = testPreguntas?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios);
-  //console.log(thisYear.length);
+  //console.log("per",testPreguntas);
   
 
   const variants = [

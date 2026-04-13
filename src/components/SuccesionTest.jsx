@@ -41,7 +41,7 @@ export default function SuccesionTest(props) {
   } = props;
   const testPreguntas = arrayPreguntas;
 
-  console.log("AQUI",testPreguntas)
+  //console.log("AQUI",testPreguntas)
 
   const { potReview, downloadPDF, noData } = useContext(CollaboratorsContext);
 

@@ -40,7 +40,6 @@ export default function LiderazgoTest(props) {
     ...restProp
   } = props;
 
-  //console.log("los datos son", dataLiderazgo);
 
   const {
     downloadPDF,
@@ -72,7 +71,9 @@ export default function LiderazgoTest(props) {
   .map(() => Array(encabezados.length).fill("-"));
 
 // Llenar la tabla con los datos
-dataLiderazgo.forEach((item) => {
+  const dataLiderazgo_year = dataLiderazgo.filter((c) => (c.ANIO_) === (anios));
+
+dataLiderazgo_year.forEach((item) => {
   const filaIndex = item.SECTION_TYPE_ID_ - 1; // Ajuste a índice de array
   const colIndex = item.RESPONSIBLE_ID_ - 1; // Ajuste a índice de array
   
@@ -81,8 +82,10 @@ dataLiderazgo.forEach((item) => {
   }
 });
 
-  const thisYear = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
-  console.log("YEAR",thisYear)
+  const cmtLiderazgo_year = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
+  //console.log("YEAR",thisYear)
+
+    //console.log("los datos son", dataLiderazgo_year, cmtLiderazgo_year);
 
   const variants = [
     {
@@ -547,13 +550,13 @@ dataLiderazgo.forEach((item) => {
         ></Divider>
       
       </Flex>
-      {thisYear.length > 0 ? (
+      {cmtLiderazgo_year.length > 0 ? (
         <div className="w-full">
           <div>
                 <div>
                   <div className="flex gap-2 items-baseline">
                     <p>{califGeneral}</p>
-                    <h2 className="text-xl font-bold ">{dataLiderazgo[0]?.RATING_}</h2>
+                    <h2 className="text-xl font-bold ">{dataLiderazgo_year[0]?.RATING_}</h2>
                   </div>
                   <table className="table-fixed border-spacing-[7px] my-8 w-full ">
                     <thead className="text-left text-sm">
@@ -578,7 +581,7 @@ dataLiderazgo.forEach((item) => {
                   <div className="py-6"> 
                     <p className="font-bold">{retroAlimentacion}</p>
                   
-                  {cmtLiderazgo?.map((dato, index) => (
+                  {cmtLiderazgo_year?.map((dato, index) => (
                     <div key={index}>
                       
                     <p className="pt-4 pb-3">{dato.ANSWER_}</p>
@@ -604,8 +607,8 @@ dataLiderazgo.forEach((item) => {
                         document={
                           <PDFLiderazgo
                             tabla={tabla}
-                            dataLiderazgo={dataLiderazgo}
-                            coments={cmtLiderazgo}
+                            dataLiderazgo={dataLiderazgo_year}
+                            coments={cmtLiderazgo_year}
                             anios={anios}
                             datosUsuario={datosUsuario}
                             encabezados={encabezados}
