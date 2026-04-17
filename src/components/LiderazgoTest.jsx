@@ -24,7 +24,7 @@ import {
   useBreakpointValue,
 } from "@aws-amplify/ui-react";
 import IconProfile from "../ui-components/IconProfile";
-import PDFLiderazgo from "../PDFLiderazgo"
+import PDFLiderazgo from "../PDFLiderazgo";
 
 import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -40,7 +40,6 @@ export default function LiderazgoTest(props) {
     ...restProp
   } = props;
 
-
   const {
     downloadPDF,
     noData,
@@ -55,37 +54,30 @@ export default function LiderazgoTest(props) {
 
   const etiquetas = useContext(CollaboratorsContext);
 
-  const encabezados = [
-    evalCompCol,
-    evalCompJef,
-    evalCompPar,
-  ];
-  
-  const filas = [
-    titleCompLid, 
-    culturaGB,
-  ];
+  const encabezados = [evalCompCol, evalCompJef, evalCompPar];
+
+  const filas = [titleCompLid, culturaGB];
 
   const tabla = Array(filas.length)
-  .fill(null)
-  .map(() => Array(encabezados.length).fill("-"));
+    .fill(null)
+    .map(() => Array(encabezados.length).fill("-"));
 
-// Llenar la tabla con los datos
-  const dataLiderazgo_year = dataLiderazgo.filter((c) => (c.ANIO_) === (anios));
+  // Llenar la tabla con los datos
+  const dataLiderazgo_year = dataLiderazgo.filter((c) => c.ANIO_ === anios);
 
-dataLiderazgo_year.forEach((item) => {
-  const filaIndex = item.SECTION_TYPE_ID_ - 1; // Ajuste a índice de array
-  const colIndex = item.RESPONSIBLE_ID_ - 1; // Ajuste a índice de array
-  
-  if (tabla[filaIndex] && tabla[filaIndex][colIndex] !== undefined) {
-    tabla[filaIndex][colIndex] = item.RATING_;
-  }
-});
+  dataLiderazgo_year.forEach((item) => {
+    const filaIndex = item.SECTION_TYPE_ID_ - 1; // Ajuste a índice de array
+    const colIndex = item.RESPONSIBLE_ID_ - 1; // Ajuste a índice de array
 
-  const cmtLiderazgo_year = cmtLiderazgo.filter((c) => (c.ANIO_) === (anios));
+    if (tabla[filaIndex] && tabla[filaIndex][colIndex] !== undefined) {
+      tabla[filaIndex][colIndex] = item.RATING_;
+    }
+  });
+
+  const cmtLiderazgo_year = cmtLiderazgo.filter((c) => c.ANIO_ === anios);
   //console.log("YEAR",thisYear)
 
-    //console.log("los datos son", dataLiderazgo_year, cmtLiderazgo_year);
+  console.log("los datos son", dataLiderazgo_year, cmtLiderazgo_year);
 
   const variants = [
     {
@@ -241,7 +233,7 @@ dataLiderazgo_year.forEach((item) => {
       breakpoint: breakpointHook,
       ...props,
     }),
-    overridesProp || {}
+    overridesProp || {},
   );
   if (load) {
     return (
@@ -345,7 +337,7 @@ dataLiderazgo_year.forEach((item) => {
               shrink="0"
               alignSelf="stretch"
               level="4"
-              children={`${titleCompLid} ${anios-1}`}
+              children={`${titleCompLid} ${anios - 1}`}
               {...getOverrideProps(overrides, "Heading")}
             ></Heading>
             <Text
@@ -548,92 +540,100 @@ dataLiderazgo_year.forEach((item) => {
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider39504658")}
         ></Divider>
-      
       </Flex>
-      {cmtLiderazgo_year.length > 0 ? (
+      {cmtLiderazgo_year.length > 0 || dataLiderazgo_year.length > 0 ? (
         <div className="w-full">
           <div>
-                <div>
-                  <div className="flex gap-2 items-baseline">
-                    <p>{califGeneral}</p>
-                    <h2 className="text-xl font-bold ">{dataLiderazgo_year[0]?.RATING_}</h2>
-                  </div>
-                  <table className="table-fixed border-spacing-[7px] my-8 w-full ">
-                    <thead className="text-left text-sm">
-                      <tr>
-                        <th className="border-b-2  border-gray-200"></th>
-                        {encabezados.map((encabezado, i) => (
-                          <th key={i} className="border-b-2 border-gray-200">{encabezado}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {tabla.map((fila, i) => (
-                      <tr key={i} className="border-b-2 border-gray-200">
-                        <td className="font-bold">{filas[i]}</td>
-                        {fila.map((valor, j) => (
-                          <td key={j}>{valor}</td>
-                        ))}
-                      </tr>
+            <div>
+              <div className="flex gap-2 items-baseline">
+                <p>{califGeneral}</p>
+                <h2 className="text-xl font-bold ">
+                  {dataLiderazgo_year[0]?.RATING_}
+                </h2>
+              </div>
+              <table className="table-fixed border-spacing-[7px] my-8 w-full ">
+                <thead className="text-left text-sm">
+                  <tr>
+                    <th className="border-b-2  border-gray-200"></th>
+                    {encabezados.map((encabezado, i) => (
+                      <th key={i} className="border-b-2 border-gray-200">
+                        {encabezado}
+                      </th>
                     ))}
-                  </tbody>
-                  </table>
-                  <div className="py-6"> 
-                    <p className="font-bold">{retroAlimentacion}</p>
-                  
-                  {cmtLiderazgo_year?.map((dato, index) => (
-                    <div key={index}>
-                      
-                    <p className="pt-4 pb-3">{dato.ANSWER_}</p>
-                    {dato.SHOW_COMMENT === 1 && <p className="text-xs">{dato.RESPONDER}</p> }
-                    <p className="text-xs pb-2">{dato.RESPONSIBLE_}</p>
-                    </div>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tabla.map((fila, i) => (
+                    <tr key={i} className="border-b-2 border-gray-200">
+                      <td className="font-bold">{filas[i]}</td>
+                      {fila.map((valor, j) => (
+                        <td key={j}>{valor}</td>
+                      ))}
+                    </tr>
                   ))}
-                  <Flex
-                      gap="10px"
-                      direction="column"
-                      width="unset"
-                      height="unset"
-                      justifyContent="flex-start"
-                      alignItems="flex-end"
+                </tbody>
+              </table>
+              <div className="py-6">
+                <p className="font-bold">{retroAlimentacion}</p>
+
+                {cmtLiderazgo_year?.length > 0 ? (
+                  cmtLiderazgo_year.map((dato, index) => (
+                    <div key={index}>
+                      <p className="pt-4 pb-3">{dato.ANSWER_}</p>
+                      {dato.SHOW_COMMENT === 1 && (
+                        <p className="text-xs">{dato.RESPONDER}</p>
+                      )}
+                      <p className="text-xs pb-2">{dato.RESPONSIBLE_}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>{noData}</p>
+                )}
+                <Flex
+                  gap="10px"
+                  direction="column"
+                  width="unset"
+                  height="unset"
+                  justifyContent="flex-start"
+                  alignItems="flex-end"
+                  shrink="0"
+                  alignSelf="stretch"
+                  position="relative"
+                  padding="10px 0px 10px 0px"
+                  display="flex"
+                  {...getOverrideProps(overrides, "Frame 13974")}
+                >
+                  <PDFDownloadLink
+                    document={
+                      <PDFLiderazgo
+                        tabla={tabla}
+                        dataLiderazgo={dataLiderazgo_year}
+                        coments={cmtLiderazgo_year}
+                        anios={anios}
+                        datosUsuario={datosUsuario}
+                        encabezados={encabezados}
+                        filas={filas}
+                        etiquetas={etiquetas}
+                      />
+                    }
+                    fileName={`Competencias_de_Liderazgo_${anios}.pdf`}
+                  >
+                    <Button
                       shrink="0"
-                      alignSelf="stretch"
-                      position="relative"
-                      padding="10px 0px 10px 0px"
-                      display="flex"
-                      {...getOverrideProps(overrides, "Frame 13974")}
-                    >
-                     <PDFDownloadLink
-                        document={
-                          <PDFLiderazgo
-                            tabla={tabla}
-                            dataLiderazgo={dataLiderazgo_year}
-                            coments={cmtLiderazgo_year}
-                            anios={anios}
-                            datosUsuario={datosUsuario}
-                            encabezados={encabezados}
-                            filas={filas}
-                            etiquetas={etiquetas}
-                          />
-                        }
-                        fileName={`Competencias_de_Liderazgo_${anios}.pdf`}
-                      >
-                        <Button
-                          shrink="0"
-                          size="small"
-                          isDisabled={false}
-                          variation="primary"
-                          children={downloadPDF}
-                          {...getOverrideProps(overrides, "Button")}
-                        ></Button>
-                      </PDFDownloadLink>
-                    </Flex>
-                  </div>
-                </div>
+                      size="small"
+                      isDisabled={false}
+                      variation="primary"
+                      children={downloadPDF}
+                      {...getOverrideProps(overrides, "Button")}
+                    ></Button>
+                  </PDFDownloadLink>
+                </Flex>
+              </div>
+            </div>
           </div>
         </div>
-        ) : (
-          <div className="w-full">
+      ) : (
+        <div className="w-full">
           <p>{noData}</p>
         </div>
       )}
