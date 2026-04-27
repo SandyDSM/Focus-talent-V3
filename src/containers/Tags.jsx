@@ -1,10 +1,10 @@
 import React from "react";
+import LoadingSpinner from '../components/LoadingSpinner';
 import { useContext } from "react";
 import CreateTags from "../components/CreateTags";
 import HeadAdmin from "../components/HeadAdmin";
 import ShowTags from "../components/ShowTags";
 import CollaboratorsContext from "../context/collaborators";
-import { Loader } from "@aws-amplify/ui-react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { API } from "aws-amplify";

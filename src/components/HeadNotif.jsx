@@ -1,4 +1,3 @@
-import { Divider } from "@aws-amplify/ui-react";
 import React from "react";
 
 function HeadNotif() {
@@ -13,13 +12,7 @@ function HeadNotif() {
             <div className=""><p className="text-sm">Editar</p></div>
         </div>
       </div>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-      />
+      <hr className="border-t border-gray-200 w-full" />
     </div>
   );
 }

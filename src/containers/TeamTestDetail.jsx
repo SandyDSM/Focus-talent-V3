@@ -1,11 +1,11 @@
 import React from "react";
+import LoadingSpinner from '../components/LoadingSpinner';
 import { useParams } from "react-router-dom";
 import TestCheck from "../components/TestCheck";
 import HeadCollaborator from "../components/HeadCollaborator";
 import { useEffect, useContext, useState, useMemo, useCallback } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import BreadCrums from "../components/BreadCrums";
-import { Button, Loader } from "@aws-amplify/ui-react";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
 import Configuration from '../utils/Configuration'
 import { API } from 'aws-amplify';
@@ -250,7 +250,7 @@ const fetchDesemp = async () => {
   if (load) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        <Loader size="large" />
+        <LoadingSpinner size="large" />
       </div>
     );
   }

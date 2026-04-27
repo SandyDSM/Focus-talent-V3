@@ -1,4 +1,3 @@
-import { Divider } from "@aws-amplify/ui-react";
 import React from "react";
 import { IconActions } from "../ui-components";
 
@@ -24,13 +23,7 @@ function TableColl({colaborator, selectorg, add, indice, handleOpen}) {
         <div className="w-full"><p className="text-sm">{colaborator?.UBICACION_GEOGRAFICA}</p></div>
         {add === "false" && (<div className="flex justify-center cursor-pointer" onClick={()=> handleOpen(colaborator?.INTERNAL_ID)} ><IconActions name="edit"/></div>)}
       </div>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-      />
+      <hr className="border-t border-gray-200 w-full" />
     </div>
   );
 }

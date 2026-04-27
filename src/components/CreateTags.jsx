@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Divider, TextField, Button } from "@aws-amplify/ui-react";
+import { Button } from "./ui/Button";
 import HeadCreateTable from "./HeadCreateTags";
 import { useState } from "react";
 import Swal from 'sweetalert2';
@@ -131,24 +131,26 @@ function clear(){
   return (
     <div className="card flex flex-col gap-6 w-full">
       <div className="flex flex-col gap-1 my-2">
-        <Heading level={6}> Actualizar Etiquetas</Heading>
-        <Divider />
+        <h3 className="text-base font-semibold">Actualizar Etiquetas</h3>
+        <hr className="border-t border-gray-200 w-full" />
       </div>
       <div className="flex flex-col gap-2">
       <HeadCreateTable/>
       <div className="flex flex-col sm:flex-row justify-between gap-2 px-5 ">
-        <TextField placeholder="Nombre" id={"etiqueta"} disabled={true} value={etiquetasamod[0]}/>
-        <TextField  placeholder="Español" id={"es_MX"} defaultValue={etiquetasamod[1]}/>
-        <TextField placeholder="Inglés" id={"en_US"} defaultValue={etiquetasamod[2]}/>
-        <TextField placeholder="Frances" id={"fr_CA"} defaultValue={etiquetasamod[3]}/>
-        <TextField  placeholder="Portugués" id={"pt_BR"} defaultValue={etiquetasamod[4]}/>
-        <TextField placeholder="Chino" id={"zh_CN"} defaultValue={etiquetasamod[5]}/>
-        <TextField placeholder="Rumano" id={"ro_RO"} defaultValue={etiquetasamod[6]}/>
+        <input id="etiqueta" placeholder="Nombre" disabled value={etiquetasamod[0]} readOnly className="border border-gray-300 rounded px-2 py-1.5 text-sm bg-gray-100 cursor-not-allowed w-full" />
+        <input id="es_MX" placeholder="Español" defaultValue={etiquetasamod[1]} className="border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-full" />
+        <input id="en_US" placeholder="Inglés" defaultValue={etiquetasamod[2]} className="border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-full" />
+        <input id="fr_CA" placeholder="Frances" defaultValue={etiquetasamod[3]} className="border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-full" />
+        <input id="pt_BR" placeholder="Portugués" defaultValue={etiquetasamod[4]} className="border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-full" />
+        <input id="zh_CN" placeholder="Chino" defaultValue={etiquetasamod[5]} className="border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-full" />
+        <input id="ro_RO" placeholder="Rumano" defaultValue={etiquetasamod[6]} className="border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-full" />
       </div>
       </div>
       <div className="flex flex-row gap-6 justify-end px-5">
-        <Button isDisabled={botonhabilitado} onClick={()=>clear()}>Cancelar</Button>
-        <Button variation="primary" isDisabled={botonhabilitado} isLoading={isLoad} loadingText="Guardando" onClick={()=>actualiza()}>Guardar</Button>
+        <Button disabled={botonhabilitado} onClick={() => clear()}>Cancelar</Button>
+        <Button variation="primary" disabled={botonhabilitado || isLoad} onClick={() => actualiza()}>
+          {isLoad ? "Guardando..." : "Guardar"}
+        </Button>
       </div>
     </div>
   );

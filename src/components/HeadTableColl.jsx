@@ -1,4 +1,3 @@
-import { Divider } from "@aws-amplify/ui-react";
 import React from "react";
 
 function HeadTableColl({add}) {
@@ -14,13 +13,7 @@ function HeadTableColl({add}) {
         <div className="w-full"><p className="text-sm">Ubicación geográfica</p></div>
         {add === "false" && (<div className="flex"><p className="text-sm">Editar</p></div>)}
       </div>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-      />
+      <hr className="border-t border-gray-200 w-full" />
     </div>
   );
 }

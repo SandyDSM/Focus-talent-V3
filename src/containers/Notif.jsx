@@ -1,12 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Button, Divider, Heading, SelectField } from "@aws-amplify/ui-react";
 
 import HeadAdmin from "../components/HeadAdmin";
 import TableNotif from "../components/TableNotif";
 import EditorNotification from "../components/EditorNotification";
 import Modal from "../components/Modal";
-import { TextField } from "@aws-amplify/ui-react";
 import Swal from 'sweetalert2'
 
 
@@ -121,24 +119,21 @@ function Notif() {
           setOpen={setOpen}
           elementBody={
             <div className="w-full py-6 px-12 ">
-              <Heading level={6}> Crear Notificación</Heading>
-              <Divider />
+              <h3 className="text-base font-semibold">Crear Notificación</h3>
+              <hr className="border-t border-gray-200 w-full" />
               <div className="flex gap-6 items-end my-6">
-                <TextField
-                  width={"100%"}
-                  id="prueba"
-                  label="Asunto"
-                  defaultValue={titulo}
-                />
-                <div className="w-full">
-                  <TextField
-                    id={"idioma"}
+                <div className="flex flex-col gap-1 w-full">
+                  <label htmlFor="prueba" className="text-sm font-medium text-gray-700">Asunto</label>
+                  <input id="prueba" defaultValue={titulo} className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-full" />
+                </div>
+                <div className="flex flex-col gap-1 w-full">
+                  <input
+                    id="idioma"
                     placeholder="Selecciona el idioma"
-                    width={"100%"}
                     defaultValue={idioma}
-                    isDisabled={true}
-                  >
-                  </TextField>
+                    disabled
+                    className="border border-gray-300 rounded px-3 py-2 text-sm bg-gray-100 cursor-not-allowed w-full"
+                  />
                 </div>
               </div>
               <EditorNotification cuerpo={setCuerpo} defcuerpo={cuerpo} />
@@ -146,10 +141,10 @@ function Notif() {
                 className="flex flex-row items-center gap-6 justify-end"
                 style={{ marginTop: 50, marginBottom: 50 }}
               >
-                <Button onClick={()=>setOpen(false)}>Cancelar</Button>
-                <Button variation="primary" style={{backgroundColor:"#004B85"}} onClick={() => Insertar()}>
+                <button className="border border-gray-300 text-gray-700 text-sm px-4 py-2 rounded hover:bg-gray-50 transition-colors" onClick={() => setOpen(false)}>Cancelar</button>
+                <button className="bg-bmb-blue text-white text-sm px-4 py-2 rounded hover:bg-bmb-secundary transition-colors" onClick={() => Insertar()}>
                   Guardar
-                </Button>
+                </button>
               </div>
             </div>
           }

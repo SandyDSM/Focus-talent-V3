@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 import EmployeeCard from '../components/EmployeeCard';
 import DetailSucesion from '../components/DetailSucesion';
 import SuccessionService from '../service/successionService';
-import { Loader } from "@aws-amplify/ui-react";
 
 
 import { X } from 'lucide-react';
@@ -93,7 +93,7 @@ const ModalContainer = ({ cardData, modalData, jefe, language, onTeamNavigation 
           height: '100vh'
         }}
       onClick={handleOverlayClick}>
-            <Loader size="large" />
+            <LoadingSpinner size="large" />
         </div>
       );
     }

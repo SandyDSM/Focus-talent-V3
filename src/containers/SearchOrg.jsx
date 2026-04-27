@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import BannerUser from "../components/BannerUser";
 import { Search, X, Loader2 } from "lucide-react";
-import { SearchField } from "@aws-amplify/ui-react";
 import GridSearch from '../components/GridSearch';
 import { useSearch, useSearchHistory } from '../hooks/useSearch'; // Importar useSearch y useSearchHistory
 import SearchHistory from '../components/SearchHistory'; // Importar el componente SearchHistory
@@ -106,23 +105,30 @@ function SearchOrg() {
 
         {/* Campo de búsqueda con botón y historial */}
         <div className="relative flex gap-4 items-center">
-          <SearchField
-            placeholder={t('Search_Associate')}
-            width="50%"
-            shrink="0"
-            size="default"
-            isDisabled={isLoading}
-            labelHidden={true}
-            variation="default"
-            label={t('Search')}
-            value={searchTerm}
-            onChange={handleChange}
-            onClear={onClear}
-            hasSearchButton={false}
-            id="busqueda"
-            onFocus={() => setShowHistory(searchTerm.trim() === '')} // Mostrar historial al enfocar si el campo está vacío
-            onBlur={() => setShowHistory(false)} // Ocultar historial al desenfocar (con delay para permitir clics)
-          />
+          <div className="relative w-1/2">
+            <input
+              id="busqueda"
+              type="search"
+              placeholder={t('Search_Associate')}
+              disabled={isLoading}
+              value={searchTerm}
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}
+              onFocus={() => setShowHistory(searchTerm.trim() === '')}
+              onBlur={() => setShowHistory(false)}
+              className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue disabled:bg-gray-100"
+            />
+            {searchTerm && (
+              <button
+                type="button"
+                onClick={onClear}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                aria-label="Limpiar"
+              >
+                <X size={14} />
+              </button>
+            )}
+          </div>
           
           <button
             onClick={handleSearch}

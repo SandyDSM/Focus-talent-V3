@@ -1,7 +1,7 @@
 //import { SelectField } from "@aws-amplify/ui-react";
+import LoadingSpinner from '../components/LoadingSpinner';
 import React from "react";
 import HeadTeam from "../components/HeadTeam";
-import { Loader } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
 import i18n from "../i18n";
 
@@ -103,7 +103,7 @@ const MyTeam = () => {
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        <Loader size="large" />
+        <LoadingSpinner size="large" />
       </div>
     );
   }

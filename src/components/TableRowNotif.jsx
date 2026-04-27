@@ -1,6 +1,5 @@
 import React from 'react'
 import { Iconidiom, IconActions } from '../ui-components';
-import { Divider } from '@aws-amplify/ui-react';
 
 function TableRowNotif({notif, handleOpen}) {
 let idiom="esp";
@@ -29,13 +28,7 @@ if(notif.IDIOMA==="English (US)"){
         </div>
       </div>
 
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-      />
+      <hr className="border-t border-gray-200 w-full" />
     </div>
   );
 }

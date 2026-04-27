@@ -1,5 +1,4 @@
 import React from 'react'
-import { SelectField, Heading, Button } from '@aws-amplify/ui-react';
 import Iconfilter from '../ui-components/Iconfilter'
 import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -185,57 +184,59 @@ const handleChangeGeo=(e)=>{
             <Iconfilter/>
             <p className='font-bold py-1.5'>{filtColab}</p>
           </div>
-            <Button variation='link' onClick={()=>DeleteFilter()}>{filtBorrFiltr}</Button>
+            <button className="text-bmb-secundary text-sm underline hover:no-underline cursor-pointer" onClick={() => DeleteFilter()}>{filtBorrFiltr}</button>
         </div>
         <div className='flex flex-col gap-2 md:flex-row md:gap-6 align-center mt-2'>
-        <SelectField placeholder={filtOrg} onChange={handleChangeOrg} width={{ base: "100%", large: "25%" }}
+        <select
+            className="w-full md:w-1/4 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue"
+            onChange={handleChangeOrg}
             value={eOrg}
-            >
+          >
+            <option value="">{filtOrg}</option>
             {organizacion.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-            </SelectField>
-            <SelectField 
-            placeholder={filtEntLegal}          
+              <option key={index} value={option}>{option}</option>
+            ))}
+          </select>
+          <select
+            className="w-full md:w-1/4 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue"
             onChange={handleChangeEntidad}
-            width={{ base: "100%", large: "25%" }}
             value={eEntidad}
-            >
+          >
+            <option value="">{filtEntLegal}</option>
             {entidad.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-            </SelectField>
-            <SelectField placeholder= {filtNivel} onChange={handleChangeNivel} width={{ base: "100%", large: "25%" }} 
+              <option key={index} value={option}>{option}</option>
+            ))}
+          </select>
+          <select
+            className="w-full md:w-1/4 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue"
+            onChange={handleChangeNivel}
             value={eNivel}
-            >
+          >
+            <option value="">{filtNivel}</option>
             {nivel.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-        </SelectField>
-            <SelectField placeholder= {filtPuesto} onChange={handleChangePuesto} width={{ base: "100%", large: "25%" }} 
+              <option key={index} value={option}>{option}</option>
+            ))}
+          </select>
+          <select
+            className="w-full md:w-1/4 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue"
+            onChange={handleChangePuesto}
             value={ePuesto}
-            >
+          >
+            <option value="">{filtPuesto}</option>
             {puesto.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-            </SelectField>
-            <SelectField placeholder= {filtUbicGeog} onChange={handleChangeGeo} width={{ base: "100%", large: "25%" }}
+              <option key={index} value={option}>{option}</option>
+            ))}
+          </select>
+          <select
+            className="w-full md:w-1/4 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue"
+            onChange={handleChangeGeo}
             value={eGeo}
-            >
+          >
+            <option value="">{filtUbicGeog}</option>
             {geo.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-            </SelectField>
+              <option key={index} value={option}>{option}</option>
+            ))}
+          </select>
         </div>
     </div>
   )

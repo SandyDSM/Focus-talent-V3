@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import CardDos from "./CardDos";
-import { Loader } from "@aws-amplify/ui-react";
+import LoadingSpinner from './LoadingSpinner';
 import CollaboratorsContext from "../context/collaborators";
 
 
@@ -10,7 +10,7 @@ function Tabs({title= "Título", collaborators, sub }) {
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        <Loader size="large" />
+        <LoadingSpinner size="large" />
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React from "react";
-import { Heading, Divider, Button, SearchField, TextField, TextAreaField } from "@aws-amplify/ui-react";
 import HeadTableColl from "./HeadTableColl";
 import TableColl from "./TableColl";
 import CollaboratorsContext from "../context/collaborators";
@@ -154,8 +153,8 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
     <div className="flex flex-col gap-6 w-full">
       <div>
         <div className="flex flex-col gap-1 my-2">
-          <Heading level={6}> Colaboradores con Permisos </Heading>
-          <Divider />
+          <h3 className="text-base font-semibold">Colaboradores con Permisos</h3>
+          <hr className="border-t border-gray-200 w-full" />
         </div>
         <HeadTableColl add="false" />
         <Modal
@@ -163,36 +162,38 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
           setOpen={setOpen}
           elementBody={
             <div className="w-full py-6 px-12 ">
-              <Heading level={6}> Permisos Extendidos</Heading>
-              <Divider />
+              <h3 className="text-base font-semibold">Permisos Extendidos</h3>
+              <hr className="border-t border-gray-200 w-full" />
               <div className="flex gap-6 items-end my-6">
-                <TextAreaField
-                  width={"100%"}
-                  id="prueba"
-                  label="ID's Unidad Organizacional"
-                  defaultValue={permExtend[0]?.ORG_STRUCT_IDS}
-                  onChange={(e) => setOrg(e.target.value)}
-                  rows={3}
-                />
-                <div className="w-full">
-                  <TextAreaField
+                <div className="flex flex-col gap-1 w-full">
+                  <label htmlFor="prueba" className="text-sm font-medium text-gray-700">ID's Unidad Organizacional</label>
+                  <textarea
+                    id="prueba"
+                    defaultValue={permExtend[0]?.ORG_STRUCT_IDS}
+                    onChange={(e) => setOrg(e.target.value)}
+                    rows={3}
+                    className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue resize-y w-full"
+                  />
+                </div>
+                <div className="flex flex-col gap-1 w-full">
+                  <label htmlFor="area" className="text-sm font-medium text-gray-700">ID's Área funcional</label>
+                  <textarea
                     id="area"
-                    label="ID's Área funcional"
                     defaultValue={permExtend[0]?.FUNCTIONAL_AREA_IDS}
                     onChange={(e) => setFun(e.target.value)}
                     rows={3}
-                  >
-                  </TextAreaField>
+                    className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue resize-y w-full"
+                  />
                 </div>
               </div>
               <div
                 className="flex flex-row items-center gap-6 justify-end"
                 style={{ marginTop: 50, marginBottom: 10 }}
               >
-                <Button onClick={()=>setOpen(false)}>Cancelar</Button>
-                <Button variation="primary" style={{backgroundColor:"#004B85"}} onClick={() => updatePermissionsInd()}>
+                <button className="border border-gray-300 text-gray-700 text-sm px-4 py-2 rounded hover:bg-gray-50 transition-colors" onClick={() => setOpen(false)}>Cancelar</button>
+                <button className="bg-bmb-blue text-white text-sm px-4 py-2 rounded hover:bg-bmb-secundary transition-colors" onClick={() => updatePermissionsInd()}>
                   Guardar
-                </Button>
+                </button>
               </div>
             </div>
           }
@@ -211,40 +212,30 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
           className="flex flex-row items-center gap-6 justify-end"
           style={{ marginTop: 50, marginBottom: 50 }}
         >
-          <Button
-            variation="primary"
-            style={{ backgroundColor: "#004B85" }}
-            onClick={() => Insertar()}
-          >
+          <button className="bg-bmb-blue text-white text-sm px-4 py-2 rounded hover:bg-bmb-secundary transition-colors" onClick={() => Insertar()}>
             Guardar
-          </Button>
+          </button>
         </div>
       </div>
       <div>
         <div className="flex flex-col gap-1 my-2">
-          <Heading level={6}>Realiza la busqueda del colaborador y seleccionalo para que tenga los permisos correspondientes</Heading>
-          <Divider />
+          <h3 className="text-base font-semibold">Realiza la busqueda del colaborador y seleccionalo para que tenga los permisos correspondientes</h3>
+          <hr className="border-t border-gray-200 w-full" />
         </div>
         <div>
-          <SearchField
+          <input
+            type="search"
             placeholder="Buscar colaborador"
-            width="300px"
-            shrink="0"
-            size="default"
-            isDisabled={false}
-            labelHidden={true}
-            variation="default"
             onChange={handleChange}
-            onClear={() => onClear()}
-            hasSearchButton={false}
-            hasSearchIcon={true}
+            onInput={(e) => { if (e.target.value === "") onClear(); }}
+            className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-72"
           />
         </div>
         </div>
         <div>
         <div className="flex flex-col gap-1 my-2">
-          <Heading level={6}> Colaboradores </Heading>
-          <Divider />
+          <h3 className="text-base font-semibold">Colaboradores</h3>
+          <hr className="border-t border-gray-200 w-full" />
         </div>
         <HeadTableColl add="true" />
         {resultsComplete != null ? (

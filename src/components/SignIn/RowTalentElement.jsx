@@ -1,4 +1,3 @@
-import { Divider, SwitchField } from '@aws-amplify/ui-react';
 import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 
@@ -71,18 +70,21 @@ const updateAniosCalib = async (id, valor) => {
   return (
         <div className="flex flex-col">
           <div className="flex flex-row self-stretch py-2 px-9 items-center relative gap-6">
-              <SwitchField
-                shrink="0"
-                size="default"
-                defaultChecked={anio.ACTIVO===1 && "Checked"}
-                id={`${anio.ANIO}-${anio.AGRUPACION}`}
-                name={anio.ANIO}
-                value={"aaa"+anio.ANIO}
-                onChange={(e) => {
-                  updateAniosCalib(e.target.id, e.target.checked);
-                  setIsChecked(e.target.checked);
-                }}
-              />
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  defaultChecked={anio.ACTIVO === 1}
+                  id={`${anio.ANIO}-${anio.AGRUPACION}`}
+                  name={anio.ANIO}
+                  value={"aaa" + anio.ANIO}
+                  onChange={(e) => {
+                    updateAniosCalib(e.target.id, e.target.checked);
+                    setIsChecked(e.target.checked);
+                  }}
+                />
+                <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-bmb-blue after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full" />
+              </label>
             <div className="flex flex-col">
               <p className="text-sm">
               {anio.AGRUPACION} {anio.ANIO}
@@ -90,13 +92,7 @@ const updateAniosCalib = async (id, valor) => {
             </div>
           </div>
     
-          <Divider
-            width="unset"
-            shrink="0"
-            alignSelf="stretch"
-            size="small"
-            orientation="horizontal"
-          />
+          <hr className="border-t border-gray-200 w-full" />
         </div>
       );
 }
