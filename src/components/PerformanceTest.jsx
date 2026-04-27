@@ -40,14 +40,13 @@ export default function PerformanceTest(props) {
     ...restProp
   } = props;
 
-
-const {perReview, noData, downloadPDF}=useContext(CollaboratorsContext);
+  const { perReview, noData, downloadPDF } = useContext(CollaboratorsContext);
 
   const testPreguntas = arrayPreguntas;
-  const thisYear = testPreguntas?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios);
-  //console.log(thisYear.length);
-
-  
+  const thisYear = testPreguntas?.filter(
+    (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios,
+  );
+  console.log("per", testPreguntas);
 
   const variants = [
     {
@@ -156,7 +155,7 @@ const {perReview, noData, downloadPDF}=useContext(CollaboratorsContext);
       breakpoint: breakpointHook,
       ...props,
     }),
-    overridesProp || {}
+    overridesProp || {},
   );
   return (
     <Flex
@@ -236,7 +235,7 @@ const {perReview, noData, downloadPDF}=useContext(CollaboratorsContext);
             shrink="0"
             alignSelf="stretch"
             level="4"
-            children={`${perReview} ${anios}`}
+            children={`${perReview} ${anios - 1}`}
             {...getOverrideProps(overrides, "Heading")}
           ></Heading>
           <Text
@@ -440,91 +439,66 @@ const {perReview, noData, downloadPDF}=useContext(CollaboratorsContext);
       ></Divider>
       {thisYear.length > 0 ? (
         <div className="w-full">
-          {testPreguntas
-            ?.filter((c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios)
-            .map((pre, index) => (
-              <Flex
-                key={index}
-                gap="16px"
-                direction="column"
-                width="unset"
-                height="unset"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+          {(() => {
+            const filtered = testPreguntas?.filter(
+              (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios,
+            );
+
+            // Agrupar por CATEGORIA_ORDEN para años >= 2024
+            const grouped = filtered?.reduce((acc, pre) => {
+              const key = pre.CATEGORIA_ORDEN;
+              if (!acc[key]) acc[key] = [];
+              acc[key].push(pre);
+              return acc;
+            }, {});
+
+            return Object.entries(grouped || {}).map(
+              ([categoriaOrden, preguntas], groupIndex) => (
+                <div key={categoriaOrden} className="w-full mb-2">
+                  {/* Divider entre grupos, excepto el primero */}
+                  {groupIndex !== 0 && (
+                    <hr className="w-full border-t border-gray-300 my-4" />
+                  )}
+
+                  {/* Preguntas de la categoría */}
+                  {preguntas.map((pre, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col gap-2 w-full items-start justify-start relative"
+                    >
+                      <p className="w-full text-base font-medium text-black/80 text-left whitespace-pre-wrap">
+                        {pre.TITULO}
+                      </p>
+                      <p className="w-full text-sm font-normal text-black/80 text-left whitespace-pre-wrap -mt-1 mb-4">
+                        {pre.VALORES}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ),
+            );
+          })()}
+          <div className="w-full text-end">
+            <PDFDownloadLink
+              document={
+                <PDFdesempeno
+                  DATOS={testPreguntas}
+                  anios={anios}
+                  datosUsuario={datosUsuario}
+                  etiquetas={perReview}
+                />
+              }
+              fileName={`Evaluación_de_desempeño_${anios - 1}.pdf`}
+            >
+              <Button
                 shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                display="flex"
-                {...getOverrideProps(overrides, "qOne")}
-              >
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="rgba(0,0,0,0.8)"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  children={`${pre.TITULO}`}
-                  {...getOverrideProps(overrides, "questionOne38284684")}
-                ></Text>
-                <Text
-                  fontFamily="Inter"
-                  fontSize="14px"
-                  fontWeight="400"
-                  color="rgba(0,0,0,0.8)"
-                  textAlign="left"
-                  display="block"
-                  direction="column"
-                  justifyContent="unset"
-                  width="unset"
-                  height="unset"
-                  gap="unset"
-                  alignItems="unset"
-                  shrink="0"
-                  alignSelf="stretch"
-                  position="relative"
-                  padding="0px 0px 0px 0px"
-                  whiteSpace="pre-wrap"
-                  marginBottom={"16px"}
-                  marginTop="-10px"
-                  children={`${pre.VALORES}`}
-                  {...getOverrideProps(overrides, "answerQone38284685")}
-                ></Text>
-              </Flex>
-            ))}
-            <div className="w-full text-end">
-          <PDFDownloadLink
-            document={
-              <PDFdesempeno
-                DATOS={testPreguntas}
-                anios={anios}
-                datosUsuario={datosUsuario}
-                etiquetas={perReview}
-              />
-            }
-            fileName={`Evaluación_de_desempeño_${anios}.pdf`}
-          >
-            <Button
-              shrink="0"
-              size="small"
-              isDisabled={false}
-              variation="primary"
-              children={downloadPDF}
-              {...getOverrideProps(overrides, "ButtonPDF")}
-            ></Button>
-          </PDFDownloadLink>
+                size="small"
+                isDisabled={false}
+                variation="primary"
+                children={downloadPDF}
+                {...getOverrideProps(overrides, "ButtonPDF")}
+              ></Button>
+            </PDFDownloadLink>
           </div>
         </div>
       ) : (

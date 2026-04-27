@@ -9,7 +9,7 @@ import CollaboratorsContext from "../context/collaborators";
 function BreadCrums({ text, user, colaborator=null }) {
   const{buttonBack, buttonMyTeam, teamFrom, teamOne, subOne} =useContext(CollaboratorsContext);
 
-  console.log("---------",subOne);
+  //console.log("----",teamOne, subOne);
   return (
     <div className="my-2 flex gap-1 items-center">
       <Link to="/myteam">
@@ -21,12 +21,12 @@ function BreadCrums({ text, user, colaborator=null }) {
       <PageArrow type="Go" />
       {colaborator != null & subOne ? 
       (<>
-      <Link to={`/myteam/${teamOne.INTERNAL_ID}`}>
+      <Link to={`/myteam/${teamOne?.INTERNAL_ID}`}>
       <Button
         variation="link"
         isDisabled={false}
         size="small"
-      >{`${teamFrom} ${teamOne.NOMBRE}`}</Button></Link>
+      >{`${teamFrom} ${teamOne?.NOMBRE}`}</Button></Link>
       <PageArrow type="Go" />
       <Button
         variation="link"
@@ -38,7 +38,7 @@ function BreadCrums({ text, user, colaborator=null }) {
       variation="link"
       isDisabled={true}
       size="small"
-    >{subOne ? `${text} ${user}` : `${text} ${colaborator}`}</Button>}
+    >{colaborator != null ? `${text} ${colaborator}` : `${text} ${user}`}</Button>}
     </div>
   );
 }

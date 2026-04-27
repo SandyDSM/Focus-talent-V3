@@ -27,10 +27,13 @@ function NavHeader() {
       style: { cursor: "pointer" },
       onClick: () => setOpen(true),
     },
+    Header:{padding:"4px 24px 4px 24px"}
   };
 
   const sendOverridesMenu = {
-    name:{children: `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}`},
+    name:{
+      children: `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}`,
+    },
     puesto:{children:`${usuarioActualDatos.PUESTO}`},
 
     "image 3": {
@@ -61,6 +64,12 @@ function NavHeader() {
       onClick: () => setOpen(false),
     },
 
+    FraPermission: {
+      className:"hover:bg-sky-100",
+      style: { cursor: "pointer" },
+      onClick: () => setOpen(false),
+    },
+
     FraTeam: {
       onClick: () => setOpen(false),
     },
@@ -78,11 +87,7 @@ function NavHeader() {
   return (
     <>
       <Header width={"100vw"} type={`${isAdmin ? "menu" : "noMenu"}`} overrides={sendOverridesHeader} />
-      {showPerson && 
-      <div className="my-3">
-          <BannerUser/>
-      </div>
-      }
+      {/*showPerson && <div className="my-3"><BannerUser/></div>*/}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child

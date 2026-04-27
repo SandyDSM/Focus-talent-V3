@@ -11,7 +11,7 @@ import { API } from "aws-amplify";
 
 function Tags() {
   const [etiquetas, setEtiquetas] = useState([]);
-  const [etiquetasmod, setetiquetasmod] = useState(["", "", "", "", "", ""]);
+  const [etiquetasmod, setetiquetasmod] = useState(["", "", "", "", "", "", ""]);
   const [buttonavailable, setButtonavailable] = useState(true);
   const [reloadTags, setReloadTags] = useState(true);
 

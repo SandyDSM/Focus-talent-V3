@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import IconActions from "./IconActions";
 import { CheckboxField, Divider, Flex, Text } from "@aws-amplify/ui-react";
 export default function RowsRemove(props) {

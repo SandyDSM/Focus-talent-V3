@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { Button, Flex, Text, useBreakpointValue } from "@aws-amplify/ui-react";
 import IconProfile from "./IconProfile";
 export default function HeadCollaborator(props) {

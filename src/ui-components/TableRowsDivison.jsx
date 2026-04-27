@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import IconActions from "./IconActions";
 import IconAddsec from "./IconAddsec";
 import { Divider, Flex, Text } from "@aws-amplify/ui-react";

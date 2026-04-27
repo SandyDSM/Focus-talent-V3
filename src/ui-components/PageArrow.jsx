@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { Flex, Icon } from "@aws-amplify/ui-react";
 export default function PageArrow(props) {
   const { overrides: overridesProp, ...rest } = props;
@@ -19,11 +19,11 @@ export default function PageArrow(props) {
       overrides: {
         Vector: {
           width: "6.28px",
-          viewBox: { minX: 0, minY: 0, width: 6.275390625, height: 11 },
+          viewBox: { minX: 0, minY: 0, width: 6.275362491607666, height: 11 },
           paths: [
             {
               d: "M0.217391 10.7826C0.0724638 10.6377 0 10.4661 0 10.2678C0 10.07 0.0724638 9.89855 0.217391 9.75362L4.46377 5.50725L0.202898 1.24638C0.0676328 1.11111 0 0.942029 0 0.73913C0 0.536232 0.0724638 0.362319 0.217391 0.217391C0.362319 0.0724638 0.533913 0 0.732174 0C0.930048 0 1.10145 0.0724638 1.24638 0.217391L6.11594 5.10145C6.17391 5.15942 6.21507 5.22222 6.23942 5.28986C6.26338 5.35749 6.27536 5.42995 6.27536 5.50725C6.27536 5.58454 6.26338 5.657 6.23942 5.72464C6.21507 5.79227 6.17391 5.85507 6.11594 5.91304L1.23188 10.7971C1.09662 10.9324 0.930048 11 0.732174 11C0.533913 11 0.362319 10.9275 0.217391 10.7826Z",
-              fill: "rgba(0,75,133,1)",
+              fill: "rgba(0,0,143,1)",
               fillRule: "nonzero",
             },
           ],

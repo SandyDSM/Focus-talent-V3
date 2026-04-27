@@ -40,20 +40,42 @@ function HomeAdmin({signOut}) {
   };
   const sendOverridesCard = {
     Title: { children: "Administración de notificaciones" },
+    CardBtn: {
+      backgroundColor: "#8CAEF2",
+    }
   };
   const sendOverridesCard2 = {
     Title: { children: "Administración de etiquetas" },
+    CardBtn: {
+      backgroundColor: "#6392ED",
+    }
   };
   const sendOverridesCard3 = {
     Title: { children: "Mi equipo" },
+    CardBtn: {
+      backgroundColor: "#3F78E9",
+    }
   };
 
   const sendOverridesCard4 = {
     Title: { children: "Mi equipo" },
     CardBtn: {
-      backgroundColor: "#D9D9D9",
+      backgroundColor: "#3F78E9",
     }
   };
+  const sendOverridesCard5 = {
+    Title: { children: "Administrar permisos de busqueda" },
+    CardBtn: {
+      backgroundColor: "#315FB9",
+    }
+  };
+  const sendOverridesCard6 = {
+    Title: { children: "Reporte de Accesos" },
+    CardBtn: {
+      backgroundColor: "#203C74",
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
@@ -74,13 +96,13 @@ function HomeAdmin({signOut}) {
       <div className="m-8 flex self-stretch">
         <HeadAdminHome overrides={sendOverridesAdmin} width={"100%"} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-5 px-9">
-        <div className="col-start-1 lg:col-start-2 col-span-2 cursor-pointer">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-5 px-9 lg:px-20">
+        <div className="col-start-1 col-span-2 cursor-pointer">
           <Link to="/test">
             <CardBtn width={"100%"} overrides={sendOverridesCardTest} />
           </Link>
         </div>
-        <div className="col-start-1 md:col-start-3 lg:col-start-4 col-span-2 cursor-pointer">
+       {/* <div className=" col-span-2 cursor-pointer">
           <Link to="/notif">
             <CardBtn
               width={"100%"}
@@ -88,8 +110,8 @@ function HomeAdmin({signOut}) {
               overrides={sendOverridesCard}
             />
           </Link>
-        </div>
-        <div className="col-start-1 lg:col-start-2 col-span-2 ">
+        </div>*/}
+        <div className=" col-span-2 ">
           <Link to="/tags">
             <CardBtn
               width={"100%"}
@@ -98,14 +120,33 @@ function HomeAdmin({signOut}) {
             />
           </Link>
         </div>
-        <div className="col-start-1 md:col-start-3 lg:col-start-4 col-span-2">
+        <div className=" col-span-2">
           {
             colaboradores == 0 ? <CardBtn width={"100%"} type={"Equipo"} overrides={sendOverridesCard4}/> :
             <Link to="/myteam"><CardBtn width={"100%"} type={"Equipo"} overrides={sendOverridesCard3}/></Link>
           }
         </div>
+        <div className="col-span-2 ">
+          <Link to="/permissions">
+            <CardBtn
+              width={"100%"}
+              type={"Equipo"}
+              overrides={sendOverridesCard5}
+            />
+          </Link>
+        </div>
+        <div className="col-span-2 ">
+          <Link to="/reportlogin">
+            <CardBtn
+              width={"100%"}
+              overrides={sendOverridesCard6}
+            />
+          </Link>
+        </div>
       </div>
-      <Button onClick={signOut} color="primary">Log Out</Button>
+      <div className="my-2 mx-2 md:mx-8">
+        <Button onClick={signOut} color="primary">Log Out</Button>
+      </div>
     </div>
   );
 }

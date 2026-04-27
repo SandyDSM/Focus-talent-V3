@@ -67,12 +67,6 @@ export default function BannerSearch(props) {
   
 
     const {
-      collaborators,
-      getCollaborators,
-      isLoading,
-      separadosCol,
-      usuarioActualDatos, 
-      ordena,
       actualizaBusqueda,
       futleader,
       restauraUserClasif,
@@ -87,58 +81,49 @@ export default function BannerSearch(props) {
         respnotaply
     } = useContext(CollaboratorsContext);
 
-
-
-
-
-
-
-
-
-
-
   const onChange = (filtro) => {
     restauraUserClasif(props.OpcionSelect);
   
 if(props.OpcionSelect===1){
-  if(futleader==respfutleader){
- const filBusqueda=futleader.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
- actualizaBusqueda(filBusqueda,1);
-  }else{
-  const filBusqueda=respfutleader.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
- actualizaBusqueda(filBusqueda,1);
+  if (futleader == respfutleader) {
+    const filBusqueda = futleader.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()));
+    actualizaBusqueda(filBusqueda, 1);
+  } else {
+    const filBusqueda = respfutleader.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()));
+    actualizaBusqueda(filBusqueda, 1);
   }
+  
 }else if(props.OpcionSelect===2){
   if(pillbusiness==resppillbusiness){
-  const filBusqueda=pillbusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  const filBusqueda=pillbusiness.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
   actualizaBusqueda(filBusqueda,2); 
   }else{
-    const filBusqueda=resppillbusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+    const filBusqueda=resppillbusiness.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
     actualizaBusqueda(filBusqueda,2);  
   }
 }else if(props.OpcionSelect===3){
   if(basebusiness==respbasebusiness){
-  const filBusqueda=basebusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  const filBusqueda=basebusiness.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
   actualizaBusqueda(filBusqueda,3); 
   }else{
-    const filBusqueda=respbasebusiness.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+    const filBusqueda=respbasebusiness.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
     actualizaBusqueda(filBusqueda,3);   
   }
 }else if(props.OpcionSelect===4){
   if(noteval==respnoteval){
-  const filBusqueda=noteval.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  const filBusqueda=noteval.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
   actualizaBusqueda(filBusqueda,4);
   }else{
-    const filBusqueda=respnoteval.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+    const filBusqueda=respnoteval.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
   actualizaBusqueda(filBusqueda,4);
   }
 
 }else if(props.OpcionSelect===5){
 if(notaply==respnotaply){
-  const filBusqueda=notaply.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  const filBusqueda=notaply.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
   actualizaBusqueda(filBusqueda,5);
 }else{
-  const filBusqueda=respnotaply.filter(f=>f.NOMBRE.toUpperCase().includes(filtro.toUpperCase()) || f.APELLIDOS.toUpperCase().includes(filtro.toUpperCase()))
+  const filBusqueda=respnotaply.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
   actualizaBusqueda(filBusqueda,5);
 }
 }

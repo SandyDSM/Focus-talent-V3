@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import {
   Button,
   Divider,
@@ -677,7 +677,7 @@ export default function BehaviorTest(props) {
                   shrink="0"
                   position="relative"
                   padding="0px 0px 0px 0px"
-                  rating="five"
+                  rating="5"
                   {...getOverrideProps(overrides, "RatingStars39504747")}
                 ></RatingStars>
               </Flex>
@@ -937,7 +937,7 @@ export default function BehaviorTest(props) {
                   shrink="0"
                   position="relative"
                   padding="0px 0px 0px 0px"
-                  rating="four"
+                  rating="4"
                   {...getOverrideProps(overrides, "RatingStars39504923")}
                 ></RatingStars>
               </Flex>
@@ -1006,7 +1006,7 @@ export default function BehaviorTest(props) {
                   shrink="0"
                   position="relative"
                   padding="0px 0px 0px 0px"
-                  rating="four"
+                  rating="4"
                   {...getOverrideProps(overrides, "RatingStars39504947")}
                 ></RatingStars>
               </Flex>
@@ -1075,7 +1075,7 @@ export default function BehaviorTest(props) {
                   shrink="0"
                   position="relative"
                   padding="0px 0px 0px 0px"
-                  rating="four"
+                  rating="4"
                   {...getOverrideProps(overrides, "RatingStars39504963")}
                 ></RatingStars>
               </Flex>

@@ -125,7 +125,7 @@ const getAniosCalib = async () => {
       />
       <HeadAdmin title={"Evaluaciones de desempeño y potencial"} />
       <div className="grid grid-cols-1 sm:grid-cols-2 px-12">
-          <div className={`md:rounded-l-lg ${option === 1 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(1)}>Liberar y notificar</div>
+          <div className={`md:rounded-l-lg ${option === 1 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(1)}>Liberar Evaluaciones</div>
           <div className={`md:rounded-r-lg ${option === 2 ? "tabActive" : "tab"}`} onClick={()=>toggleTab(2)}>Elementos de talento</div>
         </div>
 

@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Button, Flex, Image } from "@aws-amplify/ui-react";
 export default function Login(props) {
   const { frameInputs, overrides, ...rest } = props;
@@ -82,6 +82,8 @@ export default function Login(props) {
         {...getOverrideProps(overrides, "FrameButtons")}
       >
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           alignSelf="stretch"
           size="default"
@@ -91,6 +93,8 @@ export default function Login(props) {
           {...getOverrideProps(overrides, "ButtonSingIn")}
         ></Button>
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           alignSelf="stretch"
           size="default"
@@ -100,6 +104,8 @@ export default function Login(props) {
           {...getOverrideProps(overrides, "ButtonSingAzure")}
         ></Button>
         <Button
+          width="unset"
+          height="unset"
           shrink="0"
           alignSelf="stretch"
           size="default"

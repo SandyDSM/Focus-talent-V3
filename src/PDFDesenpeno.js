@@ -1,8 +1,7 @@
 import React from "react";
 import { Document, Page, Text, View, Image } from "@react-pdf/renderer";
 import { StyleSheet, Font } from "@react-pdf/renderer";
-import { colors } from "debug/src/browser";
-//import ReactPdfTable from
+
 Font.register({
   family: "Open Sans",
   fonts: [
@@ -17,117 +16,135 @@ Font.register({
 });
 
 const styles = StyleSheet.create({
+  page: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    paddingTop: 24,
+    paddingBottom: 40,
+    paddingHorizontal: 24,
+  },
   txtInfo: {
-    family: "Open Sans",
-    fontSize: "6px",
-    marginRight: "10",
+    fontFamily: "Open Sans",
+    fontSize: 6,
+    marginRight: 10,
   },
   txtTitle: {
     fontFamily: "Open Sans",
-    fontSize: "13px",
-    marginBottom: "5",
-    fontWeight: "600",
+    fontSize: 13,
+    marginBottom: 4,
+    fontWeight: 600,
   },
   txtBody: {
-    fontSize: "12px",
-    family: "Open Sans",
+    fontSize: 11,
+    fontFamily: "Open Sans",
     color: "#5e615c",
   },
   colums: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
-    flexGrow: "1",
-    flexShrink: "1",
     position: "relative",
-    marginTop: "20",
+    marginTop: 8,
+    marginBottom: 8,
   },
   rows: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     position: "relative",
-    marginBottom: "5",
+    marginBottom: 5,
+  },
+  dividerMain: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#9ca3af",
+    borderBottomStyle: "solid",
+    marginVertical: 10,
+  },
+  dividerGroup: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#d1d5db",
+    borderBottomStyle: "solid",
+    marginVertical: 10,
+  },
+  groupWrapper: {
+    // Evita que el grupo se corte entre páginas
+    breakInside: "avoid",
   },
 });
 
 const PDFdesempeno = ({ DATOS, anios, datosUsuario, etiquetas }) => {
+  const filtered = DATOS?.filter(
+    (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios
+  );
+
+  // Agrupar por CATEGORIA_ORDEN
+  const grouped = filtered?.reduce((acc, pre) => {
+    const key = pre.CATEGORIA_ORDEN;
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(pre);
+    return acc;
+  }, {});
+
+  const groupEntries = Object.entries(grouped || {});
+
   return (
     <Document>
-      <Page size="A4">
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            padding: "24px 24px 24px 24px",
-          }}
-        >
-          <View style={styles.rows}>
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignItems: "flex-end",
-                marginRight: "20",
-              }}
-            >
-              <Image
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  display: "block",
-                  borderRadius: "8px",
-                }}
-                src={datosUsuario.src}
-              ></Image>
-            </View>
-            <View style={styles.colums}>
-              <Text
-                style={{
-                  fontSize: "18px",
-                  marginBottom: "5",
-                }}
-              >
-                {etiquetas} {anios}
-              </Text>
-              <Text
-                style={{
-                  fontSize: "12px",
-                  marginBottom: "5",
-                }}
-              >
-                {datosUsuario.nombre}
-              </Text>
-              <View style={styles.rows}>
-                <Text style={styles.txtInfo}>{datosUsuario.Id}</Text>
-                <Text style={styles.txtInfo}>{datosUsuario.Job}</Text>
-                <Text style={styles.txtInfo}>{datosUsuario.Organitation}</Text>
-              </View>
-            </View>
-          </View>
+      <Page size="A4" style={styles.page}>
+        {/* Header */}
+        <View style={styles.rows} fixed>
           <View
             style={{
-              display: "flex",
-              flexBasis: "auto",
-              borderBottom: "1px",
-              borderBottomColor: "grey",
-              marginVertical: "5",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "flex-end",
+              marginRight: 20,
             }}
-          ></View>
-
-          {DATOS?.filter(
-            (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios
-          ).map((pre) => (
-            <View style={styles.colums}>
-              <Text style={styles.txtTitle}>{pre.TITULO}</Text>
-              <Text style={styles.txtBody}>{pre.VALORES}</Text>
+          >
+            <Image
+              style={{
+                width: 60,
+                height: 60,
+                borderRadius: 8,
+              }}
+              src={datosUsuario.src}
+            />
+          </View>
+          <View style={{ flexDirection: "column", flexGrow: 1 }}>
+            <Text style={{ fontSize: 18, marginBottom: 5 }}>
+              {etiquetas} {anios - 1}
+            </Text>
+            <Text style={{ fontSize: 12, marginBottom: 5 }}>
+              {datosUsuario.nombre}
+            </Text>
+            <View style={styles.rows}>
+              <Text style={styles.txtInfo}>{datosUsuario.Id}</Text>
+              <Text style={styles.txtInfo}>{datosUsuario.Job}</Text>
+              <Text style={styles.txtInfo}>{datosUsuario.Organitation}</Text>
             </View>
-          ))}
+          </View>
         </View>
+
+        {/* Divider principal del header */}
+        <View style={styles.dividerMain} fixed />
+
+        {/* Contenido agrupado por CATEGORIA_ORDEN */}
+        {groupEntries.map(([categoriaOrden, preguntas], groupIndex) => (
+          <View key={categoriaOrden} style={styles.groupWrapper} wrap={false}>
+            {/* Divider entre grupos */}
+            {groupIndex !== 0 && <View style={styles.dividerGroup} />}
+
+            {preguntas.map((pre, index) => (
+              <View key={index} style={styles.colums}>
+                <Text style={styles.txtTitle}>{pre.TITULO}</Text>
+                <Text style={styles.txtBody}>{pre.VALORES}</Text>
+              </View>
+            ))}
+          </View>
+        ))}
       </Page>
     </Document>
   );
 };
+
 export default PDFdesempeno;

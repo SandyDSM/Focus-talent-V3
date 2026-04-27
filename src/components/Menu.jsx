@@ -48,7 +48,7 @@ export default function Menu(props) {
         shrink="0"
         position="relative"
         padding="32px 0px 32px 0px"
-        backgroundColor="rgba(84,131,232,1)"
+        backgroundColor="rgba(64,106,191,1)"
         {...getOverrideProps(overrides, "Frame 415")}
       >
         <Flex
@@ -381,6 +381,46 @@ export default function Menu(props) {
                 ></Text>
               </Flex>
             </Link>
+            <Link to="/permissions">
+              <Flex
+                gap="16px"
+                direction="row"
+                width="unset"
+                height="unset"
+                justifyContent="flex-start"
+                alignItems="center"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                {...getOverrideProps(overrides, "FraPermission")}
+              >
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="400"
+                  color="rgba(13,26,38,1)"
+                  lineHeight="24px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  letterSpacing="0.01px"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  grow="1"
+                  shrink="1"
+                  basis="0"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children="Permisos de busqueda"
+                  {...getOverrideProps(overrides, "Permission")}
+                ></Text>
+              </Flex>
+            </Link>
           </Flex>
 
           <Flex
@@ -516,7 +556,7 @@ export default function Menu(props) {
               paths={[
                 {
                   d: "M4.875 10.8885L0.275 6.2885C0.175 6.1885 0.104333 6.08017 0.063 5.9635C0.021 5.84683 0 5.72183 0 5.5885C0 5.45517 0.021 5.33017 0.063 5.2135C0.104333 5.09683 0.175 4.9885 0.275 4.8885L4.9 0.263502C5.08333 0.0801684 5.31233 -0.00749826 5.587 0.000501742C5.86233 0.00916841 6.09167 0.105168 6.275 0.288501C6.45833 0.471835 6.55 0.705168 6.55 0.988502C6.55 1.27183 6.45833 1.50517 6.275 1.6885L3.375 4.5885L15.575 4.5885L15.575 1.5885C15.575 1.30517 15.671 1.0675 15.863 0.875502C16.0543 0.684168 16.2917 0.588502 16.575 0.588502C16.8583 0.588502 17.0957 0.684168 17.287 0.875502C17.479 1.0675 17.575 1.30517 17.575 1.5885L17.575 5.5885C17.575 5.87183 17.479 6.10917 17.287 6.3005C17.0957 6.4925 16.8583 6.5885 16.575 6.5885L3.375 6.5885L6.3 9.5135C6.48333 9.69684 6.571 9.92583 6.563 10.2005C6.55433 10.4758 6.45833 10.7052 6.275 10.8885C6.09167 11.0718 5.85833 11.1635 5.575 11.1635C5.29167 11.1635 5.05833 11.0718 4.875 10.8885Z",
-                  fill: "rgba(50,126,184,1)",
+                  fill: "rgba(51,51,193,1)",
                   fillRule: "nonzero",
                 },
               ]}

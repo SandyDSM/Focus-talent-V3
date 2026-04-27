@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { Flex, Image, Text, useBreakpointValue } from "@aws-amplify/ui-react";
 import Ilustration from "./Ilustration";
 export default function HeadAdminiHome(props) {
@@ -69,7 +69,7 @@ export default function HeadAdminiHome(props) {
       position="relative"
       borderRadius="20px"
       padding="0px 0px 0px 0px"
-      backgroundColor="rgba(100,145,237,1)"
+      backgroundColor="rgba(64,106,191,1)"
       display="flex"
       {...getOverrideProps(overrides, "HeadAdminiHome")}
       {...rest}

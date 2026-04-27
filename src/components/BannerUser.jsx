@@ -7,8 +7,11 @@ function BannerUser() {
 
     const sendOverridesPerson = {
         "image 3": { src: photo },
-        Heading: { children: `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}` },
-        close: {display: 'none '}
+        Heading: { 
+          children: `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}`,
+          color: "#043495"
+         },
+        close: {display: 'none '},
     }
     const sendOverridesPersonLoad = {
       "image 3": { src: "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png" },

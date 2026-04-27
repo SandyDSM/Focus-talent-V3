@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import IconNotification from "./IconNotification";
 import { Divider, Flex, SwitchField, Text } from "@aws-amplify/ui-react";
 export default function Tablerows(props) {

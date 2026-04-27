@@ -5,11 +5,20 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { Page2ArrowProps } from "./Page2Arrow";
 import { PageArrowProps } from "./PageArrow";
 import { PageProps } from "./Page";
 import { FlexProps } from "@aws-amplify/ui-react";
+export declare type EscapeHatchProps = {
+    [elementHierarchy: string]: Record<string, unknown>;
+} | null;
+export declare type VariantValues = {
+    [key: string]: string;
+};
+export declare type Variant = {
+    variantValues: VariantValues;
+    overrides: EscapeHatchProps;
+};
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ContbarraOverridesProps = {
     Contbarra?: PrimitiveOverrideProps<FlexProps>;

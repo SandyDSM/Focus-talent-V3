@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import Iconidiom from "./Iconidiom";
 import { Divider, Flex, Text } from "@aws-amplify/ui-react";
 import IconActions from "./IconActions";
@@ -63,7 +63,7 @@ export default function RowsNotif(props) {
             position="relative"
             borderRadius="1px"
             padding="7px 2px 7px 2px"
-            backgroundColor="rgba(100,145,237,1)"
+            backgroundColor="rgba(64,106,191,1)"
             language="esp"
             {...getOverrideProps(overrides, "icon-idiom")}
           ></Iconidiom>

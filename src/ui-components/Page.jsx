@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { Flex, Text } from "@aws-amplify/ui-react";
 export default function Page(props) {
   const { overrides: overridesProp, ...rest } = props;
@@ -18,7 +18,7 @@ export default function Page(props) {
     {
       overrides: {
         "1": { color: "rgba(255,255,255,1)" },
-        Page: { backgroundColor: "rgba(1,97,167,1)" },
+        Page: { backgroundColor: "rgba(0,0,143,1)" },
       },
       variantValues: { type: "active" },
     },
@@ -38,7 +38,7 @@ export default function Page(props) {
       alignItems="flex-start"
       position="relative"
       padding="0px 8px 0px 8px"
-      backgroundColor="rgba(188,211,228,1)"
+      backgroundColor="rgba(184,206,249,1)"
       display="flex"
       {...getOverrideProps(overrides, "Page")}
       {...rest}

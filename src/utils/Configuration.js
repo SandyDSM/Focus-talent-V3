@@ -21,6 +21,14 @@ Amplify.configure({
             {
                 name: "API Anios",
                 endpoint: "https://42d2x1t7cj.execute-api.us-east-1.amazonaws.com/prod"  
+            },
+            {
+                name: "Usuarios",
+                endpoint: "https://pjtjx5g690.execute-api.us-east-1.amazonaws.com/prod"  
+            },
+            {
+                name: "ORGCHART",
+                endpoint: "https://exiermsu9h.execute-api.us-east-1.amazonaws.com/Production"  
             }
         ]
     }

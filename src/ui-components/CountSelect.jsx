@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Flex, SelectField } from "@aws-amplify/ui-react";
 import Page2Arrow from "./Page2Arrow";
 import PageArrow from "./PageArrow";
@@ -104,7 +104,7 @@ export default function CountSelect(props) {
           shrink="0"
           position="relative"
           padding="0px 8px 0px 8px"
-          backgroundColor="rgba(188,211,228,1)"
+          backgroundColor="rgba(184,206,249,1)"
           type="default"
           {...getOverrideProps(overrides, "Page38334446")}
         ></Page>
@@ -119,7 +119,7 @@ export default function CountSelect(props) {
           shrink="0"
           position="relative"
           padding="0px 8px 0px 8px"
-          backgroundColor="rgba(188,211,228,1)"
+          backgroundColor="rgba(184,206,249,1)"
           type="default"
           {...getOverrideProps(overrides, "Page38334447")}
         ></Page>

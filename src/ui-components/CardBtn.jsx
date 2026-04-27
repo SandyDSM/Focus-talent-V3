@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import FlatIcons from "./FlatIcons";
 import { Flex, Text } from "@aws-amplify/ui-react";
 export default function CardBtn(props) {
@@ -24,7 +24,7 @@ export default function CardBtn(props) {
       overrides: {
         FlatIcons: { type: "notf" },
         Title: {},
-        CardBtn: { backgroundColor: "rgba(103,160,203,1)" },
+        CardBtn: { backgroundColor: "rgba(102,102,209,1)" },
       },
       variantValues: { type: "Notificaciones" },
     },
@@ -32,7 +32,7 @@ export default function CardBtn(props) {
       overrides: {
         FlatIcons: { type: "tags" },
         Title: {},
-        CardBtn: { backgroundColor: "rgba(159,187,244,1)" },
+        CardBtn: { backgroundColor: "rgba(230,238,254,1)" },
       },
       variantValues: { type: "Etiquetas" },
     },
@@ -40,7 +40,7 @@ export default function CardBtn(props) {
       overrides: {
         FlatIcons: { type: "team" },
         Title: {},
-        CardBtn: { backgroundColor: "rgba(38,72,140,1)" },
+        CardBtn: { backgroundColor: "rgba(0,34,102,1)" },
       },
       variantValues: { type: "Equipo" },
     },

@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Button, Divider, Flex, Heading, Text } from "@aws-amplify/ui-react";
 import TableSelect from "./TableSelect";
 import Page2Arrow from "./Page2Arrow";
@@ -166,7 +166,7 @@ export default function ModlConfirmEstructura(props) {
           shrink="0"
           position="relative"
           padding="0px 8px 0px 8px"
-          backgroundColor="rgba(188,211,228,1)"
+          backgroundColor="rgba(184,206,249,1)"
           type="default"
           {...getOverrideProps(overrides, "Page35594749")}
         ></Page>
@@ -181,7 +181,7 @@ export default function ModlConfirmEstructura(props) {
           shrink="0"
           position="relative"
           padding="0px 8px 0px 8px"
-          backgroundColor="rgba(188,211,228,1)"
+          backgroundColor="rgba(184,206,249,1)"
           type="default"
           {...getOverrideProps(overrides, "Page35594750")}
         ></Page>

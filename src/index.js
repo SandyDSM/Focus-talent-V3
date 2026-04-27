@@ -12,6 +12,8 @@ import awsconfig from './aws-exports';
 import "@aws-amplify/ui-react/styles.css";
 import { studioTheme } from "./ui-components";
 
+import './i18n';
+
 Amplify.configure(awsconfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

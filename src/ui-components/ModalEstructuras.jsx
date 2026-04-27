@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import {
   Button,
   Divider,
@@ -277,7 +277,7 @@ export default function ModalEstructuras(props) {
               shrink="0"
               position="relative"
               padding="0px 8px 0px 8px"
-              backgroundColor="rgba(188,211,228,1)"
+              backgroundColor="rgba(184,206,249,1)"
               type="default"
               {...getOverrideProps(overrides, "Page35594000")}
             ></Page>
@@ -292,7 +292,7 @@ export default function ModalEstructuras(props) {
               shrink="0"
               position="relative"
               padding="0px 8px 0px 8px"
-              backgroundColor="rgba(188,211,228,1)"
+              backgroundColor="rgba(184,206,249,1)"
               type="default"
               {...getOverrideProps(overrides, "Page35594001")}
             ></Page>
@@ -385,7 +385,7 @@ export default function ModalEstructuras(props) {
                 fontFamily="Inter"
                 fontSize="12px"
                 fontWeight="400"
-                color="rgba(0,95,168,1)"
+                color="rgba(0,0,179,1)"
                 lineHeight="24px"
                 textAlign="center"
                 display="block"
@@ -421,7 +421,7 @@ export default function ModalEstructuras(props) {
                 fontFamily="Inter"
                 fontSize="12px"
                 fontWeight="400"
-                color="rgba(0,95,168,1)"
+                color="rgba(0,0,179,1)"
                 textTransform="uppercase"
                 lineHeight="24px"
                 textAlign="center"
@@ -458,7 +458,7 @@ export default function ModalEstructuras(props) {
                 fontFamily="Inter"
                 fontSize="12px"
                 fontWeight="400"
-                color="rgba(0,95,168,1)"
+                color="rgba(0,0,179,1)"
                 textTransform="uppercase"
                 lineHeight="24px"
                 textAlign="center"
@@ -586,7 +586,7 @@ export default function ModalEstructuras(props) {
               shrink="0"
               position="relative"
               padding="0px 8px 0px 8px"
-              backgroundColor="rgba(188,211,228,1)"
+              backgroundColor="rgba(184,206,249,1)"
               type="default"
               {...getOverrideProps(overrides, "Page35594015")}
             ></Page>
@@ -601,7 +601,7 @@ export default function ModalEstructuras(props) {
               shrink="0"
               position="relative"
               padding="0px 8px 0px 8px"
-              backgroundColor="rgba(188,211,228,1)"
+              backgroundColor="rgba(184,206,249,1)"
               type="default"
               {...getOverrideProps(overrides, "Page35594016")}
             ></Page>

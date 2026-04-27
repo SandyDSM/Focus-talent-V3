@@ -10,7 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+} from "./utils";
 import { Flex, Icon } from "@aws-amplify/ui-react";
 export default function Iconidiom(props) {
   const { overrides: overridesProp, ...rest } = props;
@@ -41,8 +41,8 @@ export default function Iconidiom(props) {
           viewBox: {
             minX: 0,
             minY: 0,
-            width: 20.7138671875,
-            height: 10.5999755859375,
+            width: 20.713855743408203,
+            height: 10.600000381469727,
           },
           paths: [
             {
@@ -73,8 +73,8 @@ export default function Iconidiom(props) {
           viewBox: {
             minX: 0,
             minY: 0,
-            width: 21.22509765625,
-            height: 10.5999755859375,
+            width: 21.225208282470703,
+            height: 10.600000381469727,
           },
           paths: [
             {
@@ -105,8 +105,8 @@ export default function Iconidiom(props) {
           viewBox: {
             minX: 0,
             minY: 0,
-            width: 22.60009765625,
-            height: 10.5999755859375,
+            width: 22.599998474121094,
+            height: 10.600000381469727,
           },
           paths: [
             {
@@ -146,7 +146,7 @@ export default function Iconidiom(props) {
       position="relative"
       borderRadius="1px"
       padding="7px 2px 7px 2px"
-      backgroundColor="rgba(100,145,237,1)"
+      backgroundColor="rgba(64,106,191,1)"
       display="flex"
       {...getOverrideProps(overrides, "Iconidiom")}
       {...rest}
@@ -157,8 +157,8 @@ export default function Iconidiom(props) {
         viewBox={{
           minX: 0,
           minY: 0,
-          width: 20.60009765625,
-          height: 10.5999755859375,
+          width: 20.599998474121094,
+          height: 10.600000381469727,
         }}
         paths={[
           {

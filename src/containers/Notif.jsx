@@ -45,7 +45,7 @@ function Notif() {
   };
 
   const Insertar = async () => {
-    alert(document.getElementById("idioma").value);
+   // alert(document.getElementById("idioma").value);
     try {
       const respdesemp = await fetch(
         `https://talento-itzahuia.com/SAC/gb_notificaciones.php`,

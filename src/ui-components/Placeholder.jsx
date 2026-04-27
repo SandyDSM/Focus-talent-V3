@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Flex, Heading, Icon, View } from "@aws-amplify/ui-react";
 export default function Placeholder(props) {
   const { overrides, ...rest } = props;
@@ -141,8 +141,8 @@ export default function Placeholder(props) {
               viewBox={{
                 minX: 0,
                 minY: 0,
-                width: 17.03515625,
-                height: 16.59619140625,
+                width: 17.034963607788086,
+                height: 16.596210479736328,
               }}
               paths={[
                 {
@@ -166,8 +166,8 @@ export default function Placeholder(props) {
               viewBox={{
                 minX: 0,
                 minY: 0,
-                width: 7.30078125,
-                height: 7.11279296875,
+                width: 7.300698757171631,
+                height: 7.112661361694336,
               }}
               paths={[
                 {
@@ -257,8 +257,8 @@ export default function Placeholder(props) {
               viewBox={{
                 minX: 0,
                 minY: 0,
-                width: 17.03515625,
-                height: 16.59619140625,
+                width: 17.034963607788086,
+                height: 16.596210479736328,
               }}
               paths={[
                 {
@@ -282,8 +282,8 @@ export default function Placeholder(props) {
               viewBox={{
                 minX: 0,
                 minY: 0,
-                width: 7.30078125,
-                height: 7.11279296875,
+                width: 7.300698757171631,
+                height: 7.112661361694336,
               }}
               paths={[
                 {

@@ -44,7 +44,7 @@ function TableRowTests({ anio, handleOpen }) {
       VALUE: valor};
       console.log('El valor de parametros es: ', parametros);
       const response = await getData('API Anios', '/setanios', parametros);
-     console.log("la respuesta es ", response);
+     //console.log("la respuesta es ", response);
     }catch (error) {
       console.log("error:", error);
     }
@@ -68,12 +68,12 @@ function TableRowTests({ anio, handleOpen }) {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row self-stretch py-2 px-9 items-center relative gap-1">
-          <Button variation="link" isDisabled={isChecked ? false : true  } onClick={()=>handleOpen()}>
+          {/*<Button variation="link" isDisabled={isChecked ? false : true  } onClick={()=>handleOpen()}>
             <IconNotification
             width="24px"
             height="24px"
             disabled={`${isChecked ? "False": "True"}`} 
-          /></Button>
+          /></Button>*/}
         <div className="flex flex-col gap-2.5 justify-center items-center py-2 px-9 relative">
           <SwitchField
             shrink="0"
@@ -90,7 +90,7 @@ function TableRowTests({ anio, handleOpen }) {
         </div>
         <div className="flex flex-col grow shrink relative whitespace-pre-wrap">
           <p className="text-sm">
-            Evaluación de desempeño y sucesión {anio.ANIO}
+            Evaluación de Talento {anio.ANIO}
           </p>
         </div>
         <p className="text-sm">{anio.ANIO}</p>

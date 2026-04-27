@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import Page2Arrow from "./Page2Arrow";
 import PageArrow from "./PageArrow";
 import Page from "./Page";
@@ -79,7 +79,7 @@ export default function Contbarra(props) {
         shrink="0"
         position="relative"
         padding="0px 8px 0px 8px"
-        backgroundColor="rgba(188,211,228,1)"
+        backgroundColor="rgba(184,206,249,1)"
         type="default"
         {...getOverrideProps(overrides, "Page34662799")}
       ></Page>
@@ -94,7 +94,7 @@ export default function Contbarra(props) {
         shrink="0"
         position="relative"
         padding="0px 8px 0px 8px"
-        backgroundColor="rgba(188,211,228,1)"
+        backgroundColor="rgba(184,206,249,1)"
         type="default"
         {...getOverrideProps(overrides, "Page34662801")}
       ></Page>

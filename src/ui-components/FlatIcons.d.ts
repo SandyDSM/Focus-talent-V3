@@ -5,14 +5,23 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { IconProps } from "@aws-amplify/ui-react";
+export declare type EscapeHatchProps = {
+    [elementHierarchy: string]: Record<string, unknown>;
+} | null;
+export declare type VariantValues = {
+    [key: string]: string;
+};
+export declare type Variant = {
+    variantValues: VariantValues;
+    overrides: EscapeHatchProps;
+};
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type FlatIconsOverridesProps = {
     FlatIcons?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type FlatIconsProps = React.PropsWithChildren<Partial<IconProps> & {
-    type?: "eval" | "notf" | "tags" | "team";
+    type?: "eval" | "notf" | "search" | "tags" | "team";
 } & {
     overrides?: FlatIconsOverridesProps | undefined | null;
 }>;

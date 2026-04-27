@@ -2,19 +2,20 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import TestCheck from "../components/TestCheck";
 import HeadCollaborator from "../components/HeadCollaborator";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useMemo, useCallback } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import BreadCrums from "../components/BreadCrums";
 import { Button, Loader } from "@aws-amplify/ui-react";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
 import Configuration from '../utils/Configuration'
 import { API } from 'aws-amplify';
+import BannerUser from "../components/BannerUser";
 
 function TeamTestDetail() {
   const { id } = useParams();
   const { getCollDetail, collDetail, isLoading, usuarioActualDatos, evalTxt } =
     useContext(CollaboratorsContext);
-console.log("Datos de usario actual", usuarioActualDatos);
+  //console.log("Datos de usario actual", usuarioActualDatos);
   const [testPreguntas, setTestPreguntas] = useState();
   const [aniosFill, setAniosFill] = useState([]);
   const [selall, setSelall]=useState(false);
@@ -22,6 +23,9 @@ console.log("Datos de usario actual", usuarioActualDatos);
 
 //////////////////////////////////////////////////////////////////////////////////
 const [dataBehavior, setDataBehavior] =useState([])
+const [dataLiderazgo, setDataLiderazgo] =useState([])
+const [cmtLiderazgo, setCmtLiderazgo] =useState([])
+const [collLoaded, setCollLoaded] = useState(false);
 
   function getData(papiName, ppath, pparameters) {
     const apiName = papiName;
@@ -33,10 +37,10 @@ const [dataBehavior, setDataBehavior] =useState([])
   
     return API.get(apiName, path, myInit);
   }
-
+/*
   const fetcBehaviors = async () => {
+    setLoad(true);
     try{
-      setLoad(true);
       let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
       USER_ID: `${collDetail.ID_COLABORADOR}`};
       const response = await getData('API Behaviors', '/behaviors', parametros);
@@ -49,24 +53,100 @@ const [dataBehavior, setDataBehavior] =useState([])
     }
   };
 
-
-////////////////////////////////////////////////////////////////////////////////////
-/*  
-const fetchDesemp = async () => {
-    const respdesemp = await fetch(
-      `https://talento-itzahuia.com/SAC/gb_info.php?ID=${id}`,
-      {
-        method: "get",
-        headers: { "Content-Type": "application/json" },
-      }
-    ); //.then(respdesemp => {setTestPreguntas(respdesemp.json);})
-    const datos = await respdesemp.json();
-    obtenMaxAnio(datos);
-    setTestPreguntas(datos);
+  const datosLiderazgo = async () => {
+    setLoad(true);
+    try{
+      let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
+      USER_ID: `${collDetail.ID_COLABORADOR}`};
+      const response = await getData('API Behaviors', '/competliderazgo', parametros);
+      setDataLiderazgo(response)
+      //console.log("liderazgo",response)
+    }catch (error) {
+      console.log("error:", error);
+    }finally{
+      setLoad(false)
+    }
   };
-*/
-///////////////////////////////////////////////////////////////////////////////
 
+  const comentsLiderazgo = async () => {
+    setLoad(true);
+    try{
+      let parametros={LANGUAGE: `${usuarioActualDatos.IDIOMA}`,
+      USER_ID: `${collDetail.ID_COLABORADOR}`,
+      VP_USER_ID:`${usuarioActualDatos.ID_COLABORADOR}`};
+      const response = await getData('API Behaviors', '/competliderazgocoment', parametros);
+      setCmtLiderazgo(response)
+      console.log("Coments",response)
+    }catch (error) {
+      console.log("error:", error);
+    }finally{
+      setLoad(false)
+    }
+  };*/
+
+
+  const loadAllData = useCallback(async () => {
+    setLoad(true);
+    try {
+      const parametrosBase = {
+        LANGUAGE: usuarioActualDatos.IDIOMA,
+        USER_ID: collDetail.ID_COLABORADOR,
+      };
+  
+      const parametrosComentarios = {
+        ...parametrosBase,
+        VP_USER_ID: usuarioActualDatos.ID_COLABORADOR,
+      };
+  
+      const [liderazgoRes, comentariosRes, behaviorsRes] = await Promise.all([
+        getData('API Behaviors', '/competliderazgo', parametrosBase),
+        getData('API Behaviors', '/competliderazgocoment', parametrosComentarios),
+        getData('API Behaviors', '/behaviors', parametrosBase),
+      ]);
+  
+      setDataLiderazgo(liderazgoRes || []);
+      setCmtLiderazgo(comentariosRes || []);
+      setDataBehavior(behaviorsRes || []);
+  
+      //console.log("CMT", comentariosRes);
+    } catch (error) {
+      console.log("Error al cargar datos de comportamiento y liderazgo:", error);
+    } finally {
+      setLoad(false);
+    }
+  }, [collDetail.ID_COLABORADOR, usuarioActualDatos.IDIOMA]);
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getCollDetail(id);
+      setCollLoaded(true); // Indicar que la data se ha cargado
+      fetchDesemp();
+    };
+  
+    fetchData();
+  }, [id, selall]);
+  
+  useEffect(() => {
+    if (collLoaded && collDetail.ID_COLABORADOR) {
+      //console.log("ID", collDetail.ID_COLABORADOR);
+      loadAllData();
+    }
+  }, [collLoaded, collDetail.ID_COLABORADOR]);
+
+/*
+  useEffect(() => {
+    getCollDetail(id).catch(null);
+    fetchDesemp();
+  }, [id,selall]);
+
+
+  const colaboradorId = useMemo(() => collDetail.ID_COLABORADOR, [collDetail]);
+  useEffect(() => {
+    console.log("ID",collDetail.ID_COLABORADOR)
+      loadAllData();
+  }, [colaboradorId]);
+  */
 
 const fetchDesemp = async () => {
   
@@ -75,10 +155,10 @@ const fetchDesemp = async () => {
   let parametros={INTERNAL_ID: idtemp,
   LANGUAGE: `'${localStorage.getItem("IdiomaUsuario")}'`
 };
-  console.log("los parametros van XXXXXXXXXXXXXXXXXXXXXXXXXX", parametros);
+  //console.log("los parametros van XXXXXXXXXXXXXXXXXXXXXXXXXX", parametros);
   try{
     const response = await getData('API PerfPoten', '/perfpot', parametros);
-   console.log("La data que llega es ", response);
+   //console.log("La data que llega es ", response);
     obtenMaxAnio(response);
     setTestPreguntas(response);
 
@@ -87,9 +167,6 @@ const fetchDesemp = async () => {
     console.log("error aaa:", error);
   }
 };
-
-
-
 
   const obtenMaxAnio=(datos)=>
   {
@@ -104,13 +181,15 @@ const fetchDesemp = async () => {
         setAniosFill([filtros[0].ANO_EVAL]);
   }
 
-
+/*
   useEffect(() => {
+    setCmtLiderazgo([]); // Limpia los comentarios antes de cargar nuevos
     getCollDetail(id).catch(null);
-   // fetcBehaviors();
-    fetchDesemp();
-  }, [id,selall]);
-  
+  if (collDetail?.ID_COLABORADOR) {
+    comentsLiderazgo();
+  }
+  }, [id,selall,collDetail.ID_COLABORADOR]);
+  */
 
   const sendOverridesHeadColl = {
     NameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
@@ -118,6 +197,7 @@ const fetchDesemp = async () => {
     Job: { children: collDetail.PUESTO },
     Organitation: { children: collDetail.ORGANIZACION },
     Profile: { src: `data:image/jpg;base64,${collDetail.FOTO}` },
+    txt: { children: `${evalTxt}`  },
   };
 
   const sendOverridesBehavior = {
@@ -167,7 +247,7 @@ const fetchDesemp = async () => {
           : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
     },
   };
-  if (isLoading) {
+  if (load) {
     return (
       <div className="h-screen flex justify-center items-center ">
         <Loader size="large" />
@@ -177,6 +257,7 @@ const fetchDesemp = async () => {
 
   return (
     <div>
+      <div className="my-3"><BannerUser/></div>
       <div className="mt-2 flex flex-col gap-2">
         <div className="mx-4">
           <BreadCrums
@@ -192,6 +273,9 @@ const fetchDesemp = async () => {
             aniosFill={aniosFill}
             testPreguntas={testPreguntas}
             dataBehavior={dataBehavior}
+            dataLiderazgo={dataLiderazgo}
+            cmtLiderazgo={cmtLiderazgo}
+
           />
         </div>
       </div>
@@ -207,7 +291,9 @@ const fetchDesemp = async () => {
         <div className="col-span-1 md:col-span-3">
             <PerformaceAndSucesion
               aniosFill={aniosFill}
-              fetcBehaviors={fetcBehaviors}
+              fetcBehaviors={loadAllData}
+            datosLiderazgo={() => {}}
+            comentsLiderazgo={() => {}}
               load={load}
               sendOverridesBehavior={sendOverridesBehavior}
               sendOverridesPerformanceTest={sendOverridesPerformanceTest}
@@ -217,6 +303,8 @@ const fetchDesemp = async () => {
               usuarioActualDatos={usuarioActualDatos}
               collDetail={collDetail}
               dataBehavior={dataBehavior}
+              dataLiderazgo={dataLiderazgo}
+              cmtLiderazgo={cmtLiderazgo}
             />
         </div>
       </div>
@@ -225,3 +313,4 @@ const fetchDesemp = async () => {
 }
 
 export default TeamTestDetail;
+

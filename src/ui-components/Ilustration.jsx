@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "./utils";
 import { Icon, View } from "@aws-amplify/ui-react";
 export default function Ilustration(props) {
   const { overrides, ...rest } = props;
@@ -48,8 +48,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 12.892578125,
-            height: 12.9088134765625,
+            width: 12.892996788024902,
+            height: 12.908839225769043,
           }}
           paths={[
             {
@@ -75,8 +75,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 35.8095703125,
-            height: 35.72998046875,
+            width: 35.80999755859375,
+            height: 35.72999572753906,
           }}
           paths={[
             {
@@ -115,8 +115,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 85.48046875,
-              height: 49.51983642578125,
+              width: 85.47998046875,
+              height: 49.519813537597656,
             }}
             paths={[
               {
@@ -143,7 +143,7 @@ export default function Ilustration(props) {
               minX: 0,
               minY: 0,
               width: 85.0546875,
-              height: 0.343505859375,
+              height: 0.34350109100341797,
             }}
             paths={[
               {
@@ -169,8 +169,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 26.3095703125,
-              height: 26.3096923828125,
+              width: 26.309717178344727,
+              height: 26.309717178344727,
             }}
             paths={[
               {
@@ -196,8 +196,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 38.0947265625,
-              height: 0.212646484375,
+              width: 38.09469985961914,
+              height: 0.21261975169181824,
             }}
             paths={[
               {
@@ -223,8 +223,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 38.9208984375,
-              height: 0.2535400390625,
+              width: 38.92069625854492,
+              height: 0.2535264194011688,
             }}
             paths={[
               {
@@ -250,8 +250,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 38.9208984375,
-              height: 0.212646484375,
+              width: 38.92069625854492,
+              height: 0.21264471113681793,
             }}
             paths={[
               {
@@ -277,8 +277,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 38.9208984375,
-              height: 0.2535400390625,
+              width: 38.92069625854492,
+              height: 0.2535513639450073,
             }}
             paths={[
               {
@@ -305,8 +305,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 122.4140625,
-            height: 122.414306640625,
+            width: 122.41432041131338,
+            height: 122.41432041131338,
           }}
           paths={[
             {
@@ -334,8 +334,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 20.169921875,
-            height: 25.719970703125,
+            width: 20.169998168945312,
+            height: 25.720001220703125,
           }}
           paths={[
             {
@@ -358,7 +358,12 @@ export default function Ilustration(props) {
         <Icon
           width="0.63px"
           height="7.27px"
-          viewBox={{ minX: 0, minY: 0, width: 0.625, height: 7.27001953125 }}
+          viewBox={{
+            minX: 0,
+            minY: 0,
+            width: 0.6252776384353638,
+            height: 7.270000457763672,
+          }}
           paths={[
             {
               d: "M0.312639 0C0.587611 1.18909 0.682 2.41281 0.592638 3.63C0.681491 4.85051 0.587113 6.07744 0.312639 7.27C0.0381644 6.07744 -0.0562139 4.85051 0.03264 3.63C-0.0567228 2.41281 0.037667 1.18909 0.312639 0L0.312639 0Z",
@@ -383,8 +388,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 5.0703125,
-            height: 5.07000732421875,
+            width: 5.07000732421875,
+            height: 5.069999694824219,
           }}
           paths={[
             {
@@ -410,8 +415,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 6.1396484375,
-            height: 3.72998046875,
+            width: 6.1399993896484375,
+            height: 3.7299957275390625,
           }}
           paths={[
             {
@@ -434,7 +439,7 @@ export default function Ilustration(props) {
         <Icon
           width="10px"
           height="0.63px"
-          viewBox={{ minX: 0, minY: 0, width: 10, height: 0.632568359375 }}
+          viewBox={{ minX: 0, minY: 0, width: 10, height: 0.6325483322143555 }}
           paths={[
             {
               d: "M10 0.31455C8.34959 0.599375 6.67189 0.693325 5 0.594548C3.32811 0.693325 1.65041 0.599375 0 0.31455C1.65109 0.035785 3.32811 -0.0581266 5 0.0345507C6.67189 -0.0581266 8.34891 0.035785 10 0.31455Z",
@@ -459,8 +464,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 9.3603515625,
-            height: 0.6259765625,
+            width: 9.360008239746094,
+            height: 0.626000165939331,
           }}
           paths={[
             {
@@ -486,8 +491,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 7.4296875,
-            height: 5.97998046875,
+            width: 7.4300079345703125,
+            height: 5.980003356933594,
           }}
           paths={[
             {
@@ -513,8 +518,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 4.9599609375,
-            height: 8.260009765625,
+            width: 4.9600067138671875,
+            height: 8.259994506835938,
           }}
           paths={[
             {
@@ -537,7 +542,7 @@ export default function Ilustration(props) {
         <Icon
           width="0.63px"
           height="10px"
-          viewBox={{ minX: 0, minY: 0, width: 0.62890625, height: 10 }}
+          viewBox={{ minX: 0, minY: 0, width: 0.6290990710258484, height: 10 }}
           paths={[
             {
               d: "M0.31455 10C0.035785 8.34891 -0.0581266 6.67189 0.0345507 5C-0.0581266 3.32811 0.035785 1.65109 0.31455 0C0.593314 1.65109 0.687226 3.32811 0.594548 5C0.687226 6.67189 0.593314 8.34891 0.31455 10Z",
@@ -562,8 +567,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 7.419921875,
-            height: 6.46002197265625,
+            width: 7.420013427734375,
+            height: 6.459999084472656,
           }}
           paths={[
             {
@@ -589,8 +594,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 6.169921875,
-            height: 6.16998291015625,
+            width: 6.1699981689453125,
+            height: 6.170005798339844,
           }}
           paths={[
             {
@@ -616,8 +621,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 5.400390625,
-            height: 5.4000244140625,
+            width: 5.399993896484375,
+            height: 5.400001525878906,
           }}
           paths={[
             {
@@ -643,8 +648,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 5.2802734375,
-            height: 5.27001953125,
+            width: 5.279998779296875,
+            height: 5.270000457763672,
           }}
           paths={[
             {
@@ -685,8 +690,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 70.2998046875,
-              height: 70.1400146484375,
+              width: 70.29998779296875,
+              height: 70.13999938964844,
             }}
             paths={[
               {
@@ -710,7 +715,7 @@ export default function Ilustration(props) {
         <Icon
           width="74px"
           height="17.03px"
-          viewBox={{ minX: 0, minY: 0, width: 74, height: 17.0316162109375 }}
+          viewBox={{ minX: 0, minY: 0, width: 74, height: 17.03164291381836 }}
           paths={[
             {
               d: "M0 17.0316L74 17.0316C74 17.0316 67.46 5.13165 48.42 6.86165C30.24 8.52165 29.31 1.01165 20.06 0.0816467C10.81 -0.848353 3.08 6.25164 0 17.0316Z",
@@ -735,8 +740,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 59.8701171875,
-            height: 13.78570556640625,
+            width: 59.87001037597656,
+            height: 13.785696983337402,
           }}
           paths={[
             {
@@ -778,8 +783,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 145.2802734375,
-            height: 97.280029296875,
+            width: 145.27999877929688,
+            height: 97.27999877929688,
           }}
           paths={[
             {
@@ -802,7 +807,12 @@ export default function Ilustration(props) {
         <Icon
           width="145.75px"
           height="97.78px"
-          viewBox={{ minX: 0, minY: 0, width: 145.75, height: 97.780029296875 }}
+          viewBox={{
+            minX: 0,
+            minY: 0,
+            width: 145.75,
+            height: 97.77999877929688,
+          }}
           paths={[
             {
               d: "M145.45 97.66C145.45 97.66 145.45 97.05 145.45 95.89L145.45 90.76C145.45 86.26 145.45 79.65 145.39 71.2C145.39 54.29 145.33 30 145.28 0.389999L145.49 0.589996L0.220001 0.649994L0.480011 0.389999C0.480011 35.04 0.480011 67.99 0.480011 97.66L0.240021 97.42L104.91 97.54L134.81 97.6L142.76 97.6L144.82 97.6L142.82 97.6L134.91 97.6L105.06 97.66L0.240021 97.78L0 97.78L0 97.54C0 67.87 0 34.92 0 0.269989L0 0L0.27002 0L145.54 0.0599976L145.75 0.0599976L145.75 0.269989C145.75 29.94 145.67 54.27 145.64 71.2C145.64 79.64 145.64 86.2 145.59 90.72C145.59 92.95 145.59 94.66 145.59 95.82C145.59 96.98 145.45 97.66 145.45 97.66Z",
@@ -827,8 +837,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 145.16015625,
-            height: 0.52001953125,
+            width: 145.16000366210938,
+            height: 0.5200042724609375,
           }}
           paths={[
             {
@@ -869,8 +879,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 2.33984375,
-              height: 2.34002685546875,
+              width: 2.34004545211792,
+              height: 2.3400065898895264,
             }}
             paths={[
               {
@@ -912,8 +922,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 2.33984375,
-              height: 2.34002685546875,
+              width: 2.34004545211792,
+              height: 2.3400065898895264,
             }}
             paths={[
               {
@@ -955,8 +965,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 2.33984375,
-              height: 2.34002685546875,
+              width: 2.34004545211792,
+              height: 2.3400065898895264,
             }}
             paths={[
               {
@@ -1005,8 +1015,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 67.51953125,
-            height: 0.52001953125,
+            width: 67.51998901367188,
+            height: 0.5200042724609375,
           }}
           paths={[
             {
@@ -1032,8 +1042,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 67.51953125,
-            height: 0.52001953125,
+            width: 67.51998901367188,
+            height: 0.519989013671875,
           }}
           paths={[
             {
@@ -1059,8 +1069,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 67.51953125,
-            height: 0.52001953125,
+            width: 67.51998901367188,
+            height: 0.5200042724609375,
           }}
           paths={[
             {
@@ -1086,8 +1096,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 39.91015625,
-            height: 0.52001953125,
+            width: 39.910003662109375,
+            height: 0.5200042724609375,
           }}
           paths={[
             {
@@ -1128,8 +1138,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 18.2099609375,
-              height: 18.2099609375,
+              width: 18.209991455078125,
+              height: 18.209991455078125,
             }}
             paths={[
               {
@@ -1156,8 +1166,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 18.2099609375,
-            height: 18.2099609375,
+            width: 18.209991455078125,
+            height: 18.209991455078125,
           }}
           paths={[
             {
@@ -1183,8 +1193,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 18.2099609375,
-            height: 18.2099609375,
+            width: 18.209991455078125,
+            height: 18.209991455078125,
           }}
           paths={[
             {
@@ -1210,8 +1220,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 18.2099609375,
-            height: 18.2099609375,
+            width: 18.209991455078125,
+            height: 18.209991455078125,
           }}
           paths={[
             {
@@ -1290,8 +1300,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 18.2099609375,
-              height: 18.2099609375,
+              width: 18.209991455078125,
+              height: 18.209991455078125,
             }}
             paths={[
               {
@@ -1333,8 +1343,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 18.2099609375,
-              height: 18.2099609375,
+              width: 18.209991455078125,
+              height: 18.209991455078125,
             }}
             paths={[
               {
@@ -1376,8 +1386,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 18.2099609375,
-              height: 18.2099609375,
+              width: 18.209991455078125,
+              height: 18.209991455078125,
             }}
             paths={[
               {
@@ -1404,7 +1414,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 129.419921875,
+            width: 129.42001342773438,
             height: 52.57000732421875,
           }}
           paths={[
@@ -1431,8 +1441,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 129.76953125,
-            height: 52.83001708984375,
+            width: 129.77000427246094,
+            height: 52.83000183105469,
           }}
           paths={[
             {
@@ -1458,8 +1468,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 129.2197265625,
-            height: 0.40997314453125,
+            width: 129.22000122070312,
+            height: 0.410003662109375,
           }}
           paths={[
             {
@@ -1500,8 +1510,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 1.8798828125,
-              height: 1.8800048828125,
+              width: 1.8799973726272583,
+              height: 1.8800030946731567,
             }}
             paths={[
               {
@@ -1543,8 +1553,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 1.8798828125,
-              height: 1.8800048828125,
+              width: 1.8800002336502075,
+              height: 1.8800030946731567,
             }}
             paths={[
               {
@@ -1586,8 +1596,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 1.8798828125,
-              height: 1.8800048828125,
+              width: 1.880001187324524,
+              height: 1.8800030946731567,
             }}
             paths={[
               {
@@ -1614,8 +1624,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 31.259765625,
-            height: 31.260009765625,
+            width: 31.26000213623047,
+            height: 31.259994506835938,
           }}
           paths={[
             {
@@ -1641,8 +1651,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 71.8603515625,
-            height: 0.4100341796875,
+            width: 71.85999298095703,
+            height: 0.410003662109375,
           }}
           paths={[
             {
@@ -1668,8 +1678,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 71.8603515625,
-            height: 0.4100341796875,
+            width: 71.85999298095703,
+            height: 0.410003662109375,
           }}
           paths={[
             {
@@ -1692,7 +1702,7 @@ export default function Ilustration(props) {
         <Icon
           width="46.3px"
           height="0.25px"
-          viewBox={{ minX: 0, minY: 0, width: 46.2998046875, height: 0.25 }}
+          viewBox={{ minX: 0, minY: 0, width: 46.30000305175781, height: 0.25 }}
           paths={[
             {
               d: "M46.3 0.130005C46.1435 0.140689 45.9865 0.140689 45.83 0.130005L44.48 0.130005L39.53 0.190002L23.17 0.25L6.82 0.190002L1.82 0.130005L0.470001 0.130005C0.313492 0.139938 0.156509 0.139938 0 0.130005C0.155844 0.107299 0.314157 0.107299 0.470001 0.130005L1.82 0.130005L6.82 0.0600128L23.17 0L39.53 0.0600128L44.48 0.130005L45.83 0.130005C45.9858 0.106422 46.1442 0.106422 46.3 0.130005L46.3 0.130005Z",
@@ -1732,8 +1742,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 31.259765625,
-              height: 31.260009765625,
+              width: 31.26000213623047,
+              height: 31.259994506835938,
             }}
             paths={[
               {
@@ -1776,8 +1786,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 44.4794921875,
-            height: 35.5150146484375,
+            width: 44.47997283935547,
+            height: 35.51500701904297,
           }}
           paths={[
             {
@@ -1803,8 +1813,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 1.4482421875,
-            height: 2.108154296875,
+            width: 1.4484081268310547,
+            height: 2.1081249713897705,
           }}
           paths={[
             {
@@ -1830,7 +1840,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 1.900390625,
+            width: 1.899993896484375,
             height: 4.6300048828125,
           }}
           paths={[
@@ -1857,7 +1867,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 0.9599609375,
+            width: 0.9597880244255066,
             height: 4.91998291015625,
           }}
           paths={[
@@ -1881,7 +1891,7 @@ export default function Ilustration(props) {
         <Icon
           width="0.56px"
           height="5px"
-          viewBox={{ minX: 0, minY: 0, width: 0.564453125, height: 5 }}
+          viewBox={{ minX: 0, minY: 0, width: 0.5646397471427917, height: 5 }}
           paths={[
             {
               d: "M0.343556 0C0.660287 1.6541 0.636476 3.35541 0.273564 5C0.0196565 4.19257 -0.0587571 3.3402 0.0435685 2.5C-0.034382 1.65483 0.0678571 0.802734 0.343556 0Z",
@@ -1906,7 +1916,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 1.1064453125,
+            width: 1.1064717769622803,
             height: 4.8900146484375,
           }}
           paths={[
@@ -1930,7 +1940,7 @@ export default function Ilustration(props) {
         <Icon
           width="2px"
           height="4.56px"
-          viewBox={{ minX: 0, minY: 0, width: 2, height: 4.56353759765625 }}
+          viewBox={{ minX: 0, minY: 0, width: 2, height: 4.5635600090026855 }}
           paths={[
             {
               d: "M2 0.00356233C1.66616 1.6488 0.984236 3.20358 0 4.56356C0.100145 3.72192 0.368817 2.9091 0.789993 2.17358C1.35999 0.903576 1.87 -0.0664377 2 0.00356233Z",
@@ -1955,8 +1965,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 2.9912109375,
-            height: 4.03662109375,
+            width: 2.9908716678619385,
+            height: 4.03660774230957,
           }}
           paths={[
             {
@@ -1979,7 +1989,12 @@ export default function Ilustration(props) {
         <Icon
           width="3.47px"
           height="3.65px"
-          viewBox={{ minX: 0, minY: 0, width: 3.47265625, height: 3.6484375 }}
+          viewBox={{
+            minX: 0,
+            minY: 0,
+            width: 3.4730446338653564,
+            height: 3.64844012260437,
+          }}
           paths={[
             {
               d: "M3.46152 0.0108419C3.57152 0.110842 2.88152 1.01084 1.93152 2.01084C0.98152 3.01084 0.121522 3.73085 0.011522 3.64085C-0.098478 3.55085 0.591531 2.64085 1.55153 1.64085C2.51153 0.640847 3.36152 -0.0991581 3.46152 0.0108419Z",
@@ -2004,8 +2019,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.5302734375,
-            height: 3.6190185546875,
+            width: 3.5307602882385254,
+            height: 3.6190226078033447,
           }}
           paths={[
             {
@@ -2031,8 +2046,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.1796875,
-            height: 3.88385009765625,
+            width: 3.1800079345703125,
+            height: 3.883869171142578,
           }}
           paths={[
             {
@@ -2058,8 +2073,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 2.2900390625,
-            height: 4.45001220703125,
+            width: 2.2899932861328125,
+            height: 4.4499969482421875,
           }}
           paths={[
             {
@@ -2085,7 +2100,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 0.96875,
+            width: 0.968704342842102,
             height: 4.92999267578125,
           }}
           paths={[
@@ -2112,8 +2127,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 0.919921875,
-            height: 4.94000244140625,
+            width: 0.9200455546379089,
+            height: 4.9399871826171875,
           }}
           paths={[
             {
@@ -2139,8 +2154,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 2.3701171875,
-            height: 4.3851318359375,
+            width: 2.3699951171875,
+            height: 4.385104179382324,
           }}
           paths={[
             {
@@ -2166,8 +2181,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.845703125,
-            height: 3.21929931640625,
+            width: 3.8455841541290283,
+            height: 3.2192931175231934,
           }}
           paths={[
             {
@@ -2193,8 +2208,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 4.73046875,
-            height: 1.6297607421875,
+            width: 4.730010986328125,
+            height: 1.6297305822372437,
           }}
           paths={[
             {
@@ -2220,8 +2235,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 4.990234375,
-            height: 0.67333984375,
+            width: 4.989990234375,
+            height: 0.6733558773994446,
           }}
           paths={[
             {
@@ -2247,8 +2262,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 4.396484375,
-            height: 2.3599853515625,
+            width: 4.396457195281982,
+            height: 2.3600006103515625,
           }}
           paths={[
             {
@@ -2274,8 +2289,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.0693359375,
-            height: 3.96295166015625,
+            width: 3.0696778297424316,
+            height: 3.962961435317993,
           }}
           paths={[
             {
@@ -2301,8 +2316,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 1.2734375,
-            height: 4.8599853515625,
+            width: 1.2734867334365845,
+            height: 4.8600006103515625,
           }}
           paths={[
             {
@@ -2328,8 +2343,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 1.28125,
-            height: 4.8599853515625,
+            width: 1.2816251516342163,
+            height: 4.8600006103515625,
           }}
           paths={[
             {
@@ -2355,8 +2370,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 2.919921875,
-            height: 4.07244873046875,
+            width: 2.9199981689453125,
+            height: 4.07244348526001,
           }}
           paths={[
             {
@@ -2382,8 +2397,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.9052734375,
-            height: 3.1500244140625,
+            width: 3.905473470687866,
+            height: 3.149993896484375,
           }}
           paths={[
             {
@@ -2409,8 +2424,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 4.4599609375,
-            height: 2.27001953125,
+            width: 4.459991455078125,
+            height: 2.269989013671875,
           }}
           paths={[
             {
@@ -2436,8 +2451,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 4.849609375,
-            height: 1.28546142578125,
+            width: 4.8499908447265625,
+            height: 1.285437822341919,
           }}
           paths={[
             {
@@ -2460,7 +2475,7 @@ export default function Ilustration(props) {
         <Icon
           width="5px"
           height="0.57px"
-          viewBox={{ minX: 0, minY: 0, width: 5, height: 0.57464599609375 }}
+          viewBox={{ minX: 0, minY: 0, width: 5, height: 0.5746290683746338 }}
           paths={[
             {
               d: "M5 0.172997C3.37529 0.672099 1.64336 0.706728 0 0.272988C0.81135 0.0580173 1.65352 -0.0163779 2.48999 0.0530015C3.32753 -0.0463654 4.17576 -0.00581753 5 0.172997L5 0.172997Z",
@@ -2485,7 +2500,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 4.7001953125,
+            width: 4.6999969482421875,
             height: 1.69000244140625,
           }}
           paths={[
@@ -2512,8 +2527,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.9736328125,
-            height: 3.04998779296875,
+            width: 3.973923921585083,
+            height: 3.0500030517578125,
           }}
           paths={[
             {
@@ -2539,8 +2554,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.01171875,
-            height: 4.0123291015625,
+            width: 3.012174606323242,
+            height: 4.012299537658691,
           }}
           paths={[
             {
@@ -2566,8 +2581,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 1.8701171875,
-            height: 4.64361572265625,
+            width: 1.8699951171875,
+            height: 4.643594741821289,
           }}
           paths={[
             {
@@ -2593,8 +2608,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 0.7607421875,
-            height: 4.95001220703125,
+            width: 0.7608358263969421,
+            height: 4.9499969482421875,
           }}
           paths={[
             {
@@ -2617,7 +2632,7 @@ export default function Ilustration(props) {
         <Icon
           width="0.65px"
           height="5px"
-          viewBox={{ minX: 0, minY: 0, width: 0.650390625, height: 5 }}
+          viewBox={{ minX: 0, minY: 0, width: 0.6505265235900879, height: 5 }}
           paths={[
             {
               d: "M0.0981543 0.00999451C0.424084 0.791638 0.580846 1.63343 0.558146 2.48C0.701586 3.31637 0.677787 4.17288 0.488138 5C0.0186567 3.37734 -0.114046 1.67583 0.0981543 0L0.0981543 0.00999451Z",
@@ -2642,8 +2657,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 1.322265625,
-            height: 4.83001708984375,
+            width: 1.3221286535263062,
+            height: 4.8300018310546875,
           }}
           paths={[
             {
@@ -2669,8 +2684,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 2.1103515625,
-            height: 4.5435791015625,
+            width: 2.1099853515625,
+            height: 4.543606281280518,
           }}
           paths={[
             {
@@ -2696,8 +2711,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 2.490234375,
-            height: 4.29486083984375,
+            width: 2.489990234375,
+            height: 4.294890880584717,
           }}
           paths={[
             {
@@ -2723,8 +2738,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 2.4404296875,
-            height: 4.3836669921875,
+            width: 2.44000244140625,
+            height: 4.383696556091309,
           }}
           paths={[
             {
@@ -2747,7 +2762,12 @@ export default function Ilustration(props) {
         <Icon
           width="1.75px"
           height="4.69px"
-          viewBox={{ minX: 0, minY: 0, width: 1.75, height: 4.69000244140625 }}
+          viewBox={{
+            minX: 0,
+            minY: 0,
+            width: 1.75,
+            height: 4.6899871826171875,
+          }}
           paths={[
             {
               d: "M0 0C0.905205 1.4236 1.5014 3.02139 1.75 4.68999C1.22075 4.02452 0.838973 3.25417 0.62999 2.42999C0.257019 1.67123 0.0426641 0.844399 0 0L0 0Z",
@@ -2772,8 +2792,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 0.7822265625,
-            height: 4.969970703125,
+            width: 0.7820168137550354,
+            height: 4.970001220703125,
           }}
           paths={[
             {
@@ -2799,7 +2819,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 0.9091796875,
+            width: 0.9091267585754395,
             height: 4.95001220703125,
           }}
           paths={[
@@ -2826,7 +2846,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 1.9296875,
+            width: 1.9300079345703125,
             height: 4.6199951171875,
           }}
           paths={[
@@ -2853,8 +2873,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.072265625,
-            height: 3.9796142578125,
+            width: 3.072007656097412,
+            height: 3.9796297550201416,
           }}
           paths={[
             {
@@ -2880,8 +2900,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 3.9736328125,
-            height: 3.05999755859375,
+            width: 3.9738571643829346,
+            height: 3.0600051879882812,
           }}
           paths={[
             {
@@ -2904,7 +2924,12 @@ export default function Ilustration(props) {
         <Icon
           width="4.59px"
           height="1.98px"
-          viewBox={{ minX: 0, minY: 0, width: 4.59375, height: 1.97998046875 }}
+          viewBox={{
+            minX: 0,
+            minY: 0,
+            width: 4.593627452850342,
+            height: 1.9799957275390625,
+          }}
           paths={[
             {
               d: "M4.59363 0C3.92014 0.505834 3.16625 0.894608 2.36362 1.15C1.63124 1.56189 0.832602 1.84276 0.0036313 1.98C-0.0663687 1.85 0.883635 1.23 2.16364 0.68C2.90631 0.259151 3.74039 0.0257427 4.59363 0L4.59363 0Z",
@@ -2929,8 +2954,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 2.4609375,
-            height: 0.67626953125,
+            width: 2.461204767227173,
+            height: 0.6762852668762207,
           }}
           paths={[
             {
@@ -2956,7 +2981,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 28.0380859375,
+            width: 28.038225173950195,
             height: 25.962158203125,
           }}
           paths={[
@@ -2983,8 +3008,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 57.8896484375,
-            height: 48.37841796875,
+            width: 57.889617919921875,
+            height: 48.378395080566406,
           }}
           paths={[
             {
@@ -3010,8 +3035,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 19.6025390625,
-            height: 25.3599853515625,
+            width: 19.602102279663086,
+            height: 25.360008239746094,
           }}
           paths={[
             {
@@ -3037,8 +3062,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 30.66015625,
-            height: 14.37017822265625,
+            width: 30.659988403320312,
+            height: 14.37018871307373,
           }}
           paths={[
             {
@@ -3064,8 +3089,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 26.69921875,
-            height: 17.63800048828125,
+            width: 26.69956398010254,
+            height: 17.63797950744629,
           }}
           paths={[
             {
@@ -3091,8 +3116,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 18.421875,
-            height: 18.4215087890625,
+            width: 18.421531609854355,
+            height: 18.421537289090224,
           }}
           paths={[
             {
@@ -3120,8 +3145,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 15.6953125,
-            height: 15.77069091796875,
+            width: 15.695333480834961,
+            height: 15.770694732666016,
           }}
           paths={[
             {
@@ -3147,8 +3172,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 13.9599609375,
-            height: 21.59002685546875,
+            width: 13.960305213928223,
+            height: 21.589996337890625,
           }}
           paths={[
             {
@@ -3174,8 +3199,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 14.1484375,
-            height: 22.010009765625,
+            width: 14.148465156555176,
+            height: 22.009994506835938,
           }}
           paths={[
             {
@@ -3217,8 +3242,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 6.9697265625,
-            height: 22.52001953125,
+            width: 6.970001220703125,
+            height: 22.519989013671875,
           }}
           paths={[
             {
@@ -3244,8 +3269,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 6.9697265625,
-            height: 31.780029296875,
+            width: 6.970001220703125,
+            height: 31.779998779296875,
           }}
           paths={[
             {
@@ -3271,7 +3296,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 6.9697265625,
+            width: 6.970001220703125,
             height: 36.1099853515625,
           }}
           paths={[
@@ -3298,7 +3323,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 6.9697265625,
+            width: 6.970001220703125,
             height: 40.67999267578125,
           }}
           paths={[
@@ -3341,8 +3366,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 12.9228515625,
-            height: 12.918701171875,
+            width: 12.922995567321777,
+            height: 12.918682098388672,
           }}
           paths={[
             {
@@ -3368,7 +3393,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 35.7998046875,
+            width: 35.79998779296875,
             height: 35.8800048828125,
           }}
           paths={[
@@ -3395,8 +3420,8 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 39.26953125,
-            height: 39.2900390625,
+            width: 39.27000427246094,
+            height: 39.290008544921875,
           }}
           paths={[
             {
@@ -3437,8 +3462,8 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 39.26953125,
-              height: 39.2900390625,
+              width: 39.27000427246094,
+              height: 39.290008544921875,
             }}
             paths={[
               {
@@ -3465,7 +3490,7 @@ export default function Ilustration(props) {
           viewBox={{
             minX: 0,
             minY: 0,
-            width: 22.73046875,
+            width: 22.729995727539062,
             height: 22.80999755859375,
           }}
           paths={[
@@ -3507,7 +3532,7 @@ export default function Ilustration(props) {
             viewBox={{
               minX: 0,
               minY: 0,
-              width: 22.73046875,
+              width: 22.729995727539062,
               height: 22.80999755859375,
             }}
             paths={[
