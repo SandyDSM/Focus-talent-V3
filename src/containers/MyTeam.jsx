@@ -1,4 +1,3 @@
-//import { SelectField } from "@aws-amplify/ui-react";
 import LoadingSpinner from '../components/LoadingSpinner';
 import React from "react";
 import HeadTeam from "../components/HeadTeam";
