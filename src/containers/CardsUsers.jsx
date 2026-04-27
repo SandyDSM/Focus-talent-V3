@@ -1,54 +1,22 @@
 import CardColaborador from "../components/CardColaborador";
 
+const AVATAR = "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png";
+
 const CardsUsers = ({ collaborators, sub }) => {
-  
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {collaborators?.map((colaborator) => (
-        <div key={colaborator.INTERNAL_ID}>
-          {colaborator.EQUIPO == "1" & sub === false ? (
-            <CardColaborador
-             idcol={colaborator.INTERNAL_ID}
-              type="More"
-              width={"100%"}
-              height={"100%"}
-              overrides={{
-                idEmploy: { children: colaborator.ID_COLABORADOR },
-                NameCol: {
-                  children: `${colaborator.NOMBRE} ${colaborator.APELLIDOS}`,
-                },
-                Job: { children: colaborator.PUESTO },
-                Organitation: { children: colaborator.ORGANIZACION },
-                profile: {
-                  src: `${colaborator.FOTO}` != "" ? `data:image/jpg;base64,${colaborator?.FOTO}` : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png" 
-                },
-                FramePhoto : {
-                  style: { cursor: "pointer" },
-                },
-              }}
-            />
-          ) : (
-            <CardColaborador
-            idcol={colaborator.INTERNAL_ID}
-              width={"100%"}
-              height={"100%"}
-              overrides={{
-                idEmploy: { children: colaborator.ID_COLABORADOR },
-                NameCol: {
-                  children: `${colaborator.NOMBRE} ${colaborator.APELLIDOS}`,
-                },
-                Job: { children: colaborator.PUESTO },
-                Organitation: { children: colaborator.ORGANIZACION },
-                profile: {
-                  src: `${colaborator.FOTO}` != "" ? `data:image/jpg;base64,${colaborator?.FOTO}` : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png"
-                },
-                FramePhoto: {
-                  style: { cursor: "pointer" },
-                },
-              }}
-            />
-          )}
-        </div>
+        <CardColaborador
+          key={colaborator.INTERNAL_ID}
+          idcol={colaborator.INTERNAL_ID}
+          type={colaborator.EQUIPO === "1" && !sub ? "More" : "Default"}
+          foto={colaborator.FOTO ? `data:image/jpg;base64,${colaborator.FOTO}` : AVATAR}
+          idEmpleado={colaborator.ID_COLABORADOR}
+          nombre={`${colaborator.NOMBRE} ${colaborator.APELLIDOS}`}
+          puesto={colaborator.PUESTO}
+          organizacion={colaborator.ORGANIZACION}
+          style={{ cursor: "pointer" }}
+        />
       ))}
     </div>
   );

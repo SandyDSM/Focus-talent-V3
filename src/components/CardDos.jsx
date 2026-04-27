@@ -1,4 +1,4 @@
-import { Button } from "@aws-amplify/ui-react";
+import { Button } from "./ui/Button";
 import Iconteam from "../ui-components/Iconteam";
 import { Link } from "react-router-dom";
 import React, { useContext, useState, useEffect } from "react";

@@ -1,7 +1,6 @@
 import React from "react";
 import TableRowOrganization from "./TableRowOrganization";
 import HeadTable from "./HeadTable";
-import { Button, Divider, Heading, TextField } from "@aws-amplify/ui-react";
 import TableRowOrganizationSelect from "./TableRowOrganizationSelect";
 import PaginationEstructuras from "./PaginationEstructuras";
 import { useState } from "react";
@@ -269,31 +268,24 @@ arreglotmp.push(obj.ID+";"+obj.INCLUDE_SUB)
 
   return (
     <div className="flex flex-col gap-4 p-4 w-full">
-      <Heading level={5}>
+      <h2 className="text-lg font-semibold">
         Seleccionar la estructura organizacional a notificar
-      </Heading>
+      </h2>
       <div className="flex flex-col gap-1">
-        <Heading level={6}> Busqueda</Heading>
-        <Divider />
+        <h3 className="text-base font-semibold">Busqueda</h3>
+        <hr className="border-t border-gray-200 w-full" />
       </div>
       <div className="flex flex-row gap-4 items-end	">
-        <TextField
-          label={"Nombre"}
-          id={"nombre"}
-          placeholder={"Buscar por nombre"}
-          size="small"
-        />
-        <TextField
-          id={"ID"}
-          label={"ID"}
-          placeholder={"Buscar por ID"}
-          size="small"
-        />
-        <Button
-          variation="primary"
-          style={{ backgroundColor: "#004B85", color: "white" }}
-          loadingText="Buscando"
-          size="small"
+        <div className="flex flex-col gap-1">
+          <label htmlFor="nombre" className="text-xs font-medium text-gray-700">Nombre</label>
+          <input id="nombre" placeholder="Buscar por nombre" className="border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-bmb-blue" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="ID" className="text-xs font-medium text-gray-700">ID</label>
+          <input id="ID" placeholder="Buscar por ID" className="border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-bmb-blue" />
+        </div>
+        <button
+          className="bg-bmb-blue text-white text-xs px-3 py-1.5 rounded hover:bg-bmb-secundary transition-colors self-end"
           onClick={() => {
             if (document.getElementById("nombre").value !== null) {
               searchbyName(document.getElementById("nombre").value);
@@ -303,11 +295,11 @@ arreglotmp.push(obj.ID+";"+obj.INCLUDE_SUB)
           }}
         >
           Buscar
-        </Button>
+        </button>
       </div>
       <div className="flex flex-col gap-1">
-        <Heading level={6}> Estructuras seleccionadas</Heading>
-        <Divider />
+        <h3 className="text-base font-semibold">Estructuras seleccionadas</h3>
+        <hr className="border-t border-gray-200 w-full" />
       </div>
       <div className="flex flex-col gap-0">
         {organizationSelect?.map((org, index) => (
@@ -320,8 +312,8 @@ arreglotmp.push(obj.ID+";"+obj.INCLUDE_SUB)
         ))}
       </div>
       <div className="flex flex-col gap-1">
-        <Heading level={6}> Estructuras</Heading>
-        <Divider />
+        <h3 className="text-base font-semibold">Estructuras</h3>
+        <hr className="border-t border-gray-200 w-full" />
       </div>
       <div className="w-full rounded-md bg-neutral-100 px-5 py-3 dark:bg-neutral-600">
         <ol className="list-reset flex items-center">
@@ -360,17 +352,15 @@ arreglotmp.push(obj.ID+";"+obj.INCLUDE_SUB)
         SeteoActual={setPagina}
       />
       <div className="flex flex-row gap-5 justify-end px-4">
-        <Button width={"150px"} onClick={() => close()}>
+        <button className="w-36 border border-gray-300 text-gray-700 text-sm px-4 py-2 rounded hover:bg-gray-50 transition-colors" onClick={() => close()}>
           Cancelar
-        </Button>
-        <Button
-          width={"150px"}
-          variation="primary"
-          style={{ backgroundColor: "#004B85", color: "white" }}
-          onClick={()=>enviar_correo()}
+        </button>
+        <button
+          className="w-36 bg-bmb-blue text-white text-sm px-4 py-2 rounded hover:bg-bmb-secundary transition-colors"
+          onClick={() => enviar_correo()}
         >
           Enviar
-        </Button>
+        </button>
       </div>
     </div>
   );

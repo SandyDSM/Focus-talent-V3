@@ -1,4 +1,4 @@
-import { CheckboxField, Button } from "@aws-amplify/ui-react";
+import { Button } from "./ui/Button";
 import React from "react";
 import { useEffect, useContext, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -34,14 +34,17 @@ const {filterEvaluations, buttonSelectAll, buttonClear, buttonView}=useContext(C
       });
       const y=filtros[0];
       return filtros.map((anio, index) => (
-        <CheckboxField
-        key={index}
-          label={anio}
-          name={anio}
-          value={anio}
-          defaultChecked={anio === y || selecall===true ? true : false}
-          id={anio}
-        />
+        <label key={index} className="flex items-center gap-2 text-sm cursor-pointer">
+          <input
+            type="checkbox"
+            name={anio}
+            value={anio}
+            defaultChecked={anio === y || selecall === true}
+            id={anio}
+            className="w-4 h-4 accent-bmb-blue"
+          />
+          {anio}
+        </label>
       ));
     }
   }
@@ -85,32 +88,16 @@ function limpiar(){
     <div className="card m-auto">
       <div className="m-4">
         <h2 className="text-xl text-center">{filterEvaluations}</h2>
-        <Button width={"100%"} variation="link" size="small" 
-        onClick={() => {
-          checar();
-        }}
-        >
+        <Button variation="link" size="small" onClick={() => checar()}>
           {buttonSelectAll}
         </Button>
       </div>
       <div className="flex flex-col gap-2">{Arrfiltros()}</div>
       <div className="flex gap-4 my-4">
-        <Button width={"100%"} size="small"
-         onClick={() => {
-          limpiar();
-        }}
-        
-        >
+        <Button size="small" className="flex-1" onClick={() => limpiar()}>
           {buttonClear}
         </Button>
-        <Button
-          width={"100%"}
-          variation="primary"
-          size="small"
-          onClick={() => {
-            buscar();
-          }}
-        >
+        <Button variation="primary" size="small" className="flex-1" onClick={() => buscar()}>
           {buttonView}
         </Button>
       </div>

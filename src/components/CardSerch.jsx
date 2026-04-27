@@ -1,6 +1,5 @@
 import React from 'react'
 import UserSerch from './UserSerch'
-import { Divider } from '@aws-amplify/ui-react'
 import CollaboratorsContext from "../context/collaborators";
 import { useContext, useEffect, useState } from "react";
 

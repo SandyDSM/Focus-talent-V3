@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Loader } from "@aws-amplify/ui-react";
+import LoadingSpinner from './LoadingSpinner';
 
 
 import { X } from 'lucide-react';
@@ -64,7 +64,7 @@ const ModalSearch = () => {
           height: '100vh'
         }}
       onClick={handleOverlayClick}>
-            <Loader size="large" />
+            <LoadingSpinner size="large" />
         </div>
       );
     }

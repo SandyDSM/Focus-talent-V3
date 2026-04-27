@@ -1,4 +1,3 @@
-import { Divider } from "@aws-amplify/ui-react";
 import React from "react";
 
 function HeadTableReport() {
@@ -12,13 +11,7 @@ function HeadTableReport() {
         <div className="w-2/5"><p className="text-sm"> Organización</p></div>
         <div className="w-2/5"><p className="text-sm"> Nivel</p></div>
       </div>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-      />
+      <hr className="border-t border-gray-200 w-full" />
     </div>
   );
 }

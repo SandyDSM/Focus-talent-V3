@@ -1,4 +1,3 @@
-import { TextField, PasswordField } from "@aws-amplify/ui-react";
 import { Auth } from "aws-amplify";
 import React, { useState, useContext } from "react";
 import UserContext from "../../context/UserContext";
@@ -67,32 +66,32 @@ const SignIn = ({ onSignIn }) => {
         overrides={sendOverridesLogin}
         frameInputs={
           <div className="flex flex-col self-stretch gap-4">
-            <TextField
-              id="username"
-              label="Correo electrónico"
-              placeholder="Ingresa aquí tu correo electrónico"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              isRequired={true}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  signIn();
-                }
-              }}
-            />
-            <PasswordField
-              id="password"
-              label="Contraseña"
-              placeholder="Ingresa aquí tu contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              isRequired={true}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  signIn();
-                }
-              }}
-            />
+            <div className="flex flex-col gap-1">
+              <label htmlFor="username" className="text-sm font-medium text-gray-700">Correo electrónico</label>
+              <input
+                id="username"
+                type="email"
+                placeholder="Ingresa aquí tu correo electrónico"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                onKeyPress={(e) => { if (e.key === "Enter") { signIn(); } }}
+                className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="password" className="text-sm font-medium text-gray-700">Contraseña</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Ingresa aquí tu contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                onKeyPress={(e) => { if (e.key === "Enter") { signIn(); } }}
+                className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue"
+              />
+            </div>
             {error && (
               <div className="mt-2">
                 <p className="text-sm	italic text-red-600	">

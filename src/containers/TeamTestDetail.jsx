@@ -1,11 +1,11 @@
 import React from "react";
+import LoadingSpinner from '../components/LoadingSpinner';
 import { useParams } from "react-router-dom";
 import TestCheck from "../components/TestCheck";
 import HeadCollaborator from "../components/HeadCollaborator";
 import { useEffect, useContext, useState, useMemo, useCallback } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import BreadCrums from "../components/BreadCrums";
-import { Button, Loader } from "@aws-amplify/ui-react";
 import  PerformaceAndSucesion from "./PerformaceAndSucesion";
 import Configuration from '../utils/Configuration'
 import { API } from 'aws-amplify';
@@ -191,66 +191,19 @@ const fetchDesemp = async () => {
   }, [id,selall,collDetail.ID_COLABORADOR]);
   */
 
-  const sendOverridesHeadColl = {
-    NameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
-    Id: { children: collDetail.ID_COLABORADOR },
-    Job: { children: collDetail.PUESTO },
-    Organitation: { children: collDetail.ORGANIZACION },
-    Profile: { src: `data:image/jpg;base64,${collDetail.FOTO}` },
-    txt: { children: `${evalTxt}`  },
-  };
-
-  const sendOverridesBehavior = {
-    nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
-    Id: { children: collDetail.ID_COLABORADOR },
-    Job: { children: collDetail.PUESTO },
-    Organitation: { children: collDetail.ORGANIZACION },
-    "image 4": {
-      src:
-        `${collDetail.FOTO}` != ""
-          ? `data:image/jpg;base64,${collDetail?.FOTO}`
-          : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
-    },
-
-  }
-
-  const sendOverridesPerformanceTest = {
-    nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
-    Id: { children: collDetail.ID_COLABORADOR },
-    Job: { children: collDetail.PUESTO },
-    Organitation: { children: collDetail.ORGANIZACION },
-    Profile: {
-      src:
-        `${collDetail.FOTO}` != ""
-          ? `data:image/jpg;base64,${collDetail?.FOTO}`
-          : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
-    },
-  };
+  const AVATAR = "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png";
 
   const vardatosusuario = {
     nombre: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} `,
     Id: collDetail.ID_COLABORADOR,
     Job: collDetail.PUESTO,
     Organitation: collDetail.ORGANIZACION,
-    src: `data:image/jpg;base64,${collDetail.FOTO}`,
-  };
-
-  const sendOverridesSuccesionTest = {
-    nameColl: { children: `${collDetail.NOMBRE} ${collDetail.APELLIDOS} ` },
-    Id: { children: collDetail.ID_COLABORADOR },
-    Job: { children: collDetail.PUESTO },
-    Organitation: { children: collDetail.ORGANIZACION },
-    "image 4": {
-      src:
-        `${collDetail.FOTO}` != ""
-          ? `data:image/jpg;base64,${collDetail?.FOTO}`
-          : "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png",
-    },
+    src: collDetail.FOTO ? `data:image/jpg;base64,${collDetail.FOTO}` : AVATAR,
   };
   if (load) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        <Loader size="large" />
+        <LoadingSpinner size="large" />
       </div>
     );
   }
@@ -267,15 +220,12 @@ const fetchDesemp = async () => {
         </div>
         <div>
           <HeadCollaborator
-            width={"100%"}
-            overrides={sendOverridesHeadColl}
             datosUsuario={vardatosusuario}
             aniosFill={aniosFill}
             testPreguntas={testPreguntas}
             dataBehavior={dataBehavior}
             dataLiderazgo={dataLiderazgo}
             cmtLiderazgo={cmtLiderazgo}
-
           />
         </div>
       </div>
@@ -292,16 +242,9 @@ const fetchDesemp = async () => {
             <PerformaceAndSucesion
               aniosFill={aniosFill}
               fetcBehaviors={loadAllData}
-            datosLiderazgo={() => {}}
-            comentsLiderazgo={() => {}}
               load={load}
-              sendOverridesBehavior={sendOverridesBehavior}
-              sendOverridesPerformanceTest={sendOverridesPerformanceTest}
               testPreguntas={testPreguntas}
-              sendOverridesSuccesionTest={sendOverridesSuccesionTest}
               datosUsuario={vardatosusuario}
-              usuarioActualDatos={usuarioActualDatos}
-              collDetail={collDetail}
               dataBehavior={dataBehavior}
               dataLiderazgo={dataLiderazgo}
               cmtLiderazgo={cmtLiderazgo}

@@ -1,6 +1,5 @@
 import React from 'react'
 import HeadAdmin from "../components/HeadAdmin";
-import { Heading, Divider, SearchField } from "@aws-amplify/ui-react";
 import SearchBoss from '../components/SearchBoss';
 import CollaboratorsContext from "../context/collaborators";
 import { useContext, useEffect, useState } from "react";

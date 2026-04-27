@@ -3,7 +3,7 @@ import HeadAdmin from "../components/HeadAdmin";
 import CollaborLogin from "../components/CollaborLogin";
 import { API } from 'aws-amplify';
 import * as XLSX from "xlsx";
-import { Button, TextField } from "@aws-amplify/ui-react";
+import { Button } from "../components/ui/Button";
 
 function ReportLogin() {
   const [tableAccess, setTableAccess] = useState([]);
@@ -52,20 +52,14 @@ function ReportLogin() {
       <div className='px-11'>
         <div className="card flex flex-row items-end mb-8 justify-between">
           <div className="flex flex-row gap-6">
-            <TextField 
-              label="De:" 
-              type="date" 
-              minWidth={"240px"}
-              value={dateDe}
-              onChange={(e) => setDateDe(e.target.value)}
-            />
-            <TextField 
-              label="A:" 
-              type="date"
-              minWidth={"240px"}
-              value={dateA}
-              onChange={(e) => setDateA(e.target.value)}
-            />
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-gray-700">De:</label>
+              <input type="date" value={dateDe} onChange={(e) => setDateDe(e.target.value)} className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue min-w-60" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-gray-700">A:</label>
+              <input type="date" value={dateA} onChange={(e) => setDateA(e.target.value)} className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue min-w-60" />
+            </div>
           </div>
 
           {/* ✅ Botón de exportación con xlsx */}

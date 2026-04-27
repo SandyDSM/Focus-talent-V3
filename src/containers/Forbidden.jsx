@@ -1,11 +1,10 @@
-import { Button } from "@aws-amplify/ui-react";
-import  { useNavigateAction} from "@aws-amplify/ui-react/internal";
-
 const Forbidden = () => {
-  const gBTalentOnClick = useNavigateAction({
-    type: "url",
-    url: "https://grupobimbo.csod.com/LMS/catalog/Welcome.aspx?tab_page_id=-67&tab_id=-1",
-  });
+  const handleBack = () => {
+    window.open(
+      "https://grupobimbo.csod.com/LMS/catalog/Welcome.aspx?tab_page_id=-67&tab_id=-1",
+      "_self"
+    );
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white">
@@ -20,14 +19,18 @@ const Forbidden = () => {
         }}
       ></div>
       <div className="flex items-center justify-center m-auto">
-      <div className="m-auto flex flex-col items-center justify-center gap-10 p-4">
-        <h1 className="text-6xl">Lo sentimos</h1>
-        <h2 className="text-2xl text-center">Por el momento no cuentas con acceso a esta sección</h2>
-        <Button
-        variation="primary"
-        onClick={()=>gBTalentOnClick()}
-        >Regresar a GB Talent</Button>
-      </div>
+        <div className="m-auto flex flex-col items-center justify-center gap-10 p-4">
+          <h1 className="text-6xl">Lo sentimos</h1>
+          <h2 className="text-2xl text-center">
+            Por el momento no cuentas con acceso a esta sección
+          </h2>
+          <button
+            onClick={handleBack}
+            className="bg-bmb-blue text-white px-6 py-2 rounded font-medium hover:bg-bmb-secundary transition-colors"
+          >
+            Regresar a GB Talent
+          </button>
+        </div>
       </div>
     </div>
   );

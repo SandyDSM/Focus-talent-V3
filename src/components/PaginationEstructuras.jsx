@@ -1,8 +1,6 @@
-import { Button, SelectField } from "@aws-amplify/ui-react";
 import React from "react";
 import { Page2Arrow, PageArrow } from "../ui-components";
 
-//Lo primero fue meter estos parametros en la seccion de argumentos de la funcion
 function PaginationEstructuras({
   MaxPpagina,
   BackPag,
@@ -11,13 +9,10 @@ function PaginationEstructuras({
   MaxPaginas,
   SeteoActual,
 }) {
-  //luego cree este estilo
   const estilo = {
     backgroundColor: "rgb(0,75,133)",
     color: "White",
   };
-
-  //Agregue estas funciones estiloActivo, moveTo, botones,
 
   function estiloActivo(elementoActivo, elemento1, elemento2) {
     elementoActivo.style.backgroundColor = "rgb(0,75,133)";
@@ -33,7 +28,7 @@ function PaginationEstructuras({
     const segundo = document.getElementById("segundo");
     const tercero = document.getElementById("tercero");
 
-    if (ide === "primero" ) {
+    if (ide === "primero") {
       estiloActivo(primero, segundo, tercero);
     } else if (ide === "segundo") {
       estiloActivo(segundo, primero, tercero);
@@ -44,7 +39,6 @@ function PaginationEstructuras({
   }
 
   function botones(pact, regreso) {
-    //alert(pact);
     const primero = document.getElementById("primero");
     const segundo = document.getElementById("segundo");
     const tercero = document.getElementById("tercero");
@@ -67,86 +61,61 @@ function PaginationEstructuras({
     }
   }
 
-  //console.log("paginas",MaxPaginas)
-
   return (
     <div className="flex flex-col md:flex-row gap-2 justify-end">
-      <div className="flex">
-        <Button
-          variation="link"
-          size="small"
-          onClick={
-            /*las funciones clic para cada boton */ () => {
-              SeteoActual(0);
-              botones(1, false);
-            }
-          }
+      <div className="flex items-center">
+        <button
+          className="p-1 text-bmb-secundary hover:text-bmb-blue"
+          onClick={() => { SeteoActual(0); botones(1, false); }}
         >
-          <Page2Arrow></Page2Arrow>
-        </Button>
-        <Button
-          variation="link"
-          size="small"
-          onClick={() => {
-            if (PActual > 0) {
-              SeteoActual(PActual-1);
-              //BackPag();
-              botones(PActual, true);
-            }
-          }}
+          <Page2Arrow />
+        </button>
+        <button
+          className="p-1 text-bmb-secundary hover:text-bmb-blue"
+          onClick={() => { if (PActual > 0) { SeteoActual(PActual - 1); botones(PActual, true); } }}
         >
-          <PageArrow></PageArrow>
-        </Button>
-        {/*Aqui agregue id para los 3 botones y sus funciones clic */}
-        <Button
+          <PageArrow />
+        </button>
+        <button
           style={estilo}
-          size="small"
+          className="px-2 py-1 text-sm rounded"
           id="primero"
           onClick={(e) => moveTo(e.target.innerHTML, e.target.id)}
         >
           1
-        </Button>
-        {MaxPaginas > 1 &&
-       ( 
-        <>
-       <Button
-          size="small"
-          id="segundo"
-          onClick={(e) => moveTo(e.target.innerHTML, e.target.id)}
+        </button>
+        {MaxPaginas > 1 && (
+          <>
+            <button
+              className="px-2 py-1 text-sm rounded hover:bg-gray-100"
+              id="segundo"
+              onClick={(e) => moveTo(e.target.innerHTML, e.target.id)}
+            >
+              2
+            </button>
+            {MaxPaginas > 2 && (
+              <button
+                className="px-2 py-1 text-sm rounded hover:bg-gray-100"
+                id="tercero"
+                onClick={(e) => moveTo(e.target.innerHTML, e.target.id)}
+              >
+                3
+              </button>
+            )}
+          </>
+        )}
+        <button
+          className="p-1 text-bmb-secundary hover:text-bmb-blue"
+          onClick={() => { if (PActual < MaxPaginas - 1) { SeteoActual(PActual + 1); botones(PActual + 2, false); } }}
         >
-          2
-        </Button>
-        {MaxPaginas > 2 &&
-        <Button
-          size="small"
-          id="tercero"
-          onClick={(e) => moveTo(e.target.innerHTML, e.target.id)}
+          <PageArrow type="Go" />
+        </button>
+        <button
+          className="p-1 text-bmb-secundary hover:text-bmb-blue"
+          onClick={() => { SeteoActual(MaxPaginas - 1); botones(MaxPaginas, true); }}
         >
-          3
-        </Button>
-        }
-        </>
-      )}
-        <Button variation="link"
-          onClick={() => {
-            if (PActual < MaxPaginas - 1) {
-              SeteoActual(PActual+1);
-              botones(PActual + 2, false);
-            }
-          }}
-        >
-          <PageArrow type="Go"></PageArrow>
-        </Button>
-        <Button
-          variation="link"
-          size="small"
-          onClick={() => {
-            SeteoActual(MaxPaginas - 1);
-            botones(MaxPaginas, true);
-          }}
-        >
-          <Page2Arrow type="2Go"></Page2Arrow>
-        </Button>
+          <Page2Arrow type="2Go" />
+        </button>
       </div>
     </div>
   );

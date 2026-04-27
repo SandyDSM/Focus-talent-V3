@@ -1,5 +1,3 @@
-import { SelectField } from "@aws-amplify/ui-react";
-import { Loader } from "@aws-amplify/ui-react";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
@@ -58,19 +56,6 @@ function TeamSub() {
     txt:{ children: `${teamFrom}:` },
     SearchField: {display: 'none'}
   };
-
-  const Loader = (()=>{
-  if (isLoading) {
-    return (
-      <div className="h-screen flex justify-center items-center ">
-        <Loader size="large" />
-      </div>
-    );
-  }
-})
- 
-
-Loader();
 
 const colorMapActive = {
   1: "bg-clas1-blue border-clas1-blue",

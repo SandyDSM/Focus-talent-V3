@@ -1,9 +1,10 @@
 import React from "react";
+import LoadingSpinner from '../components/LoadingSpinner';
 import HeadAdminHome from "../ui-components/HeadAdminiHome";
 import CardBtn from "../ui-components/CardBtn";
 import CollaboratorsContext from "../context/collaborators";
 import { useContext, useEffect } from "react";
-import { Loader, Button } from "@aws-amplify/ui-react";
+import { Button } from "../components/ui/Button";
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -79,7 +80,7 @@ function HomeAdmin({signOut}) {
   if (isLoading) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        <Loader size="large" />
+        <LoadingSpinner size="large" />
       </div>
     );
   }
@@ -87,7 +88,7 @@ function HomeAdmin({signOut}) {
   if (usuarioActualDatos.NOMBRE == undefined) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        <Loader size="large" />
+        <LoadingSpinner size="large" />
       </div>
     );
   }

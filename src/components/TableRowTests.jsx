@@ -1,4 +1,3 @@
-import { Button, Divider, SwitchField } from "@aws-amplify/ui-react";
 import React, { useState, useEffect } from "react";
 import { IconNotification } from "../ui-components";
 import { API } from "aws-amplify";
@@ -75,18 +74,21 @@ function TableRowTests({ anio, handleOpen }) {
             disabled={`${isChecked ? "False": "True"}`} 
           /></Button>*/}
         <div className="flex flex-col gap-2.5 justify-center items-center py-2 px-9 relative">
-          <SwitchField
-            shrink="0"
-            size="default"
-            defaultChecked={anio.ACTIVO===1 && "Checked"}
-            id={anio.ANIO}
-            name={anio.ANIO}
-            value={anio.ANIO}
-            onChange={(e) => {
-              updateAnios(e.target.id, e.target.checked);
-              setIsChecked(e.target.checked);
-            }}
-          />
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              className="sr-only peer"
+              defaultChecked={anio.ACTIVO === 1}
+              id={anio.ANIO}
+              name={anio.ANIO}
+              value={anio.ANIO}
+              onChange={(e) => {
+                updateAnios(e.target.id, e.target.checked);
+                setIsChecked(e.target.checked);
+              }}
+            />
+            <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-bmb-blue after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full" />
+          </label>
         </div>
         <div className="flex flex-col grow shrink relative whitespace-pre-wrap">
           <p className="text-sm">
@@ -96,13 +98,7 @@ function TableRowTests({ anio, handleOpen }) {
         <p className="text-sm">{anio.ANIO}</p>
       </div>
 
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-      />
+      <hr className="border-t border-gray-200 w-full" />
     </div>
   );
 }

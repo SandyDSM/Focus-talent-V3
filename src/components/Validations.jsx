@@ -1,7 +1,7 @@
 import React from "react";
+import LoadingSpinner from './LoadingSpinner';
 import { useEffect, useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
-import { Loader } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -27,7 +27,7 @@ function Validations() {
   }
   return (
     <div className="h-screen flex justify-center items-center ">
-      <Loader size="large" />
+      <LoadingSpinner size="large" />
     </div>
   );
 }

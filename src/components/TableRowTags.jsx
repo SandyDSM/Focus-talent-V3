@@ -1,4 +1,3 @@
-import { Divider } from "@aws-amplify/ui-react";
 import React from "react";
 import { IconActions } from "../ui-components";
 
@@ -32,13 +31,7 @@ etiquetasamod(etiqtemp);
             <div className="flex justify-center cursor-pointer" onClick={()=>enviaEtiquetas()}><IconActions name="edit"/></div>
         </div>
       </div>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-      />
+      <hr className="border-t border-gray-200 w-full" />
     </div>
   );
 }

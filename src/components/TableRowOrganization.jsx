@@ -1,4 +1,3 @@
-import { Divider } from "@aws-amplify/ui-react";
 import React from "react";
 import { IconActions, IconAddsec } from "../ui-components";
 
@@ -24,13 +23,7 @@ function TableRowOrganization({organization, setchild, selectorg}) {
         <p className="text-xs">{organization.ID}</p>
       </div>
 
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-      />
+      <hr className="border-t border-gray-200 w-full" />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import TableRowNotif from './TableRowNotif'
-import { Heading, Divider } from "@aws-amplify/ui-react";
 import HeadNotif from './HeadNotif';
 
 
@@ -14,8 +13,8 @@ function idiomatmp(value){
   return (
     <div className='card flex flex-col gap-6 p-4 w-full mb-8'>
         <div className="flex flex-col gap-1 my-2">
-        <Heading level={6}> Notificaciones creadas</Heading>
-        <Divider />
+        <h3 className="text-base font-semibold">Notificaciones creadas</h3>
+      <hr className="border-t border-gray-200 w-full" />
       </div>
         <HeadNotif/>
         {notif.map((notifi, index)=>(

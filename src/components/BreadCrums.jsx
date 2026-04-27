@@ -1,4 +1,4 @@
-import { Button } from "@aws-amplify/ui-react";
+import { Button } from "./ui/Button";
 import React from "react";
 import { PageArrow } from "../ui-components";
 import { Link } from "react-router-dom";
