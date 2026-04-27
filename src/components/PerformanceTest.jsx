@@ -1,442 +1,47 @@
-/***************************************************************************
- * The contents of this file were generated with Amplify Studio.           *
- * Please refrain from making any modifications to this file.              *
- * Any changes to this file will be overwritten when running amplify pull. *
- **************************************************************************/
-
 /* eslint-disable */
 import * as React from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-
 import PDFdesempeno from "../PDFDesenpeno.js";
-import {
-  getOverrideProps,
-  getOverridesFromVariants,
-  mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
-import {
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  Image,
-  Text,
-  useBreakpointValue,
-} from "@aws-amplify/ui-react";
 import IconProfile from "../ui-components/IconProfile";
 import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
-//////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////
-import preguntas from "./bodypreguntas";
-
-export default function PerformanceTest(props) {
-  const {
-    datosUsuario,
-    arrayPreguntas,
-    anios,
-    overrides: overridesProp,
-    ...restProp
-  } = props;
-
+export default function PerformanceTest({ datosUsuario, arrayPreguntas, anios }) {
   const { perReview, noData, downloadPDF } = useContext(CollaboratorsContext);
 
   const testPreguntas = arrayPreguntas;
   const thisYear = testPreguntas?.filter(
     (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios,
   );
-  console.log("per", testPreguntas);
 
-  const variants = [
-    {
-      overrides: {
-        Profile: {},
-        Users: {},
-        Heading: {},
-        nameColl: {},
-        "Icon-Profile38284846": {},
-        Id: {},
-        "Frame 423": {},
-        "Icon-Profile38284849": {},
-        Job: {},
-        "Frame 425": {},
-        "Icon-Profile38284852": {},
-        Organitation: {},
-        FrameOrganitation: {},
-        FrameDat: {},
-        "Frame 467": {},
-        "Frame 458": {},
-        Divider: {},
-
-        PREGUNTAS: {},
-
-        questionOne38284684: {},
-        answerQone38284685: {},
-        qOne: {},
-        questionOne38284687: {},
-        answerQone38284688: {},
-        qOneOne: {},
-        questionTwo38284690: {},
-        answerTwo38284691: {},
-        qTwo: {},
-        questionTwo38284693: {},
-        answerTwo38284694: {},
-        qTwoTwo: {},
-        questionThree38284696: {},
-        answerThree38284697: {},
-        qThree: {},
-        questionThree38284699: {},
-        answerThree38284700: {},
-        qThreeThree: {},
-        ButtonPDF: {},
-        "Frame 13973": {},
-        PerformanceTest: {},
-      },
-      variantValues: { breakpoint: "medium" },
-    },
-    {
-      overrides: {
-        Profile: {},
-        Users: {},
-        Heading: { level: "5" },
-        nameColl: {},
-        "Icon-Profile38284846": {},
-        Id: {},
-        "Frame 423": {},
-        "Icon-Profile38284849": {},
-        Job: { shrink: "1", grow: "1", basis: "0" },
-        "Frame 425": { width: "689px" },
-        "Icon-Profile38284852": {},
-        Organitation: {},
-        FrameOrganitation: { shrink: "0", alignSelf: "stretch" },
-        FrameDat: {
-          gap: "2px",
-          direction: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
-        },
-        "Frame 467": {},
-        "Frame 458": { alignItems: "flex-start" },
-        Divider: {},
-        questionOne38284684: {},
-        answerQone38284685: {},
-        qOne: {},
-        questionOne38284687: {},
-        answerQone38284688: {},
-        qOneOne: {},
-        questionTwo38284690: {},
-        answerTwo38284691: {},
-        qTwo: {},
-        questionTwo38284693: {},
-        answerTwo38284694: {},
-        qTwoTwo: {},
-        questionThree38284696: {},
-        answerThree38284697: {},
-        qThree: {},
-        questionThree38284699: {},
-        answerThree38284700: {},
-        qThreeThree: {},
-        ButtonPDF: { alignSelf: "stretch" },
-        "Frame 13973": {},
-        PerformanceTest: { padding: "24px 12px 24px 12px" },
-      },
-      variantValues: { breakpoint: "small" },
-    },
-  ];
-  const breakpointHook = useBreakpointValue({
-    base: "small",
-    small: "small",
-    medium: "medium",
-  });
-  const rest = { style: { transition: "all 0.25s" }, ...restProp };
-  const overrides = mergeVariantsAndOverrides(
-    getOverridesFromVariants(variants, {
-      breakpoint: breakpointHook,
-      ...props,
-    }),
-    overridesProp || {},
-  );
   return (
-    <Flex
-      gap="16px"
-      direction="column"
-      width="896px"
-      height="unset"
-      justifyContent="flex-start"
-      alignItems="flex-end"
-      overflow="hidden"
-      position="relative"
-      borderRadius="4px"
-      padding="24px 24px 24px 24px"
-      backgroundColor="rgba(255,255,255,1)"
-      display="flex"
-      {...getOverrideProps(overrides, "PerformanceTest")}
-      {...rest}
-    >
-      <Flex
-        gap="12px"
-        direction="row"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="center"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Frame 458")}
-      >
-        <Flex
-          gap="10px"
-          direction="row"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Users")}
-        >
-          <Image
-            width="92px"
-            height="92px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
-            shrink="0"
-            position="relative"
-            borderRadius="8px"
-            padding="0px 0px 0px 0px"
-            objectFit="cover"
-            {...getOverrideProps(overrides, "Profile")}
-          ></Image>
-        </Flex>
-        <Flex
-          gap="4px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="center"
-          alignItems="flex-start"
-          grow="1"
-          shrink="1"
-          basis="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Frame 467")}
-        >
-          <Heading
-            shrink="0"
-            alignSelf="stretch"
-            level="4"
-            children={`${perReview} ${anios - 1}`}
-            {...getOverrideProps(overrides, "Heading")}
-          ></Heading>
-          <Text
-            fontFamily="Inter"
-            fontSize="16px"
-            fontWeight="500"
-            color="rgba(0,0,0,0.8)"
-            lineHeight="20px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="Zurita Robles, Kadir"
-            {...getOverrideProps(overrides, "nameColl")}
-          ></Text>
-          <Flex
-            gap="12px"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="center"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            borderRadius="4px"
-            padding="0px 0px 0px 0px"
-            display="flex"
-            {...getOverrideProps(overrides, "FrameDat")}
-          >
-            <Flex
-              gap="4px"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="center"
-              shrink="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              display="flex"
-              {...getOverrideProps(overrides, "Frame 423")}
-            >
-              <IconProfile
-                width="20px"
-                height="20px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="id"
-                {...getOverrideProps(overrides, "Icon-Profile38284846")}
-              ></IconProfile>
-              <Text
-                fontFamily="Inter"
-                fontSize="10px"
-                fontWeight="500"
-                color="rgba(0,0,0,0.8)"
-                lineHeight="12.5px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children=" 2786036"
-                {...getOverrideProps(overrides, "Id")}
-              ></Text>
-            </Flex>
-            <Flex
-              gap="4px"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="center"
-              shrink="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              display="flex"
-              {...getOverrideProps(overrides, "Frame 425")}
-            >
-              <IconProfile
-                width="20px"
-                height="20px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="Job"
-                {...getOverrideProps(overrides, "Icon-Profile38284849")}
-              ></IconProfile>
-              <Text
-                fontFamily="Inter"
-                fontSize="10px"
-                fontWeight="500"
-                color="rgba(0,0,0,0.8)"
-                lineHeight="12.5px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children="Delivery Presale"
-                {...getOverrideProps(overrides, "Job")}
-              ></Text>
-            </Flex>
-            <Flex
-              gap="4px"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="center"
-              grow="1"
-              shrink="1"
-              basis="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              display="flex"
-              {...getOverrideProps(overrides, "FrameOrganitation")}
-            >
-              <IconProfile
-                width="20px"
-                height="20px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="Organitation"
-                {...getOverrideProps(overrides, "Icon-Profile38284852")}
-              ></IconProfile>
-              <Text
-                fontFamily="Inter"
-                fontSize="10px"
-                fontWeight="500"
-                color="rgba(0,0,0,0.8)"
-                lineHeight="12.5px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                grow="1"
-                shrink="1"
-                basis="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children="Organización Bimbo Brasil"
-                {...getOverrideProps(overrides, "Organitation")}
-              ></Text>
-            </Flex>
-          </Flex>
-        </Flex>
-      </Flex>
-      <Divider
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="small"
-        orientation="horizontal"
-        {...getOverrideProps(overrides, "Divider")}
-      ></Divider>
+    <div className="flex flex-col gap-4 p-6 bg-white rounded overflow-hidden w-full transition-all">
+      <div className="flex flex-row items-center gap-3">
+        <img
+          src={datosUsuario?.src}
+          alt=""
+          className="w-24 h-24 rounded-lg object-cover shrink-0"
+        />
+        <div className="flex flex-col gap-1 flex-1">
+          <h2 className="text-xl font-semibold">{`${perReview} ${anios - 1}`}</h2>
+          <p className="text-base font-medium text-black/80">{datosUsuario?.nombre}</p>
+          <div className="flex flex-wrap gap-3">
+            <div className="flex items-center gap-1">
+              <IconProfile width="20px" height="20px" type="id" />
+              <span className="text-xs font-medium">{datosUsuario?.Id}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <IconProfile width="20px" height="20px" type="Job" />
+              <span className="text-xs font-medium">{datosUsuario?.Job}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <IconProfile width="20px" height="20px" type="Organitation" />
+              <span className="text-xs font-medium">{datosUsuario?.Organitation}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr className="border-t border-gray-200 w-full" />
       {thisYear.length > 0 ? (
         <div className="w-full">
           {(() => {
@@ -444,7 +49,6 @@ export default function PerformanceTest(props) {
               (c) => c.CATEGORIA === "Desempeño" && c.ANO_EVAL === anios,
             );
 
-            // Agrupar por CATEGORIA_ORDEN para años >= 2024
             const grouped = filtered?.reduce((acc, pre) => {
               const key = pre.CATEGORIA_ORDEN;
               if (!acc[key]) acc[key] = [];
@@ -455,12 +59,9 @@ export default function PerformanceTest(props) {
             return Object.entries(grouped || {}).map(
               ([categoriaOrden, preguntas], groupIndex) => (
                 <div key={categoriaOrden} className="w-full mb-2">
-                  {/* Divider entre grupos, excepto el primero */}
                   {groupIndex !== 0 && (
                     <hr className="w-full border-t border-gray-300 my-4" />
                   )}
-
-                  {/* Preguntas de la categoría */}
                   {preguntas.map((pre, index) => (
                     <div
                       key={index}
@@ -490,14 +91,9 @@ export default function PerformanceTest(props) {
               }
               fileName={`Evaluación_de_desempeño_${anios - 1}.pdf`}
             >
-              <Button
-                shrink="0"
-                size="small"
-                isDisabled={false}
-                variation="primary"
-                children={downloadPDF}
-                {...getOverrideProps(overrides, "ButtonPDF")}
-              ></Button>
+              <button className="px-3 py-1.5 bg-bmb-blue text-white rounded text-sm font-medium hover:opacity-90">
+                {downloadPDF}
+              </button>
             </PDFDownloadLink>
           </div>
         </div>
@@ -506,6 +102,6 @@ export default function PerformanceTest(props) {
           <p>{noData}</p>
         </div>
       )}
-    </Flex>
+    </div>
   );
 }
