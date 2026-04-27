@@ -267,15 +267,12 @@ const fetchDesemp = async () => {
         </div>
         <div>
           <HeadCollaborator
-            width={"100%"}
-            overrides={sendOverridesHeadColl}
             datosUsuario={vardatosusuario}
             aniosFill={aniosFill}
             testPreguntas={testPreguntas}
             dataBehavior={dataBehavior}
             dataLiderazgo={dataLiderazgo}
             cmtLiderazgo={cmtLiderazgo}
-
           />
         </div>
       </div>

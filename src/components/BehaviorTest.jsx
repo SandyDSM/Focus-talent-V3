@@ -12,7 +12,7 @@ import {
   mergeVariantsAndOverrides,
 } from "@aws-amplify/ui-react/internal";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Loader } from "@aws-amplify/ui-react";
+import LoadingSpinner from "./LoadingSpinner";
 
 import {
   Button,
@@ -218,10 +218,10 @@ export default function BehaviorTest(props) {
   if (load) {
     return (
       <div className="h-screen flex justify-center items-center ">
-        <Loader size="large" />
+        <LoadingSpinner size="large" />
       </div>
     );
-  }
+}
 
   return (
     <Flex

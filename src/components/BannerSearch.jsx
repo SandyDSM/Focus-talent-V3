@@ -1,214 +1,63 @@
-/***************************************************************************
- * The contents of this file were generated with Amplify Studio.           *
- * Please refrain from making any modifications to this file.              *
- * Any changes to this file will be overwritten when running amplify pull. *
- **************************************************************************/
-
-/* eslint-disable */
 import * as React from "react";
 import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
-import {
-  getOverrideProps,
-  getOverridesFromVariants,
-  mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
-import {
-  Flex,
-  Heading,
-  SearchField,
-  useBreakpointValue,
-} from "@aws-amplify/ui-react";
-export default function BannerSearch(props) {
 
-  
-  
-  const { overrides: overridesProp, ...restProp } = props;
-  const variants = [
-    {
-      overrides: {
-        Heading: {},
-        "Frame 479": {},
-        SearchField: {},
-        "Frame 480": {},
-        BannerSearch: {},
-      },
-      variantValues: { breakpoint: "medium" },
-    },
-    {
-      overrides: {
-        Heading: {},
-        "Frame 479": { shrink: "0", alignSelf: "stretch" },
-        SearchField: { alignSelf: "stretch" },
-        "Frame 480": { alignSelf: "stretch" },
-        BannerSearch: {
-          direction: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
-        },
-      },
-      variantValues: { breakpoint: "small" },
-    },
-  ];
-  const breakpointHook = useBreakpointValue({
-    base: "small",
-    small: "small",
-    medium: "medium",
-  });
-  const rest = { style: { transition: "all 0.25s" }, ...restProp };
-  const overrides = mergeVariantsAndOverrides(
-    getOverridesFromVariants(variants, {
-      breakpoint: breakpointHook,
-      ...props,
-    }),
-    overridesProp || {}
-  );
-
-  
-
-    const {
-      actualizaBusqueda,
-      futleader,
-      restauraUserClasif,
-          pillbusiness,
-          basebusiness,
-          noteval,
-          notaply,
-          respfutleader,
-        resppillbusiness,
-        respbasebusiness,
-        respnoteval,
-        respnotaply
-    } = useContext(CollaboratorsContext);
+export default function BannerSearch({ OpcionSelect }) {
+  const {
+    actualizaBusqueda,
+    futleader,
+    restauraUserClasif,
+    pillbusiness,
+    basebusiness,
+    noteval,
+    notaply,
+    respfutleader,
+    resppillbusiness,
+    respbasebusiness,
+    respnoteval,
+    respnotaply,
+  } = useContext(CollaboratorsContext);
 
   const onChange = (filtro) => {
-    restauraUserClasif(props.OpcionSelect);
-  
-if(props.OpcionSelect===1){
-  if (futleader == respfutleader) {
-    const filBusqueda = futleader.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()));
-    actualizaBusqueda(filBusqueda, 1);
-  } else {
-    const filBusqueda = respfutleader.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()));
-    actualizaBusqueda(filBusqueda, 1);
-  }
-  
-}else if(props.OpcionSelect===2){
-  if(pillbusiness==resppillbusiness){
-  const filBusqueda=pillbusiness.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
-  actualizaBusqueda(filBusqueda,2); 
-  }else{
-    const filBusqueda=resppillbusiness.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
-    actualizaBusqueda(filBusqueda,2);  
-  }
-}else if(props.OpcionSelect===3){
-  if(basebusiness==respbasebusiness){
-  const filBusqueda=basebusiness.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
-  actualizaBusqueda(filBusqueda,3); 
-  }else{
-    const filBusqueda=respbasebusiness.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
-    actualizaBusqueda(filBusqueda,3);   
-  }
-}else if(props.OpcionSelect===4){
-  if(noteval==respnoteval){
-  const filBusqueda=noteval.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
-  actualizaBusqueda(filBusqueda,4);
-  }else{
-    const filBusqueda=respnoteval.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
-  actualizaBusqueda(filBusqueda,4);
-  }
+    restauraUserClasif(OpcionSelect);
 
-}else if(props.OpcionSelect===5){
-if(notaply==respnotaply){
-  const filBusqueda=notaply.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
-  actualizaBusqueda(filBusqueda,5);
-}else{
-  const filBusqueda=respnotaply.filter(f=>f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase()))
-  actualizaBusqueda(filBusqueda,5);
-}
-}
-};
-
-  const onClear=()=>{
-    restauraUserClasif(props.OpcionSelect);
-   
+    if (OpcionSelect === 1) {
+      const src = futleader === respfutleader ? futleader : respfutleader;
+      actualizaBusqueda(src.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase())), 1);
+    } else if (OpcionSelect === 2) {
+      const src = pillbusiness === resppillbusiness ? pillbusiness : resppillbusiness;
+      actualizaBusqueda(src.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase())), 2);
+    } else if (OpcionSelect === 3) {
+      const src = basebusiness === respbasebusiness ? basebusiness : respbasebusiness;
+      actualizaBusqueda(src.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase())), 3);
+    } else if (OpcionSelect === 4) {
+      const src = noteval === respnoteval ? noteval : respnoteval;
+      actualizaBusqueda(src.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase())), 4);
+    } else if (OpcionSelect === 5) {
+      const src = notaply === respnotaply ? notaply : respnotaply;
+      actualizaBusqueda(src.filter(f => f.NOMBRE.toLowerCase().includes(filtro.toLowerCase()) || f.APELLIDOS.toLowerCase().includes(filtro.toLowerCase())), 5);
+    }
   };
-  
 
-
-  
+  const onClear = () => {
+    restauraUserClasif(OpcionSelect);
+  };
 
   return (
-    <Flex
-      gap="12px"
-      direction="row"
-      width="1441px"
-      height="unset"
-      justifyContent="flex-start"
-      alignItems="center"
-      position="relative"
-      boxShadow="0px 1px 2px rgba(0, 0, 0, 0.25)"
-      borderRadius="4px"
-      padding="12px 24px 12px 24px"
-      backgroundColor="rgba(255,255,255,1)"
-      display="flex"
-      {...getOverrideProps(overrides, "BannerSearch")}
-      {...rest}
-    >
-      <Flex
-        gap="10px"
-        direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        grow="1"
-        shrink="1"
-        basis="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Frame 479")}
-      >
-        <Heading
-          shrink="0"
-          alignSelf="stretch"
-          level="3"
-          children="Mi equipo"
-          {...getOverrideProps(overrides, "Heading")}
-        ></Heading>
-      </Flex>
-      <Flex
-        gap="10px"
-        direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Frame 480")}
-      >
-
-        
-        <SearchField
-          placeholder="sdasaddsasda"
-          width="unset"
-          shrink="0"
-          size="default"
-          isDisabled={false}
-          labelHidden={true}
-          variation="default"
-          label="search"
-          onChange={(e)=>onChange(e.target.value)}
-          onClear={()=>onClear()}
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-3 bg-white rounded shadow-sm w-full transition-all">
+      <div className="flex-1">
+        <h3 className="text-lg font-medium">Mi equipo</h3>
+      </div>
+      <div className="relative">
+        <input
           id="busqueda"
-
-          {...getOverrideProps(overrides, "SearchField")}
-        ></SearchField>
-      </Flex>
-    </Flex>
+          type="search"
+          placeholder="Buscar colaborador"
+          onChange={(e) => onChange(e.target.value)}
+          onInput={(e) => { if (e.target.value === "") onClear(); }}
+          className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-64"
+        />
+      </div>
+    </div>
   );
 }

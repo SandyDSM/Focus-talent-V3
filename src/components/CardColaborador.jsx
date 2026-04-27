@@ -1,379 +1,50 @@
-/***************************************************************************
- * The contents of this file were generated with Amplify Studio.           *
- * Please refrain from making any modifications to this file.              *
- * Any changes to this file will be overwritten when running amplify pull. *
- **************************************************************************/
-
-/* eslint-disable */
 import * as React from "react";
-import {
-  getOverrideProps,
-  getOverridesFromVariants,
-  mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
-import { Flex, Image, Text } from "@aws-amplify/ui-react";
 import IconProfile from "../ui-components/IconProfile";
 import Iconteam from "../ui-components/Iconteam";
 import { Link } from "react-router-dom";
-export default function CardColaborador(props) {
-  const { overrides: overridesProp, ...rest } = props;
-  const variants = [
-    {
-      overrides: {
-        profile: {},
-        FramePhoto: {},
-        "Icon-Profile37474166": {},
-        idEmploy: {},
-        FrameId: {},
-        "Icon-Profile37474169": {},
-        NameCol: {},
-        FrameName: {},
-        "Icon-Profile37474172": {},
-        Job: {},
-        FrameLider: {},
-        "Icon-Profile37474175": {},
-        Organitation: {},
-        FrameOrga: {},
-        FrameInfo: {},
-        "Icon-team": {},
-        FrameInfoIc: {},
-        CardColaborador: {},
-      },
-      variantValues: { type: "Default" },
-    },
-    {
-      overrides: {
-        profile: {},
-        FramePhoto: {},
-        "Icon-Profile37474166": {},
-        idEmploy: {},
-        FrameId: {},
-        "Icon-Profile37474169": {},
-        NameCol: {},
-        FrameName: {},
-        "Icon-Profile37474172": {},
-        Job: {},
-        FrameLider: {},
-        "Icon-Profile37474175": {},
-        Organitation: {},
-        FrameOrga: {},
-        FrameInfo: {},
-        "Icon-team": { display: "block" },
-        FrameInfoIc: {},
-        CardColaborador: {},
-      },
-      variantValues: { type: "More" },
-    },
-  ];
-  const overrides = mergeVariantsAndOverrides(
-    getOverridesFromVariants(variants, props),
-    overridesProp || {}
-  );
+
+const AVATAR = "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png";
+
+export default function CardColaborador({ idcol, type, foto, idEmpleado, nombre, puesto, organizacion, ...rest }) {
+  const fotoSrc = foto && foto !== "" ? foto : AVATAR;
+
   return (
-    <Flex
-      gap="8px"
-      direction="row"
-      width="277px"
-      height="unset"
-      justifyContent="flex-end"
-      alignItems="center"
-      overflow="hidden"
-      position="relative"
-      boxShadow="0px 1px 3px rgba(0, 0, 0, 0.25)"
-      borderRadius="5px"
-      padding="8px 8px 8px 8px"
-      backgroundColor="rgba(255,255,255,1)"
-      display="flex"
-      {...getOverrideProps(overrides, "CardColaborador")}
+    <div
+      className="flex flex-row items-center gap-2 overflow-hidden rounded-md shadow-sm bg-white p-2"
       {...rest}
     >
-      <Link to={`/test/${props.idcol}`} >
-      <Flex
-        gap="10px"
-        direction="row"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "FramePhoto")}
-      >
-        <Image
-          width="92px"
-          height="92px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
-          shrink="0"
-          position="relative"
-          borderRadius="8px"
-          padding="0px 0px 0px 0px"
-          objectFit="cover"
-          {...getOverrideProps(overrides, "profile")}
-        ></Image>
-      </Flex>
+      <Link to={`/test/${idcol}`} className="shrink-0 cursor-pointer">
+        <img
+          src={fotoSrc}
+          alt={nombre}
+          className="w-20 h-20 rounded-lg object-cover"
+        />
       </Link>
-      <Flex
-        gap="-40px"
-        direction="row"
-        width="unset"
-        height="unset"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-        grow="1"
-        shrink="1"
-        basis="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "FrameInfoIc")}
-      >
-        <Flex
-          gap="4px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          grow="1"
-          shrink="1"
-          basis="0"
-          position="relative"
-          padding="0px 12px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "FrameInfo")}
-        >
-          <Flex
-            gap="4px"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="center"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            display="flex"
-            {...getOverrideProps(overrides, "FrameId")}
-          >
-            <IconProfile
-              width="20px"
-              height="20px"
-              display="block"
-              gap="unset"
-              alignItems="unset"
-              justifyContent="unset"
-              overflow="hidden"
-              shrink="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              type="id"
-              {...getOverrideProps(overrides, "Icon-Profile37474166")}
-            ></IconProfile>
-            <Text
-              fontFamily="Inter"
-              fontSize="12px"
-              fontWeight="500"
-              color="rgba(0,0,0,0.8)"
-              lineHeight="15px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              grow="1"
-              shrink="1"
-              basis="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children="12345678"
-              {...getOverrideProps(overrides, "idEmploy")}
-            ></Text>
-          </Flex>
-          <Flex
-            gap="4px"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="center"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            display="flex"
-            {...getOverrideProps(overrides, "FrameName")}
-          >
-            <IconProfile
-              width="20px"
-              height="20px"
-              display="block"
-              gap="unset"
-              alignItems="unset"
-              justifyContent="unset"
-              overflow="hidden"
-              shrink="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              type="Name"
-              {...getOverrideProps(overrides, "Icon-Profile37474169")}
-            ></IconProfile>
-            <Text
-              fontFamily="Inter"
-              fontSize="12px"
-              fontWeight="300"
-              color="rgba(0,0,0,0.8)"
-              textTransform="capitalize"
-              lineHeight="15px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              grow="1"
-              shrink="1"
-              basis="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children="Karla González Torres"
-              {...getOverrideProps(overrides, "NameCol")}
-            ></Text>
-          </Flex>
-          <Flex
-            gap="4px"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="center"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            display="flex"
-            {...getOverrideProps(overrides, "FrameLider")}
-          >
-            <IconProfile
-              width="20px"
-              height="20px"
-              display="block"
-              gap="unset"
-              alignItems="unset"
-              justifyContent="unset"
-              overflow="hidden"
-              shrink="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              type="Job"
-              {...getOverrideProps(overrides, "Icon-Profile37474172")}
-            ></IconProfile>
-            <Text
-              fontFamily="Inter"
-              fontSize="12px"
-              fontWeight="300"
-              color="rgba(0,0,0,0.8)"
-              lineHeight="15px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              grow="1"
-              shrink="1"
-              basis="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children="Lider de RH"
-              {...getOverrideProps(overrides, "Job")}
-            ></Text>
-          </Flex>
-          <Flex
-            gap="4px"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="center"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            display="flex"
-            {...getOverrideProps(overrides, "FrameOrga")}
-          >
-            <IconProfile
-              width="20px"
-              height="20px"
-              display="block"
-              gap="unset"
-              alignItems="unset"
-              justifyContent="unset"
-              overflow="hidden"
-              shrink="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              type="Organitation"
-              {...getOverrideProps(overrides, "Icon-Profile37474175")}
-            ></IconProfile>
-            <Text
-              fontFamily="Inter"
-              fontSize="12px"
-              fontWeight="300"
-              color="rgba(0,0,0,0.8)"
-              lineHeight="15px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              grow="1"
-              shrink="1"
-              basis="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children="Bimbo México"
-              {...getOverrideProps(overrides, "Organitation")}
-            ></Text>
-          </Flex>
-        </Flex>
-        <Link to={`/myteam/${props.idcol}`} >
-        <Iconteam
-          width="20px"
-          height="20px"
-          display="none"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
-          overflow="hidden"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          state="Active"
-          {...getOverrideProps(overrides, "Icon-team")}
-        ></Iconteam>
-        </Link>
-      </Flex>
-    </Flex>
+      <div className="flex flex-row flex-1 items-end justify-between min-w-0">
+        <div className="flex flex-col gap-1 flex-1 min-w-0 pr-3">
+          <div className="flex items-center gap-1">
+            <IconProfile width="20px" height="20px" type="id" />
+            <span className="text-xs font-medium text-gray-800 truncate">{idEmpleado}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <IconProfile width="20px" height="20px" type="Name" />
+            <span className="text-xs font-light text-gray-800 capitalize truncate">{nombre}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <IconProfile width="20px" height="20px" type="Job" />
+            <span className="text-xs font-light text-gray-800 truncate">{puesto}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <IconProfile width="20px" height="20px" type="Organitation" />
+            <span className="text-xs font-light text-gray-800 truncate">{organizacion}</span>
+          </div>
+        </div>
+        {type === "More" && (
+          <Link to={`/myteam/${idcol}`} className="shrink-0">
+            <Iconteam width="20px" height="20px" state="Active" />
+          </Link>
+        )}
+      </div>
+    </div>
   );
 }
