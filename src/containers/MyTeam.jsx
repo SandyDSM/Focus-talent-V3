@@ -30,17 +30,6 @@ const MyTeam = () => {
     basebusiness,
     noteval,
     notaply,
-    //etiquetas
-    banerSearch,
-    myteamOption11,
-    myteamOption21,
-    myteamOption31,
-    myteamOption1,
-    myteamOption2,
-    myteamOption3,
-    myteamOption4,
-    myteamOption5,
-    downloadAllPDF,
     setSubOne,
   } = useContext(CollaboratorsContext);
 
@@ -163,7 +152,7 @@ const MyTeam = () => {
       </div>
       <BannersImg language={usuarioActualDatos.IDIOMA} version={all} />
       <HeadTeam
-        title={banerSearch}
+        title={t('banerSearch')}
         OpcionSelect={option}
         all={all}
         setCloseSerchAll={setCloseSerchAll}
@@ -187,7 +176,7 @@ const MyTeam = () => {
                   }`}
                   onClick={() => toggleTab(1)}
                 >
-                  {myteamOption11}
+                  {t('myteamOption11')}
                 </div>
                 <div
                   className={
@@ -197,7 +186,7 @@ const MyTeam = () => {
                   }
                   onClick={() => toggleTab(2)}
                 >
-                  {myteamOption21}
+                  {t('myteamOption21')}
                 </div>
                 <div
                   className={
@@ -207,7 +196,7 @@ const MyTeam = () => {
                   }
                   onClick={() => toggleTab(3)}
                 >
-                  {myteamOption31}
+                  {t('myteamOption31')}
                 </div>
                 <div
                   className={
@@ -217,7 +206,7 @@ const MyTeam = () => {
                   }
                   onClick={() => toggleTab(4)}
                 >
-                  {myteamOption4}
+                  {t('myteamOption4')}
                 </div>
                 <div
                   className={`md:rounded-r-lg ${
@@ -227,41 +216,41 @@ const MyTeam = () => {
                   }`}
                   onClick={() => toggleTab(5)}
                 >
-                  {myteamOption5}
+                  {t('myteamOption5')}
                 </div>
               </div>
               <div>
                 {option === 1 && (
                   <Tabs
-                    title={myteamOption11}
+                    title={t('myteamOption11')}
                     collaborators={futleader}
                     sub={false}
                   />
                 )}
                 {option === 2 && (
                   <Tabs
-                    title={myteamOption21}
+                    title={t('myteamOption21')}
                     collaborators={pillbusiness}
                     sub={false}
                   />
                 )}
                 {option === 3 && (
                   <Tabs
-                    title={myteamOption31}
+                    title={t('myteamOption31')}
                     collaborators={basebusiness}
                     sub={false}
                   />
                 )}
                 {option === 4 && (
                   <Tabs
-                    title={myteamOption4}
+                    title={t('myteamOption4')}
                     collaborators={noteval}
                     sub={false}
                   />
                 )}
                 {option === 5 && (
                   <Tabs
-                    title={myteamOption5}
+                    title={t('myteamOption5')}
                     collaborators={notaply}
                     sub={false}
                   />

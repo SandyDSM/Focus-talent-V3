@@ -6,10 +6,12 @@ import Modal from "../components/Modal";
 import { useContext, useState, useEffect } from "react";
 import { API } from "aws-amplify";
 import Swal from 'sweetalert2'
+import { useTranslation } from "react-i18next";
 
 
 function SearchBoss({ tablePermission, handleChange, onClear }) {
-  const { resultsComplete, filtNoSeEncColabs} = useContext(CollaboratorsContext);
+  const { resultsComplete } = useContext(CollaboratorsContext);
+  const { t } = useTranslation();
   const [collSelect, setCollSelect] = useState([]);
   const [open, setOpen] = useState(false);
   const [idCol, setIdCol] = useState(0);
@@ -241,7 +243,7 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
         {resultsComplete != null ? (
           resultsComplete.length <= 0 ? (
             <p className="col-span-3 items-center text-center mt-6">
-              "{filtNoSeEncColabs}"
+              "{t('filtNoSeEncColabs')}"
             </p>
           ) : (
             resultsComplete?.map((colaborator, index) => (
@@ -255,7 +257,7 @@ function SearchBoss({ tablePermission, handleChange, onClear }) {
           )
         ) : (
           <p className="col-span-3 items-center text-center mt-6">
-            {filtNoSeEncColabs}
+            {t('filtNoSeEncColabs')}
           </p>
         )}
       </div>

@@ -2,10 +2,12 @@ import React, { useContext } from 'react'
 import CardDos from "./CardDos";
 import LoadingSpinner from './LoadingSpinner';
 import CollaboratorsContext from "../context/collaborators";
+import { useTranslation } from "react-i18next";
 
 
 function Tabs({title= "Título", collaborators, sub }) {
-  const {isLoading, noColaborators, origHireDate} = useContext(CollaboratorsContext);
+  const { isLoading } = useContext(CollaboratorsContext);
+  const { t } = useTranslation();
 
   if (isLoading) {
     return (
@@ -19,11 +21,11 @@ function Tabs({title= "Título", collaborators, sub }) {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-5 px-0 sm:px-4 gap-4 mb-12">
       {/*<div className='cardTitle col-span-1 sm:col-span-2 md:col-span-3 bg-bmb-secundary w-full'>{title}</div>*/}
       {collaborators != null ? (collaborators.length <= 0 ?(
-        <p className='col-span-1 sm:col-span-2 md:col-span-3 items-center text-center mt-6 w-full'>{noColaborators}</p>
+        <p className='col-span-1 sm:col-span-2 md:col-span-3 items-center text-center mt-6 w-full'>{t('noColaborators')}</p>
       ):      
       (collaborators?.map((colaborator, index) => (
         <CardDos key={index} colaborator={colaborator} sub={sub}/>
-        )))):(<p className='col-span-1 sm:col-span-2 md:col-span-3 items-center text-center mt-6 w-full'>{noColaborators}</p>)
+        )))):(<p className='col-span-1 sm:col-span-2 md:col-span-3 items-center text-center mt-6 w-full'>{t('noColaborators')}</p>)
         }
   </div>
 

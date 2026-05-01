@@ -1,11 +1,11 @@
 import { Button } from "./ui/Button";
 import React from "react";
 import { useEffect, useContext, useState } from "react";
-import CollaboratorsContext from "../context/collaborators";
+import { useTranslation } from "react-i18next";
 
 function TestCheck({ ElementosFiltro, defineAnios, selecall, Setselectall }) {
   ////////////////////////////////////////////////////////////////////////////
-const {filterEvaluations, buttonSelectAll, buttonClear, buttonView}=useContext(CollaboratorsContext);
+const { t } = useTranslation();
 
 
   function obtenAnios(anio) {
@@ -87,18 +87,18 @@ function limpiar(){
   return (
     <div className="card m-auto">
       <div className="m-4">
-        <h2 className="text-xl text-center">{filterEvaluations}</h2>
+        <h2 className="text-xl text-center">{t('filterEvaluations')}</h2>
         <Button variation="link" size="small" onClick={() => checar()}>
-          {buttonSelectAll}
+          {t('buttonSelectAll')}
         </Button>
       </div>
       <div className="flex flex-col gap-2">{Arrfiltros()}</div>
       <div className="flex gap-4 my-4">
         <Button size="small" className="flex-1" onClick={() => limpiar()}>
-          {buttonClear}
+          {t('buttonClear')}
         </Button>
         <Button variation="primary" size="small" className="flex-1" onClick={() => buscar()}>
-          {buttonView}
+          {t('buttonView')}
         </Button>
       </div>
     </div>

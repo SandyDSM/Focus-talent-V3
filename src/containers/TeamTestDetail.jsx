@@ -10,11 +10,13 @@ import  PerformaceAndSucesion from "./PerformaceAndSucesion";
 import Configuration from '../utils/Configuration'
 import { API } from 'aws-amplify';
 import BannerUser from "../components/BannerUser";
+import { useTranslation } from "react-i18next";
 
 function TeamTestDetail() {
   const { id } = useParams();
-  const { getCollDetail, collDetail, isLoading, usuarioActualDatos, evalTxt } =
+  const { getCollDetail, collDetail, isLoading, usuarioActualDatos } =
     useContext(CollaboratorsContext);
+  const { t } = useTranslation();
   //console.log("Datos de usario actual", usuarioActualDatos);
   const [testPreguntas, setTestPreguntas] = useState();
   const [aniosFill, setAniosFill] = useState([]);
@@ -214,7 +216,7 @@ const fetchDesemp = async () => {
       <div className="mt-2 flex flex-col gap-2">
         <div className="mx-4">
           <BreadCrums
-            text={evalTxt}
+            text={t('evalTxt')}
             colaborator={collDetail.NOMBRE}
           />
         </div>

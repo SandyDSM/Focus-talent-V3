@@ -2,11 +2,13 @@ import React from 'react'
 import Iconfilter from '../ui-components/Iconfilter'
 import { useContext, useEffect, useState } from "react";
 import CollaboratorsContext from "../context/collaborators";
+import { useTranslation } from "react-i18next";
 
 
 function Filters() {
 
-  const {resultsComplete, setResultsComplete, resultsCompleteOrg, filtColab, filtEntLegal, filtOrg, filtNivel, filtPuesto, filtUbicGeog, filtBorrFiltr} = useContext(CollaboratorsContext);
+  const { resultsComplete, setResultsComplete, resultsCompleteOrg } = useContext(CollaboratorsContext);
+  const { t } = useTranslation();
   const [entidad, setEntidad] = useState([])
   const [organizacion, setOrganizacion] = useState([])
   const [nivel, setNivel] = useState([])
@@ -182,9 +184,9 @@ const handleChangeGeo=(e)=>{
         <div className='flex align-center justify-between	'>
           <div className='flex align-center '> 
             <Iconfilter/>
-            <p className='font-bold py-1.5'>{filtColab}</p>
+            <p className='font-bold py-1.5'>{t('filtColab')}</p>
           </div>
-            <button className="text-bmb-secundary text-sm underline hover:no-underline cursor-pointer" onClick={() => DeleteFilter()}>{filtBorrFiltr}</button>
+            <button className="text-bmb-secundary text-sm underline hover:no-underline cursor-pointer" onClick={() => DeleteFilter()}>{t('filtBorrFiltr')}</button>
         </div>
         <div className='flex flex-col gap-2 md:flex-row md:gap-6 align-center mt-2'>
         <select
@@ -192,7 +194,7 @@ const handleChangeGeo=(e)=>{
             onChange={handleChangeOrg}
             value={eOrg}
           >
-            <option value="">{filtOrg}</option>
+            <option value="">{t('filtOrg')}</option>
             {organizacion.map((option, index) => (
               <option key={index} value={option}>{option}</option>
             ))}
@@ -202,7 +204,7 @@ const handleChangeGeo=(e)=>{
             onChange={handleChangeEntidad}
             value={eEntidad}
           >
-            <option value="">{filtEntLegal}</option>
+            <option value="">{t('filtEntLegal')}</option>
             {entidad.map((option, index) => (
               <option key={index} value={option}>{option}</option>
             ))}
@@ -212,7 +214,7 @@ const handleChangeGeo=(e)=>{
             onChange={handleChangeNivel}
             value={eNivel}
           >
-            <option value="">{filtNivel}</option>
+            <option value="">{t('filtNivel')}</option>
             {nivel.map((option, index) => (
               <option key={index} value={option}>{option}</option>
             ))}
@@ -222,7 +224,7 @@ const handleChangeGeo=(e)=>{
             onChange={handleChangePuesto}
             value={ePuesto}
           >
-            <option value="">{filtPuesto}</option>
+            <option value="">{t('filtPuesto')}</option>
             {puesto.map((option, index) => (
               <option key={index} value={option}>{option}</option>
             ))}
@@ -232,7 +234,7 @@ const handleChangeGeo=(e)=>{
             onChange={handleChangeGeo}
             value={eGeo}
           >
-            <option value="">{filtUbicGeog}</option>
+            <option value="">{t('filtUbicGeog')}</option>
             {geo.map((option, index) => (
               <option key={index} value={option}>{option}</option>
             ))}

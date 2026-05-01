@@ -5,9 +5,10 @@ import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
 import { Button } from "./ui/Button";
 import IconProfile from "../ui-components/IconProfile";
+import { useTranslation } from "react-i18next";
 
 export default function HeadCollaborator({ datosUsuario, aniosFill, testPreguntas, dataBehavior, dataLiderazgo, cmtLiderazgo, style, className }) {
-  const { downloadAllPDF, evalTxt } = useContext(CollaboratorsContext);
+  const { t } = useTranslation();
   const etiquetas = useContext(CollaboratorsContext);
 
   return (
@@ -17,7 +18,7 @@ export default function HeadCollaborator({ datosUsuario, aniosFill, testPregunta
     >
       <div className="flex-1 flex flex-col gap-2">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xl font-light text-gray-800">{evalTxt}</span>
+          <span className="text-xl font-light text-gray-800">{t('evalTxt')}</span>
           <span className="text-xl font-medium text-gray-800">{datosUsuario?.nombre}</span>
         </div>
         <div className="flex flex-wrap gap-4">
@@ -49,7 +50,7 @@ export default function HeadCollaborator({ datosUsuario, aniosFill, testPregunta
         }
         fileName="Evaluación_de_desempeño_potencial.pdf"
       >
-        <Button variation="primary">{downloadAllPDF}</Button>
+        <Button variation="primary">{t('downloadAllPDF')}</Button>
       </PDFDownloadLink>
     </div>
   );

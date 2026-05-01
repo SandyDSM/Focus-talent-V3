@@ -6,24 +6,14 @@ import IconProfile from "../ui-components/IconProfile";
 import PDFLiderazgo from "../PDFLiderazgo";
 import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
+import { useTranslation } from "react-i18next";
 
 export default function LiderazgoTest({ datosUsuario, anios, dataLiderazgo, cmtLiderazgo, load }) {
-  const {
-    downloadPDF,
-    noData,
-    evalCompCol,
-    evalCompJef,
-    evalCompPar,
-    titleCompLid,
-    culturaGB,
-    retroAlimentacion,
-    califGeneral,
-  } = useContext(CollaboratorsContext);
-
+  const { t } = useTranslation();
   const etiquetas = useContext(CollaboratorsContext);
 
-  const encabezados = [evalCompCol, evalCompJef, evalCompPar];
-  const filas = [titleCompLid, culturaGB];
+  const encabezados = [t('evalCompCol'), t('evalCompJef'), t('evalCompPar')];
+  const filas = [t('titleCompLid'), t('culturaGB')];
 
   const tabla = Array(filas.length)
     .fill(null)
@@ -59,7 +49,7 @@ export default function LiderazgoTest({ datosUsuario, anios, dataLiderazgo, cmtL
             className="w-24 h-24 rounded-lg object-cover shrink-0"
           />
           <div className="flex flex-col gap-1 flex-1">
-            <h2 className="text-xl font-semibold">{`${titleCompLid} ${anios - 1}`}</h2>
+            <h2 className="text-xl font-semibold">{`${t('titleCompLid')} ${anios - 1}`}</h2>
             <p className="text-base font-medium text-black/80">{datosUsuario?.nombre}</p>
             <div className="flex flex-wrap gap-3">
               <div className="flex items-center gap-1">
@@ -83,7 +73,7 @@ export default function LiderazgoTest({ datosUsuario, anios, dataLiderazgo, cmtL
         <div className="w-full">
           <div>
             <div className="flex gap-2 items-baseline">
-              <p>{califGeneral}</p>
+              <p>{t('califGeneral')}</p>
               <h2 className="text-xl font-bold">{dataLiderazgo_year[0]?.RATING_}</h2>
             </div>
             <table className="table-fixed border-spacing-[7px] my-8 w-full">
@@ -109,7 +99,7 @@ export default function LiderazgoTest({ datosUsuario, anios, dataLiderazgo, cmtL
               </tbody>
             </table>
             <div className="py-6">
-              <p className="font-bold">{retroAlimentacion}</p>
+              <p className="font-bold">{t('retroAlimentacion')}</p>
               {cmtLiderazgo_year?.length > 0 ? (
                 cmtLiderazgo_year.map((dato, index) => (
                   <div key={index}>
@@ -121,7 +111,7 @@ export default function LiderazgoTest({ datosUsuario, anios, dataLiderazgo, cmtL
                   </div>
                 ))
               ) : (
-                <p>{noData}</p>
+                <p>{t('noData')}</p>
               )}
               <div className="flex flex-col items-end gap-2.5 w-full py-2.5">
                 <PDFDownloadLink
@@ -140,7 +130,7 @@ export default function LiderazgoTest({ datosUsuario, anios, dataLiderazgo, cmtL
                   fileName={`Competencias_de_Liderazgo_${anios}.pdf`}
                 >
                   <button className="px-3 py-1.5 bg-bmb-blue text-white rounded text-sm font-medium hover:opacity-90">
-                    {downloadPDF}
+                    {t('downloadPDF')}
                   </button>
                 </PDFDownloadLink>
               </div>
@@ -149,7 +139,7 @@ export default function LiderazgoTest({ datosUsuario, anios, dataLiderazgo, cmtL
         </div>
       ) : (
         <div className="w-full">
-          <p>{noData}</p>
+          <p>{t('noData')}</p>
         </div>
       )}
     </div>

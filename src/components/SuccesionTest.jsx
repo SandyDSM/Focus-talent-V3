@@ -3,12 +3,11 @@ import * as React from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDFPotencial from "../PDFPotencial";
 import IconProfile from "../ui-components/IconProfile";
-import { useContext } from "react";
-import CollaboratorsContext from "../context/collaborators";
+import { useTranslation } from "react-i18next";
 
 export default function SuccesionTest({ datosUsuario, arrayPreguntas, anios }) {
+  const { t } = useTranslation();
   const testPreguntas = arrayPreguntas;
-  const { potReview, downloadPDF, noData } = useContext(CollaboratorsContext);
 
   const thisYear = testPreguntas?.filter(
     (c) => c.CATEGORIA === "Potencial" && c.ANO_EVAL === anios,
@@ -44,7 +43,7 @@ export default function SuccesionTest({ datosUsuario, arrayPreguntas, anios }) {
           className="w-24 h-24 rounded-lg object-cover shrink-0"
         />
         <div className="flex flex-col gap-1 flex-1">
-          <h2 className="text-xl font-semibold">{`${potReview} ${anios}`}</h2>
+          <h2 className="text-xl font-semibold">{`${t('potReview')} ${anios}`}</h2>
           <p className="text-base font-medium text-black/80">{datosUsuario?.nombre}</p>
           <div className="flex flex-wrap gap-3">
             <div className="flex items-center gap-1">
@@ -129,20 +128,20 @@ export default function SuccesionTest({ datosUsuario, arrayPreguntas, anios }) {
                   DATOS={testPreguntas}
                   anios={anios}
                   datosUsuario={datosUsuario}
-                  etiquetas={potReview}
+                  etiquetas={t('potReview')}
                 />
               }
               fileName={`Evaluación_de_potencial_${anios}.pdf`}
             >
               <button className="px-3 py-1.5 bg-bmb-blue text-white rounded text-sm font-medium hover:opacity-90">
-                {downloadPDF}
+                {t('downloadPDF')}
               </button>
             </PDFDownloadLink>
           </div>
         </div>
       ) : (
         <div className="w-full">
-          <p>{noData}</p>
+          <p>{t('noData')}</p>
         </div>
       )}
     </div>
