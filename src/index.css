@@ -29,18 +29,20 @@ code {
 }
 
 .tab{
-  @apply overflow-hidden border border-solid p-2 text-center text-tab-text shadow cursor-pointer
+  @apply overflow-hidden border border-solid p-2.5 text-center text-tab-text text-sm font-medium
+         cursor-pointer transition-all duration-180 select-none;
 }
 
 .tab:hover{
-  @apply bg-hover font-bold
+  @apply bg-hover text-text-primary font-semibold;
 }
 
 .tabActive{
-  @apply overflow-hidden border border-solid p-2 text-center text-white shadow drop-shadow-lg font-bold
+  @apply overflow-hidden border border-solid p-2.5 text-center text-white text-sm font-semibold
+         shadow-md cursor-pointer select-none;
 }
 
 .cardTitle{
-  @apply overflow-hidden bg-bmb-secundary shadow rounded-md p-4 text-2xl text-white
-
+  @apply overflow-hidden bg-bmb-secundary shadow-sm rounded-lg px-5 py-3.5
+         text-xl font-semibold text-white tracking-wide;
 }

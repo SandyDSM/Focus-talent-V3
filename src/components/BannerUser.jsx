@@ -1,32 +1,29 @@
-import React,{useEffect, useContext} from 'react'
-import { Person } from '../ui-components'
+import React, { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
 
-function BannerUser() {
-    const {usuarioActualDatos, photo} = useContext(CollaboratorsContext)
+const AVATAR = "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png";
 
-    const sendOverridesPerson = {
-        "image 3": { src: photo },
-        Heading: { 
-          children: `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}`,
-          color: "#043495"
-         },
-        close: {display: 'none '},
-    }
-    const sendOverridesPersonLoad = {
-      "image 3": { src: "https://pruebabucketsawspruebas.s3.amazonaws.com/Phototest/Avatar.png" },
-      Heading: { children: " " },
-      close: {display: 'none '}
-  }
+function BannerUser() {
+  const { usuarioActualDatos, photo } = useContext(CollaboratorsContext);
+
+  const nombre = usuarioActualDatos?.NOMBRE
+    ? `${usuarioActualDatos.NOMBRE} ${usuarioActualDatos.APELLIDOS}`
+    : "";
 
   return (
-    <div>
-      {
-        usuarioActualDatos.NOMBRE == undefined ? <Person width={"100%"} overrides={sendOverridesPersonLoad}/> : <Person width={"100%"} overrides={sendOverridesPerson}/>
-      }
-        
+    <div className="flex items-center gap-3 px-5 py-3 bg-white border-b border-border-subtle shadow-sm">
+      <img
+        src={photo || AVATAR}
+        alt={nombre}
+        className="w-10 h-10 rounded-full object-cover ring-2 ring-bmb-blue-light shrink-0"
+      />
+      {nombre && (
+        <span className="font-semibold text-bmb-blue text-sm md:text-base leading-tight">
+          {nombre}
+        </span>
+      )}
     </div>
-  )
+  );
 }
 
-export default BannerUser
+export default BannerUser;

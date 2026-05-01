@@ -44,20 +44,19 @@ export default function BannerSearch({ OpcionSelect }) {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-3 bg-white rounded shadow-sm w-full transition-all">
-      <div className="flex-1">
-        <h3 className="text-lg font-medium">Mi equipo</h3>
-      </div>
-      <div className="relative">
-        <input
-          id="busqueda"
-          type="search"
-          placeholder="Buscar colaborador"
-          onChange={(e) => onChange(e.target.value)}
-          onInput={(e) => { if (e.target.value === "") onClear(); }}
-          className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-bmb-blue w-64"
-        />
-      </div>
+    <div className="flex flex-col sm:flex-row items-center gap-3 mx-4 md:mx-5 px-4 py-3 bg-white rounded-lg shadow-panel border border-border-subtle">
+      <h3 className="flex-1 text-base font-semibold text-text-primary">Mi equipo</h3>
+      <input
+        id="busqueda"
+        type="search"
+        placeholder="Buscar colaborador"
+        onChange={(e) => onChange(e.target.value)}
+        onInput={(e) => { if (e.target.value === "") onClear(); }}
+        className="border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-primary
+                   placeholder:text-text-muted bg-surface-muted
+                   focus:outline-none focus:ring-2 focus:ring-bmb-blue/30 focus:border-bmb-blue
+                   transition-colors duration-180 w-60"
+      />
     </div>
   );
 }

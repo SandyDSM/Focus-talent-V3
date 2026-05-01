@@ -5,12 +5,15 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^4.6.5",
     "@headlessui/react": "^1.7.7",
+    "@radix-ui/react-slot": "^1.2.4",
     "@react-pdf/renderer": "^3.0.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "aws-amplify": "^5.3.27",
     "aws-sdk": "^2.1386.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.18.1",
     "html2canvas": "^1.4.1",
     "i18next": "^25.6.0",
@@ -25,6 +28,7 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "sweetalert2": "^11.7.3",
+    "tailwind-merge": "^3.5.0",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
   },
