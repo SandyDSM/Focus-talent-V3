@@ -2,6 +2,7 @@ import { useState } from "react";
 import { API } from "aws-amplify";
 import { Auth } from "aws-amplify";
 import { useNavigate } from "react-router-dom";
+import i18n from "../i18n";
 
 export default function useAuth({ onUserResolved, signOut }) {
   const navigate = useNavigate();
@@ -50,6 +51,8 @@ export default function useAuth({ onUserResolved, signOut }) {
       }
 
       const esAdmin = datos[0].ADMIN;
+      const langMap = { EN: "en", ES: "es", "English (US)": "en", "Spanish (Latin America)": "es" };
+      i18n.changeLanguage(langMap[datos[0].IDIOMA] || "es");
       onUserResolved(datos[0].IDIOMA);
 
       if (esAdmin === "1") {
