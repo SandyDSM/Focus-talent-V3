@@ -5,9 +5,11 @@ import CardDos from "../components/CardDos";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useContext } from "react";
 import CollaboratorsContext from "../context/collaborators";
+import { useTranslation } from "react-i18next";
 
 const SearchTeam = ({ sub, setCloseSerchAll }) => {
-  const { isLoading, resultsComplete, resBusq, buttonCerrar, filtNoSeEncColabs } = useContext(CollaboratorsContext);
+  const { isLoading, resultsComplete } = useContext(CollaboratorsContext);
+  const { t } = useTranslation();
 
   const onClose = () => {
     setCloseSerchAll(0);
@@ -24,12 +26,12 @@ const SearchTeam = ({ sub, setCloseSerchAll }) => {
   return (
     <div className="mt-4">
       <div className="cardTitle col-span-1 sm:col-span-2 md:col-span-3 bg-bmb-secundary flex flex-row items-center gap-6 justify-between mx-4 md:mx-8">
-        <p>{resBusq}</p>
+        <p>{t('resBusq')}</p>
         <button
           className="flex items-center gap-1 text-white text-sm hover:opacity-80 transition-opacity"
           onClick={onClose}
         >
-          <span className="mx-2">{buttonCerrar}</span>
+          <span className="mx-2">{t('buttonCerrar')}</span>
           <X size={12} color="rgba(248,248,248,1)" />
         </button>
       </div>
@@ -37,14 +39,14 @@ const SearchTeam = ({ sub, setCloseSerchAll }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-5 px-0 md:px-4 gap-4 mb-12">
         {resultsComplete != null ? (
           resultsComplete.length <= 0 ? (
-            <p className="col-span-3 items-center text-center mt-6">"{filtNoSeEncColabs}"</p>
+            <p className="col-span-3 items-center text-center mt-6">"{t('filtNoSeEncColabs')}"</p>
           ) : (
             resultsComplete?.map((colaborator, index) => (
               <CardDos key={index} colaborator={colaborator} sub={sub} serch="true" />
             ))
           )
         ) : (
-          <p className="col-span-3 items-center text-center mt-6">{filtNoSeEncColabs}</p>
+          <p className="col-span-3 items-center text-center mt-6">{t('filtNoSeEncColabs')}</p>
         )}
       </div>
     </div>

@@ -1,33 +1,19 @@
 import React from 'react'
 import BannerSearch from './BannerSearch';
 import BannerSearchAll from './BannerSearchAll';
-import { useContext} from "react";
-import CollaboratorsContext from "../context/collaborators";
+import { useTranslation } from "react-i18next";
 
+function HeadTeam({ title = "Mi Equipo", OpcionSelect, all, setCloseSerchAll }) {
+  const { t } = useTranslation();
 
-function HeadTeam({title = "Mi Equipo", OpcionSelect, all, setCloseSerchAll}) {
-  const {buttonMyTeam, busqueda } = useContext(CollaboratorsContext);
-  const sendOverridesBanner = {
-        "SearchField": { 
-          width: { base: "100%", medium: "360px" },
-          placeholder: busqueda,
-          hasSearchButton: all=="1" ? true :false,
-          hasSearchIcon: all=="1" ? false :true
-         },
-         Heading:{
-          children: buttonMyTeam,
-          color: "#043495",
-        }
-  }
-    
   return (
     <div className='mt-2 flex flex-col gap-2'>
-        { all == "0" ?
-          <BannerSearch width={"100%"} overrides={sendOverridesBanner} OpcionSelect={OpcionSelect}/> :
-          <BannerSearchAll width={"100%"} overrides={sendOverridesBanner} setCloseSerchAll={setCloseSerchAll}/> 
-          }
+      {all == "0" ?
+        <BannerSearch width={"100%"} OpcionSelect={OpcionSelect} /> :
+        <BannerSearchAll width={"100%"} setCloseSerchAll={setCloseSerchAll} />
+      }
     </div>
-  )
+  );
 }
 
 export default HeadTeam;

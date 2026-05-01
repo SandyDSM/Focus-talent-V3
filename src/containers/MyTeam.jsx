@@ -1,10 +1,6 @@
 import LoadingSpinner from '../components/LoadingSpinner';
 import React from "react";
 import HeadTeam from "../components/HeadTeam";
-import { API } from "aws-amplify";
-import i18n from "../i18n";
-
-//import Configuration from '../utils/Configuration'
 
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
@@ -47,28 +43,6 @@ const MyTeam = () => {
     const { t } = useTranslation();
 
 
-  function getData() {
-    const apiName = "API Behaviors";
-    const path = "/translations";
-    const myInit = {
-      headers: {}, // OPTIONAL
-      queryStringParameters: {
-        LANGUAGE: `'${usuarioActualDatos.IDIOMA}'`,
-      },
-    };
-
-    return API.get(apiName, path, myInit);
-  }
-
-  const fetcLanguage = async () => {
-    try {
-      const response = await getData();
-      // console.log("Languaje",response)
-    } catch (error) {
-      console.log("error:", error);
-    }
-  };
-
   useEffect(() => {
     if (usuarioActualDatos.ID_COLABORADOR != undefined) {
       getCollaborators(usuarioActualDatos.ID_COLABORADOR, "SetColaborators");
@@ -76,9 +50,7 @@ const MyTeam = () => {
   }, [usuarioActualDatos.ID_COLABORADOR]);
 
   useEffect(() => {
-    //actualizaBusqueda(collaborators);
     setSubOne(false);
-    fetcLanguage();
     setAll(usuarioActualDatos.BUSQUEDA_GLOBAL);
   }, [usuarioActualDatos]);
 
